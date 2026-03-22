@@ -2,280 +2,914 @@
 <html lang="az">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   
   <!-- SEO Metadata -->
-  <title>Sərfəli Al — Azərbaycanın Ən Ağıllı Alış Platforması</title>
-  <meta name="description" content="Sərfəli Al ən ucuz qiyməti tapmağa, real endirimləri aşkar etməyə və alış-verişdən qənaət etməyə kömək edən müasir qiymət müqayisəsi və cashback platformasıdır.">
+  <title>Sərfəli Al — Azərbaycanın ən ağıllı alış platforması | Qiymət müqayisəsi</title>
+  <meta name="description" content="120+ mağazada qiymət müqayisəsi, real endirim analizi, cashback və qiymət tarixçəsi. Azərbaycanda ən ucuz qiyməti tapın.">
   <meta name="keywords" content="qiymət müqayisəsi, real endirimlər, cashback, sərfəli alış, ən ucuz qiymət, qiymət tarixçəsi, onlayn alış-veriş Azərbaycan">
-  <meta name="author" content="Serfeli.al">
+  <meta name="author" content="Sərfəli Al">
   <meta name="robots" content="index, follow">
-
-  <!-- Core Fonts: Inter -->
+  <link rel="canonical" href="https://serfeli.al/">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sərfəli Al — Azərbaycanın ən ağıllı alış platforması">
+  <meta property="og:description" content="120+ mağazada qiymət müqayisəsi, real endirim analizi, cashback və qiymət tarixçəsi. Azərbaycanda ən ucuz qiyməti tapın.">
+  <meta property="og:image" content="/og-image.jpg">
+  <meta property="og:locale" content="az_AZ">
+  <meta property="og:url" content="https://serfeli.al/">
+  <meta property="og:site_name" content="Sərfəli Al">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sərfəli Al — Azərbaycanın ən ağıllı alış platforması">
+  <meta name="twitter:description" content="120+ mağazada qiymət müqayisəsi, real endirim analizi, cashback və qiymət tarixçəsi.">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#16a34a">
+  
+  <!-- Fonts: Syne for headings, DM Sans for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Icon Library: Phosphor Icons (looks modern and premium) -->
+  <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-  <!-- CSS & JS -->
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Sərfəli Al",
+    "url": "https://serfeli.al/",
+    "description": "Azərbaycanın ən ağıllı qiymət müqayisəsi platforması",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://serfeli.al/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Sərfəli Al",
+    "url": "https://serfeli.al/",
+    "logo": "https://serfeli.al/logo.svg",
+    "description": "Azərbaycanın ən ağıllı qiymət müqayisəsi platforması",
+    "sameAs": [
+      "https://instagram.com/serfelial",
+      "https://facebook.com/serfelial",
+      "https://linkedin.com/company/serfelial"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Apple iPhone 15 Pro 256GB Natural Titanium",
+    "image": "https://serfeli.al/products/iphone15pro.jpg",
+    "description": "Apple iPhone 15 Pro 256GB Natural Titanium - Azərbaycanda ən yaxşı qiymətlər",
+    "brand": {
+      "@type": "Brand",
+      "name": "Apple"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "url": "https://kontakt.az/iphone-15-pro",
+        "priceCurrency": "AZN",
+        "price": "2549",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Kontakt Home"
+        }
+      },
+      {
+        "@type": "Offer",
+        "url": "https://irshad.az/iphone-15-pro",
+        "priceCurrency": "AZN",
+        "price": "2599",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "İrşad Electronics"
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
 </head>
-<body class="bg-secondary">
+<body>
   
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Əsas məzmuna keç</a>
+
   <!-- Navigation / Header -->
-  <header class="header">
+  <header class="header" role="banner">
     <div class="container nav-container">
       <a href="/" class="logo" aria-label="Sərfəli Al Baş Səhifə">
-        Sərfəli<span class="logo-dot">.</span>al
+        <span class="logo-text">Sərfəli</span><span class="logo-dot">Al</span>
       </a>
       
-      <nav class="nav-menu">
-        <a href="#features" class="nav-link">Üstünlüklərimiz</a>
-        <a href="#comparison" class="nav-link">Qiymət Müqayisəsi</a>
-        <a href="#business" class="nav-link">Partnyorluq</a>
+      <!-- Desktop Search -->
+      <div class="nav-search" role="search">
+        <div class="nav-search-box">
+          <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" placeholder="Məhsul axtarın..." aria-label="Məhsul axtarışı" class="nav-search-input" id="nav-search-input">
+          <div class="search-autocomplete" id="nav-autocomplete" role="listbox" aria-label="Axtarış nəticələri"></div>
+        </div>
+      </div>
+      
+      <nav class="nav-menu" role="navigation" aria-label="Əsas naviqasiya">
+        <div class="nav-categories-dropdown">
+          <button class="nav-link nav-categories-btn" aria-expanded="false" aria-haspopup="true">
+            <i class="ph ph-squares-four" aria-hidden="true"></i>
+            Kateqoriyalar
+            <i class="ph ph-caret-down" aria-hidden="true"></i>
+          </button>
+          <div class="categories-dropdown-menu" role="menu">
+            <a href="#" class="category-dropdown-item" role="menuitem">
+              <i class="ph ph-device-mobile" aria-hidden="true"></i>
+              Telefonlar
+            </a>
+            <a href="#" class="category-dropdown-item" role="menuitem">
+              <i class="ph ph-laptop" aria-hidden="true"></i>
+              Noutbuklar
+            </a>
+            <a href="#" class="category-dropdown-item" role="menuitem">
+              <i class="ph ph-television" aria-hidden="true"></i>
+              Televizorlar
+            </a>
+            <a href="#" class="category-dropdown-item" role="menuitem">
+              <i class="ph ph-house-line" aria-hidden="true"></i>
+              Məişət texnikası
+            </a>
+            <a href="#" class="category-dropdown-item" role="menuitem">
+              <i class="ph ph-game-controller" aria-hidden="true"></i>
+              Oyun konsolları
+            </a>
+            <a href="#" class="category-dropdown-item" role="menuitem">
+              <i class="ph ph-device-tablet" aria-hidden="true"></i>
+              Planşetlər
+            </a>
+          </div>
+        </div>
+        <a href="#comparison" class="nav-link">Müqayisə</a>
+        <a href="#how-it-works" class="nav-link">Necə işləyir</a>
         <a href="#faq" class="nav-link">Sual-Cavab</a>
       </nav>
 
-      <div class="nav-actions" style="display: flex; gap: 1.5rem; align-items: center;">
-        <div class="cart-icon-wrapper" id="cart-icon" aria-label="Səbət">
-          <i class="ph ph-shopping-cart"></i>
-          <span class="cart-badge" id="cart-badge">0</span>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" aria-label="Giriş">Giriş</button>
+        <button class="btn btn-primary">Qeydiyyat</button>
+        <button class="mobile-menu-btn" aria-label="Menyu" aria-expanded="false" id="mobile-menu-btn">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobil naviqasiya">
+      <div class="mobile-menu-content">
+        <div class="mobile-search-box">
+          <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" placeholder="Məhsul axtarın..." aria-label="Məhsul axtarışı">
         </div>
-        <button class="btn btn-secondary" style="padding: 0.5rem 1rem;">Giriş</button>
-        <button class="btn btn-primary" style="padding: 0.5rem 1rem;">Qeydiyyat</button>
+        <nav class="mobile-nav">
+          <a href="#categories" class="mobile-nav-link">Kateqoriyalar</a>
+          <a href="#comparison" class="mobile-nav-link">Müqayisə</a>
+          <a href="#how-it-works" class="mobile-nav-link">Necə işləyir</a>
+          <a href="#faq" class="mobile-nav-link">Sual-Cavab</a>
+        </nav>
+        <div class="mobile-menu-actions">
+          <button class="btn btn-ghost btn-full">Giriş</button>
+          <button class="btn btn-primary btn-full">Qeydiyyat</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <main>
+  <main id="main-content" role="main">
+    
     <!-- HERO SECTION -->
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-container">
         
         <!-- Hero Text Content -->
-        <div class="hero-content">
-          <div class="badge badge-success mb-4" style="width: max-content;">
-            <i class="ph ph-sparkle"></i> Yeni Nəsil Alış-veriş
-          </div>
-          <h1 class="hero-title">Azərbaycanın ən ağıllı alış platforması</h1>
+        <div class="hero-content reveal-fade">
+          <h1 id="hero-title" class="hero-title">
+            Azərbaycanın ən 
+            <span class="text-gradient">ağıllı</span> 
+            alış platforması
+          </h1>
           <p class="hero-subtitle">
-            Sərfəli.al e-ticarət mağazası deyil. Biz, fərqli mağazalardakı qiymətləri müqayisə edən, 
-            real endirimləri aşkar edən və sizə ən sərfəli variantı təqdim edən ağıllı qənaət ekosistemiyik.
+            120+ mağazada qiymət müqayisəsi, real endirim analizi, cashback imkanları və qiymət tarixçəsi ilə ən sərfəli alışı edin.
           </p>
           
-          <div class="search-box">
-            <i class="ph ph-magnifying-glass search-icon"></i>
-            <input type="text" placeholder="Məhsul və ya model axtarın (məs: iPhone 15 Pro)..." class="search-input">
-            <button class="btn btn-primary search-btn">Məhsul axtar</button>
+          <!-- Hero Search -->
+          <div class="hero-search-wrapper">
+            <div class="hero-search-box" role="search">
+              <i class="ph ph-magnifying-glass search-icon" aria-hidden="true"></i>
+              <input 
+                type="search" 
+                id="hero-search" 
+                class="hero-search-input" 
+                placeholder="Məhsul və ya model axtarın (məs: iPhone 15 Pro)..." 
+                aria-label="Məhsul axtarışı"
+                autocomplete="off"
+              >
+              <button class="btn btn-primary search-btn">
+                <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                <span>Axtar</span>
+              </button>
+              
+              <!-- Autocomplete Dropdown -->
+              <div class="search-autocomplete hero-autocomplete" id="hero-autocomplete" role="listbox">
+                <div class="autocomplete-loading">
+                  <div class="skeleton-line"></div>
+                  <div class="skeleton-line"></div>
+                  <div class="skeleton-line"></div>
+                </div>
+                <div class="autocomplete-results"></div>
+              </div>
+            </div>
           </div>
           
-          <div class="hero-badges">
-            <span class="badge-text"><i class="ph-fill ph-check-circle text-primary"></i> 30+ Mağaza</span>
-            <span class="badge-text"><i class="ph-fill ph-check-circle text-primary"></i> Real Endirimlər</span>
-            <span class="badge-text"><i class="ph-fill ph-check-circle text-primary"></i> Cashback</span>
+          <!-- Trust Badges -->
+          <div class="hero-badges reveal-fade" style="--delay: 0.1s">
+            <div class="trust-badge">
+              <i class="ph-fill ph-storefront" aria-hidden="true"></i>
+              <span><strong>120+</strong> Mağaza</span>
+            </div>
+            <div class="trust-badge">
+              <i class="ph-fill ph-package" aria-hidden="true"></i>
+              <span><strong>50K+</strong> Məhsul</span>
+            </div>
+            <div class="trust-badge">
+              <i class="ph-fill ph-seal-check" aria-hidden="true"></i>
+              <span>Real Endirim Analizi</span>
+            </div>
           </div>
         </div>
         
-        <!-- Hero Image Container -->
-        <div class="hero-image">
-          <img src="C:\Users\Ferid\.gemini\antigravity\brain\5096cfdd-f544-4730-aa03-b522bf57fe7c\dashboard_mockup_1774179272003.png" alt="Sərfəli Al Platforma Görünüşü" id="hero-img">
-        </div>
-
-      </div>
-    </section>
-
-    <!-- PRODUCTS SECTION (NEW) -->
-    <section id="products" class="section products-section">
-      <div class="container">
-        <div class="text-center mb-12">
-          <div class="badge badge-success mb-4" style="margin: 0 auto;"><i class="ph-fill ph-fire"></i> Çox Satılanlar</div>
-          <h2 class="section-title">Ağıllı alış-verişə başlayın</h2>
-          <p class="section-subtitle mx-auto">
-            Ən sərfləli məhsulları kəşf edin, qiymətləri müqayisə edin və səbətinizə əlavə edin.
-          </p>
-        </div>
-
-        <!-- Product Grid will be populated by JS -->
-        <div class="features-grid" id="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
-          <!-- Products will be injected here -->
-        </div>
-      </div>
-    </section>
-
-    <!-- PROBLEM STATEMENT SECTION -->
-    <section id="problem" class="section bg-white text-center">
-      <div class="container">
-        <div class="badge badge-warning mb-4" style="margin: 0 auto;"><i class="ph-fill ph-warning-circle"></i> Mövcud Problem</div>
-        <h2 class="section-title">Niyə Sərfəli.al yaranıb?</h2>
-        <p class="section-subtitle mx-auto">
-          Azərbaycanda qiymət şəffaflığı zəifdir. Mağazalar eyni məhsulu fərqli qiymətlərə satır, 
-          endirimlər isə çox vaxt şişirdilmiş və ya saxta olur. Alıcılar ən yaxşı təklifi tapmaq 
-          üçün saatlarla vaxt itirir. Biz isə sizə hər şeyi tək ekranda, şəffaf şəkildə təqdim edirik.
-        </p>
-      </div>
-    </section>
-
-    <!-- SMART FEATURES SECTION -->
-    <section id="features" class="section">
-      <div class="container">
-        <div class="text-center mb-12">
-          <div class="badge badge-info mb-4" style="margin: 0 auto;"><i class="ph-fill ph-lightning"></i> Ağıllı Üstünlüklər</div>
-          <h2 class="section-title">Necə qənaət edəcəksiniz?</h2>
-          <p class="section-subtitle mx-auto">
-            Platformamız sizə ən düzgün alış qərarını vermək üçün müxtəlif alətlər təqdim edir.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <!-- Card 1 -->
-          <div class="feature-card">
-            <div class="feature-icon"><i class="ph ph-scales"></i></div>
-            <h3>Qiymət Müqayisəsi</h3>
-            <p>Onlarla fərqli mağazanın qiymətlərini bir ekranda görün. Ən sərfəlisini anında tapın.</p>
-          </div>
-          <!-- Card 2 -->
-          <div class="feature-card">
-            <div class="feature-icon text-red"><i class="ph ph-trend-down"></i></div>
-            <h3>Real Endirim Analizi</h3>
-            <p>Gördüyünüz endirimin həqiqi yoxsa şişirdilmiş olduğunu sizə sübut edirik.</p>
-          </div>
-          <!-- Card 3 -->
-          <div class="feature-card">
-            <div class="feature-icon"><i class="ph ph-chart-line-up"></i></div>
-            <h3>Qiymət Tarixçəsi</h3>
-            <p>Məhsulun son 30 gün ərzində ən ucuz hansı qiymətə satıldığını izləyərək düzgün vaxtda alın.</p>
-          </div>
-          <!-- Card 4 -->
-          <div class="feature-card">
-            <div class="feature-icon"><i class="ph ph-lightbulb"></i></div>
-            <h3>Ağıllı Tövsiyələr</h3>
-            <p>Daha ucuz qiymətə həm də eyni və ya daha yaxşı performansa sahib alternativlər kəşf edin.</p>
-          </div>
-          <!-- Card 5 -->
-          <div class="feature-card">
-            <div class="feature-icon text-green"><i class="ph ph-money"></i></div>
-            <h3>Cashback Sistemi</h3>
-            <p>Bəzi mağazalardan etdiyiniz alış-verişlərdən əlavə olaraq nağd pul geri qazanın.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMPARISON DEMO SECTION -->
-    <section id="comparison" class="section bg-secondary">
-      <div class="container">
-        <div class="text-center mb-12">
-          <div class="badge badge-success mb-4" style="margin: 0 auto;"><i class="ph-fill ph-scales"></i> Ağıllı Müqayisə</div>
-          <h2 class="section-title">Ən yaxşı təklifi belə tapırıq</h2>
-          <p class="section-subtitle mx-auto">
-            Hər bir məhsul üçün müxtəlif mağazaların qiymətlərini bir ekrana yığırıq və sizə ən çox qazandıran seçimi fərqləndiririk.
-          </p>
-        </div>
-
-        <div class="demo-card">
-          <div class="demo-header">
-            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=200&auto=format&fit=crop" alt="iPhone 15 Pro" class="demo-product-img">
-            <div class="demo-product-info">
-              <h3>Apple iPhone 15 Pro 256GB Natural Titanium</h3>
-              <p class="text-muted">Kateqoriya: Smartfonlar</p>
-            </div>
-            <div class="demo-best-price">
-              <span class="text-sm">Ən sərfəli qiymət:</span>
-              <div class="price">2549 ₼</div>
-            </div>
-          </div>
-
-          <div class="demo-list">
-            <!-- Row 1: Best Deal -->
-            <div class="demo-item best-deal">
-              <div class="store-info">
-                <span class="store-name">SmartElectro</span>
-                <div class="store-badges">
-                  <span class="badge badge-success"><i class="ph-fill ph-money"></i> 5% Cashback</span>
-                  <span class="badge badge-info"><i class="ph-fill ph-shield-check"></i> 1 İl Zəmanət</span>
+        <!-- Hero Floating Card -->
+        <div class="hero-visual reveal-fade" style="--delay: 0.2s">
+          <div class="floating-card" aria-hidden="true">
+            <div class="floating-card-header">
+              <div class="floating-card-product">
+                <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=80&h=80&fit=crop&q=80" alt="" class="floating-card-img">
+                <div class="floating-card-info">
+                  <span class="floating-card-name">iPhone 15 Pro Max</span>
+                  <span class="floating-card-model">256GB • Natural Titanium</span>
                 </div>
               </div>
-              <div class="delivery-info text-muted"> <i class="ph ph-truck"></i> Pulsuz çatdırılma </div>
-              <div class="price-info">
-                <div class="price-current text-green">2549 ₼</div>
-                <button class="btn btn-primary btn-sm">Mağazaya Keç <i class="ph ph-arrow-right"></i></button>
+              <div class="best-price-badge pulse-animation">
+                <i class="ph-fill ph-trophy" aria-hidden="true"></i>
+                Ən Ucuz
               </div>
             </div>
-
-            <!-- Row 2 -->
-            <div class="demo-item">
-              <div class="store-info">
-                <span class="store-name">TechBaku</span>
-                <div class="store-badges">
-                  <span class="badge badge-info"><i class="ph-fill ph-shield-check"></i> 1 İl Zəmanət</span>
-                </div>
+            <div class="floating-card-prices">
+              <div class="price-row">
+                <span class="store-name">Kontakt Home</span>
+                <span class="price-value animate-price" data-target="2549">2549 ₼</span>
               </div>
-              <div class="delivery-info text-muted"> <i class="ph ph-truck"></i> 5 ₼ Çatdırılma </div>
-              <div class="price-info">
-                <div class="price-current">2699 ₼</div>
-                <button class="btn btn-secondary btn-sm">Mağazaya Keç</button>
+              <div class="price-row highlight">
+                <span class="store-name">İrşad Electronics</span>
+                <span class="price-value">2599 ₼</span>
+              </div>
+              <div class="price-row">
+                <span class="store-name">Bravo</span>
+                <span class="price-value">2649 ₼</span>
               </div>
             </div>
-
-            <!-- Row 3: Fake Discount -->
-            <div class="demo-item">
-              <div class="store-info">
-                <span class="store-name">MegaStore</span>
-                <div class="store-badges">
-                  <span class="badge badge-warning"><i class="ph-fill ph-warning-circle"></i> Şişirdilmiş Endirim</span>
-                </div>
-              </div>
-              <div class="delivery-info text-muted"> <i class="ph ph-truck"></i> Pulsuz çatdırılma </div>
-              <div class="price-info">
-                <div class="price-old">3100 ₼</div>
-                <div class="price-current">2799 ₼</div>
-                <button class="btn btn-secondary btn-sm">Mağazaya Keç</button>
-              </div>
+            <div class="floating-card-savings">
+              <i class="ph-fill ph-piggy-bank" aria-hidden="true"></i>
+              <span>Bu müqayisə ilə <strong>100 ₼</strong> qənaət edə bilərsiniz</span>
             </div>
           </div>
+          
+          <!-- Decorative Elements -->
+          <div class="hero-blob hero-blob-1"></div>
+          <div class="hero-blob hero-blob-2"></div>
         </div>
       </div>
     </section>
 
-    <!-- PRICE HISTORY SECTION -->
-    <section id="history" class="section bg-white">
+    <!-- CATEGORY GRID -->
+    <section id="categories" class="section categories-section" aria-labelledby="categories-title">
       <div class="container">
-        <div class="grid-2-cols">
-          <div class="history-content">
-            <div class="badge badge-info mb-4"><i class="ph-fill ph-chart-line-up"></i> Qiymət Tarixçəsi</div>
-            <h2 class="section-title">Endirimlərin əsl üzünü görün</h2>
+        <header class="section-header text-center">
+          <h2 id="categories-title" class="section-title reveal-fade">Kateqoriyalar üzrə axtarın</h2>
+          <p class="section-subtitle reveal-fade" style="--delay: 0.1s">Populyar kateqoriyalarda minlərlə məhsulu müqayisə edin</p>
+        </header>
+        
+        <div class="category-grid">
+          <a href="#" class="category-card reveal-fade" style="--delay: 0.1s">
+            <div class="category-icon">
+              <i class="ph ph-device-mobile" aria-hidden="true"></i>
+            </div>
+            <h3 class="category-name">Telefonlar</h3>
+            <span class="category-count">4,230 məhsul</span>
+          </a>
+          <a href="#" class="category-card reveal-fade" style="--delay: 0.15s">
+            <div class="category-icon">
+              <i class="ph ph-laptop" aria-hidden="true"></i>
+            </div>
+            <h3 class="category-name">Noutbuklar</h3>
+            <span class="category-count">2,156 məhsul</span>
+          </a>
+          <a href="#" class="category-card reveal-fade" style="--delay: 0.2s">
+            <div class="category-icon">
+              <i class="ph ph-television" aria-hidden="true"></i>
+            </div>
+            <h3 class="category-name">Televizorlar</h3>
+            <span class="category-count">1,847 məhsul</span>
+          </a>
+          <a href="#" class="category-card reveal-fade" style="--delay: 0.25s">
+            <div class="category-icon">
+              <i class="ph ph-house-line" aria-hidden="true"></i>
+            </div>
+            <h3 class="category-name">Məişət texnikası</h3>
+            <span class="category-count">3,512 məhsul</span>
+          </a>
+          <a href="#" class="category-card reveal-fade" style="--delay: 0.3s">
+            <div class="category-icon">
+              <i class="ph ph-game-controller" aria-hidden="true"></i>
+            </div>
+            <h3 class="category-name">Oyun konsolları</h3>
+            <span class="category-count">892 məhsul</span>
+          </a>
+          <a href="#" class="category-card reveal-fade" style="--delay: 0.35s">
+            <div class="category-icon">
+              <i class="ph ph-device-tablet" aria-hidden="true"></i>
+            </div>
+            <h3 class="category-name">Planşetlər</h3>
+            <span class="category-count">1,204 məhsul</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED DEALS STRIP -->
+    <section class="section deals-section" aria-labelledby="deals-title">
+      <div class="container">
+        <header class="section-header-inline">
+          <div class="section-header-left">
+            <div class="section-badge">
+              <i class="ph-fill ph-fire" aria-hidden="true"></i>
+              Günün Fürsətləri
+            </div>
+            <h2 id="deals-title" class="section-title-sm">Bu gün ən böyük endirimlər</h2>
+          </div>
+          <a href="#" class="btn btn-ghost btn-sm">
+            Hamısına bax
+            <i class="ph ph-arrow-right" aria-hidden="true"></i>
+          </a>
+        </header>
+        
+        <div class="deals-carousel" role="region" aria-label="Günün fürsətləri karuseli">
+          <div class="deals-track" id="deals-track">
+            <!-- Deal Card 1 -->
+            <article class="deal-card">
+              <div class="deal-badge">-32%</div>
+              <div class="deal-image">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&h=200&fit=crop&q=80" alt="Samsung Galaxy S24 Ultra" loading="lazy">
+              </div>
+              <div class="deal-content">
+                <span class="deal-store">
+                  <img src="https://logo.clearbit.com/kontakt.az" alt="" class="store-logo-sm" onerror="this.style.display='none'">
+                  Kontakt Home
+                </span>
+                <h3 class="deal-name">Samsung Galaxy S24 Ultra 256GB</h3>
+                <div class="deal-prices">
+                  <span class="deal-price-old">2499 ₼</span>
+                  <span class="deal-price-current">1699 ₼</span>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Deal Card 2 -->
+            <article class="deal-card">
+              <div class="deal-badge">-25%</div>
+              <div class="deal-image">
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&h=200&fit=crop&q=80" alt="MacBook Air M3" loading="lazy">
+              </div>
+              <div class="deal-content">
+                <span class="deal-store">
+                  <img src="https://logo.clearbit.com/irshad.az" alt="" class="store-logo-sm" onerror="this.style.display='none'">
+                  İrşad Electronics
+                </span>
+                <h3 class="deal-name">MacBook Air M3 15" 256GB</h3>
+                <div class="deal-prices">
+                  <span class="deal-price-old">2799 ₼</span>
+                  <span class="deal-price-current">2099 ₼</span>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Deal Card 3 -->
+            <article class="deal-card">
+              <div class="deal-badge">-40%</div>
+              <div class="deal-image">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop&q=80" alt="Sony WH-1000XM5" loading="lazy">
+              </div>
+              <div class="deal-content">
+                <span class="deal-store">
+                  <img src="https://logo.clearbit.com/bravo.az" alt="" class="store-logo-sm" onerror="this.style.display='none'">
+                  Bravo
+                </span>
+                <h3 class="deal-name">Sony WH-1000XM5 Qulaqlıq</h3>
+                <div class="deal-prices">
+                  <span class="deal-price-old">849 ₼</span>
+                  <span class="deal-price-current">509 ₼</span>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Deal Card 4 -->
+            <article class="deal-card">
+              <div class="deal-badge">-28%</div>
+              <div class="deal-image">
+                <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=200&h=200&fit=crop&q=80" alt="LG OLED TV" loading="lazy">
+              </div>
+              <div class="deal-content">
+                <span class="deal-store">
+                  <img src="https://logo.clearbit.com/amazon.com" alt="" class="store-logo-sm" onerror="this.style.display='none'">
+                  Amazon.az
+                </span>
+                <h3 class="deal-name">LG OLED C3 55" 4K Smart TV</h3>
+                <div class="deal-prices">
+                  <span class="deal-price-old">3499 ₼</span>
+                  <span class="deal-price-current">2519 ₼</span>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Deal Card 5 -->
+            <article class="deal-card">
+              <div class="deal-badge">-22%</div>
+              <div class="deal-image">
+                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=200&h=200&fit=crop&q=80" alt="Apple Watch Series 9" loading="lazy">
+              </div>
+              <div class="deal-content">
+                <span class="deal-store">
+                  <img src="https://logo.clearbit.com/unigroup.az" alt="" class="store-logo-sm" onerror="this.style.display='none'">
+                  Unigroup.az
+                </span>
+                <h3 class="deal-name">Apple Watch Series 9 45mm</h3>
+                <div class="deal-prices">
+                  <span class="deal-price-old">899 ₼</span>
+                  <span class="deal-price-current">699 ₼</span>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Deal Card 6 -->
+            <article class="deal-card">
+              <div class="deal-badge">-35%</div>
+              <div class="deal-image">
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=200&h=200&fit=crop&q=80" alt="PlayStation 5" loading="lazy">
+              </div>
+              <div class="deal-content">
+                <span class="deal-store">
+                  <img src="https://logo.clearbit.com/kontakt.az" alt="" class="store-logo-sm" onerror="this.style.display='none'">
+                  Kontakt Home
+                </span>
+                <h3 class="deal-name">PlayStation 5 Slim Digital</h3>
+                <div class="deal-prices">
+                  <span class="deal-price-old">999 ₼</span>
+                  <span class="deal-price-current">649 ₼</span>
+                </div>
+              </div>
+            </article>
+          </div>
+          
+          <button class="carousel-btn carousel-btn-prev" aria-label="Əvvəlki" id="deals-prev">
+            <i class="ph ph-caret-left" aria-hidden="true"></i>
+          </button>
+          <button class="carousel-btn carousel-btn-next" aria-label="Növbəti" id="deals-next">
+            <i class="ph ph-caret-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT COMPARISON TABLE (idealo.de style) -->
+    <section id="comparison" class="section comparison-section" aria-labelledby="comparison-title">
+      <div class="container">
+        <header class="section-header text-center">
+          <div class="section-badge section-badge-center">
+            <i class="ph-fill ph-scales" aria-hidden="true"></i>
+            Qiymət Müqayisəsi
+          </div>
+          <h2 id="comparison-title" class="section-title reveal-fade">Ən yaxşı təklifi belə tapırıq</h2>
+          <p class="section-subtitle reveal-fade" style="--delay: 0.1s">Hər bir məhsul üçün bütün mağazaların qiymətlərini bir ekranda görün</p>
+        </header>
+        
+        <!-- Product Header -->
+        <div class="comparison-product reveal-fade" style="--delay: 0.15s">
+          <div class="comparison-product-inner">
+            <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=120&h=120&fit=crop&q=80" alt="iPhone 15 Pro" class="comparison-product-img">
+            <div class="comparison-product-info">
+              <span class="comparison-product-category">Smartfonlar</span>
+              <h3 class="comparison-product-name">Apple iPhone 15 Pro 256GB Natural Titanium</h3>
+              <div class="comparison-product-meta">
+                <span><i class="ph ph-star-fill" aria-hidden="true"></i> 4.9 (2,341 rəy)</span>
+                <span><i class="ph ph-eye" aria-hidden="true"></i> Son 24 saatda 847 baxış</span>
+              </div>
+            </div>
+            <div class="comparison-product-best">
+              <span class="comparison-best-label">Ən sərfəli qiymət</span>
+              <span class="comparison-best-price" id="best-price">2549 ₼</span>
+              <span class="comparison-best-savings">150 ₼ qənaət</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Sort Controls -->
+        <div class="comparison-controls reveal-fade" style="--delay: 0.2s">
+          <span class="comparison-count">5 mağazada mövcuddur</span>
+          <div class="comparison-sort">
+            <label for="sort-select" class="sr-only">Sıralama</label>
+            <select id="sort-select" class="sort-select">
+              <option value="price-asc">Qiymət: Ucuzdan bahaya</option>
+              <option value="price-desc">Qiymət: Bahadan ucuza</option>
+              <option value="discount">Endirim faizi</option>
+              <option value="rating">Mağaza reytinqi</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Comparison Table -->
+        <div class="comparison-table-wrapper reveal-fade" style="--delay: 0.25s">
+          <table class="comparison-table" role="table">
+            <thead class="comparison-thead">
+              <tr>
+                <th scope="col" class="th-store">Mağaza</th>
+                <th scope="col" class="th-badges">Status</th>
+                <th scope="col" class="th-price">Qiymət</th>
+                <th scope="col" class="th-delivery">Çatdırılma</th>
+                <th scope="col" class="th-warranty">Zəmanət</th>
+                <th scope="col" class="th-action">Keçid</th>
+              </tr>
+            </thead>
+            <tbody class="comparison-tbody">
+              <!-- Best Deal Row -->
+              <tr class="comparison-row best-deal-row">
+                <td class="td-store">
+                  <div class="store-cell">
+                    <img src="https://logo.clearbit.com/kontakt.az" alt="" class="store-logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect fill=%22%2316a34a%22 width=%2240%22 height=%2240%22 rx=%228%22/><text x=%2220%22 y=%2226%22 fill=%22white%22 font-size=%2216%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>K</text></svg>'">
+                    <div class="store-info">
+                      <span class="store-name">Kontakt Home</span>
+                      <span class="store-rating">
+                        <i class="ph-fill ph-star" aria-hidden="true"></i>
+                        4.8 (1,234)
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td class="td-badges">
+                  <div class="badge-stack">
+                    <span class="table-badge badge-best pulse-animation">
+                      <i class="ph-fill ph-trophy" aria-hidden="true"></i>
+                      Ən ucuz
+                    </span>
+                    <span class="table-badge badge-cashback">
+                      <i class="ph-fill ph-coins" aria-hidden="true"></i>
+                      5% Cashback
+                    </span>
+                  </div>
+                </td>
+                <td class="td-price">
+                  <div class="price-cell">
+                    <span class="price-original">2699 ₼</span>
+                    <span class="price-current">2549 ₼</span>
+                  </div>
+                </td>
+                <td class="td-delivery">
+                  <span class="delivery-info">
+                    <i class="ph ph-truck" aria-hidden="true"></i>
+                    Pulsuz
+                  </span>
+                </td>
+                <td class="td-warranty">
+                  <span class="warranty-info">
+                    <i class="ph ph-shield-check" aria-hidden="true"></i>
+                    2 il
+                  </span>
+                </td>
+                <td class="td-action">
+                  <a href="#" class="btn btn-primary btn-sm">
+                    Bax
+                    <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+              
+              <!-- Row 2 -->
+              <tr class="comparison-row">
+                <td class="td-store">
+                  <div class="store-cell">
+                    <img src="https://logo.clearbit.com/irshad.az" alt="" class="store-logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect fill=%22%233b82f6%22 width=%2240%22 height=%2240%22 rx=%228%22/><text x=%2220%22 y=%2226%22 fill=%22white%22 font-size=%2216%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>İ</text></svg>'">
+                    <div class="store-info">
+                      <span class="store-name">İrşad Electronics</span>
+                      <span class="store-rating">
+                        <i class="ph-fill ph-star" aria-hidden="true"></i>
+                        4.7 (986)
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td class="td-badges">
+                  <div class="badge-stack">
+                    <span class="table-badge badge-real">
+                      <i class="ph-fill ph-seal-check" aria-hidden="true"></i>
+                      Həqiqi endirim
+                    </span>
+                  </div>
+                </td>
+                <td class="td-price">
+                  <div class="price-cell">
+                    <span class="price-original">2749 ₼</span>
+                    <span class="price-current">2599 ₼</span>
+                  </div>
+                </td>
+                <td class="td-delivery">
+                  <span class="delivery-info">
+                    <i class="ph ph-truck" aria-hidden="true"></i>
+                    Pulsuz
+                  </span>
+                </td>
+                <td class="td-warranty">
+                  <span class="warranty-info">
+                    <i class="ph ph-shield-check" aria-hidden="true"></i>
+                    1 il
+                  </span>
+                </td>
+                <td class="td-action">
+                  <a href="#" class="btn btn-outline btn-sm">
+                    Bax
+                    <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+              
+              <!-- Row 3 -->
+              <tr class="comparison-row">
+                <td class="td-store">
+                  <div class="store-cell">
+                    <img src="https://logo.clearbit.com/bravo.az" alt="" class="store-logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect fill=%22%23ef4444%22 width=%2240%22 height=%2240%22 rx=%228%22/><text x=%2220%22 y=%2226%22 fill=%22white%22 font-size=%2216%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>B</text></svg>'">
+                    <div class="store-info">
+                      <span class="store-name">Bravo</span>
+                      <span class="store-rating">
+                        <i class="ph-fill ph-star" aria-hidden="true"></i>
+                        4.5 (654)
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td class="td-badges">
+                  <div class="badge-stack">
+                    <span class="table-badge badge-real">
+                      <i class="ph-fill ph-seal-check" aria-hidden="true"></i>
+                      Həqiqi endirim
+                    </span>
+                  </div>
+                </td>
+                <td class="td-price">
+                  <div class="price-cell">
+                    <span class="price-original">2799 ₼</span>
+                    <span class="price-current">2649 ₼</span>
+                  </div>
+                </td>
+                <td class="td-delivery">
+                  <span class="delivery-info">
+                    <i class="ph ph-truck" aria-hidden="true"></i>
+                    10 ₼
+                  </span>
+                </td>
+                <td class="td-warranty">
+                  <span class="warranty-info">
+                    <i class="ph ph-shield-check" aria-hidden="true"></i>
+                    1 il
+                  </span>
+                </td>
+                <td class="td-action">
+                  <a href="#" class="btn btn-outline btn-sm">
+                    Bax
+                    <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+              
+              <!-- Row 4 - Fake Discount -->
+              <tr class="comparison-row fake-discount-row">
+                <td class="td-store">
+                  <div class="store-cell">
+                    <img src="https://logo.clearbit.com/amazon.com" alt="" class="store-logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect fill=%22%23f59e0b%22 width=%2240%22 height=%2240%22 rx=%228%22/><text x=%2220%22 y=%2226%22 fill=%22white%22 font-size=%2216%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>A</text></svg>'">
+                    <div class="store-info">
+                      <span class="store-name">Amazon.az</span>
+                      <span class="store-rating">
+                        <i class="ph-fill ph-star" aria-hidden="true"></i>
+                        4.6 (2,108)
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td class="td-badges">
+                  <div class="badge-stack">
+                    <span class="table-badge badge-fake" title="Bu endirim şişirdilmişdir. Qiymət əvvəl süni şəkildə qaldırılıb.">
+                      <i class="ph-fill ph-warning" aria-hidden="true"></i>
+                      Şişirdilmiş endirim
+                    </span>
+                  </div>
+                </td>
+                <td class="td-price">
+                  <div class="price-cell">
+                    <span class="price-original fake">3199 ₼</span>
+                    <span class="price-current">2699 ₼</span>
+                  </div>
+                </td>
+                <td class="td-delivery">
+                  <span class="delivery-info">
+                    <i class="ph ph-truck" aria-hidden="true"></i>
+                    15 ₼
+                  </span>
+                </td>
+                <td class="td-warranty">
+                  <span class="warranty-info">
+                    <i class="ph ph-shield-check" aria-hidden="true"></i>
+                    1 il
+                  </span>
+                </td>
+                <td class="td-action">
+                  <a href="#" class="btn btn-outline btn-sm">
+                    Bax
+                    <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+              
+              <!-- Row 5 -->
+              <tr class="comparison-row">
+                <td class="td-store">
+                  <div class="store-cell">
+                    <img src="https://logo.clearbit.com/unigroup.az" alt="" class="store-logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect fill=%22%238b5cf6%22 width=%2240%22 height=%2240%22 rx=%228%22/><text x=%2220%22 y=%2226%22 fill=%22white%22 font-size=%2216%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>U</text></svg>'">
+                    <div class="store-info">
+                      <span class="store-name">Unigroup.az</span>
+                      <span class="store-rating">
+                        <i class="ph-fill ph-star" aria-hidden="true"></i>
+                        4.4 (432)
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td class="td-badges">
+                  <div class="badge-stack">
+                    <span class="table-badge badge-cashback">
+                      <i class="ph-fill ph-coins" aria-hidden="true"></i>
+                      3% Cashback
+                    </span>
+                  </div>
+                </td>
+                <td class="td-price">
+                  <div class="price-cell">
+                    <span class="price-current">2699 ₼</span>
+                  </div>
+                </td>
+                <td class="td-delivery">
+                  <span class="delivery-info">
+                    <i class="ph ph-truck" aria-hidden="true"></i>
+                    5 ₼
+                  </span>
+                </td>
+                <td class="td-warranty">
+                  <span class="warranty-info">
+                    <i class="ph ph-shield-check" aria-hidden="true"></i>
+                    1 il
+                  </span>
+                </td>
+                <td class="td-action">
+                  <a href="#" class="btn btn-outline btn-sm">
+                    Bax
+                    <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICE HISTORY CHART -->
+    <section class="section price-history-section" aria-labelledby="price-history-title">
+      <div class="container">
+        <div class="price-history-grid">
+          <div class="price-history-content reveal-fade">
+            <div class="section-badge">
+              <i class="ph-fill ph-chart-line-up" aria-hidden="true"></i>
+              Qiymət Tarixçəsi
+            </div>
+            <h2 id="price-history-title" class="section-title">Endirimin həqiqiliyini yoxlayın</h2>
             <p class="section-subtitle">
-              Bir çox mağaza əvvəlcə qiyməti qaldırır, sonra isə eyni qiymətə düşürərək "Böyük Endirim" elan edir.
-              Sərfəli.al hər məhsulun son 30 günlük qiymət tarixçəsini saxlayır və real endirim olub-olmadığını göstərir.
+              Bir çox mağaza əvvəlcə qiyməti qaldırır, sonra isə eyni qiymətə düşürərək "Böyük Endirim" elan edir. 
+              Biz hər məhsulun son 30 günlük qiymət tarixçəsini saxlayır və real endirim olub-olmadığını göstəririk.
             </p>
-            <ul class="feature-list" style="margin-top: 2rem;">
-              <li><i class="ph-fill ph-check-circle text-primary"></i> Son 30 günün ən aşağı qiyməti</li>
-              <li><i class="ph-fill ph-check-circle text-primary"></i> Qiymət dəyişikliyi qrafiki</li>
-              <li><i class="ph-fill ph-check-circle text-primary"></i> Saxta endirim xəbərdarlıqları</li>
-            </ul>
+            
+            <div class="price-legend">
+              <div class="legend-item">
+                <span class="legend-dot legend-dot-real"></span>
+                <div class="legend-info">
+                  <strong>Həqiqi endirim</strong>
+                  <span>Qiymət son 30 gündə davamlı olub, indi ucuzlaşıb</span>
+                </div>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot legend-dot-fake"></span>
+                <div class="legend-info">
+                  <strong>Şişirdilmiş endirim</strong>
+                  <span>Qiymət əvvəl süni qaldırılıb, sonra "endirim" edilib</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="history-visual">
+          
+          <div class="price-history-chart reveal-fade" style="--delay: 0.15s">
             <div class="chart-card">
               <div class="chart-header">
-                <h4 style="font-size: 1.1rem; margin-bottom: 0;">Son 30 günün qiymət dəyişməsi</h4>
-                <span class="text-green flex-center" style="font-size: 0.9rem; font-weight: 700;"><i class="ph ph-trend-down"></i> -15% Real Endirim</span>
-              </div>
-              <div class="chart-placeholder">
-                <div class="chart-bars">
-                   <div class="bar h-60"><span>2700₼</span></div>
-                   <div class="bar h-80"><span>2900₼</span></div>
-                   <div class="bar h-80"><span>2900₼</span></div>
-                   <div class="bar h-100 fake-spike"><span>3200₼</span></div>
-                   <div class="bar h-40 current-low"><span>2549₼</span></div>
+                <div class="chart-title">
+                  <span>iPhone 15 Pro 256GB</span>
+                  <span class="chart-period">Son 30 gün</span>
+                </div>
+                <div class="chart-badge chart-badge-real">
+                  <i class="ph-fill ph-trend-down" aria-hidden="true"></i>
+                  -6% Həqiqi Endirim
                 </div>
               </div>
+              
+              <div class="chart-container">
+                <svg class="price-chart" viewBox="0 0 600 200" preserveAspectRatio="none" aria-label="Qiymət tarixçəsi qrafiki">
+                  <!-- Grid Lines -->
+                  <line x1="0" y1="50" x2="600" y2="50" class="chart-grid-line" />
+                  <line x1="0" y1="100" x2="600" y2="100" class="chart-grid-line" />
+                  <line x1="0" y1="150" x2="600" y2="150" class="chart-grid-line" />
+                  
+                  <!-- Price Line Path -->
+                  <path 
+                    class="chart-line chart-line-animated" 
+                    d="M0,80 L60,85 L120,82 L180,78 L240,75 L300,72 L360,68 L420,60 L480,55 L540,50 L600,45"
+                    fill="none"
+                  />
+                  
+                  <!-- Area Fill -->
+                  <path 
+                    class="chart-area" 
+                    d="M0,80 L60,85 L120,82 L180,78 L240,75 L300,72 L360,68 L420,60 L480,55 L540,50 L600,45 L600,200 L0,200 Z"
+                  />
+                  
+                  <!-- Min/Max Markers -->
+                  <circle cx="600" cy="45" r="6" class="chart-marker chart-marker-min" />
+                  <circle cx="60" cy="85" r="6" class="chart-marker chart-marker-max" />
+                </svg>
+                
+                <div class="chart-markers">
+                  <div class="chart-marker-label marker-min">
+                    <span class="marker-value">2549 ₼</span>
+                    <span class="marker-label">Ən aşağı</span>
+                  </div>
+                  <div class="chart-marker-label marker-max">
+                    <span class="marker-value">2699 ₼</span>
+                    <span class="marker-label">Ən yuxarı</span>
+                  </div>
+                </div>
+              </div>
+              
               <div class="chart-footer">
-                <span class="badge badge-success" style="width: 100%; text-align: center; justify-content: center; padding: 0.5rem;">
-                  Hal hazırkı qiymət son 30 günün ən aşağı qiymətidir!
-                </span>
+                <div class="chart-stat">
+                  <span class="stat-label">30 günlük minimum</span>
+                  <span class="stat-value">2549 ₼</span>
+                </div>
+                <div class="chart-stat">
+                  <span class="stat-label">Orta qiymət</span>
+                  <span class="stat-value">2624 ₼</span>
+                </div>
+                <div class="chart-stat">
+                  <span class="stat-label">30 günlük maksimum</span>
+                  <span class="stat-value">2699 ₼</span>
+                </div>
               </div>
             </div>
           </div>
@@ -283,119 +917,311 @@
       </div>
     </section>
 
-    <!-- RECOMMENDATIONS SECTION -->
-    <section id="recommendations" class="section bg-secondary">
-      <div class="container text-center">
-        <div class="badge badge-primary mb-4" style="margin: 0 auto; background: var(--primary-light); color: var(--primary-dark);"><i class="ph-fill ph-lightbulb"></i> Ağıllı Seçim</div>
-        <h2 class="section-title">Daha yaxşı alternativlər təklif edirik</h2>
-        <p class="section-subtitle mx-auto mb-12">
-          Bəzən axtardığınız məhsuldan daha ucuz və daha güclü bir model olur. Biz onu sizin üçün tapırıq.
-        </p>
-        
-        <div class="recommendations-grid">
-          <div class="rec-card">
-             <div class="rec-badge">Daha Ucuz (Eyni Göstərici)</div>
-             <img src="https://images.unsplash.com/photo-1598327105650-60b6b2fae808?w=200&auto=format&fit=crop" alt="Tövsiyə" class="rec-img">
-             <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Samsung Galaxy S23 FE</h4>
-             <p class="text-muted" style="font-size: 0.85rem;">Axtardığınız modeldən 300₼ daha ucuzdur və oxşar performansa sahibdir.</p>
-             <div class="price-current" style="margin-top: 1rem;">1299 ₼</div>
+    <!-- SMART RECOMMENDATIONS -->
+    <section class="section recommendations-section" aria-labelledby="recommendations-title">
+      <div class="container">
+        <header class="section-header text-center">
+          <div class="section-badge section-badge-center">
+            <i class="ph-fill ph-lightbulb" aria-hidden="true"></i>
+            Ağıllı Tövsiyələr
           </div>
-          <div class="rec-card highlight">
-             <div class="rec-badge bg-green">Ən Çox Seçilən (F/P)</div>
-             <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=200&auto=format&fit=crop" alt="Tövsiyə" class="rec-img">
-             <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Samsung Galaxy S24</h4>
-             <p class="text-muted" style="font-size: 0.85rem;">Bir az daha çox ödəyərək ən son texnologiyanı əldə edə bilərsiniz.</p>
-             <div class="price-current text-green" style="margin-top: 1rem;">1699 ₼</div>
+          <h2 id="recommendations-title" class="section-title reveal-fade">Daha ucuz, eyni keyfiyyət</h2>
+          <p class="section-subtitle reveal-fade" style="--delay: 0.1s">Bəzən axtardığınız məhsuldan daha sərfəli alternativlər mövcuddur</p>
+        </header>
+        
+        <div class="recommendations-carousel">
+          <div class="recommendations-track" id="recommendations-track">
+            <!-- Recommendation Card 1 -->
+            <article class="recommendation-card reveal-fade" style="--delay: 0.15s">
+              <div class="rec-badge rec-badge-value">
+                <i class="ph-fill ph-medal" aria-hidden="true"></i>
+                Qiymət/Performans
+              </div>
+              <div class="rec-image">
+                <img src="https://images.unsplash.com/photo-1598327105650-60b6b2fae808?w=200&h=200&fit=crop&q=80" alt="Samsung Galaxy S24" loading="lazy">
+              </div>
+              <div class="rec-content">
+                <h3 class="rec-name">Samsung Galaxy S24 256GB</h3>
+                <p class="rec-description">Eyni performans göstəriciləri, 850 ₼ daha ucuz</p>
+                <div class="rec-comparison">
+                  <span class="rec-vs">vs iPhone 15 Pro</span>
+                  <span class="rec-savings">850 ₼ qənaət</span>
+                </div>
+                <div class="rec-price">1699 ₼</div>
+              </div>
+            </article>
+            
+            <!-- Recommendation Card 2 -->
+            <article class="recommendation-card rec-card-highlight reveal-fade" style="--delay: 0.2s">
+              <div class="rec-badge rec-badge-popular">
+                <i class="ph-fill ph-fire" aria-hidden="true"></i>
+                Ən Çox Seçilən
+              </div>
+              <div class="rec-image">
+                <img src="https://images.unsplash.com/photo-1632633173522-47456de71b76?w=200&h=200&fit=crop&q=80" alt="iPhone 15" loading="lazy">
+              </div>
+              <div class="rec-content">
+                <h3 class="rec-name">iPhone 15 128GB</h3>
+                <p class="rec-description">Eyni ekosistem, bir az daha aşağı spesifikasiya</p>
+                <div class="rec-comparison">
+                  <span class="rec-vs">vs iPhone 15 Pro</span>
+                  <span class="rec-savings">650 ₼ qənaət</span>
+                </div>
+                <div class="rec-price">1899 ₼</div>
+              </div>
+            </article>
+            
+            <!-- Recommendation Card 3 -->
+            <article class="recommendation-card reveal-fade" style="--delay: 0.25s">
+              <div class="rec-badge rec-badge-budget">
+                <i class="ph-fill ph-wallet" aria-hidden="true"></i>
+                Büdcəyə Uyğun
+              </div>
+              <div class="rec-image">
+                <img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=200&h=200&fit=crop&q=80" alt="Xiaomi 14" loading="lazy">
+              </div>
+              <div class="rec-content">
+                <h3 class="rec-name">Xiaomi 14 256GB</h3>
+                <p class="rec-description">Oxşar kamera sistemi, yüksək performans</p>
+                <div class="rec-comparison">
+                  <span class="rec-vs">vs iPhone 15 Pro</span>
+                  <span class="rec-savings">1150 ₼ qənaət</span>
+                </div>
+                <div class="rec-price">1399 ₼</div>
+              </div>
+            </article>
+            
+            <!-- Recommendation Card 4 -->
+            <article class="recommendation-card reveal-fade" style="--delay: 0.3s">
+              <div class="rec-badge rec-badge-upgrade">
+                <i class="ph-fill ph-arrow-fat-up" aria-hidden="true"></i>
+                Upgrade Seçimi
+              </div>
+              <div class="rec-image">
+                <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=200&h=200&fit=crop&q=80" alt="iPhone 15 Pro Max" loading="lazy">
+              </div>
+              <div class="rec-content">
+                <h3 class="rec-name">iPhone 15 Pro Max 256GB</h3>
+                <p class="rec-description">Daha böyük ekran, daha güclü batareya</p>
+                <div class="rec-comparison">
+                  <span class="rec-vs">vs iPhone 15 Pro</span>
+                  <span class="rec-savings">+250 ₼</span>
+                </div>
+                <div class="rec-price">2799 ₼</div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BUSINESS MODEL SECTION -->
-    <section id="business" class="section bg-white">
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section how-it-works-section" aria-labelledby="how-it-works-title">
       <div class="container">
-        <div class="text-center mb-12">
-          <h2 class="section-title">Mağazalar üçün partnyorluq imkanları</h2>
-          <p class="section-subtitle mx-auto">Sərfəli.al yalnız istifadəçilərə deyil, eyni zamanda bizneslərə də real müştəri və satış gətirir.</p>
-        </div>
+        <header class="section-header text-center">
+          <div class="section-badge section-badge-center">
+            <i class="ph-fill ph-question" aria-hidden="true"></i>
+            Necə İşləyir
+          </div>
+          <h2 id="how-it-works-title" class="section-title reveal-fade">3 addımda qənaət edin</h2>
+          <p class="section-subtitle reveal-fade" style="--delay: 0.1s">Platformamız sizə ən düzgün alış qərarını verməkdə kömək edir</p>
+        </header>
         
-        <div class="business-grid">
-          <div class="biz-item">
-            <i class="ph ph-handshake"></i>
-            <h4>Komissiya Sistemi</h4>
-            <p>Sadəcə bizdən gələn real satışlar üzrə minimal (5-10%) komissiya ödənişi.</p>
+        <div class="how-it-works-grid">
+          <div class="how-step reveal-fade" style="--delay: 0.15s">
+            <div class="step-number">
+              <span>1</span>
+              <div class="step-progress" id="step-progress-1"></div>
+            </div>
+            <div class="step-icon">
+              <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+            </div>
+            <h3 class="step-title">Məhsulu axtarın</h3>
+            <p class="step-description">Axtarış çubuğunda istədiyiniz məhsulun adını və ya modelini yazın</p>
           </div>
-          <div class="biz-item">
-            <i class="ph ph-star"></i>
-            <h4>Premium Görünürlük</h4>
-            <p>Axtarış nəticələrində və müqayisə lövhələrində sponsorlu "Premium" mövqelər.</p>
+          
+          <div class="step-connector reveal-fade" style="--delay: 0.2s" aria-hidden="true">
+            <svg width="100" height="20" viewBox="0 0 100 20">
+              <path d="M0,10 Q50,10 100,10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="5,5" class="connector-path"/>
+            </svg>
           </div>
-          <div class="biz-item">
-            <i class="ph ph-credit-card"></i>
-            <h4>Taksit Partnyorluğu</h4>
-            <p>Bank kartları ilə müştərək hissə-hissə ödəniş kampaniyaları.</p>
+          
+          <div class="how-step reveal-fade" style="--delay: 0.25s">
+            <div class="step-number">
+              <span>2</span>
+              <div class="step-progress" id="step-progress-2"></div>
+            </div>
+            <div class="step-icon">
+              <i class="ph ph-scales" aria-hidden="true"></i>
+            </div>
+            <h3 class="step-title">Qiymətləri müqayisə edin</h3>
+            <p class="step-description">Bütün mağazaların qiymətlərini, endirim tarixçəsini və cashback imkanlarını görün</p>
           </div>
-          <div class="biz-item">
-            <i class="ph ph-lightning"></i>
-            <h4>Flash Sale</h4>
-            <p>Seçilmiş məhsulların xüsusi kütləyə anında çatdırılması üçün qısamüddətli kampaniyalar.</p>
+          
+          <div class="step-connector reveal-fade" style="--delay: 0.3s" aria-hidden="true">
+            <svg width="100" height="20" viewBox="0 0 100 20">
+              <path d="M0,10 Q50,10 100,10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="5,5" class="connector-path"/>
+            </svg>
+          </div>
+          
+          <div class="how-step reveal-fade" style="--delay: 0.35s">
+            <div class="step-number">
+              <span>3</span>
+              <div class="step-progress" id="step-progress-3"></div>
+            </div>
+            <div class="step-icon">
+              <i class="ph ph-piggy-bank" aria-hidden="true"></i>
+            </div>
+            <h3 class="step-title">Qənaət edin</h3>
+            <p class="step-description">Ən sərfəli mağazaya keçin, alış edin və cashback qazanın</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TRUST SECTION -->
-    <section class="section text-white text-center" style="background-color: var(--primary-color); padding: var(--space-16) 0;">
+    <!-- TRUST & TRANSPARENCY -->
+    <section class="section trust-section" aria-labelledby="trust-title">
       <div class="container">
-        <h2 class="section-title" style="color: white;">Sizə qazandırırıq, çünki qərarı siz verirsiniz</h2>
-        <p class="section-subtitle mx-auto" style="color: rgba(255,255,255,0.9); margin-bottom: var(--space-8);">
-          Platformamız heç bir mağazaya tərəfkeşlik etmir. Bizim üçün ən önəmli dəyər tam şəffaflıq xarakterimizdir. 
-          Alıcı olaraq bütün məlumatları görün, qərarı özünüz verin.
-        </p>
-        <button class="btn btn-secondary" style="color: var(--primary-dark); font-size: 1.1rem; padding: 1rem 3rem;">
-          Məhsulları Araşdır
-        </button>
+        <div class="trust-grid">
+          <div class="trust-content reveal-fade">
+            <div class="section-badge">
+              <i class="ph-fill ph-shield-check" aria-hidden="true"></i>
+              Etibar və Şəffaflıq
+            </div>
+            <h2 id="trust-title" class="section-title">Heç bir mağazaya tərəfkeşlik etmirik</h2>
+            <p class="section-subtitle">
+              Sərfəli Al platforması tam müstəqildir. Biz heç bir mağazadan sponsorluq almırıq və qiymətləri manipulyasiya etmirik. 
+              Məqsədimiz sizə ən düzgün məlumatı təqdim etməkdir.
+            </p>
+          </div>
+          
+          <div class="trust-stats reveal-fade" style="--delay: 0.15s">
+            <div class="trust-stat">
+              <div class="trust-stat-icon">
+                <i class="ph-fill ph-storefront" aria-hidden="true"></i>
+              </div>
+              <div class="trust-stat-content">
+                <span class="trust-stat-value counter" data-target="120">0</span>
+                <span class="trust-stat-label">Mağaza</span>
+              </div>
+            </div>
+            <div class="trust-stat">
+              <div class="trust-stat-icon">
+                <i class="ph-fill ph-package" aria-hidden="true"></i>
+              </div>
+              <div class="trust-stat-content">
+                <span class="trust-stat-value"><span class="counter" data-target="50">0</span>K+</span>
+                <span class="trust-stat-label">Məhsul</span>
+              </div>
+            </div>
+            <div class="trust-stat">
+              <div class="trust-stat-icon">
+                <i class="ph-fill ph-clock-clockwise" aria-hidden="true"></i>
+              </div>
+              <div class="trust-stat-content">
+                <span class="trust-stat-value">Real-time</span>
+                <span class="trust-stat-label">Qiymət yeniləməsi</span>
+              </div>
+            </div>
+            <div class="trust-stat">
+              <div class="trust-stat-icon">
+                <i class="ph-fill ph-seal-percent" aria-hidden="true"></i>
+              </div>
+              <div class="trust-stat-content">
+                <span class="trust-stat-value counter" data-target="100">0</span>%
+                <span class="trust-stat-label">Müstəqil</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- FAQ SECTION -->
-    <section id="faq" class="section bg-secondary">
-      <div class="container box-narrow">
-        <div class="text-center mb-12">
-          <h2 class="section-title">Tez-Tez Verilən Suallar</h2>
+    <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+      <div class="container container-narrow">
+        <header class="section-header text-center">
+          <div class="section-badge section-badge-center">
+            <i class="ph-fill ph-chat-centered-dots" aria-hidden="true"></i>
+            Sual-Cavab
+          </div>
+          <h2 id="faq-title" class="section-title reveal-fade">Tez-tez verilən suallar</h2>
+        </header>
+        
+        <div class="faq-list" role="list">
+          <div class="faq-item reveal-fade" style="--delay: 0.1s" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+              <span>Sərfəli Al özü məhsul satır?</span>
+              <i class="ph ph-caret-down faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="faq-answer-1">
+              <p>Xeyr, Sərfəli Al e-ticarət mağazası deyil. Biz Azərbaycanda olan 120+ fərqli mağazanın qiymətlərini toplayan və sizə müqayisəli şəkildə təqdim edən bir platformayıq. Siz bizim platformada məhsulu seçirsiniz, sonra isə birbaşa mağazanın öz saytında alış-veriş edirsiniz.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item reveal-fade" style="--delay: 0.15s" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+              <span>Endirimlərin real olduğunu necə müəyyən edirsiniz?</span>
+              <i class="ph ph-caret-down faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="faq-answer-2">
+              <p>Biz hər məhsulun qiymət tarixçəsini ardıcıl izləyirik. Əgər bir mağaza qiyməti əvvəl qaldırıb sonra ucuzlaşdırıbsa, sistem bunu avtomatik aşkarlayır və "Şişirdilmiş Endirim" xəbərdarlığı verir. Beləliklə, siz həqiqi endirimi saxta endirimdən fərqləndirə bilirsiniz.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item reveal-fade" style="--delay: 0.2s" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+              <span>Cashback necə işləyir?</span>
+              <i class="ph ph-caret-down faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="faq-answer-3">
+              <p>Siz platformamız üzərindən tərəfdaş mağazalara keçid edərək alış-veriş etdikdə, biz həmin mağazadan komissiya alırıq. O komissiyanın bir hissəsini sizə Cashback olaraq geri qaytarırıq. Cashback məbləği məhsul və mağazaya görə dəyişir, adətən 1-10% arasında olur.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item reveal-fade" style="--delay: 0.25s" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+              <span>Qiymət tarixçəsi nə qədər geriyə gedir?</span>
+              <i class="ph ph-caret-down faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="faq-answer-4">
+              <p>Hər bir məhsulun səhifəsində xüsusi bir qrafik mövcuddur. Orada həmin məhsulun son 30 gün ərzində fərqli mağazalarda ən aşağı və ən yuxarı hansı qiymətlərə satıldığını izləyə bilərsiniz. Bəzi populyar məhsullar üçün 90 günlük tarixçə də mövcuddur.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item reveal-fade" style="--delay: 0.3s" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+              <span>Qiymətlər nə qədər tez-tez yenilənir?</span>
+              <i class="ph ph-caret-down faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="faq-answer-5">
+              <p>Qiymətlər real-time rejimində, gün ərzində bir neçə dəfə yenilənir. Populyar məhsullar üçün qiymətlər hər 30 dəqiqədən bir yoxlanılır. Beləliklə, siz həmişə ən aktual qiymətləri görürsünüz.</p>
+            </div>
+          </div>
         </div>
-        <div class="faq-list">
-          <div class="faq-item">
-            <button class="faq-question">
-              Sərfəli.al özü məhsul satır? <i class="ph ph-caret-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Xeyr, Sərfəli.al e-ticarət mağazası deyil. Biz Azərbaycanda olan onlarla fərqli mağazanın qiymətlərini toplayan və sizə müqayisəli şəkildə təqdim edən bir platformayıq.</p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA BANNER -->
+    <section class="section cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-banner reveal-fade">
+          <div class="cta-content">
+            <h2 id="cta-title" class="cta-title">Ağıllı alış-verişə başlayın</h2>
+            <p class="cta-subtitle">120+ mağazada qiymətləri müqayisə edin, real endirimləri tapın və hər alışdan qənaət edin</p>
+            <div class="cta-actions">
+              <button class="btn btn-white btn-lg">
+                <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                Məhsul axtarın
+              </button>
+              <button class="btn btn-ghost-white btn-lg">
+                Necə işləyir?
+              </button>
             </div>
           </div>
-          <div class="faq-item">
-            <button class="faq-question">
-              Endirimlərin real olduğunu necə müəyyən edirsiniz? <i class="ph ph-caret-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Biz məhsulların qiymət tarixçəsini ardıcıl izləyirik. Əgər bir mağaza qiyməti əvvəl qaldırıb sonra ucuzlaşdırıbsa, sistem bunu avtomatik aşkarlayır və "Şişirdilmiş Endirim" xəbərdarlığı verir.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">
-              Cashback necə işləyir? <i class="ph ph-caret-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Siz platformamız üzərindən tərəfdaş mağazalara keçid edərək alış-veriş etdikdə, biz həmin mağazadan komissiya alırıq. O komissiyanın bir hissəsini sizə Cashback olaraq geri qaytarırıq.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">
-              Qiymət tarixçəsi necə göstərilir? <i class="ph ph-caret-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Hər bir məhsulun səhifəsində xüsusi bir qrafik mövcuddur. Orada həmin məhsulun son 30 gün və ya daha uzun müddət ərzində fərqli mağazalarda ən aşağı və ən yüksək hansı qiymətlərə satıldığını izləyə bilərsiniz.</p>
-            </div>
+          <div class="cta-decoration" aria-hidden="true">
+            <div class="cta-circle cta-circle-1"></div>
+            <div class="cta-circle cta-circle-2"></div>
           </div>
         </div>
       </div>
@@ -404,75 +1230,79 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-white" style="border-top: 1px solid var(--border-color); padding: var(--space-8) 0 var(--space-4) 0;">
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-col-brand">
-          <a href="/" class="logo" style="margin-bottom: 1rem; display: block;">Sərfəli<span class="logo-dot">.</span>al</a>
-          <p class="text-muted" style="margin-bottom: 1.5rem; max-width: 300px; font-size: 0.9rem;">Azərbaycanın ən ağıllı alış platforması. Ağıllı seç, sərfəli al, qənaət et.</p>
-          <div class="social-icons" style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 1.5rem;">
-            <a href="#"><i class="ph ph-instagram-logo"></i></a>
-            <a href="#"><i class="ph ph-facebook-logo"></i></a>
-            <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+        <div class="footer-brand">
+          <a href="/" class="logo footer-logo" aria-label="Sərfəli Al Baş Səhifə">
+            <span class="logo-text">Sərfəli</span><span class="logo-dot">Al</span>
+          </a>
+          <p class="footer-description">Azərbaycanın ən ağıllı qiymət müqayisəsi platforması. Ağıllı seç, sərfəli al, qənaət et.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="ph ph-instagram-logo" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="ph ph-facebook-logo" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <i class="ph ph-linkedin-logo" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <i class="ph ph-youtube-logo" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
-        <div class="footer-col">
-          <h4 style="margin-bottom: 1rem; font-size: 1.05rem;">Platforma</h4>
-          <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
-            <li><a href="#" class="text-muted">Haqqımızda</a></li>
-            <li><a href="#" class="text-muted">Necə işləyir?</a></li>
-            <li><a href="#" class="text-muted">Cashback Sistemi</a></li>
-            <li><a href="#" class="text-muted">Mağazalar</a></li>
+        
+        <nav class="footer-nav" aria-label="Platforma">
+          <h3 class="footer-nav-title">Platforma</h3>
+          <ul class="footer-nav-list">
+            <li><a href="#">Haqqımızda</a></li>
+            <li><a href="#how-it-works">Necə işləyir?</a></li>
+            <li><a href="#">Cashback Sistemi</a></li>
+            <li><a href="#">Tərəfdaş Mağazalar</a></li>
           </ul>
-        </div>
-        <div class="footer-col">
-          <h4 style="margin-bottom: 1rem; font-size: 1.05rem;">Bölmələr</h4>
-           <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
-            <li><a href="#" class="text-muted">Elektronika</a></li>
-            <li><a href="#" class="text-muted">Məişət Texnikası</a></li>
-            <li><a href="#" class="text-muted">Kompyuterlər</a></li>
-            <li><a href="#" class="text-muted">Geyim və Moda</a></li>
+        </nav>
+        
+        <nav class="footer-nav" aria-label="Kateqoriyalar">
+          <h3 class="footer-nav-title">Kateqoriyalar</h3>
+          <ul class="footer-nav-list">
+            <li><a href="#">Telefonlar</a></li>
+            <li><a href="#">Noutbuklar</a></li>
+            <li><a href="#">Televizorlar</a></li>
+            <li><a href="#">Məişət Texnikası</a></li>
           </ul>
-        </div>
-        <div class="footer-col">
-          <h4 style="margin-bottom: 1rem; font-size: 1.05rem;">Hüquqi</h4>
-           <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
-            <li><a href="#" class="text-muted">İstifadə Şərtləri</a></li>
-            <li><a href="#" class="text-muted">Məxfilik Siyasəti</a></li>
-            <li><a href="#" class="text-muted">Bizimlə Əlaqə</a></li>
+        </nav>
+        
+        <nav class="footer-nav" aria-label="Hüquqi">
+          <h3 class="footer-nav-title">Hüquqi</h3>
+          <ul class="footer-nav-list">
+            <li><a href="#">İstifadə Şərtləri</a></li>
+            <li><a href="#">Məxfilik Siyasəti</a></li>
+            <li><a href="#">Cookie Siyasəti</a></li>
+            <li><a href="#">Bizimlə Əlaqə</a></li>
           </ul>
+        </nav>
+        
+        <div class="footer-newsletter">
+          <h3 class="footer-nav-title">Yeniliklərdən xəbərdar olun</h3>
+          <p class="footer-newsletter-text">Ən yaxşı endirimlər və yeniliklər haqqında ilk siz öyrənin</p>
+          <form class="newsletter-form" action="#" method="POST">
+            <label for="newsletter-email" class="sr-only">E-poçt ünvanınız</label>
+            <input type="email" id="newsletter-email" placeholder="E-poçt ünvanınız" required class="newsletter-input">
+            <button type="submit" class="btn btn-primary newsletter-btn">
+              <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+            </button>
+          </form>
         </div>
       </div>
-      <div style="border-top: 1px solid var(--border-color); margin-top: 2rem; padding-top: 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-        &copy; 2026 Sərfəli.al - Bütün hüquqlar qorunur. "Sərfəli al, ağıllı seç"
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 Sərfəli Al. Bütün hüquqlar qorunur.</p>
+        <p class="footer-tagline">"Ağıllı seç, sərfəli al"</p>
       </div>
     </div>
   </footer>
-
-  <!-- CART OVERLAY & DRAWER -->
-  <div class="cart-overlay" id="cart-overlay"></div>
-  <aside class="cart-drawer" id="cart-drawer">
-    <div class="cart-header">
-      <h2>Səbətiniz</h2>
-      <button class="btn-close-cart" id="close-cart"><i class="ph ph-x"></i></button>
-    </div>
-    
-    <div class="cart-items" id="cart-items-container">
-      <!-- Items will be injected here -->
-      <div class="cart-empty active" id="cart-empty-state">
-        <i class="ph ph-shopping-cart"></i>
-        <p>Səbətiniz boşdur</p>
-      </div>
-    </div>
-
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>Ümumi məbləğ:</span>
-        <span id="cart-total-price">0.00 ₼</span>
-      </div>
-      <button class="btn btn-primary btn-checkout">Sifarişi rəsmiləşdir</button>
-    </div>
-  </aside>
 
 </body>
 </html>
