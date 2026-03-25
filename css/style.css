@@ -4,10 +4,10 @@
 
 /* CSS Variables */
 :root {
-  /* Brand Colors - Blue & Green like idealo */
-  --primary: #0066cc;
-  --primary-hover: #0052a3;
-  --primary-light: #e6f0fa;
+  /* Brand Colors - All Green */
+  --primary: #00a651;
+  --primary-hover: #008c44;
+  --primary-light: #e6f7ee;
   
   --accent: #00a651;
   --accent-light: #e6f7ee;
