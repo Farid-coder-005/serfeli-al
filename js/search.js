@@ -202,12 +202,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ===========================================
-  // PRODUCT CARD HOVER EFFECTS
+  // PRODUCT CARD INTERACTIONS
   // ===========================================
 
   const productCards = document.querySelectorAll('.search-product-card');
 
-  productCards.forEach(card => {
+  productCards.forEach((card, index) => {
+    // Hover effect
     card.addEventListener('mouseenter', () => {
       card.style.transform = 'translateY(-4px)';
     });
@@ -215,6 +216,21 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
     });
+
+    // Click to navigate to product detail page
+    // Make the entire card clickable except for the checkbox and compare button
+    card.addEventListener('click', (e) => {
+      // Don't navigate if clicking on checkbox or compare button
+      if (e.target.closest('.product-checkbox') || e.target.closest('.btn-compare')) {
+        return;
+      }
+
+      // Navigate to product detail page
+      window.location.href = '/telefonlar/iphone-15-pro-256gb.html';
+    });
+
+    // Make card cursor pointer (except for interactive elements)
+    card.style.cursor = 'pointer';
   });
 
   // ===========================================
