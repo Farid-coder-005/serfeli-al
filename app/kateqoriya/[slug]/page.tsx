@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 
@@ -107,7 +108,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
               <div className="search-product-grid">
                 {PRODUCTS.map((product) => (
-                  <a
+                  <Link
                     key={product.id}
                     href={`/${slug}/${product.slug}`}
                     className="search-product-card"
@@ -128,7 +129,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                       <div className="search-product-stores">{product.stores} mağazadan</div>
                       <button className="btn-compare">Müqayisə et</button>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
 

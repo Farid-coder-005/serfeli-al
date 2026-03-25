@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 
@@ -94,7 +95,7 @@ function SearchContent() {
 
               <div className="search-product-grid">
                 {PRODUCTS.map((product) => (
-                  <a
+                  <Link
                     key={product.id}
                     href={`/telefonlar/${product.slug}`}
                     className="search-product-card"
@@ -114,7 +115,7 @@ function SearchContent() {
                       <div className="search-product-stores">{product.stores} mağazadan</div>
                       <button className="btn-compare">Müqayisə et</button>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
 
