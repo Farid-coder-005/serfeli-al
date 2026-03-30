@@ -143,10 +143,6 @@ input, textarea, select {
 .logo img {
   height: auto;
 }
-  background-color: var(--primary);
-  border-radius: var(--radius-full);
-  display: inline-block;
-}
 
 /* Header Search */
 .header-search {
