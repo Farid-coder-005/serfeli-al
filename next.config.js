@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  // Note: swcMinify is deprecated in Next.js 15 (SWC is used by default)
   compress: true,
 }
 
-export default nextConfig
+module.exports = nextConfig
