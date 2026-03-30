@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 
@@ -43,9 +44,14 @@ export default function Header() {
       <div className="container header-container">
         {/* Logo */}
         <Link href="/" className="logo" aria-label="Sərfəli Al Ana Səhifə">
-          <span className="logo-text">Sərfəli</span>
-          <span className="logo-dot">Al</span>
-          <span className="logo-green-dot"></span>
+          <Image
+            src="/logo.jpeg"
+            alt="Sərfəli Al"
+            width={180}
+            height={60}
+            priority
+            style={{ height: 'auto', width: 'auto', maxWidth: '180px' }}
+          />
         </Link>
 
         {/* Search Bar */}

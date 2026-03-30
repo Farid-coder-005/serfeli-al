@@ -131,23 +131,18 @@ input, textarea, select {
   display: flex;
   align-items: center;
   gap: 2px;
-  font-size: 1.25rem;
-  font-weight: 700;
   cursor: pointer;
   flex-shrink: 0;
+  transition: opacity var(--transition);
 }
 
-.logo-text {
-  color: var(--gray-800);
+.logo:hover {
+  opacity: 0.8;
 }
 
-.logo-dot {
-  color: var(--primary);
+.logo img {
+  height: auto;
 }
-
-.logo-green-dot {
-  width: 6px;
-  height: 6px;
   background-color: var(--primary);
   border-radius: var(--radius-full);
   display: inline-block;
