@@ -229,6 +229,17 @@ button {
   font-size: 1.5rem;
   font-weight: 700;
   flex-shrink: 0;
+  transition: opacity var(--transition);
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.logo-image {
+  height: 60px;
+  width: auto;
+  max-width: 180px;
 }
 
 .logo-text {
