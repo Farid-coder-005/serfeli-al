@@ -120,7 +120,7 @@ export default function ProductDetailPage() {
   const [activeTab, setActiveTab] = useState("prices");
 
   return (
-    <main className="flex-1 flex flex-col w-full pt-[160px] min-h-screen relative z-10">
+    <main className="flex-1 flex flex-col w-full pt-[80px] min-h-screen relative z-10">
       <div className="min-h-screen bg-[#F8FAFC] font-sans text-gray-900 pb-20 relative overflow-hidden">
         {/* Global dot-grid pattern overlay */}
         <div className="pointer-events-none fixed inset-0 z-0 bg-dot-pattern opacity-10" />

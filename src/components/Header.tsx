@@ -9,11 +9,11 @@ export function Header() {
   const { user, isLoggedIn } = useAuth();
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[9999] bg-white/80 backdrop-blur-md border-b border-gray-100/50 shadow-sm transition-all duration-300">
+    <header className="fixed top-0 left-0 w-full z-[9999] bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main row: Logo | Search | User/Menu */}
-        <div className="flex items-center justify-between gap-12 min-h-[120px] lg:min-h-[160px] py-6 transition-all">
+        <div className="flex items-center justify-between gap-8 h-20 transition-all">
           
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
@@ -21,9 +21,9 @@ export function Header() {
               <Image 
                 src="/logo.png" 
                 alt="Sərfəli.al Logo" 
-                width={600}
-                height={200}
-                className="w-64 lg:w-[450px] h-auto object-contain"
+                width={140}
+                height={40}
+                className="w-[140px] h-auto object-contain"
                 priority
               />
             </Link>

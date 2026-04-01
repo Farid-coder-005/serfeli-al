@@ -208,7 +208,7 @@ export default async function SearchPage({
         
         {/* Sidebar Filters */}
         <div className="hidden lg:block w-80 shrink-0">
-          <div className="bg-white rounded-[2.5rem] border border-gray-100 p-8 sticky top-[160px] shadow-xl shadow-[#1E3A8A]/5 space-y-10">
+          <div className="bg-white rounded-[2.5rem] border border-gray-100 p-8 sticky top-[100px] shadow-xl shadow-[#1E3A8A]/5 space-y-10">
             <div>
               <h2 className="text-xl font-black text-[#1E3A8A] mb-8 flex items-center gap-3 uppercase tracking-wider">
                 <Filter className="w-5 h-5 text-[#166534]" />

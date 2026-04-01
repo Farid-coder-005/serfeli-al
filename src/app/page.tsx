@@ -72,7 +72,7 @@ export default function Page() {
         <div className="absolute -bottom-32 left-1/3 w-[360px] h-[360px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(22,163,74,0.05) 0%, transparent 70%)', filter: 'blur(80px)' }} />
       </div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#166534] to-[#14532D] py-20 sm:py-32 relative overflow-hidden">
+      <section className="bg-[#166534] py-20 sm:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none mix-blend-overlay"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-8 drop-shadow-xl">
