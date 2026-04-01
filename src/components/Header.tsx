@@ -13,17 +13,17 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main row: Logo | Search | User/Menu */}
-        <div className="flex items-center justify-between gap-4 py-2 sm:py-3 lg:py-0 lg:h-[120px] transition-all">
-
+        <div className="flex items-center justify-between gap-8 py-4 lg:py-0 lg:h-24 transition-all">
+          
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/logo.png"
-                alt="Sərfəli.al Logo"
-                width={700}
-                height={180}
-                className="w-auto h-10 sm:h-20 lg:h-[120px]"
+              <Image 
+                src="/logo.png" 
+                alt="Sərfəli.al Logo" 
+                width={200}
+                height={56}
+                className="w-auto h-12 lg:h-14 object-contain"
                 priority
               />
             </Link>
