@@ -159,7 +159,7 @@ export default function ProductDetailPage() {
             <div className="w-full md:w-5/12 lg:w-2/5 flex flex-col items-center justify-center bg-gray-50/50 rounded-[2.5rem] p-12 border border-gray-100/50 relative group">
               <div className="relative w-full aspect-[4/5] flex items-center justify-center">
                 <Image
-                  src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?q=80&w=800&h=800&fit=crop"
+                  src="https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=800&h=800&fit=crop"
                   alt={PRODUCT.title}
                   fill
                   className="object-contain mix-blend-multiply drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import Image from 'next/image';
+import { Logo } from './Logo';
 import { Search, Menu, UserCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
@@ -13,30 +13,11 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main row: Logo | Search | User/Menu */}
-        <div className="flex items-center justify-between gap-8 h-20 transition-all overflow-hidden">
+        <div className="flex items-center justify-between gap-8 h-20 transition-all">
           
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center pr-4">
-            <Link href="/" className="flex items-center">
-              <Image 
-                src="/logo.png" 
-                alt="Sərfəli.al Logo" 
-                width={300}
-                height={55}
-                className="w-auto object-contain !max-h-full block md:hidden"
-                style={{ height: '40px' }}
-                priority
-              />
-              <Image 
-                src="/logo.png" 
-                alt="Sərfəli.al Logo" 
-                width={300}
-                height={55}
-                className="w-auto object-contain !max-h-full hidden md:block"
-                style={{ height: '55px' }}
-                priority
-              />
-            </Link>
+          <div className="flex-shrink-0 flex items-center">
+            <Logo />
           </div>
 
           {/* Desktop & Tablet Search */}
