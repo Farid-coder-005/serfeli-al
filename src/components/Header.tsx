@@ -23,8 +23,17 @@ export function Header() {
                 alt="Sərfəli.al Logo" 
                 width={300}
                 height={55}
-                className="h-[40px] md:h-[55px] w-auto object-contain !max-h-full"
-                style={{ height: 'auto' }} // Tailwind classes will handle heights correctly with breakpoints
+                className="w-auto object-contain !max-h-full block md:hidden"
+                style={{ height: '40px' }}
+                priority
+              />
+              <Image 
+                src="/logo.png" 
+                alt="Sərfəli.al Logo" 
+                width={300}
+                height={55}
+                className="w-auto object-contain !max-h-full hidden md:block"
+                style={{ height: '55px' }}
                 priority
               />
             </Link>

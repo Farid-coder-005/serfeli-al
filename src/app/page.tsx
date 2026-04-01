@@ -23,7 +23,7 @@ const FEATURED_DEALS = [
   {
     id: 1,
     title: "Apple iPhone 15 Pro, 256GB, Natural Titanium",
-    image: "/iphone15pro.png",
+    image: "https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=400&h=400&fit=crop",
     oldPrice: "2899",
     newPrice: "2499",
     store: "Kontakt",
