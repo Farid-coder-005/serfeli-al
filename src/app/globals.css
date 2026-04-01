@@ -42,3 +42,15 @@ body {
   position: relative;
   z-index: 1;
 }
+/* Force constant logo size across all pages */
+.force-logo-size {
+  height: 40px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+@media (min-width: 768px) {
+  .force-logo-size {
+    height: 50px !important;
+  }
+}
