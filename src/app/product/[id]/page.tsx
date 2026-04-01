@@ -33,7 +33,7 @@ const PRODUCT = {
   title: "Apple iPhone 15, 128GB, Black",
   category: "Smartfonlar",
   image:
-    "https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=800&h=800&fit=crop",
+    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&h=800&fit=crop",
   minPrice: 1699,
   maxPrice: 1999,
   rating: 4.9,
@@ -159,7 +159,7 @@ export default function ProductDetailPage() {
             <div className="w-full md:w-5/12 lg:w-2/5 flex flex-col items-center justify-center bg-gray-50/50 rounded-[2.5rem] p-12 border border-gray-100/50 relative group">
               <div className="relative w-full aspect-[4/5] flex items-center justify-center">
                 <Image
-                  src="https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=800&h=800&fit=crop"
+                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&h=800&fit=crop"
                   alt={PRODUCT.title}
                   fill
                   className="object-contain mix-blend-multiply drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"

@@ -11,7 +11,8 @@ export function Logo() {
         alt="Sərfəli.al" 
         width={300}
         height={50}
-        className="force-logo-size"
+        className="h-[50px] w-auto object-contain"
+        style={{ height: '50px', width: 'auto', maxWidth: 'none' }}
         priority
       />
     </Link>

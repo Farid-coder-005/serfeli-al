@@ -16,7 +16,7 @@ export function Header() {
         <div className="flex items-center justify-between gap-8 h-32 transition-all">
           
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
+          <div className="flex-shrink-0 flex items-center min-w-fit p-0">
             <Logo />
           </div>
 
