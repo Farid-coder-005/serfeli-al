@@ -13,7 +13,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main row: Logo | Search | User/Menu */}
-        <div className="flex items-center justify-between gap-8 min-h-[80px] lg:min-h-[100px] py-2 transition-all">
+        <div className="flex items-center justify-between gap-8 min-h-[100px] lg:min-h-[120px] py-4 transition-all">
           
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
@@ -21,9 +21,9 @@ export function Header() {
               <Image 
                 src="/logo.png" 
                 alt="Sərfəli.al Logo" 
-                width={300}
-                height={60}
-                className="w-32 md:w-44 h-auto object-contain"
+                width={400}
+                height={120}
+                className="w-48 md:w-64 h-auto object-contain"
                 priority
               />
             </Link>
