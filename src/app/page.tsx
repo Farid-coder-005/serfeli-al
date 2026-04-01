@@ -60,7 +60,7 @@ const FEATURED_DEALS = [
 
 const PARTNERS = ["Kontakt", "İrşad", "Baku Electronics", "Soliton", "Music Gallery", "Optimal"];
 
-export default function Home() {
+export default function Page() {
   return (
     <div className="flex flex-col w-full relative">
       {/* Global dot-grid pattern overlay */}
