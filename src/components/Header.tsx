@@ -13,17 +13,18 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main row: Logo | Search | User/Menu */}
-        <div className="flex items-center justify-between gap-8 h-20 transition-all">
+        <div className="flex items-center justify-between gap-8 h-20 transition-all overflow-hidden">
           
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
+          <div className="flex-shrink-0 flex items-center pr-4">
             <Link href="/" className="flex items-center">
               <Image 
                 src="/logo.png" 
                 alt="Sərfəli.al Logo" 
-                width={140}
-                height={40}
-                className="w-[140px] h-auto object-contain"
+                width={300}
+                height={55}
+                className="h-[40px] md:h-[55px] w-auto object-contain !max-h-full"
+                style={{ height: 'auto' }} // Tailwind classes will handle heights correctly with breakpoints
                 priority
               />
             </Link>
