@@ -27,7 +27,7 @@ export default function RootLayout({
         <AuthProvider>
           <LoadingBar />
           <Header />
-          <main className="flex-1 flex flex-col w-full pt-[140px] min-h-screen relative z-10">
+          <main className="flex-1 flex flex-col w-full pt-[180px] min-h-screen relative z-10">
             {children}
           </main>
           <Footer />
