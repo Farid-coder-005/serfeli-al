@@ -121,7 +121,7 @@ const PRODUCTS = [
     id: 9,
     title: "Dior Sauvage Eau de Parfum 100ml",
     category: "parfumeriya",
-    image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?q=80&w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=400&h=400&fit=crop",
     minPrice: 280,
     maxPrice: 340,
     stores: ["Sabina", "Ideal"],
