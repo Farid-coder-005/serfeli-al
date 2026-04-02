@@ -22,11 +22,24 @@ const CATEGORIES = [
 const PARTNERS = ["Kontakt", "İrşad", "Baku Electronics", "Soliton", "Music Gallery", "Optimal"];
 
 import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { FavoriteButton } from "@/components/FavoriteButton";
 
 export default async function Page() {
   const products = await prisma.product.findMany({ 
     include: { offers: { include: { store: true } } } 
   });
+  
+  const session = await getServerSession(authOptions);
+  let userFavoriteIds: string[] = [];
+  if (session?.user && (session.user as any).id) {
+    const faves = await prisma.favorite.findMany({
+      where: { userId: (session.user as any).id },
+      select: { productId: true }
+    });
+    userFavoriteIds = faves.map(f => f.productId);
+  }
   return (
     <div className="flex flex-col w-full relative">
       {/* Global dot-grid pattern overlay */}
@@ -130,6 +143,7 @@ export default async function Page() {
                       </span>
                     )}
                   </div>
+                  <FavoriteButton productId={product.id} initialFavorited={userFavoriteIds.includes(product.id)} className="absolute top-4 right-4" />
                   <Image 
                     src={product.imageUrl || "/iphone15pro.png"} 
                     alt={product.title} 

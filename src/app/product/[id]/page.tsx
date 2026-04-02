@@ -3,6 +3,9 @@ import Link from "next/link";
 import { ArrowLeft, Tag, ShieldCheck, MapPin, ExternalLink, ArrowRight } from "lucide-react";
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { FavoriteButton } from "@/components/FavoriteButton";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -21,6 +24,20 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       }
     }
   });
+
+  const session = await getServerSession(authOptions);
+  let isFavorited = false;
+  if (session?.user && (session.user as any).id && product) {
+    const fave = await prisma.favorite.findUnique({
+      where: {
+        userId_productId: {
+          userId: (session.user as any).id,
+          productId: product.id
+        }
+      }
+    });
+    isFavorited = !!fave;
+  }
 
   if (!product) {
     return (
@@ -68,6 +85,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 <span className="relative z-10">Ən Ucuz Seçim</span>
               </span>
             )}
+            <FavoriteButton productId={product.id} initialFavorited={isFavorited} className="absolute top-6 right-6" />
             <Image 
               src={product.imageUrl || "/iphone15pro.png"} 
               alt={product.title} 

@@ -20,6 +20,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  favorites     Favorite[]
 }
 
 model Account {
@@ -76,6 +77,19 @@ model Product {
   updatedAt    DateTime       @updatedAt
   offers       ProductOffer[]
   priceHistory PriceHistory[]
+  favorites    Favorite[]
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
 }
 
 model ProductOffer {
