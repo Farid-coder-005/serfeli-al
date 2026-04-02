@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Search, Heart, ShoppingCart, Menu, X } from "lucide-react";
+import { Logo } from "./Logo";
 
 const NAV_LINKS = [
   { label: "Home",       href: "/" },
@@ -87,20 +88,9 @@ export function Header() {
               </button>
             </nav>
 
-            {/* ── CENTER: Logo ───────────────────────────────────── */}
-            <div className="flex justify-center">
-              <Link
-                href="/"
-                aria-label="Sərfəli.al – Ana səhifə"
-                className={[
-                  "text-[22px] sm:text-[24px] font-bold tracking-tight",
-                  "text-[#057850] transition-opacity duration-200",
-                  "hover:opacity-80 focus-visible:outline-none",
-                  "focus-visible:ring-2 focus-visible:ring-[#057850]/40 rounded-sm",
-                ].join(" ")}
-              >
-                Sərfəli.al
-              </Link>
+            {/* ── CENTER: Logo image ─────────────────────────────── */}
+            <div className="flex justify-center items-center">
+              <Logo />
             </div>
 
             {/* ── RIGHT: Action icons ────────────────────────────── */}
