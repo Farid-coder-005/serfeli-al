@@ -1,85 +1,211 @@
 "use client";
 
-import Link from 'next/link';
-import { Logo } from './Logo';
-import { Search, Menu, UserCircle } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Search, Heart, ShoppingCart, Menu, X } from "lucide-react";
+
+const NAV_LINKS = [
+  { label: "Home",       href: "/" },
+  { label: "Search",     href: "/search" },
+  { label: "Contact Us", href: "/contact" },
+];
 
 export function Header() {
-  const { user, isLoggedIn } = useAuth();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled]     = useState(false);
+
+  // Add a subtle shadow elevation when the user scrolls
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 4);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close the mobile drawer whenever the route changes (navigation)
+  const handleNavClick = () => setMobileOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[9999] bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      {/* ─── Fixed Header Bar ─────────────────────────────────── */}
+      <header
+        className={[
+          "fixed top-0 left-0 right-0 z-[9999] bg-white",
+          "border-b border-gray-100 transition-shadow duration-300",
+          scrolled ? "shadow-md" : "shadow-sm",
+        ].join(" ")}
+        role="banner"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-3 items-center h-20">
 
-        {/* Main row: Logo | Search | User/Menu */}
-        <div className="flex items-center justify-between gap-8 h-20 transition-all">
-          
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Logo />
-          </div>
+            {/* ── LEFT: Nav links (desktop) / Hamburger (mobile) ── */}
+            <nav
+              aria-label="Primary navigation"
+              className="flex items-center gap-1"
+            >
+              {/* Desktop nav links */}
+              <ul className="hidden md:flex items-center gap-1 list-none m-0 p-0">
+                {NAV_LINKS.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className={[
+                        "relative px-3 py-2 text-[15px] font-medium tracking-tight",
+                        "text-[#1F1F1F] transition-colors duration-200",
+                        "hover:text-[#057850]",
+                        // Animated underline via pseudo-element via Tailwind arbitrary
+                        "after:content-[''] after:absolute after:left-0 after:bottom-0",
+                        "after:w-full after:h-[2px] after:bg-[#057850] after:scale-x-0",
+                        "after:origin-left after:transition-transform after:duration-250",
+                        "hover:after:scale-x-100 rounded-sm",
+                      ].join(" ")}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-          {/* Desktop & Tablet Search */}
-          <div className="hidden sm:flex flex-1 items-center max-w-2xl px-4">
-            <div className="relative w-full group">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400 group-focus-within:text-[#1E3A8A] transition-colors" />
-              </div>
-              <input
-                type="text"
-                className="block w-full pl-12 pr-4 py-3 border border-gray-100 rounded-2xl leading-5 bg-gray-50/50 placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1E3A8A]/20 focus:border-[#1E3A8A] sm:text-sm transition-all shadow-sm"
-                placeholder="Məhsul, marka və ya mağaza axtarın..."
-              />
+              {/* Mobile hamburger button */}
+              <button
+                aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-nav"
+                onClick={() => setMobileOpen((v) => !v)}
+                className={[
+                  "md:hidden flex items-center justify-center",
+                  "w-10 h-10 rounded-xl text-[#1F1F1F]",
+                  "hover:bg-gray-100 active:bg-gray-200",
+                  "transition-colors duration-200 focus-visible:outline-none",
+                  "focus-visible:ring-2 focus-visible:ring-[#057850]/40",
+                ].join(" ")}
+              >
+                {mobileOpen
+                  ? <X className="w-5 h-5" strokeWidth={2.2} />
+                  : <Menu className="w-5 h-5" strokeWidth={2.2} />
+                }
+              </button>
+            </nav>
+
+            {/* ── CENTER: Logo ───────────────────────────────────── */}
+            <div className="flex justify-center">
+              <Link
+                href="/"
+                aria-label="Sərfəli.al – Ana səhifə"
+                className={[
+                  "text-[22px] sm:text-[24px] font-bold tracking-tight",
+                  "text-[#057850] transition-opacity duration-200",
+                  "hover:opacity-80 focus-visible:outline-none",
+                  "focus-visible:ring-2 focus-visible:ring-[#057850]/40 rounded-sm",
+                ].join(" ")}
+              >
+                Sərfəli.al
+              </Link>
             </div>
-          </div>
 
-          {/* Right side */}
-          <div className="flex items-center gap-3 flex-shrink-0">
-            {/* Mobile: magnifying glass icon only */}
-            <button className="sm:hidden p-2.5 rounded-xl text-gray-500 hover:text-[#1E3A8A] hover:bg-gray-50 transition-colors">
-              <Search className="h-5 w-5" />
-            </button>
-
-            {isLoggedIn ? (
-              <Link href="/dashboard" className="hidden sm:flex items-center gap-3 px-4 py-2 rounded-2xl bg-white border border-gray-100 hover:border-[#1E3A8A]/30 hover:shadow-lg hover:shadow-[#1E3A8A]/5 transition-all group">
-                <div className="w-9 h-9 rounded-full bg-[#1E3A8A] flex items-center justify-center text-white font-bold group-hover:rotate-6 transition-transform">
-                  {user?.name[0]}
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-[#1E3A8A]">{user?.name}</span>
-                  <span className="text-xs font-black text-[#EA580C]">{user?.balance.toFixed(2)} ₼</span>
-                </div>
+            {/* ── RIGHT: Action icons ────────────────────────────── */}
+            <div
+              className="flex items-center justify-end gap-1"
+              aria-label="Actions"
+            >
+              {/* Search */}
+              <Link
+                href="/search"
+                aria-label="Axtarış"
+                className={[
+                  "flex items-center justify-center w-10 h-10 rounded-xl",
+                  "text-[#4A4A4A] hover:text-[#057850] hover:bg-gray-100",
+                  "transition-colors duration-200 focus-visible:outline-none",
+                  "focus-visible:ring-2 focus-visible:ring-[#057850]/40",
+                ].join(" ")}
+              >
+                <Search className="w-[19px] h-[19px]" strokeWidth={1.8} />
               </Link>
-            ) : (
-              <Link href="/login" className="hidden sm:flex items-center gap-2 px-6 py-2.5 rounded-2xl bg-[#1E3A8A] text-white font-bold text-sm hover:bg-[#1e3271] hover:shadow-xl hover:shadow-[#1E3A8A]/20 transition-all active:scale-[0.98]">
-                <UserCircle className="w-4 h-4" />
-                Giriş / Qeydiyyat
-              </Link>
-            )}
 
-            {/* Mobile: hamburger */}
-            <button className="sm:hidden p-2.5 rounded-xl text-gray-500 hover:text-[#1E3A8A] hover:bg-gray-50 transition-colors">
-              <Menu className="h-6 w-6" />
-            </button>
+              {/* Wishlist */}
+              <button
+                aria-label="İstək siyahısı"
+                className={[
+                  "flex items-center justify-center w-10 h-10 rounded-xl",
+                  "text-[#4A4A4A] hover:text-[#057850] hover:bg-gray-100",
+                  "transition-colors duration-200 focus-visible:outline-none",
+                  "focus-visible:ring-2 focus-visible:ring-[#057850]/40",
+                ].join(" ")}
+              >
+                <Heart className="w-[19px] h-[19px]" strokeWidth={1.8} />
+              </button>
+
+              {/* Cart with badge */}
+              <button
+                aria-label="Səbət (1 məhsul)"
+                className={[
+                  "relative flex items-center justify-center w-10 h-10 rounded-xl",
+                  "text-[#4A4A4A] hover:text-[#057850] hover:bg-gray-100",
+                  "transition-colors duration-200 focus-visible:outline-none",
+                  "focus-visible:ring-2 focus-visible:ring-[#057850]/40",
+                ].join(" ")}
+              >
+                <ShoppingCart className="w-[19px] h-[19px]" strokeWidth={1.8} />
+                {/* Green badge */}
+                <span
+                  aria-hidden="true"
+                  className={[
+                    "absolute -top-0.5 -right-0.5",
+                    "min-w-[17px] h-[17px] px-[3px]",
+                    "bg-[#057850] text-white rounded-full",
+                    "flex items-center justify-center",
+                    "text-[10px] font-bold leading-none",
+                  ].join(" ")}
+                >
+                  1
+                </span>
+              </button>
+            </div>
+
           </div>
         </div>
+      </header>
+
+      {/* ─── Mobile Nav Drawer ────────────────────────────────── */}
+      {/*  Slides down from under the header when the hamburger is open */}
+      <div
+        id="mobile-nav"
+        role="navigation"
+        aria-label="Mobile navigation"
+        aria-hidden={!mobileOpen}
+        className={[
+          "md:hidden fixed left-0 right-0 z-[9998] bg-white border-b border-gray-100",
+          "shadow-lg overflow-hidden transition-all duration-300 ease-in-out",
+          mobileOpen ? "top-20 max-h-64 opacity-100" : "top-20 max-h-0 opacity-0 pointer-events-none",
+        ].join(" ")}
+      >
+        <ul className="list-none m-0 p-0 px-4 py-3 space-y-1">
+          {NAV_LINKS.map(({ label, href }) => (
+            <li key={label}>
+              <Link
+                href={href}
+                onClick={handleNavClick}
+                className={[
+                  "block px-4 py-3 rounded-xl text-[15px] font-medium",
+                  "text-[#1F1F1F] hover:text-[#057850] hover:bg-gray-50",
+                  "transition-colors duration-150",
+                ].join(" ")}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* Mobile Search Bar wrapper - only show when header is compact */}
-      <div className="sm:hidden px-4 pb-3 border-t border-gray-100/50 pt-2">
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Search className="h-4 w-4 text-gray-400" />
-          </div>
-          <input
-            type="text"
-            className="block w-full pl-11 pr-4 py-3 border border-gray-100 rounded-2xl bg-gray-50 placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1E3A8A]/20 focus:border-[#1E3A8A] text-sm transition-all shadow-sm"
-            placeholder="Axtarış..."
-          />
-        </div>
-      </div>
-    </header>
+      {/* ─── Mobile Backdrop ─────────────────────────────────── */}
+      {mobileOpen && (
+        <div
+          aria-hidden="true"
+          onClick={() => setMobileOpen(false)}
+          className="md:hidden fixed inset-0 z-[9997] bg-black/10 backdrop-blur-[2px]"
+        />
+      )}
+    </>
   );
 }
-
