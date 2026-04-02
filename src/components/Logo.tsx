@@ -11,7 +11,7 @@ export function Logo() {
         alt="Sərfəli.al" 
         width={300}
         height={55}
-        className="h-[100px] sm:h-[130px] w-auto object-contain"
+        className="h-[68px] sm:h-[84px] w-auto object-contain"
         style={{ height: undefined, width: 'auto', maxWidth: 'none', maxHeight: 'none' }}
         priority
         unoptimized={false}

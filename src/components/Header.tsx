@@ -30,14 +30,14 @@ export function Header() {
       {/* ─── Fixed Header Bar ─────────────────────────────────── */}
       <header
         className={[
-          "fixed top-0 left-0 right-0 z-[9999] bg-white overflow-visible",
+          "fixed top-0 left-0 right-0 z-[9999] bg-white",
           "border-b border-gray-100 transition-shadow duration-300",
           scrolled ? "shadow-md" : "shadow-sm",
         ].join(" ")}
         role="banner"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 items-center h-20">
+          <div className="grid grid-cols-3 items-center h-24">
 
             {/* ── LEFT: Nav links (desktop) / Hamburger (mobile) ── */}
             <nav
@@ -89,7 +89,7 @@ export function Header() {
             </nav>
 
             {/* ── CENTER: Logo image ─────────────────────────────── */}
-            <div className="flex justify-center items-center overflow-visible">
+            <div className="flex justify-center items-center">
               <Logo />
             </div>
 
