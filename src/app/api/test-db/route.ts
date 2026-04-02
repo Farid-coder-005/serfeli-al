@@ -1,14 +1,13 @@
+export const dynamic = 'force-dynamic';
+
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import prisma from '@/lib/prisma'; // or your correct path
 
 export async function GET() {
   try {
     const users = await prisma.user.findMany();
-    return NextResponse.json({ success: true, count: users.length, users });
+    return NextResponse.json(users);
   } catch (error) {
-    if (error instanceof Error) {
-      return NextResponse.json({ success: false, message: error.message }, { status: 500 });
-    }
-    return NextResponse.json({ success: false, message: 'Unknown error occurred' }, { status: 500 });
+    return NextResponse.json({ error: "Failed to fetch" }, { status: 500 });
   }
 }
