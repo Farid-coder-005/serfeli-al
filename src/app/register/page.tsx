@@ -32,19 +32,11 @@ export default function RegisterPage() {
         throw new Error(data.message || "Qeydiyyat zamanı xəta baş verdi");
       }
 
-      const signInRes = await signIn("credentials", {
+      await signIn("credentials", {
         email,
         password,
-        redirect: false,
+        callbackUrl: "/",
       });
-
-      if (signInRes?.error) {
-        setErrorMsg("Qeydiyyat tamamlandı, lakin daxil olmaq mümkün olmadı.");
-        setIsLoading(false);
-      } else {
-        router.push("/dashboard");
-        router.refresh();
-      }
     } catch (err: any) {
       setErrorMsg(err.message);
       setIsLoading(false);
