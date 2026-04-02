@@ -13,10 +13,10 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main row: Logo | Search | User/Menu */}
-        <div className="flex items-center justify-between gap-8 h-32 transition-all">
+        <div className="flex items-center justify-between gap-8 h-20 transition-all">
           
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center min-w-fit p-0">
+          <div className="flex-shrink-0 flex items-center">
             <Logo />
           </div>
 
@@ -66,8 +66,8 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Search Bar wrapper */}
-      <div className="sm:hidden px-4 pb-4 border-t border-gray-100/50 pt-2">
+      {/* Mobile Search Bar wrapper - only show when header is compact */}
+      <div className="sm:hidden px-4 pb-3 border-t border-gray-100/50 pt-2">
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <Search className="h-4 w-4 text-gray-400" />

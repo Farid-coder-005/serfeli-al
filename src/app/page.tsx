@@ -23,7 +23,7 @@ const FEATURED_DEALS = [
   {
     id: 1,
     title: "Apple iPhone 15 Pro, 256GB, Natural Titanium",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=400&h=400&fit=crop",
+    image: "/iphone15pro.png",
     oldPrice: "2899",
     newPrice: "2499",
     store: "Kontakt",
@@ -32,7 +32,7 @@ const FEATURED_DEALS = [
   {
     id: 2,
     title: "Sony PlayStation 5 Console",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=400&h=400&fit=crop",
+    image: "/iphone15pro.png",
     oldPrice: "1250",
     newPrice: "999",
     store: "İrşad",
@@ -41,7 +41,7 @@ const FEATURED_DEALS = [
   {
     id: 3,
     title: "Dyson V15 Detect Absolute",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=400&h=400&fit=crop",
+    image: "/iphone15pro.png",
     oldPrice: "1899",
     newPrice: "1650",
     store: "Baku Electronics",
@@ -50,7 +50,7 @@ const FEATURED_DEALS = [
   {
     id: 4,
     title: "Samsung Galaxy S24 Ultra, 512GB",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=400&h=400&fit=crop",
+    image: "/iphone15pro.png",
     oldPrice: "3199",
     newPrice: "2799",
     store: "Soliton",

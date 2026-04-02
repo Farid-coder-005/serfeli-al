@@ -5,15 +5,16 @@ import Link from 'next/link';
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center p-0 m-0">
+    <Link href="/" className="flex items-center shrink-0">
       <Image 
         src="/logo.png" 
         alt="Sərfəli.al" 
         width={300}
-        height={50}
-        className="h-[50px] w-auto object-contain"
-        style={{ height: '50px', width: 'auto', maxWidth: 'none' }}
+        height={55}
+        className="h-[42px] sm:h-[55px] w-auto object-contain"
+        style={{ height: undefined, width: 'auto', maxWidth: 'none', maxHeight: 'none' }}
         priority
+        unoptimized={false}
       />
     </Link>
   );

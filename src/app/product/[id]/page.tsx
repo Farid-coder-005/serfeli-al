@@ -33,7 +33,7 @@ const PRODUCT = {
   title: "Apple iPhone 15, 128GB, Black",
   category: "Smartfonlar",
   image:
-    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&h=800&fit=crop",
+    "/iphone15pro.png",
   minPrice: 1699,
   maxPrice: 1999,
   rating: 4.9,
@@ -120,7 +120,7 @@ export default function ProductDetailPage() {
   const [activeTab, setActiveTab] = useState("prices");
 
   return (
-    <main className="flex-1 flex flex-col w-full pt-[80px] min-h-screen relative z-10">
+    <div className="flex-1 flex flex-col w-full">
       <div className="min-h-screen bg-[#F8FAFC] font-sans text-gray-900 pb-20 relative overflow-hidden">
         {/* Global dot-grid pattern overlay */}
         <div className="pointer-events-none fixed inset-0 z-0 bg-dot-pattern opacity-10" />
@@ -159,7 +159,7 @@ export default function ProductDetailPage() {
             <div className="w-full md:w-5/12 lg:w-2/5 flex flex-col items-center justify-center bg-gray-50/50 rounded-[2.5rem] p-12 border border-gray-100/50 relative group">
               <div className="relative w-full aspect-[4/5] flex items-center justify-center">
                 <Image
-                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&h=800&fit=crop"
+                  src="/iphone15pro.png"
                   alt={PRODUCT.title}
                   fill
                   className="object-contain mix-blend-multiply drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"
@@ -409,6 +409,6 @@ export default function ProductDetailPage() {
           </section>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
