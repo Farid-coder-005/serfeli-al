@@ -1,11 +1,7 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowLeft, Send } from "lucide-react";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Bizimlə Əlaqə | Sərfəli.al",
-  description: "Sərfəli.al komandası ilə əlaqə saxlayın.",
-};
 
 export default function ContactPage() {
   return (
