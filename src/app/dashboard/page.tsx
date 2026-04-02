@@ -13,10 +13,12 @@ import {
   CheckCircle2,
   ExternalLink,
 } from "lucide-react";
-import { useAuth } from "@/context/AuthContext";
+import { useSession, signOut } from "next-auth/react";
 
 export default function DashboardPage() {
-  const { user, logout } = useAuth();
+  const { data: session } = useSession();
+  const user = session?.user as any;
+  const logout = () => signOut();
 
   // If not logged in, this page should ideally redirect, but for mock purposes we show a fallback
   if (!user) {
@@ -49,17 +51,17 @@ export default function DashboardPage() {
             <div className="flex items-center gap-8">
               <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-[2.5rem] bg-white border-4 border-white/20 p-1 shadow-2xl flex items-center justify-center text-4xl sm:text-5xl font-black text-[#1E3A8A] group relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-gray-50 to-white"></div>
-                <span className="relative z-10 group-hover:scale-110 transition-transform duration-500">{user.name[0]}</span>
+                <span className="relative z-10 group-hover:scale-110 transition-transform duration-500">{user.name?.[0] || "U"}</span>
               </div>
               <div className="flex flex-col text-left">
                 <div className="flex items-center gap-3 mb-2">
                   <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                    {user.name}
+                    {user.name || "İstifadəçi"}
                   </h1>
                   <span className="px-3 py-1 bg-[#EA580C] text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-orange-500/20 leading-none">PREMIUM</span>
                 </div>
                 <p className="text-gray-300 font-medium flex items-center gap-2">
-                  <UserCircle className="w-4 h-4 opacity-50" /> {user.email}
+                  <UserCircle className="w-4 h-4 opacity-50" /> {user.email || ""}
                 </p>
               </div>
             </div>
@@ -96,7 +98,7 @@ export default function DashboardPage() {
                 </div>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.25em] mb-2">Kəşbək Balansı</p>
                 <h3 className="text-5xl font-black text-[#1E3A8A] tracking-tighter">
-                  {user.balance.toFixed(2)} <span className="text-2xl ml-1 text-gray-300 font-bold">₼</span>
+                  {(user.balance || 45.20).toFixed(2)} <span className="text-2xl ml-1 text-gray-300 font-bold">₼</span>
                 </h3>
               </div>
 
