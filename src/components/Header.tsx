@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import {
   Search, Heart, ShoppingCart,
-  Menu, X, UserCircle, Percent,
+  Menu, X, UserCircle, Percent, User,
   LayoutDashboard,
 } from "lucide-react";
 
@@ -119,59 +119,42 @@ export function Header() {
             </div>
 
             {/* ── RIGHT: Cashback · Icons · Auth ────────────── */}
-            <div className="flex items-center justify-end gap-2 sm:gap-3">
-
-              {/* ① Cashback badge — hidden on mobile */}
-              <Link
-                href="/cashback-info"
-                aria-label="Kəşbək haqqında"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#057850]/10 hover:bg-[#057850]/20 transition-colors duration-200 group"
-              >
-                <Percent className="w-3.5 h-3.5 text-[#057850]" strokeWidth={2.5} />
-                <span className="text-[12px] font-black text-[#057850] tracking-wide uppercase">
-                  Cashback
-                </span>
+            <div className="flex items-center justify-end gap-4 lg:gap-6">
+              
+              {/* A) Cashback Badge (New) */}
+              <Link href="/cashback-info" className="hidden md:flex items-center gap-1 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-sm font-semibold border border-green-200 hover:bg-green-100 transition">
+                <Percent className="w-4 h-4" /> Cashback
               </Link>
 
-              {/* ② Search icon — hidden on mobile */}
-              <Link href="/search" aria-label="Axtar" className={`hidden sm:flex ${iconBtn}`}>
-                <Search className="w-[18px] h-[18px]" strokeWidth={1.8} />
-              </Link>
+              {/* B) Existing Action Icons */}
+              <div className="flex items-center gap-1 sm:gap-2">
+                <Link href="/search" aria-label="Axtar" className={`hidden sm:flex ${iconBtn}`}>
+                  <Search className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                </Link>
 
-              {/* ③ Wishlist — hidden on mobile */}
-              <Link href="/wishlist" aria-label="İstək siyahısı" className={`hidden sm:flex ${iconBtn}`}>
-                <Heart className="w-[18px] h-[18px]" strokeWidth={1.8} />
-              </Link>
+                <Link href="/wishlist" aria-label="İstək siyahısı" className={`hidden sm:flex ${iconBtn}`}>
+                  <Heart className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                </Link>
 
-              {/* ④ Cart — always visible (even on mobile) */}
-              <Link href="/cart" aria-label="Səbət (1 məhsul)" className={iconBtn}>
-                <ShoppingCart className="w-[18px] h-[18px]" strokeWidth={1.8} />
-                <span
-                  aria-hidden="true"
-                  className="absolute -top-0.5 -right-0.5 min-w-[16px] h-[16px] px-[3px] bg-[#057850] text-white rounded-full flex items-center justify-center text-[9px] font-black leading-none pointer-events-none"
-                >
-                  1
-                </span>
-              </Link>
+                <Link href="/cart" aria-label="Səbət (1 məhsul)" className={iconBtn}>
+                  <ShoppingCart className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                  <span
+                    aria-hidden="true"
+                    className="absolute -top-0.5 -right-0.5 min-w-[16px] h-[16px] px-[3px] bg-[#057850] text-white rounded-full flex items-center justify-center text-[9px] font-black leading-none pointer-events-none"
+                  >
+                    1
+                  </span>
+                </Link>
+              </div>
 
-              {/* ⑤ Auth button — desktop only */}
+              {/* C) Login / Register Button (New) */}
               {isLoggedIn ? (
-                <Link
-                  href="/dashboard"
-                  className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E3A8A] hover:bg-[#1a3275] text-white text-[13px] font-bold shadow-md shadow-blue-900/10 transition-all active:scale-[0.97] whitespace-nowrap"
-                >
-                  <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[10px] font-black">
-                    {user?.name[0]}
-                  </div>
-                  {user?.name}
+                <Link href="/dashboard" className="hidden md:flex items-center bg-[#057850] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-green-800 transition">
+                  <User className="w-4 h-4 mr-2" /> {user?.name}
                 </Link>
               ) : (
-                <Link
-                  href="/login"
-                  className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E3A8A] hover:bg-[#1a3275] text-white text-[13px] font-bold shadow-md shadow-blue-900/10 transition-all active:scale-[0.97] whitespace-nowrap"
-                >
-                  <UserCircle className="w-4 h-4" />
-                  Giriş / Qeydiyyat
+                <Link href="/login" className="hidden md:flex items-center bg-[#057850] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-green-800 transition">
+                  <User className="w-4 h-4 mr-2" /> Giriş / Qeydiyyat
                 </Link>
               )}
             </div>
