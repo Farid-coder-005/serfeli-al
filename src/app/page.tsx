@@ -19,48 +19,14 @@ const CATEGORIES = [
   { name: "Supermarket", slug: "supermarket", icon: ShoppingBag },
 ];
 
-const FEATURED_DEALS = [
-  {
-    id: 1,
-    title: "Apple iPhone 15 Pro, 256GB, Natural Titanium",
-    image: "/iphone15pro.png",
-    oldPrice: "2899",
-    newPrice: "2499",
-    store: "Kontakt",
-    realDiscount: true,
-  },
-  {
-    id: 2,
-    title: "Sony PlayStation 5 Console",
-    image: "/iphone15pro.png",
-    oldPrice: "1250",
-    newPrice: "999",
-    store: "İrşad",
-    realDiscount: true,
-  },
-  {
-    id: 3,
-    title: "Dyson V15 Detect Absolute",
-    image: "/iphone15pro.png",
-    oldPrice: "1899",
-    newPrice: "1650",
-    store: "Baku Electronics",
-    realDiscount: true,
-  },
-  {
-    id: 4,
-    title: "Samsung Galaxy S24 Ultra, 512GB",
-    image: "/iphone15pro.png",
-    oldPrice: "3199",
-    newPrice: "2799",
-    store: "Soliton",
-    realDiscount: false, // fake/inflated discount for demo
-  },
-];
-
 const PARTNERS = ["Kontakt", "İrşad", "Baku Electronics", "Soliton", "Music Gallery", "Optimal"];
 
-export default function Page() {
+import prisma from "@/lib/prisma";
+
+export default async function Page() {
+  const products = await prisma.product.findMany({ 
+    include: { offers: { include: { store: true } } } 
+  });
   return (
     <div className="flex flex-col w-full relative">
       {/* Global dot-grid pattern overlay */}
@@ -135,16 +101,26 @@ export default function Page() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {FEATURED_DEALS.map((deal) => (
+            {products.map((product: any, idx: number) => {
+              const cheapestOffer = product.offers?.length > 0 
+                ? product.offers.reduce((p: any, c: any) => p.currentPrice < c.currentPrice ? p : c) 
+                : null;
+                
+              const newPrice = cheapestOffer ? cheapestOffer.currentPrice : 0;
+              const oldPrice = newPrice > 0 ? Math.floor(newPrice * 1.15) : 0;
+              const storeName = cheapestOffer?.store?.name || "Bilinmir";
+              const realDiscount = idx % 2 === 0;
+
+              return (
               <Link 
-                href={`/product/${deal.id}`}
-                key={deal.id} 
+                href={`/product/${product.id}`}
+                key={product.id} 
                 className="bg-[#FFFFFF] rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden hover:shadow-2xl hover:shadow-[#1E3A8A]/10 hover:border-[#1E3A8A]/10 hover:-translate-y-2 transition-all duration-500 ease-out group flex flex-col cursor-pointer relative"
               >
                 {/* Image & Badge */}
                 <div className="relative aspect-square overflow-hidden bg-gray-50/50 flex items-center justify-center p-8">
                   <div className="absolute top-4 left-4 z-10">
-                    {deal.realDiscount ? (
+                    {realDiscount ? (
                       <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-black bg-[#EA580C] text-white shadow-lg shadow-orange-500/30 uppercase tracking-wider">
                         <Tag className="w-3 h-3 mr-1.5" /> Real Endirim
                       </span>
@@ -155,31 +131,31 @@ export default function Page() {
                     )}
                   </div>
                   <Image 
-                    src={deal.image} 
-                    alt={deal.title} 
+                    src={product.imageUrl || "/iphone15pro.png"} 
+                    alt={product.title} 
                     width={200} 
                     height={200}
-                    priority={deal.id === 1}
-                    className={`object-contain w-full h-full group-hover:scale-110 transition-transform duration-700 ${deal.id === 1 ? '' : 'mix-blend-multiply'}`}
+                    priority={idx === 0}
+                    className={`object-contain w-full h-full group-hover:scale-110 transition-transform duration-700 ${idx === 0 ? '' : 'mix-blend-multiply'}`}
                   />
                 </div>
                 
                 {/* Content */}
                 <div className="p-6 flex-1 flex flex-col">
-                  <div className="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-[0.2em]">{deal.store}</div>
+                  <div className="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-[0.2em]">{storeName}</div>
                   <h3 className="text-sm font-bold text-[#1E3A8A] mb-6 line-clamp-2 leading-relaxed flex-1 group-hover:text-[#166534] transition-colors">
-                    {deal.title}
+                    {product.title}
                   </h3>
                   
                   <div className="mt-auto">
                     <div className="flex items-center gap-3">
-                      <span className="text-gray-400 line-through text-sm font-medium">{deal.oldPrice} ₼</span>
-                      <span className="text-[#EA580C] font-black text-2xl tracking-tighter">{deal.newPrice} ₼</span>
+                      <span className="text-gray-400 line-through text-sm font-medium">{oldPrice} ₼</span>
+                      <span className="text-[#EA580C] font-black text-2xl tracking-tighter">{newPrice} ₼</span>
                     </div>
                   </div>
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
           <div className="mt-12 text-center sm:hidden">
             <Link href="/search" className="inline-flex items-center justify-center w-full py-4 px-6 border border-gray-200 rounded-2xl text-sm font-bold text-[#1E3A8A] bg-white hover:bg-gray-50 shadow-sm transition-all">
