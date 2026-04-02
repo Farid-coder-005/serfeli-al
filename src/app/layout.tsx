@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import LoadingBar from "@/components/LoadingBar";
-import { AuthProvider } from "@/context/AuthContext";
+import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,14 +24,14 @@ export default function RootLayout({
     <html lang="az">
       <body className={`${inter.className} min-h-screen bg-[#F8FAFC] flex flex-col antialiased text-[#1e293b] selection:bg-[#166534]/10`}>
         <div className="premium-bg-overlay" />
-        <AuthProvider>
+        <Providers>
           <LoadingBar />
           <Header />
           <main className="flex-1 flex flex-col w-full pt-24 min-h-screen relative z-10">
             {children}
           </main>
           <Footer />
-        </AuthProvider>
+        </Providers>
       </body>
     </html>
   );

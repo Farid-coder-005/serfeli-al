@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
+import { useSession, signOut } from "next-auth/react";
 import {
   Search, Heart, ShoppingCart,
   Menu, X, UserCircle, Percent, User,
@@ -28,7 +28,9 @@ const iconBtn = [
 
 export function Header() {
   const pathname              = usePathname();
-  const { user, isLoggedIn } = useAuth();
+  const { data: session, status } = useSession();
+  const isLoggedIn = status === "authenticated";
+  const user = session?.user;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled,   setScrolled]   = useState(false);
 
@@ -149,11 +151,16 @@ export function Header() {
 
               {/* C) Login / Register Button (New) */}
               {isLoggedIn ? (
-                <Link href="/dashboard" className="hidden md:flex items-center bg-[#057850] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-green-800 transition">
-                  <User className="w-4 h-4 mr-2" /> {user?.name}
-                </Link>
+                <div className="hidden md:flex items-center gap-2">
+                  <Link href="/dashboard" className="flex items-center bg-gray-100 text-[#1F1F1F] px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition">
+                    <User className="w-4 h-4 mr-2" /> {user?.name}
+                  </Link>
+                  <button onClick={() => signOut()} className="flex items-center text-red-500 font-medium text-sm hover:text-red-700 px-2">
+                    Çıxış
+                  </button>
+                </div>
               ) : (
-                <Link href="/login" className="hidden md:flex items-center bg-[#057850] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-green-800 transition">
+                <Link href="/login" className="hidden md:flex items-center bg-[#057850] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#046241] transition">
                   <User className="w-4 h-4 mr-2" /> Giriş / Qeydiyyat
                 </Link>
               )}
@@ -230,17 +237,25 @@ export function Header() {
           {/* Auth button in mobile drawer */}
           <div className="pt-3 pb-2">
             {isLoggedIn ? (
-              <Link
-                href="/dashboard"
-                className="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-[#1E3A8A] text-white font-black text-sm uppercase tracking-widest shadow-lg shadow-blue-900/10 transition-all active:scale-[0.98]"
-              >
-                <LayoutDashboard className="w-4 h-4" />
-                Dashboard
-              </Link>
+              <div className="space-y-2">
+                <Link
+                  href="/dashboard"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-[#057850] text-white font-black text-sm uppercase tracking-widest shadow-lg shadow-[#057850]/20 transition-all active:scale-[0.98]"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => signOut()}
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-red-50 text-red-600 font-black text-sm uppercase tracking-widest transition-all active:scale-[0.98]"
+                >
+                  Çıxış
+                </button>
+              </div>
             ) : (
               <Link
                 href="/login"
-                className="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-[#1E3A8A] text-white font-black text-sm uppercase tracking-widest shadow-lg shadow-blue-900/10 transition-all active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-[#057850] text-white font-black text-sm uppercase tracking-widest shadow-lg shadow-[#057850]/20 transition-all active:scale-[0.98]"
               >
                 <UserCircle className="w-4 h-4" />
                 Giriş / Qeydiyyat
