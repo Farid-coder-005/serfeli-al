@@ -30,7 +30,7 @@ export function Header() {
       {/* ─── Fixed Header Bar ─────────────────────────────────── */}
       <header
         className={[
-          "fixed top-0 left-0 right-0 z-[9999] bg-white",
+          "fixed top-0 left-0 right-0 z-[9999] bg-white overflow-visible",
           "border-b border-gray-100 transition-shadow duration-300",
           scrolled ? "shadow-md" : "shadow-sm",
         ].join(" ")}
@@ -89,7 +89,7 @@ export function Header() {
             </nav>
 
             {/* ── CENTER: Logo image ─────────────────────────────── */}
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center overflow-visible">
               <Logo />
             </div>
 
