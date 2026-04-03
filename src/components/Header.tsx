@@ -10,6 +10,7 @@ import {
   Menu, X, UserCircle, Percent, User,
   LayoutDashboard,
 } from "lucide-react";
+import SearchBar from "./SearchBar";
 
 // ─── Nav links ────────────────────────────────────────────────
 const NAV_LINKS = [
@@ -130,10 +131,7 @@ export function Header() {
 
               {/* B) Existing Action Icons */}
               <div className="flex items-center gap-1 sm:gap-2">
-                <Link href="/search" aria-label="Axtar" className={`hidden sm:flex ${iconBtn}`}>
-                  <Search className="w-[18px] h-[18px]" strokeWidth={1.8} />
-                </Link>
-
+                <SearchBar />
                 <Link href="/wishlist" aria-label="İstək siyahısı" className={`hidden sm:flex ${iconBtn}`}>
                   <Heart className="w-[18px] h-[18px]" strokeWidth={1.8} />
                 </Link>

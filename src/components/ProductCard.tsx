@@ -1,0 +1,70 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Tag } from "lucide-react";
+import { FavoriteButton } from "@/components/FavoriteButton";
+
+export function ProductCard({ 
+  product,
+  userFavoriteIds = [],
+  priority = false
+}: { 
+  product: any;
+  userFavoriteIds?: string[];
+  priority?: boolean;
+}) {
+  const cheapestOffer = product.offers?.length > 0 
+    ? product.offers.reduce((p: any, c: any) => p.currentPrice < c.currentPrice ? p : c) 
+    : null;
+    
+  const newPrice = cheapestOffer ? cheapestOffer.currentPrice : 0;
+  const oldPrice = newPrice > 0 ? Math.floor(newPrice * 1.15) : 0;
+  const storeName = cheapestOffer?.store?.name || "Bilinmir";
+  const realDiscount = true; // Placeholder for real discount logic
+
+  return (
+    <Link 
+      href={`/product/${product.id}`}
+      key={product.id} 
+      className="bg-[#FFFFFF] rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden hover:shadow-2xl hover:shadow-[#1E3A8A]/10 hover:border-[#1E3A8A]/10 hover:-translate-y-2 transition-all duration-500 ease-out group flex flex-col cursor-pointer relative"
+    >
+      {/* Image & Badge */}
+      <div className="relative aspect-square overflow-hidden bg-gray-50/50 flex items-center justify-center p-8">
+        <div className="absolute top-4 left-4 z-10">
+          {realDiscount ? (
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-black bg-[#EA580C] text-white shadow-lg shadow-orange-500/30 uppercase tracking-wider">
+              <Tag className="w-3 h-3 mr-1.5" /> Real Endirim
+            </span>
+          ) : (
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-black bg-gray-900 text-white uppercase tracking-wider">
+               Süni Endirim
+            </span>
+          )}
+        </div>
+        <FavoriteButton productId={product.id} initialFavorited={userFavoriteIds.includes(product.id)} className="absolute top-4 right-4" />
+        <Image 
+          src={product.imageUrl || "/iphone15pro.png"} 
+          alt={product.title} 
+          width={200} 
+          height={200}
+          priority={priority}
+          className={`object-contain w-full h-full group-hover:scale-110 transition-transform duration-700 mix-blend-multiply`}
+        />
+      </div>
+      
+      {/* Content */}
+      <div className="p-6 flex-1 flex flex-col">
+        <div className="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-[0.2em]">{storeName}</div>
+        <h3 className="text-sm font-bold text-[#1E3A8A] mb-6 line-clamp-2 leading-relaxed flex-1 group-hover:text-[#166534] transition-colors">
+          {product.title}
+        </h3>
+        
+        <div className="mt-auto">
+          <div className="flex items-center gap-3">
+            <span className="text-gray-400 line-through text-sm font-medium">{oldPrice} ₼</span>
+            <span className="text-[#EA580C] font-black text-2xl tracking-tighter">{newPrice} ₼</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
