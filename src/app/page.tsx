@@ -50,19 +50,15 @@ export default async function Page() {
         <div className="absolute top-1/2 -right-48 w-[420px] h-[420px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(15,23,70,0.05) 0%, transparent 70%)', filter: 'blur(70px)' }} />
         <div className="absolute -bottom-32 left-1/3 w-[360px] h-[360px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(22,163,74,0.05) 0%, transparent 70%)', filter: 'blur(80px)' }} />
       </div>
-      {/* Hero Section */}
-      <section className="bg-[#166534] py-20 sm:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none mix-blend-overlay"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-8 drop-shadow-xl">
+      {/* Hero Section (Aesthetic Reconstruction: Ultra-Compact & Elegant) */}
+      <section className="bg-[#f0fdf4] py-8 sm:py-12 relative overflow-hidden border-b border-green-100/40">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] pointer-events-none mix-blend-multiply"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h1 className="text-5xl sm:text-7xl md:text-9xl font-black text-white tracking-tighter mb-4 leading-[1.02] drop-shadow-[0_15px_15px_rgba(5,120,80,0.3)] select-none">
             Azərbaycanın ən ağıllı <br className="hidden sm:block" /> alış platforması
           </h1>
-          <p className="text-lg sm:text-2xl text-green-50/90 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
+          <p className="text-lg sm:text-2xl md:text-3xl text-white mb-0 max-w-4xl mx-auto font-black leading-tight tracking-tight drop-shadow-[0_8px_8px_rgba(5,120,80,0.2)]">
             Milyonlarla məhsul arasından ən ucuzunu tapın. Real endirimləri kəşf edin və hər alışdan kəşbək qazanın.
-          </p>
-          
-          <p className="text-white text-sm sm:text-base font-bold uppercase tracking-[0.3em] mt-12 animate-pulse">
-            Nə axtarırsınız? (məs. iPhone 15 Pro)
           </p>
         </div>
       </section>
