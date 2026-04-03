@@ -12,27 +12,29 @@ export default function SearchBar() {
     e.preventDefault();
     if (query.trim()) {
       router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+      setQuery("");
     }
   };
 
   return (
     <form
       onSubmit={handleSearch}
-      className="hidden md:flex relative items-center w-full max-w-sm mx-4"
+      className="flex relative items-center w-full shadow-sm"
     >
       <input
+        id="main-search-input"
         type="text"
-        placeholder="Məhsul axtar..."
-        className="w-full bg-gray-100 hover:bg-gray-200 focus:bg-white border border-transparent focus:border-[#057850] rounded-full py-2 pl-4 pr-10 text-sm outline-none transition-colors"
+        placeholder="Nə axtarırsınız?"
+        className="w-full bg-white rounded-l-md py-2.5 pl-4 pr-4 text-sm text-gray-800 placeholder-gray-400 outline-none border-none focus:ring-1 focus:ring-[#FF6600]/20"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button
         type="submit"
         aria-label="Axtar"
-        className="absolute right-3 text-gray-500 hover:text-[#057850] transition-colors"
+        className="bg-[#FF6600] hover:bg-[#e55b00] text-white px-5 py-2.5 rounded-r-md transition-colors flex items-center justify-center shrink-0"
       >
-        <Search className="w-[18px] h-[18px]" strokeWidth={1.8} />
+        <Search className="w-5 h-5" strokeWidth={2.5} />
       </button>
     </form>
   );

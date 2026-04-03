@@ -27,7 +27,7 @@ export default function RootLayout({
         <Providers>
           <LoadingBar />
           <Header />
-          <main className="flex-1 flex flex-col w-full pt-24 min-h-screen relative z-10">
+          <main className="flex-1 flex flex-col w-full min-h-screen relative z-10">
             {children}
           </main>
           <Footer />
