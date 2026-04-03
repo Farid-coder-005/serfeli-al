@@ -36,10 +36,9 @@ const CATEGORIES = [
   { label: "Reyslər", icon: Plane, href: "#" },
 ];
 
-/* ─── Brand color ─────────────────────────────────────────── */
+/* ─── Brand Colors ────────────────────────────────────────── */
 const BRAND_GREEN = "#057850";
 const BRAND_GREEN_DARK = "#046241";
-const ACCENT_ORANGE = "#FF6600";
 
 export function Header() {
   const pathname = usePathname();
@@ -53,60 +52,55 @@ export function Header() {
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   return (
-    <>
-      <div className="z-[9999] relative">
-        {/* ════════════════════════════════════════════════════════
-            BAR A — Top Utility Bar (hidden on mobile)
-            ════════════════════════════════════════════════════════ */}
-        <div className="hidden md:block bg-[#046241] text-white text-[11px] font-semibold">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-8">
-            {/* Left spacer to align with logo area if needed, but centering links is better */}
-            <div className="w-32 hidden lg:block" />
-
-            {/* Center links */}
-            <nav aria-label="Top navigation" className="flex items-center gap-0">
-              {TOP_LINKS.map(({ label, href, id }) => (
-                <Link
-                  key={id}
-                  href={href}
-                  onClick={() => setActiveTopLink(id)}
-                  className={[
-                    "px-4 py-1 tracking-wider transition-colors relative h-8 flex items-center",
-                    activeTopLink === id
-                      ? "text-white after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-white after:rounded-full"
-                      : "text-white/60 hover:text-white",
-                  ].join(" ")}
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Right — sustainability */}
-            <div className="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors cursor-pointer ml-auto md:ml-0">
-              <Leaf className="w-3.5 h-3.5" strokeWidth={2.5} />
-              <span className="text-[10px] uppercase font-bold">Davamlı gələcək</span>
-            </div>
+    <div className="z-[9999] relative">
+      {/* ════════════════════════════════════════════════════════
+          BAR A — Top Utility Bar (hidden on mobile)
+          ════════════════════════════════════════════════════════ */}
+      <div className="hidden md:block bg-[#046241] text-white text-[11px] font-semibold tracking-wide">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-8">
+          <div className="w-32 hidden lg:block" />
+          <nav aria-label="Top navigation" className="flex items-center gap-0">
+            {TOP_LINKS.map(({ label, href, id }) => (
+              <Link
+                key={id}
+                href={href}
+                onClick={() => setActiveTopLink(id)}
+                className={[
+                  "px-4 py-1 transition-colors relative h-8 flex items-center",
+                  activeTopLink === id
+                    ? "text-white after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-white after:rounded-full"
+                    : "text-white/60 hover:text-white",
+                ].join(" ")}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <div className="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors cursor-pointer ml-auto md:ml-0">
+            <Leaf className="w-3.5 h-3.5" strokeWidth={2.5} />
+            <span className="text-[10px] uppercase font-black tracking-widest">Davamlı gələcək</span>
           </div>
         </div>
+      </div>
 
-        {/* ════════════════════════════════════════════════════════
-            BAR B — Main Header Bar
-            ════════════════════════════════════════════════════════ */}
-        <header
-          role="banner"
-          className="bg-[#057850] sticky top-0 md:top-auto z-[9999] shadow-md"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-4 h-16 md:h-20">
+      {/* ════════════════════════════════════════════════════════
+          BAR B — Main Header Bar (White Bar Refined)
+          ════════════════════════════════════════════════════════ */}
+      <header
+        role="banner"
+        className="bg-white sticky top-0 z-[9999] border-b border-gray-100 shadow-sm"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 sm:gap-6 lg:gap-10 h-20 sm:h-24">
 
-              {/* ── Hamburger (always visible, to the left of logo) ── */}
+            {/* ── Hamburger & Logo Container ── */}
+            <div className="flex items-center gap-1 sm:gap-4 shrink-0">
               <button
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-nav"
                 onClick={() => setMobileOpen((v) => !v)}
-                className="flex items-center justify-center w-10 h-10 rounded-lg text-white hover:bg-white/10 active:bg-white/20 transition-colors shrink-0"
+                className="flex items-center justify-center w-10 h-10 rounded-xl text-gray-800 hover:bg-gray-100 active:bg-gray-200 transition-colors shrink-0"
               >
                 {mobileOpen
                   ? <X className="w-6 h-6" strokeWidth={2.5} />
@@ -114,120 +108,109 @@ export function Header() {
                 }
               </button>
 
-              {/* ── Logo ───────────────────────────────────────── */}
-              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group flex flex-col items-center">
+              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group py-2">
                 <Image
                   src="/logo.png"
                   alt="Sərfəli.al"
-                  width={160}
+                  width={150}
                   height={45}
-                  className="h-[34px] sm:h-[45px] w-auto object-contain brightness-0 invert"
+                  className="h-[32px] sm:h-[45px] w-auto object-contain"
                   style={{ width: "auto" }}
                   priority
                 />
-                {/* Orange accent bar below logo */}
                 <div
-                  className="absolute -bottom-1 left-0 right-0 h-[4px] rounded-full"
-                  style={{ background: ACCENT_ORANGE }}
+                  className="absolute -bottom-1 left-0 right-0 h-[4px] rounded-full bg-[#FF6600]"
                 />
               </Link>
-
-              {/* ── Search bar (growing central area) ──────────── */}
-              <div className="flex-1 hidden md:flex justify-center px-4 xl:px-12">
-                <div className="w-full max-w-4xl">
-                  <SearchBar />
-                </div>
-              </div>
-
-              {/* ── Right functional icons ─────────────────────── */}
-              <div className="flex items-center gap-1 sm:gap-4 md:gap-6 ml-auto md:ml-0 shrink-0">
-
-                {/* Qeydlərim (Heart icon) */}
-                <Link
-                  href="/wishlist"
-                  className="flex flex-col items-center justify-center text-white hover:opacity-80 transition-opacity group"
-                  aria-label="Qeydlərim"
-                >
-                  <div className="relative">
-                    <Heart className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                  </div>
-                  <span className="text-[10px] mt-1 hidden md:block font-bold">Qeydlərim</span>
-                </Link>
-
-                {/* Qiymət xəbərdarlığı (Clock icon) */}
-                <Link
-                  href="#"
-                  className="hidden sm:flex flex-col items-center justify-center text-white hover:opacity-80 transition-opacity group"
-                  aria-label="Qiymət xəbərdarlığı"
-                >
-                  <Clock className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                  <span className="text-[10px] mt-1 hidden md:block font-bold">Xəbərdarlıq</span>
-                </Link>
-
-                {/* Qeydiyyat (User icon) */}
-                {isLoggedIn ? (
-                  <div className="flex items-center gap-2">
-                    <Link
-                      href="/dashboard"
-                      className="flex flex-col items-center justify-center text-white hover:opacity-80 transition-opacity group"
-                    >
-                      <User className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                      <span className="text-[10px] mt-1 hidden md:block font-bold truncate max-w-[80px]">{user?.name || "Hesab"}</span>
-                    </Link>
-                    <button
-                      onClick={() => signOut()}
-                      className="hidden lg:block text-white/50 hover:text-white text-[9px] font-bold uppercase tracking-widest px-1 ml-1"
-                    >
-                      Çıxış
-                    </button>
-                  </div>
-                ) : (
-                  <Link
-                    href="/login"
-                    className="flex flex-col items-center justify-center text-white hover:opacity-80 transition-opacity group"
-                    aria-label="Qeydiyyat"
-                  >
-                    <User className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                    <span className="text-[10px] mt-1 hidden md:block font-bold">Qeydiyyat</span>
-                  </Link>
-                )}
-              </div>
             </div>
 
-            {/* ── Mobile search bar (shows below logo in Bar B) ── */}
-            <div className="md:hidden pb-4">
+            {/* ── Search Bar (Central area) ── */}
+            <div className="flex-1 hidden md:block">
               <SearchBar />
             </div>
-          </div>
-        </header>
 
-        {/* ════════════════════════════════════════════════════════
-            BAR C — Category List / Navigation
-            ════════════════════════════════════════════════════════ */}
-        <nav
-          aria-label="Category navigation"
-          className="bg-white border-b border-gray-200 hidden md:block h-11"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-            <ul className="flex items-center gap-1 overflow-x-auto no-scrollbar list-none m-0 p-0 h-full scroll-smooth">
-              {CATEGORIES.map(({ label, icon: Icon, href }) => (
-                <li key={label} className="h-full flex shrink-0">
+            {/* ── Right functional icons ── */}
+            <div className="flex items-center gap-1 sm:gap-4 md:gap-5 lg:gap-8 ml-auto md:ml-0 shrink-0">
+
+              <Link
+                href="/wishlist"
+                className="flex flex-col items-center justify-center text-gray-700 hover:text-[#057850] transition-colors group px-1"
+                aria-label="Qeydlərim"
+              >
+                <Heart className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={2} />
+                <span className="text-[9px] mt-1.5 hidden md:block font-bold tracking-widest text-[#94a3b8] uppercase">Qeydlərim</span>
+              </Link>
+
+              <Link
+                href="#"
+                className="hidden sm:flex flex-col items-center justify-center text-gray-700 hover:text-[#057850] transition-colors group px-1"
+                aria-label="Xəbərdarlıq"
+              >
+                <Clock className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={2} />
+                <span className="text-[9px] mt-1.5 hidden md:block font-bold tracking-widest text-[#94a3b8] uppercase">Xəbərdarlıq</span>
+              </Link>
+
+              {isLoggedIn ? (
+                <div className="flex items-center gap-2 group">
                   <Link
-                    href={href}
-                    className="flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold text-gray-700 hover:text-[#057850] hover:bg-gray-50/80 transition-all whitespace-nowrap h-full"
+                    href="/dashboard"
+                    className="flex flex-col items-center justify-center text-gray-700 hover:text-[#057850] transition-colors px-1"
                   >
-                    <Icon className="w-4 h-4 shrink-0" strokeWidth={2} />
-                    {label}
+                    <User className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={2} />
+                    <span className="text-[9px] mt-1.5 hidden md:block font-bold tracking-widest text-[#94a3b8] uppercase">Profilim</span>
                   </Link>
-                </li>
-              ))}
-            </ul>
+                  <button
+                    onClick={() => signOut()}
+                    className="hidden lg:block text-red-500 hover:text-red-700 text-[8px] font-black uppercase tracking-[0.2em] px-1 ml-1"
+                  >
+                    Çıxış
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="flex flex-col items-center justify-center text-gray-700 hover:text-[#057850] transition-colors group px-1"
+                  aria-label="Profilim"
+                >
+                  <User className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={2} />
+                  <span className="text-[9px] mt-1.5 hidden md:block font-bold tracking-widest text-[#94a3b8] uppercase">Profilim</span>
+                </Link>
+              )}
+            </div>
           </div>
-        </nav>
-      </div>
+
+          <div className="md:hidden pb-4">
+            <SearchBar />
+          </div>
+        </div>
+      </header>
 
       {/* ════════════════════════════════════════════════════════
-          MOBILE DRAWER / CATEGORY MENU
+          BAR C — Category List (Green Bar Refined)
+          ════════════════════════════════════════════════════════ */}
+      <nav
+        aria-label="Category navigation"
+        className="bg-[#057850] hidden md:block h-10 border-t border-[#046241]/20"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <ul className="flex items-center gap-1 overflow-x-auto no-scrollbar list-none m-0 p-0 h-full scroll-smooth">
+            {CATEGORIES.map(({ label, icon: Icon, href }) => (
+              <li key={label} className="h-full flex shrink-0">
+                <Link
+                  href={href}
+                  className="flex items-center gap-2 px-3 mx-0.5 text-[12px] font-bold text-white/90 hover:text-white hover:bg-white/10 transition-all whitespace-nowrap h-full"
+                >
+                  <Icon className="w-3.5 h-3.5 shrink-0" strokeWidth={2} />
+                  <span className="tracking-tight">{label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+
+      {/* ════════════════════════════════════════════════════════
+          MOBILE DRAWER
           ════════════════════════════════════════════════════════ */}
       <div
         id="mobile-nav"
@@ -237,7 +220,7 @@ export function Header() {
         className={[
           "fixed left-0 right-0 z-[9998] bg-white shadow-2xl",
           "overflow-y-auto transition-all duration-300 ease-in-out",
-          mobileOpen ? "top-[128px] max-h-[calc(100vh-128px)] opacity-100" : "top-[128px] max-h-0 opacity-0 pointer-events-none",
+          mobileOpen ? "top-[144px] max-h-[calc(100vh-144px)] opacity-100" : "top-[144px] max-h-0 opacity-0 pointer-events-none",
         ].join(" ")}
       >
         <div className="px-5 py-6 space-y-2">
@@ -248,7 +231,7 @@ export function Header() {
               <Link
                 key={label}
                 href={href}
-                className="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[15px] font-bold text-gray-800 hover:bg-[#057850]/5 active:bg-[#057850]/10 transition-colors"
+                className="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[15px] font-bold text-gray-800 hover:bg-[#057850]/5"
                 onClick={() => setMobileOpen(false)}
               >
                 <div className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center">
@@ -266,14 +249,14 @@ export function Header() {
                 onClick={() => setMobileOpen(false)}
               >
                 <Heart className="w-5 h-5 text-red-500" />
-                İstək Siyahısı (Qeydlərim)
+                Qeydlərim
               </Link>
               <Link
                 href="#"
                 className="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[15px] font-bold text-gray-800 hover:bg-gray-50"
                 onClick={() => setMobileOpen(false)}
               >
-                <Clock className="w-5 h-5 text-blue-500" />
+                <Clock className="w-5 h-5 text-[#057850]" />
                 Qiymət xəbərdarlığı
               </Link>
           </div>
@@ -283,11 +266,11 @@ export function Header() {
               <div className="space-y-3">
                 <Link
                   href="/dashboard"
-                  className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-[#057850] text-white font-black text-sm uppercase tracking-widest shadow-lg shadow-[#057850]/20 transition-all active:scale-[0.98]"
+                  className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-[#057850] text-white font-black text-sm uppercase tracking-widest shadow-lg transition-all active:scale-[0.98]"
                   onClick={() => setMobileOpen(false)}
                 >
                   <LayoutDashboard className="w-5 h-5" />
-                  Şəxsi Kabinet
+                  Profilim
                 </Link>
                 <button
                   onClick={() => { signOut(); setMobileOpen(false); }}
@@ -310,7 +293,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* ── Mobile backdrop ───────────────────────────────── */}
       {mobileOpen && (
         <div
           aria-hidden="true"
@@ -318,6 +300,6 @@ export function Header() {
           className="fixed inset-0 z-[9997] bg-black/40 backdrop-blur-sm transition-opacity"
         />
       )}
-    </>
+    </div>
   );
 }

@@ -61,19 +61,9 @@ export default async function Page() {
             Milyonlarla məhsul arasından ən ucuzunu tapın. Real endirimləri kəşf edin və hər alışdan kəşbək qazanın.
           </p>
           
-          {/* Main Search Bar (Hero) */}
-          <div className="w-full max-w-3xl mx-auto bg-white p-2.5 rounded-3xl shadow-2xl flex items-center border border-white/20 backdrop-blur-sm">
-            <div className="flex-1 lg:pl-6 pl-3">
-              <input 
-                type="text"
-                placeholder="Nə axtarırsınız? (məs. iPhone 15 Pro)"
-                className="w-full h-12 md:h-16 outline-none text-gray-800 placeholder-gray-400 text-lg bg-transparent"
-              />
-            </div>
-            <button className="bg-[#1E3A8A] hover:bg-[#1a3275] text-white font-black uppercase tracking-widest h-12 md:h-16 px-10 rounded-2xl transition-all shadow-lg flex items-center justify-center active:scale-[0.98]">
-              Axtar
-            </button>
-          </div>
+          <p className="text-white text-sm sm:text-base font-bold uppercase tracking-[0.3em] mt-12 animate-pulse">
+            Nə axtarırsınız? (məs. iPhone 15 Pro)
+          </p>
         </div>
       </section>
 
