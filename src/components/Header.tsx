@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import {
-  Heart, Clock, User, Menu, X,
+  Heart, Coins, User, Menu, X,
   Smartphone, Dumbbell, Baby, Home,
   Apple, Gamepad2, HeartPulse, Car, Shirt,
   PawPrint, Plane, Tag, UserCircle, LayoutDashboard,
@@ -105,9 +105,6 @@ export function Header() {
                   style={{ width: "auto" }}
                   priority
                 />
-                <div
-                  className="absolute -bottom-1 left-0 right-0 h-[8px] rounded-full bg-[#FF6600]"
-                />
               </Link>
             </div>
 
@@ -129,12 +126,12 @@ export function Header() {
               </Link>
 
               <Link
-                href="#"
+                href="/cashback"
                 className="hidden sm:flex flex-col items-center justify-center text-[#1e293b] hover:text-[#057850] transition-all group px-2"
-                aria-label="Xəbərdarlıq"
+                aria-label="Cashback"
               >
-                <Clock className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                <span className="text-[10px] mt-2 hidden md:block font-extrabold tracking-[0.2em] uppercase text-[#64748b]">Xəbərdarlıq</span>
+                <Coins className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
+                <span className="text-[10px] mt-2 hidden md:block font-extrabold tracking-[0.2em] uppercase text-[#64748b]">Cashback</span>
               </Link>
 
               {isLoggedIn ? (
@@ -257,12 +254,12 @@ export function Header() {
                 Qeydlərim
               </Link>
               <Link
-                href="#"
+                href="/cashback"
                 className="flex items-center gap-6 px-6 py-4.5 rounded-3xl text-[17px] font-bold text-gray-800 hover:bg-gray-50 transition-all"
                 onClick={() => setMobileOpen(false)}
               >
-                <Clock className="w-7 h-7 text-[#057850]" />
-                Xəbərdarlıq
+                <Coins className="w-7 h-7 text-[#057850]" />
+                Cashback
               </Link>
           </div>
 

@@ -50,9 +50,9 @@ export default async function Page() {
         <div className="absolute top-1/2 -right-48 w-[420px] h-[420px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(15,23,70,0.05) 0%, transparent 70%)', filter: 'blur(70px)' }} />
         <div className="absolute -bottom-32 left-1/3 w-[360px] h-[360px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(22,163,74,0.05) 0%, transparent 70%)', filter: 'blur(80px)' }} />
       </div>
-      {/* Hero Section (Reconstructed: Ultra-Compact & Elegant Typography) */}
-      <section className="bg-[#f0fdf4] py-6 sm:py-10 relative overflow-hidden border-b border-green-100/40">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] pointer-events-none mix-blend-multiply"></div>
+      {/* Hero Section (Reconstructed: Solid Dark Green Typography) */}
+      <section className="bg-[#057850] py-6 sm:py-10 relative overflow-hidden border-b border-[#046241]">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02] pointer-events-none mix-blend-overlay"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tighter mb-4 leading-[1.1] drop-shadow-[0_15px_15px_rgba(5,120,80,0.3)] select-none">
             Azərbaycanın ən ağıllı <br className="hidden sm:block" /> alış platforması

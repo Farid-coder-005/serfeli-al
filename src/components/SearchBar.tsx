@@ -25,7 +25,7 @@ export default function SearchBar() {
       <input
         id="main-search-input"
         type="text"
-        placeholder="Nə axtarırsınız? (məs. iPhone 15 Pro)"
+        placeholder="Nə axtarırsınız?"
         className="w-full bg-[#f8fafc] hover:bg-[#f1f5f9] focus:bg-white rounded-l-xl py-3.5 sm:py-4 pl-6 pr-4 text-[15px] font-medium text-gray-800 placeholder-gray-400 outline-none border border-gray-100 focus:border-[#057850]/20 transition-all shadow-inner"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
