@@ -47,9 +47,9 @@ export function Header() {
 
   return (
     <div className="z-[9999] relative">
-      {/* BAR A — Top Utility (Refined: Aligned with Logo) */}
+      {/* BAR A — Top Utility (Refined: Perfectly Centered Content) */}
       <div className="hidden md:block bg-[#dcfce7] text-white text-[11px] font-bold tracking-[0.15em] border-b border-green-100/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center h-8">
           <nav aria-label="Top navigation" className="flex items-center gap-0">
             {TOP_LINKS.map(({ label, href, id }) => (
               <Link
