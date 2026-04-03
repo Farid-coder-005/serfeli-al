@@ -47,11 +47,9 @@ export function Header() {
 
   return (
     <div className="z-[9999] relative">
-      {/* ════════════════════════════════════════════════════════
-          BAR A — Top Utility (Utility: Airy Light Green Theme)
-          ════════════════════════════════════════════════════════ */}
+      {/* BAR A — Top Utility (Refined: Aligned with Logo) */}
       <div className="hidden md:block bg-[#dcfce7] text-white text-[11px] font-bold tracking-[0.15em] border-b border-green-100/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center h-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-8">
           <nav aria-label="Top navigation" className="flex items-center gap-0">
             {TOP_LINKS.map(({ label, href, id }) => (
               <Link
@@ -59,9 +57,9 @@ export function Header() {
                 href={href}
                 onClick={() => setActiveTopLink(id)}
                 className={[
-                  "px-8 py-1 transition-all relative h-8 flex items-center drop-shadow-[0_1.5px_1.5px_rgba(0,0,0,0.35)]",
+                  "px-4 py-1 transition-all relative h-8 flex items-center drop-shadow-[0_1.5px_1.5px_rgba(0,0,0,0.35)]",
                   activeTopLink === id
-                    ? "text-white after:content-[''] after:absolute after:bottom-0 after:left-8 after:right-8 after:h-[2px] after:bg-white after:rounded-full"
+                    ? "text-white after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-white after:rounded-full"
                     : "text-white hover:opacity-80 scale-100 active:scale-95",
                 ].join(" ")}
               >
@@ -73,14 +71,14 @@ export function Header() {
       </div>
 
       {/* ════════════════════════════════════════════════════════
-          BAR B — Main Header (Refined: Ultra-prominent Logo)
+          BAR B — Main Header (Refined: Ultra-prominent Logo Scaled 2x)
           ════════════════════════════════════════════════════════ */}
       <header
         role="banner"
-        className="bg-white sticky top-0 z-[9999] border-b border-gray-100"
+        className="bg-white sticky top-0 z-[9999] border-b border-gray-100 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-8 sm:gap-10 lg:gap-20 h-28 sm:h-32">
+          <div className="flex items-center gap-8 sm:gap-10 lg:gap-20 h-32 sm:h-40">
 
             {/* ── Hamburger & Logo Container ── */}
             <div className="flex items-center gap-6 sm:gap-10 shrink-0">
@@ -89,26 +87,26 @@ export function Header() {
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-nav"
                 onClick={() => setMobileOpen((v) => !v)}
-                className="flex items-center justify-center w-12 h-12 rounded-2xl text-[#046241] hover:bg-gray-50 active:bg-gray-100 transition-all shrink-0"
+                className="flex items-center justify-center w-14 h-14 rounded-2xl text-[#046241] hover:bg-gray-50 active:bg-gray-100 transition-all shrink-0"
               >
                 {mobileOpen
-                  ? <X className="w-8 h-8" strokeWidth={2.5} />
-                  : <Menu className="w-9 h-9" strokeWidth={2.5} />
+                  ? <X className="w-9 h-9" strokeWidth={2.5} />
+                  : <Menu className="w-10 h-10" strokeWidth={2.5} />
                 }
               </button>
 
-              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group py-2 flex items-center">
+              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group py-3 flex items-center">
                 <Image
                   src="/logo.png"
                   alt="Sərfəli.al"
-                  width={280}
-                  height={80}
-                  className="h-[55px] sm:h-[80px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+                  width={350}
+                  height={100}
+                  className="h-[65px] sm:h-[100px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                   style={{ width: "auto" }}
                   priority
                 />
                 <div
-                  className="absolute -bottom-1 left-0 right-0 h-[6px] rounded-full bg-[#FF6600]"
+                  className="absolute -bottom-1 left-0 right-0 h-[8px] rounded-full bg-[#FF6600]"
                 />
               </Link>
             </div>
@@ -118,8 +116,8 @@ export function Header() {
               <SearchBar />
             </div>
 
-            {/* ── Right functional icons ── */}
-            <div className="flex items-center gap-3 sm:gap-8 lg:gap-12 ml-auto md:ml-0 shrink-0">
+            {/* ── Right functional icons (Refined: Balanced Spacing) ── */}
+            <div className="flex items-center gap-4 sm:gap-10 lg:gap-15 ml-auto md:ml-0 shrink-0">
 
               <Link
                 href="/wishlist"
@@ -174,26 +172,44 @@ export function Header() {
         </div>
       </header>
 
-      {/* ════════════════════════════════════════════════════════
-          BAR C — Categories (Refined: Perfectly Centered on White)
-          ════════════════════════════════════════════════════════ */}
+      {/* BAR C — Categories (Refined: Perfectly Centered on White & Palette-aware) */}
       <nav
         aria-label="Category navigation"
-        className="bg-white hidden md:block h-14 border-b border-gray-100 overflow-hidden"
+        className="bg-white hidden md:block h-16 border-b border-gray-100 shadow-sm overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-          <ul className="flex items-center gap-2 overflow-x-auto no-scrollbar list-none m-0 p-0 h-full scroll-smooth">
-            {CATEGORIES.map(({ label, icon: Icon, href }) => (
-              <li key={label} className="h-full flex shrink-0">
-                <Link
-                  href={href}
-                  className="flex items-center gap-3 px-5 mx-0.5 text-[14px] font-bold text-[#64748b] hover:text-[#057850] hover:bg-[#f0fdf4]/50 transition-all whitespace-nowrap h-full border-b-[3px] border-transparent hover:border-[#057850]"
-                >
-                  <Icon className="w-5 h-5 shrink-0 text-[#057850]/60" strokeWidth={2} />
-                  <span className="tracking-tight uppercase">{label}</span>
-                </Link>
-              </li>
-            ))}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+          <ul className="flex items-center gap-4 overflow-x-auto no-scrollbar list-none m-0 p-0 h-full scroll-smooth">
+            {CATEGORIES.map(({ label, icon: Icon, href }) => {
+              const isActive = pathname === href;
+              return (
+                <li key={label} className="h-full flex shrink-0">
+                  <Link
+                    href={href}
+                    className={[
+                      "flex items-center gap-3 px-5 transition-all whitespace-nowrap h-full relative group",
+                      isActive 
+                        ? "text-[#057850] bg-[#f0fdf4]/40" 
+                        : "text-[#64748b] hover:text-[#057850] hover:bg-[#f0fdf4]/20"
+                    ].join(" ")}
+                  >
+                    <Icon 
+                      className={[
+                        "w-5 h-5 shrink-0 transition-transform group-hover:scale-110",
+                        isActive ? "text-[#057850]" : "text-[#057850]/60"
+                      ].join(" ")} 
+                      strokeWidth={isActive ? 2.5 : 2} 
+                    />
+                    <span className="text-[13px] font-black tracking-tight uppercase">{label}</span>
+                    <div 
+                      className={[
+                        "absolute bottom-0 left-0 right-0 h-[3px] bg-[#057850] rounded-full transition-opacity duration-300",
+                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-30"
+                      ].join(" ")}
+                    />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </nav>
