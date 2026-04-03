@@ -3,90 +3,218 @@ import prisma from '@/lib/prisma';
 
 export async function GET() {
   try {
-    const existingCount = await prisma.product.count();
-    if (existingCount > 0) {
-      return NextResponse.json({ message: "Database already seeded" });
-    }
+    // Clear existing data to allow re-seeding
+    await prisma.favorite.deleteMany();
+    await prisma.priceHistory.deleteMany();
+    await prisma.productOffer.deleteMany();
+    await prisma.product.deleteMany();
+    await prisma.store.deleteMany();
 
     // 1. Create Stores
-    const kontakt = await prisma.store.create({
-      data: {
-        name: 'Kontakt Home',
-        websiteUrl: 'https://kontakt.az',
-      }
-    });
-
-    const irsad = await prisma.store.create({
-      data: {
-        name: 'İrşad',
-        websiteUrl: 'https://irshad.az',
-      }
-    });
-
-    const bakuElec = await prisma.store.create({
-      data: {
-        name: 'Baku Electronics',
-        websiteUrl: 'https://bakuelectronics.az',
-      }
-    });
-
-    // 2. Create Products
-    const productsToCreate = [
-      {
-        title: "Apple iPhone 15 Pro, 256GB, Natural Titanium",
-        description: "A17 Pro chip, Titanium build.",
-        imageUrl: "/iphone15pro.png",
-        category: "elektronika",
-      },
-      {
-        title: "Sony PlayStation 5 Console (Disc Edition)",
-        description: "Ultra High Speed SSD, Ray Tracing.",
-        imageUrl: "/iphone15pro.png", // Using the same dummy image in original ui
-        category: "elektronika",
-      },
-      {
-        title: "Samsung Galaxy S24 Ultra, 512GB",
-        description: "Snapdragon 8 Gen 3, S-Pen included.",
-        imageUrl: "/iphone15pro.png",
-        category: "elektronika",
-      },
-      {
-        title: "Dyson V15 Detect Absolute",
-        description: "Intelligent cordless vacuum.",
-        imageUrl: "/iphone15pro.png",
-        category: "elektronika",
-      }
+    const storesData = [
+      { name: 'Kontakt', websiteUrl: 'https://kontakt.az' },
+      { name: 'İrşad', websiteUrl: 'https://irshad.az' },
+      { name: 'Baku Electronics', websiteUrl: 'https://bakuelectronics.az' },
+      { name: 'Soliton', websiteUrl: 'https://soliton.az' },
+      { name: 'Music Gallery', websiteUrl: 'https://mgstore.az' },
+      { name: 'Optimal', websiteUrl: 'https://optimal.az' },
     ];
 
-    const products = [];
-    for (const p of productsToCreate) {
-      products.push(await prisma.product.create({ data: p }));
+    const storeMap = new Map<string, string>();
+    for (const s of storesData) {
+      const store = await prisma.store.create({ data: s });
+      storeMap.set(s.name, store.id);
     }
 
-    // 3. Create Product Offers (linking products to stores)
-    const stores = [kontakt, irsad, bakuElec];
-    
-    for (const product of products) {
-      // Create an offer for 2 random stores for each product
-      const shuffledStores = [...stores].sort(() => 0.5 - Math.random()).slice(0, 2);
-      
-      // Random price between 1000 and 3000
-      for (const store of shuffledStores) {
-        const randomPrice = Math.floor(Math.random() * 2000) + 1000;
-        
-        await prisma.productOffer.create({
-          data: {
-            productId: product.id,
-            storeId: store.id,
-            currentPrice: randomPrice,
-            productUrl: store.websiteUrl + '/product/' + product.id,
-          }
-        });
-      }
+    // 2. Create Products with Offers
+    const productsData = [
+      {
+        title: 'Apple iPhone 15 Pro, 256GB, Natural Titanium',
+        category: 'elektronika',
+        description: 'The latest iPhone 15 Pro with A17 Pro chip and titanium design.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Kontakt', price: 2499.99 },
+          { storeName: 'İrşad', price: 2549.99 },
+          { storeName: 'Baku Electronics', price: 2489.00 },
+        ],
+      },
+      {
+        title: 'Sony PlayStation 5 Console (Disc Edition)',
+        category: 'elektronika',
+        description: 'Next-gen gaming with lightning-fast loading and 3D audio.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Soliton', price: 1099.00 },
+          { storeName: 'Kontakt', price: 1050.00 },
+          { storeName: 'Music Gallery', price: 1120.00 },
+        ],
+      },
+      {
+        title: 'Samsung Galaxy S24 Ultra, 512GB, Titanium Black',
+        category: 'elektronika',
+        description: 'Galaxy AI is here. Experience the new era of mobile AI.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Baku Electronics', price: 2899.00 },
+          { storeName: 'İrşad', price: 2799.00 },
+          { storeName: 'Optimal', price: 2850.00 },
+        ],
+      },
+      {
+        title: 'Dyson V15 Detect Absolute',
+        category: 'elektronika',
+        description: "Dyson's most powerful, most intelligent cordless vacuum.",
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Kontakt', price: 1650.00 },
+          { storeName: 'Baku Electronics', price: 1700.00 },
+        ],
+      },
+      {
+        title: 'Apple MacBook Air M3, 16GB RAM, 512GB SSD',
+        category: 'elektronika',
+        description: "Supercharged by M3. The world's best thin and light laptop.",
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Kontakt', price: 3150.00 },
+          { storeName: 'İrşad', price: 3200.00 },
+        ],
+      },
+      {
+        title: 'LG OLED evo C3 55" 4K Smart TV',
+        category: 'elektronika',
+        description: 'Self-lit OLED pixels create infinite contrast.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Baku Electronics', price: 2899.00 },
+          { storeName: 'Optimal', price: 2750.00 },
+          { storeName: 'Music Gallery', price: 2800.00 },
+        ],
+      },
+      {
+        title: 'Apple AirPods Pro (2nd generation) with USB-C',
+        category: 'elektronika',
+        description: 'Rich audio experience with Active Noise Cancellation.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Kontakt', price: 549.00 },
+          { storeName: 'İrşad', price: 529.00 },
+          { storeName: 'Baku Electronics', price: 539.00 },
+        ],
+      },
+      {
+        title: 'Sony WH-1000XM5 Wireless Noise Canceling Headphones',
+        category: 'elektronika',
+        description: 'Industry leading noise canceling headphones.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Soliton', price: 799.00 },
+          { storeName: 'Kontakt', price: 769.00 },
+        ],
+      },
+      {
+        title: 'Apple Watch Series 9 GPS 45mm Midnight Aluminum',
+        category: 'elektronika',
+        description: 'Smarter, brighter, and mightier.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Kontakt', price: 899.00 },
+          { storeName: 'İrşad', price: 929.00 },
+        ],
+      },
+      {
+        title: 'Nintendo Switch OLED Model',
+        category: 'elektronika',
+        description: 'Play at home or on the go with a vibrant 7-inch OLED screen.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Kontakt', price: 749.00 },
+          { storeName: 'Music Gallery', price: 730.00 },
+        ],
+      },
+      {
+        title: 'ASUS ROG Strix G16 Gaming Laptop',
+        category: 'elektronika',
+        description: 'High-performance gaming laptop with RTX 4060.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Baku Electronics', price: 2499.00 },
+          { storeName: 'Soliton', price: 2550.00 },
+        ],
+      },
+      {
+        title: 'Samsung Galaxy Tab S9 Ultra 512GB',
+        category: 'elektronika',
+        description: 'The largest Dynamic AMOLED 2X display on a Galaxy tablet.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'İrşad', price: 2199.00 },
+          { storeName: 'Kontakt', price: 2150.00 },
+        ],
+      },
+      {
+        title: 'GoPro HERO12 Black',
+        category: 'elektronika',
+        description: 'Incredible image quality, even better HyperSmooth video stabilization.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Music Gallery', price: 899.00 },
+          { storeName: 'Baku Electronics', price: 919.00 },
+        ],
+      },
+      {
+        title: 'Müasir Minimalist İkili Divan',
+        category: 'mebel',
+        description: 'Gözəl və rahat dizayn ilə müasir divan.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Kontakt', price: 450.00 },
+          { storeName: 'Optimal', price: 470.00 },
+        ],
+      },
+      {
+        title: 'Kişi Üçün Ağ T-shirt (100% Pambıq)',
+        category: 'geyim',
+        description: 'Gündəlik rahatlıq üçün yüksək keyfiyyətli pambıq.',
+        imageUrl: '/iphone15pro.png',
+        offers: [
+          { storeName: 'Soliton', price: 25.00 },
+        ],
+      },
+    ];
+
+    let productCount = 0;
+    let offerCount = 0;
+
+    for (const pd of productsData) {
+      const { offers, ...productDetails } = pd;
+      await prisma.product.create({
+        data: {
+          ...productDetails,
+          offers: {
+            create: offers.map((offer) => ({
+              storeId: storeMap.get(offer.storeName)!,
+              currentPrice: offer.price,
+              isAvailable: true,
+            })),
+          },
+        },
+      });
+      productCount++;
+      offerCount += offers.length;
     }
 
-    return NextResponse.json({ message: "Seed successful!" });
+    return NextResponse.json({
+      message: '✅ Seed successful!',
+      stores: storesData.length,
+      products: productCount,
+      offers: offerCount,
+    });
   } catch (error: any) {
-    return NextResponse.json({ error: "Seed failed", details: error?.message || "Unknown error" }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Seed failed', details: error?.message || 'Unknown error' },
+      { status: 500 }
+    );
   }
 }
