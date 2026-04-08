@@ -4,6 +4,7 @@ import { Filter, ChevronDown, CheckCircle2, Search, ArrowUpDown } from "lucide-r
 import PriceRangeSlider from "@/components/PriceRangeSlider";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductGrid } from "@/components/ProductGrid";
+import FilterPanel from "@/components/FilterPanel";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
@@ -99,58 +100,7 @@ export default async function SearchPage({
           
           {/* SIDEBAR WRAPPER */}
           <aside className="hidden lg:block sticky top-32 self-start h-[calc(100vh-8rem)] overflow-y-auto pb-10 no-scrollbar">
-            <div className="bg-white rounded-[2.5rem] border border-gray-100 p-8 shadow-xl shadow-[#1E3A8A]/5 space-y-10">
-              <div>
-                <h2 className="text-xl font-black text-[#1E3A8A] mb-8 flex items-center gap-3 uppercase tracking-wider">
-                  <Filter className="w-5 h-5 text-[#166534]" />
-                  Filterlər
-                </h2>
-                
-                {/* Price Filter */}
-                <div className="mb-10">
-                  <h3 className="text-[10px] font-black text-gray-400 mb-6 uppercase tracking-[0.2em]">Qiymət Aralığı (₼)</h3>
-                  <PriceRangeSlider min={0} max={5000} />
-                </div>
-
-                {/* Brand Filter */}
-                <div className="mb-10 pt-8 border-t border-gray-50">
-                  <h3 className="text-[10px] font-black text-gray-400 mb-6 uppercase tracking-[0.2em]">Brendlər</h3>
-                  <div className="space-y-4">
-                    {["Apple", "Samsung", "Sony", "Dyson", "LG", "Xiaomi"].map(brand => (
-                      <label key={brand} className="flex items-center cursor-pointer group">
-                        <div className="relative flex items-center">
-                          <input type="checkbox" className="peer w-5 h-5 opacity-0 absolute" />
-                          <div className="w-5 h-5 border-2 border-gray-200 rounded-lg bg-white peer-checked:bg-[#166534] peer-checked:border-[#166534] transition-all"></div>
-                          <CheckCircle2 className="w-3.5 h-3.5 text-white absolute left-0.75 opacity-0 peer-checked:opacity-100 transition-opacity" />
-                        </div>
-                        <span className="ml-3 text-sm font-bold text-gray-600 group-hover:text-[#1E3A8A] transition-colors">{brand}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Store Filter */}
-                <div className="pt-8 border-t border-gray-50">
-                  <h3 className="text-[10px] font-black text-gray-400 mb-6 uppercase tracking-[0.2em]">Mağazalar</h3>
-                  <div className="space-y-4">
-                    {["Kontakt", "İrşad", "Baku Electronics", "Soliton", "Music Gallery", "Optimal"].map(store => (
-                      <label key={store} className="flex items-center cursor-pointer group">
-                        <div className="relative flex items-center">
-                          <input type="checkbox" className="peer w-5 h-5 opacity-0 absolute" />
-                          <div className="w-5 h-5 border-2 border-gray-200 rounded-lg bg-white peer-checked:bg-[#1E3A8A] peer-checked:border-[#1E3A8A] transition-all"></div>
-                          <CheckCircle2 className="w-3.5 h-3.5 text-white absolute left-0.75 opacity-0 peer-checked:opacity-100 transition-opacity" />
-                        </div>
-                        <span className="ml-3 text-sm font-bold text-gray-600 group-hover:text-[#1E3A8A] transition-colors">{store}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <button className="w-full bg-[#166534] text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#14532d] shadow-lg shadow-[#166534]/20 transition-all active:scale-[0.98]">
-                Tətbiq et
-              </button>
-            </div>
+            <FilterPanel category={selectedCategory} />
           </aside>
 
           {/* MAIN CONTENT WRAPPER */}

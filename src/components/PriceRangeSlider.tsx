@@ -39,26 +39,26 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
   return (
     <div className="w-full">
       {/* Value Labels */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-6">
         <div className="flex flex-col">
-          <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Min</span>
-          <span className="text-base font-bold text-green-600">{minVal.toLocaleString()} ₼</span>
+          <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1 leading-none">Min</span>
+          <span className="text-sm font-black text-slate-800 tracking-tight leading-none">{minVal.toLocaleString()} ₼</span>
         </div>
         <div className="flex flex-col items-end">
-          <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Max</span>
-          <span className="text-base font-bold text-green-600">{maxVal.toLocaleString()} ₼</span>
+          <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1 leading-none">Max</span>
+          <span className="text-sm font-black text-slate-800 tracking-tight leading-none">{maxVal.toLocaleString()} ₼</span>
         </div>
       </div>
 
       {/* Slider Track */}
-      <div className="relative h-2 w-full">
+      <div className="relative h-2 w-full mb-8">
         {/* Background track */}
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gray-200 rounded-full" />
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-slate-100 rounded-full" />
 
         {/* Active range highlight */}
         <div
           ref={rangeRef}
-          className="absolute top-0 h-2 bg-gradient-to-r from-green-500 to-green-600 rounded-full"
+          className="absolute top-0 h-1.5 bg-[#057850] rounded-full shadow-[0_0_10px_rgba(5,120,80,0.1)]"
         />
 
         {/* Min Thumb */}
@@ -73,7 +73,7 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
             setMinVal(value);
             minValRef.current = value;
           }}
-          className="absolute w-full h-2 appearance-none bg-transparent cursor-pointer thumb-slider"
+          className="absolute w-full h-1.5 appearance-none bg-transparent cursor-pointer thumb-slider"
           style={{ zIndex: minVal > max - 100 ? 5 : 3 }}
         />
 
@@ -89,26 +89,25 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
             setMaxVal(value);
             maxValRef.current = value;
           }}
-          className="absolute w-full h-2 appearance-none bg-transparent cursor-pointer thumb-slider"
+          className="absolute w-full h-1.5 appearance-none bg-transparent cursor-pointer thumb-slider"
           style={{ zIndex: 4 }}
         />
       </div>
 
       {/* Preset Chips */}
-      <div className="flex gap-2 mt-5 flex-wrap">
+      <div className="flex gap-2 mb-2 flex-wrap">
         {[
           { label: "0–500", min: 0, max: 500 },
           { label: "500–1500", min: 500, max: 1500 },
           { label: "1500–3000", min: 1500, max: 3000 },
-          { label: "3000+", min: 3000, max: 5000 },
         ].map((preset) => (
           <button
             key={preset.label}
             onClick={() => { setMinVal(preset.min); setMaxVal(preset.max); minValRef.current = preset.min; maxValRef.current = preset.max; }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+            className={`px-3 py-1.5 rounded-lg text-[11px] font-black border transition-all active:scale-95 ${
               minVal === preset.min && maxVal === preset.max
-                ? "bg-green-600 text-white border-green-600 shadow-sm"
-                : "bg-gray-50 text-gray-600 border-gray-200 hover:border-green-400 hover:text-green-700"
+                ? "bg-[#057850] text-white border-[#057850] shadow-lg shadow-[#057850]/20"
+                : "bg-white text-slate-500 border-slate-100 hover:border-[#057850]/30 hover:text-[#057850]"
             }`}
           >
             {preset.label} ₼
@@ -116,36 +115,30 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
         ))}
       </div>
 
-      {/* Apply Button */}
-      <button className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 rounded-xl transition-all shadow-sm shadow-green-600/20 text-sm active:scale-[0.98]">
-        Filtri tətbiq et
-      </button>
-
       {/* CSS for thumb styling */}
       <style jsx>{`
         .thumb-slider::-webkit-slider-thumb {
           -webkit-appearance: none;
-          height: 20px;
-          width: 20px;
+          height: 18px;
+          width: 18px;
           border-radius: 50%;
           background: white;
-          border: 2px solid #16a34a;
-          box-shadow: 0 1px 6px rgba(22, 163, 74, 0.35);
+          border: 3px solid #057850;
+          box-shadow: 0 4px 10px rgba(5, 120, 80, 0.2);
           cursor: pointer;
           pointer-events: all;
-          transition: box-shadow 0.15s ease, transform 0.15s ease;
+          transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .thumb-slider::-webkit-slider-thumb:hover {
-          box-shadow: 0 0 0 6px rgba(22, 163, 74, 0.15);
-          transform: scale(1.15);
+          transform: scale(1.2);
         }
         .thumb-slider::-moz-range-thumb {
-          height: 20px;
-          width: 20px;
+          height: 18px;
+          width: 18px;
           border-radius: 50%;
           background: white;
-          border: 2px solid #16a34a;
-          box-shadow: 0 1px 6px rgba(22, 163, 74, 0.35);
+          border: 3px solid #057850;
+          box-shadow: 0 4px 10px rgba(5, 120, 80, 0.2);
           cursor: pointer;
         }
       `}</style>
