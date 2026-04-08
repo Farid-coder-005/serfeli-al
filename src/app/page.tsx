@@ -21,6 +21,7 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { ProductCard } from "@/components/ProductCard";
+import { ProductGrid } from "@/components/ProductGrid";
 
 export default async function Page() {
   const products = await prisma.product.findMany({ 
@@ -100,16 +101,7 @@ export default async function Page() {
             </Link>
           </div>
  
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            {products.slice(0, 4).map((product: any, idx: number) => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
-                userFavoriteIds={userFavoriteIds} 
-                priority={idx === 0} 
-              />
-            ))}
-          </div>
+          <ProductGrid products={products.slice(0, 4)} userFavoriteIds={userFavoriteIds} />
  
           <div className="mt-16 text-center lg:hidden">
             <Link href="/search" className="inline-flex items-center justify-center w-full py-5 px-8 bg-white border border-gray-200 rounded-[2rem] text-sm font-black text-[#1E3A8A] shadow-lg active:scale-95 transition-all">

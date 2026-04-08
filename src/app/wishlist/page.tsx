@@ -6,6 +6,7 @@ import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { Heart, Tag, ArrowRight, ShoppingBag } from "lucide-react";
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { ProductGrid } from "@/components/ProductGrid";
 
 export default async function WishlistPage() {
   const session = await getServerSession(authOptions);
@@ -57,54 +58,10 @@ export default async function WishlistPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {favorites.map((fave) => {
-              const product = fave.product;
-              const cheapestOffer = product.offers?.length > 0 
-                ? product.offers.reduce((p: any, c: any) => p.currentPrice < c.currentPrice ? p : c) 
-                : null;
-                
-              const newPrice = cheapestOffer ? cheapestOffer.currentPrice : 0;
-              const oldPrice = newPrice > 0 ? Math.floor(newPrice * 1.15) : 0;
-              const storeName = cheapestOffer?.store?.name || "Bilinmir";
-
-              return (
-                <Link 
-                  href={`/product/${product.id}`}
-                  key={product.id} 
-                  className="bg-[#FFFFFF] rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden hover:shadow-2xl hover:shadow-[#1E3A8A]/10 hover:border-[#1E3A8A]/10 hover:-translate-y-2 transition-all duration-500 ease-out group flex flex-col cursor-pointer relative"
-                >
-                  <FavoriteButton productId={product.id} initialFavorited={true} className="absolute top-4 right-4" />
-                  
-                  {/* Image & Badge */}
-                  <div className="relative aspect-square overflow-hidden bg-gray-50/50 flex items-center justify-center p-8">
-                    <Image 
-                      src={product.imageUrl || "/iphone15pro.png"} 
-                      alt={product.title} 
-                      width={200} 
-                      height={200}
-                      className="object-contain w-full h-full group-hover:scale-110 transition-transform duration-700 mix-blend-multiply"
-                    />
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <div className="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-[0.2em]">{storeName}</div>
-                    <h3 className="text-sm font-bold text-[#1E3A8A] mb-6 line-clamp-2 leading-relaxed flex-1 group-hover:text-[#166534] transition-colors">
-                      {product.title}
-                    </h3>
-                    
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-3">
-                        <span className="text-gray-400 line-through text-sm font-medium">{oldPrice > 0 ? `${oldPrice} ₼` : ''}</span>
-                        <span className="text-[#EA580C] font-black text-2xl tracking-tighter">{newPrice > 0 ? `${newPrice} ₼` : 'Tükənib'}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
+          <ProductGrid 
+            products={favorites.map(f => f.product)} 
+            userFavoriteIds={favorites.map(f => f.product.id)} 
+          />
         )}
       </div>
     </div>

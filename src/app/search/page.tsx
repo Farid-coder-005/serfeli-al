@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Filter, ChevronDown, CheckCircle2, Search, ArrowUpDown } from "lucide-react";
 import PriceRangeSlider from "@/components/PriceRangeSlider";
 import { ProductCard } from "@/components/ProductCard";
+import { ProductGrid } from "@/components/ProductGrid";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
@@ -97,7 +98,7 @@ export default async function SearchPage({
         
         {/* Sidebar Filters */}
         <div className="hidden lg:block w-80 shrink-0">
-          <div className="bg-white rounded-[2.5rem] border border-gray-100 p-8 sticky top-[100px] shadow-xl shadow-[#1E3A8A]/5 space-y-10">
+          <div className="bg-white rounded-[2.5rem] border border-gray-100 p-8 sticky top-28 self-start max-h-[85vh] overflow-y-auto shadow-xl shadow-[#1E3A8A]/5 space-y-10 no-scrollbar">
             <div>
               <h2 className="text-xl font-black text-[#1E3A8A] mb-8 flex items-center gap-3 uppercase tracking-wider">
                 <Filter className="w-5 h-5 text-[#166534]" />
@@ -163,20 +164,7 @@ export default async function SearchPage({
              </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-                {products.map((product) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
-                    userFavoriteIds={userFavoriteIds} 
-                  />
-                ))}
-              </div>
-
-              {/* Pagination */}
-              <div className="mt-20 flex justify-center">
-                 {/* Only show pagination if there are many products, mocked for now to keep UI style */}
-              </div>
+              <ProductGrid products={products} userFavoriteIds={userFavoriteIds} />
             </>
           )}
         </div>
