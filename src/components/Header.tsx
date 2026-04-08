@@ -78,7 +78,7 @@ export function Header() {
         className="bg-white sticky top-0 z-[9999] border-b border-gray-100 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-8 sm:gap-10 lg:gap-20 h-32 sm:h-40">
+          <div className="flex items-center gap-8 sm:gap-10 lg:gap-20 h-[130px] sm:h-[165px]">
 
             {/* ── Hamburger & Logo Container ── */}
             <div className="flex items-center gap-6 sm:gap-10 shrink-0">
@@ -95,13 +95,13 @@ export function Header() {
                 }
               </button>
 
-              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group py-3 flex items-center">
+              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group flex items-center p-0">
                 <Image
                   src="/logo.png"
                   alt="Sərfəli.al"
                   width={500}
-                  height={200}
-                  className="h-[120px] sm:h-[152px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  height={165}
+                  className="h-[130px] sm:h-[165px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                   style={{ width: "auto" }}
                   priority
                 />
