@@ -188,18 +188,18 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
              <div className="w-1.5 h-8 bg-[#057850] rounded-full" />
              <h2 className="text-3xl font-black text-slate-800 tracking-tight">Qiymət Analizi</h2>
           </div>
-          <div className="bg-white rounded-[3rem] border border-gray-100 shadow-sm p-8 sm:p-14 relative overflow-hidden">
-             <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 items-center">
+          <div className="bg-white rounded-[3rem] border border-gray-100 shadow-sm p-8 sm:p-14 relative overflow-visible max-w-5xl mx-auto">
+             <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
                 <div className="lg:col-span-3">
                   <PriceHistoryChart data={product.priceHistory} />
                 </div>
                 <div className="flex flex-col gap-8">
-                  <div className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">30 Günlük Ən Aşağı</p>
-                    <p className="text-3xl font-black text-[#057850] tracking-tighter">{minHistoricalPrice} ₼</p>
+                  <div className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <p className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] mb-3">30 Günlük Ən Aşağı</p>
+                    <p className="text-3xl font-black text-slate-900 tracking-tighter">{minHistoricalPrice} ₼</p>
                   </div>
-                  <div className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Status</p>
+                  <div className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <p className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] mb-3">Status</p>
                     <div className="flex items-center gap-3">
                        <div className={`w-3 h-3 rounded-full ${isRealDiscount ? "bg-green-500" : "bg-red-500"} animate-pulse`} />
                        <span className="text-sm font-black text-slate-700 uppercase">{isRealDiscount ? "Əla Fürsət" : "Süni Artım"}</span>

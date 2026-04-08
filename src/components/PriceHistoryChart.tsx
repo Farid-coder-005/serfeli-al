@@ -112,7 +112,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
   return (
     <div className="w-full space-y-8">
       {/* Background Section Container */}
-      <div className="bg-white rounded-[3.5rem] border border-gray-100 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.03)] p-8 sm:p-12 relative overflow-hidden group">
+      <div className="bg-white rounded-[3.5rem] border border-gray-100 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.03)] p-8 sm:p-12 relative group">
         {/* Abstract background blobs for a premium look */}
         <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-emerald-50/40 rounded-full blur-[100px] pointer-events-none group-hover:scale-110 transition-transform duration-1000" />
         <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-blue-50/20 rounded-full blur-[80px] pointer-events-none group-hover:-translate-x-10 transition-transform duration-1000" />
@@ -164,7 +164,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
           {/* Chart Visualization */}
           <div className="w-full h-[320px] sm:h-[380px] relative">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
+              <AreaChart data={chartData} margin={{ top: 20, right: 10, left: 10, bottom: 20 }}>
                 <defs>
                    <linearGradient id="premiumGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#059669" stopOpacity={0.15} />
@@ -184,7 +184,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                   dataKey="date" 
                   axisLine={false} 
                   tickLine={false} 
-                  tick={{ fontSize: 10, fontWeight: 900, fill: '#94a3b8', letterSpacing: '0.05em' }}
+                  tick={{ fontSize: 10, fontWeight: 900, fill: '#475569', letterSpacing: '0.05em' }}
                   dy={20}
                   minTickGap={40}
                 />
@@ -193,7 +193,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                   orientation="right"
                   axisLine={false} 
                   tickLine={false} 
-                  tick={{ fontSize: 10, fontWeight: 900, fill: '#cbd5e1' }}
+                  tick={{ fontSize: 10, fontWeight: 900, fill: '#334155' }}
                   tickFormatter={(v) => `${v}₼`}
                   dx={10}
                 />
