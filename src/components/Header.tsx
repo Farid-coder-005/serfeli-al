@@ -135,21 +135,14 @@ export function Header() {
               </Link>
 
               {isLoggedIn ? (
-                <div className="flex items-center gap-3 group">
-                  <Link
-                    href="/dashboard"
-                    className="flex flex-col items-center justify-center text-[#1e293b] hover:text-[#057850] transition-all px-2"
-                  >
-                    <User className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                    <span className="text-[10px] mt-2 hidden md:block font-extrabold tracking-[0.2em] uppercase text-[#64748b]">Profilim</span>
-                  </Link>
-                  <button
-                    onClick={() => signOut()}
-                    className="hidden lg:block text-red-500 hover:text-red-700 text-[10px] font-black uppercase tracking-[0.25em] px-2 ml-2"
-                  >
-                    Çıxış
-                  </button>
-                </div>
+                <Link
+                  href="/dashboard"
+                  className="flex flex-col items-center justify-center text-[#1e293b] hover:text-[#057850] transition-all group px-2"
+                  aria-label="Profilim"
+                >
+                  <User className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
+                  <span className="text-[10px] mt-2 hidden md:block font-extrabold tracking-[0.2em] uppercase text-[#64748b]">Profilim</span>
+                </Link>
               ) : (
                 <Link
                   href="/login"
