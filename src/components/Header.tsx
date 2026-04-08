@@ -41,16 +41,6 @@ export function Header() {
   const user = session?.user;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeTopLink, setActiveTopLink] = useState("shopping");
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // Scroll listener for sticky header compactness
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Close mobile drawer on route change
   useEffect(() => { setMobileOpen(false); }, [pathname]);
@@ -85,10 +75,10 @@ export function Header() {
           ════════════════════════════════════════════════════════ */}
       <header
         role="banner"
-        className={`bg-white sticky top-0 z-[9999] border-b border-gray-100 shadow-sm transition-all duration-300 ${isScrolled ? "py-2 shadow-md" : "py-4"}`}
+        className="bg-white sticky top-0 z-[9999] border-b border-gray-100 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex items-center gap-8 sm:gap-10 lg:gap-20 transition-all duration-300 ${isScrolled ? "h-14 sm:h-16" : "h-24 sm:h-28"}`}>
+          <div className="flex items-center gap-8 sm:gap-10 lg:gap-20 h-32 sm:h-40">
 
             {/* ── Hamburger & Logo Container ── */}
             <div className="flex items-center gap-6 sm:gap-10 shrink-0">
@@ -105,13 +95,13 @@ export function Header() {
                 }
               </button>
 
-              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group flex items-center">
+              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group py-3 flex items-center">
                 <Image
-                  src="/logo-full.png"
+                  src="/logo.png"
                   alt="Sərfəli.al"
                   width={350}
                   height={100}
-                  className={`w-auto object-contain transition-all duration-300 group-hover:scale-[1.02] ${isScrolled ? "h-10 sm:h-11" : "h-14 sm:h-18"}`}
+                  className="h-[65px] sm:h-[100px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                   style={{ width: "auto" }}
                   priority
                 />
@@ -182,7 +172,7 @@ export function Header() {
       {/* BAR C — Categories (Refined: Perfectly Centered on White & Palette-aware) */}
       <nav
         aria-label="Category navigation"
-        className={`bg-white hidden md:block border-b border-gray-100 shadow-sm transition-all duration-300 ${isScrolled ? "h-0 overflow-hidden opacity-0" : "h-16 opacity-100"}`}
+        className="bg-white hidden md:block h-16 border-b border-gray-100 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <ul className="flex items-center gap-4 overflow-x-auto no-scrollbar list-none m-0 p-0 h-full scroll-smooth">
@@ -232,7 +222,7 @@ export function Header() {
         className={[
           "fixed left-0 right-0 z-[9998] bg-white shadow-2xl",
           "overflow-y-auto transition-all duration-300 ease-in-out",
-          mobileOpen ? (isScrolled ? "top-[136px] max-h-[calc(100vh-136px)] opacity-100" : "top-[184px] max-h-[calc(100vh-184px)] opacity-100") : (isScrolled ? "top-[136px] max-h-0 opacity-0 pointer-events-none" : "top-[184px] max-h-0 opacity-0 pointer-events-none"),
+          mobileOpen ? "top-[184px] max-h-[calc(100vh-184px)] opacity-100" : "top-[184px] max-h-0 opacity-0 pointer-events-none",
         ].join(" ")}
       >
         <div className="px-8 py-10 space-y-5">
