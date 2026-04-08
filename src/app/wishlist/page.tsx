@@ -30,7 +30,7 @@ export default async function WishlistPage() {
   });
 
   return (
-    <div className="w-full flex-1 bg-[#F9FAFB] flex flex-col relative overflow-hidden z-0 min-h-[calc(100vh-96px)]">
+    <div className="w-full flex-1 bg-[#F9FAFB] flex flex-col relative z-0 min-h-[calc(100vh-96px)]">
       {/* Background patterns */}
       <div className="pointer-events-none fixed inset-0 z-0 bg-dot-pattern opacity-10" />
 

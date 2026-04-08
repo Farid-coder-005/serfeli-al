@@ -37,7 +37,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-4 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-4 relative font-sans">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#057850]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#057850]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
       

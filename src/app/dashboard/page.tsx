@@ -39,7 +39,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] font-sans pb-20 relative overflow-hidden">
+    <div className="min-h-screen bg-[#F9FAFB] font-sans pb-20 relative">
       {/* Global dot-grid pattern overlay */}
       <div className="pointer-events-none fixed inset-0 z-0 bg-dot-pattern opacity-10" />
 
