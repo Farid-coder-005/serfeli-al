@@ -99,9 +99,9 @@ export function Header() {
                 <Image
                   src="/logo.png"
                   alt="Sərfəli.al"
-                  width={400}
-                  height={150}
-                  className="h-[120px] sm:h-36 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  width={500}
+                  height={200}
+                  className="h-[120px] sm:h-[152px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                   style={{ width: "auto" }}
                   priority
                 />

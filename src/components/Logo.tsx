@@ -9,9 +9,9 @@ export function Logo() {
       <Image 
         src="/logo.png" 
         alt="Sərfəli.al" 
-        width={350}
-        height={144}
-        className="h-[120px] sm:h-36 w-auto object-contain"
+        width={400}
+        height={160}
+        className="h-[120px] sm:h-[152px] w-auto object-contain"
         priority
       />
     </Link>
