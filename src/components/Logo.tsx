@@ -10,11 +10,9 @@ export function Logo() {
         src="/logo.png" 
         alt="Sərfəli.al" 
         width={300}
-        height={55}
-        className="h-[68px] sm:h-[84px] w-auto object-contain"
-        style={{ height: undefined, width: 'auto', maxWidth: 'none', maxHeight: 'none' }}
+        height={128}
+        className="h-28 sm:h-32 w-auto object-contain"
         priority
-        unoptimized={false}
       />
     </Link>
   );

@@ -100,8 +100,8 @@ export function Header() {
                   src="/logo.png"
                   alt="Sərfəli.al"
                   width={350}
-                  height={100}
-                  className="h-[65px] sm:h-[100px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  height={128}
+                  className="h-28 sm:h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                   style={{ width: "auto" }}
                   priority
                 />
