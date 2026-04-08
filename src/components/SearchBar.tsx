@@ -19,23 +19,23 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSearch}
-      className="flex relative items-center w-full max-w-4xl mx-auto shadow-sm group"
+      className="flex relative items-center w-full max-w-5xl mx-auto shadow-md group"
     >
-      <div className="absolute inset-0 bg-[#057850]/5 rounded-r-xl -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute inset-0 bg-[#057850]/5 rounded-r-2xl -z-10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
       <input
         id="main-search-input"
         type="text"
         placeholder="Nə axtarırsınız?"
-        className="w-full bg-[#f8fafc] hover:bg-[#f1f5f9] focus:bg-white rounded-l-xl py-3.5 sm:py-4 pl-6 pr-4 text-[15px] font-medium text-gray-800 placeholder-gray-400 outline-none border border-gray-100 focus:border-[#057850]/20 transition-all shadow-inner"
+        className="w-full bg-[#f8fafc] hover:bg-[#f1f5f9] focus:bg-white rounded-l-2xl py-4 sm:py-5.5 pl-8 pr-4 text-lg font-medium text-gray-800 placeholder-gray-400 outline-none border border-gray-100 focus:border-[#057850]/20 transition-all shadow-inner"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button
         type="submit"
         aria-label="Axtar"
-        className="bg-[#057850] hover:bg-[#046241] text-white px-7 sm:px-10 py-3.5 sm:py-4 rounded-r-xl transition-all flex items-center justify-center shrink-0 shadow-lg shadow-[#057850]/10 hover:shadow-[#057850]/20 active:scale-[0.98]"
+        className="bg-[#057850] hover:bg-[#046241] text-white px-8 sm:px-12 py-4 sm:py-5.5 rounded-r-2xl transition-all flex items-center justify-center shrink-0 shadow-lg shadow-[#057850]/10 hover:shadow-[#057850]/20 active:scale-[0.98]"
       >
-        <Search className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={3} />
+        <Search className="w-6 h-6 sm:w-8 sm:h-8" strokeWidth={3} />
       </button>
     </form>
   );

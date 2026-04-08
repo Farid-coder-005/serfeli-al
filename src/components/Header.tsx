@@ -108,13 +108,13 @@ export function Header() {
               </Link>
             </div>
 
-            {/* ── Search Bar (Central area) ── */}
-            <div className="flex-1 hidden md:block max-w-3xl">
+            {/* ── Search Bar (Central area Expanded) ── */}
+            <div className="flex-1 hidden md:block max-w-5xl">
               <SearchBar />
             </div>
 
-            {/* ── Right functional icons (Refined: Balanced Spacing) ── */}
-            <div className="flex items-center gap-4 sm:gap-10 lg:gap-15 ml-auto md:ml-0 shrink-0">
+            {/* ── Right functional icons (Balanced Spacing) ── */}
+            <div className="flex items-center gap-6 sm:gap-12 lg:gap-16 ml-auto md:ml-0 shrink-0">
 
               <Link
                 href="/wishlist"
