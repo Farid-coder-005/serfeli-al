@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-green: #057850;
+  --color-brand-green-dark: #046241;
+  --color-brand-navy: #0a1d37;
+  --color-brand-navy-light: #1e293b;
+  --color-mint-tint: #f0fdf4;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-brand-navy);
+  }
+}
+
 body {
   background-color: #F8FAFC;
   color: #1e293b;

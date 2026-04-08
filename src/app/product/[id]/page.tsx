@@ -94,11 +94,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-slate-400 mb-6">
-          <Link href="/" className="hover:text-[#057850] transition-colors">Ana Səhifə</Link>
+          <Link href="/" className="hover:text-brand-green transition-colors">Ana Səhifə</Link>
           <ChevronRight className="w-3 h-3" />
-          <Link href={`/search?category=${product.category}`} className="hover:text-[#057850] transition-colors">{product.category}</Link>
+          <Link href={`/search?category=${product.category}`} className="hover:text-brand-green transition-colors">{product.category}</Link>
           <ChevronRight className="w-3 h-3" />
-          <span className="text-slate-600 truncate max-w-[150px]">{product.title}</span>
+          <span className="text-brand-navy truncate max-w-[150px]">{product.title}</span>
         </nav>
 
         {/* Unified Hero Section */}
@@ -138,11 +138,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           {/* Right Column: Quick Action Card */}
           <div className="flex flex-col gap-6 sticky top-28">
             <div>
-               <h1 className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight leading-[1.2] mb-3">
+               <h1 className="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight leading-[1.2] mb-3">
                  {product.title}
                </h1>
                <div className="flex items-center gap-3">
-                 <div className="flex items-center gap-1 px-2.5 py-1 bg-green-50 text-[#057850] rounded-lg text-[9px] font-black uppercase tracking-widest border border-green-100">
+                 <div className="flex items-center gap-1 px-2.5 py-1 bg-mint-tint text-brand-green rounded-lg text-[9px] font-black uppercase tracking-widest border border-brand-green/20">
                    <Timer className="w-3 h-3" /> Stokda Var
                  </div>
                  <span className="text-[10px] font-bold text-slate-400">Model: MYTP3CH/A</span>
@@ -171,7 +171,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                )}
 
                <a href={cheapestOffer?.productUrl || "#"} target="_blank" rel="noopener noreferrer" 
-                 className="w-full h-14 bg-[#057850] hover:bg-[#046241] rounded-xl flex items-center justify-center gap-2.5 text-xs font-black uppercase tracking-[0.1em] transition-all shadow-lg shadow-black/20 group/btn"
+                 className="w-full h-14 bg-brand-green hover:bg-brand-green-dark rounded-xl flex items-center justify-center gap-2.5 text-xs font-black uppercase tracking-[0.1em] transition-all shadow-lg shadow-brand-green/20 group/btn"
                >
                  Mağazaya Keç
                  <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
@@ -187,10 +187,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         </div>
 
         {/* Price History & Analysis */}
-        <section className="mb-12">
+        <section className="mb-12 bg-mint-tint/50 rounded-[2.5rem] p-8 sm:p-10 border border-brand-green/5">
           <div className="flex items-center gap-2.5 mb-6">
-             <div className="w-1 h-6 bg-[#057850] rounded-full" />
-             <h2 className="text-xl font-black text-slate-800 tracking-tight">Qiymət Analizi</h2>
+             <div className="w-1 h-6 bg-brand-green rounded-full" />
+             <h2 className="text-xl font-black text-brand-navy tracking-tight">Qiymət Analizi</h2>
           </div>
           <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-6 sm:p-10 relative overflow-visible max-w-5xl">
              <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 items-start">
@@ -205,7 +205,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   <div className="p-6 bg-slate-50 rounded-[2rem] border border-slate-100 shadow-sm">
                     <p className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] mb-2">Status</p>
                     <div className="flex items-center gap-2.5">
-                       <div className={`w-2.5 h-2.5 rounded-full ${isRealDiscount ? "bg-green-500" : "bg-red-500"} animate-pulse`} />
+                       <div className={`w-2.5 h-2.5 rounded-full ${isRealDiscount ? "bg-brand-green shadow-lg shadow-brand-green/30" : "bg-red-500"} animate-pulse`} />
                        <span className="text-[11px] font-black text-slate-700 uppercase">{isRealDiscount ? "Əla Fürsət" : "Süni Artım"}</span>
                     </div>
                   </div>
@@ -217,8 +217,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         {/* Compact Comparison Table */}
         <section className="mb-12">
           <div className="flex items-center gap-2.5 mb-6">
-             <div className="w-1 h-6 bg-[#057850] rounded-full" />
-             <h2 className="text-xl font-black text-slate-800 tracking-tight">Mağaza Təklifləri</h2>
+             <div className="w-1 h-6 bg-brand-green rounded-full" />
+             <h2 className="text-xl font-black text-brand-navy tracking-tight">Mağaza Təklifləri</h2>
           </div>
           <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-slate-200/10 overflow-hidden">
             <div className="overflow-x-auto">
@@ -254,18 +254,18 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                          </td>
                          <td className="px-8 py-4">
                            <div className="flex flex-col">
-                             <span className={`font-black tracking-tighter ${isCheapest ? "text-[#057850] text-xl" : "text-slate-700 text-lg"}`}>
+                             <span className={`font-black tracking-tighter ${isCheapest ? "text-brand-green text-xl" : "text-brand-navy text-lg"}`}>
                                {offer.currentPrice} ₼
                              </span>
                              {isCheapest && (
-                               <span className="text-[7px] font-black bg-[#057850] text-white px-1.5 py-0.5 rounded-md w-max mt-0.5 uppercase">Məsləhətli</span>
+                               <span className="text-[7px] font-black bg-brand-green text-white px-1.5 py-0.5 rounded-md w-max mt-0.5 uppercase">Məsləhətli</span>
                              )}
                            </div>
                          </td>
                          <td className="px-8 py-4 text-right">
                             <a href={offer.productUrl || "#"} target="_blank" rel="noopener noreferrer" 
                               className={`inline-flex items-center gap-1.5 px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm ${
-                                isCheapest ? "bg-[#057850] text-white hover:bg-[#046241]" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                                isCheapest ? "bg-brand-green text-white hover:bg-brand-green-dark shadow-brand-green/10" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                               }`}
                             >
                               Sifariş

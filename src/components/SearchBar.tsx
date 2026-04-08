@@ -32,7 +32,7 @@ export default function SearchBar() {
       <button
         type="submit"
         aria-label="Axtar"
-        className="bg-[#057850] hover:bg-[#046241] text-white px-8 sm:px-14 py-4 sm:py-5.5 transition-all flex items-center justify-center shrink-0"
+        className="bg-brand-green hover:bg-brand-green-dark text-white px-8 sm:px-14 py-4 sm:py-5.5 transition-all flex items-center justify-center shrink-0"
       >
         <Search className="w-6 h-6 sm:w-8 sm:h-8" strokeWidth={3} />
       </button>

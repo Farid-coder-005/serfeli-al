@@ -56,15 +56,15 @@ export default function ProductStickyBar({
         <div className="flex items-center gap-6 shrink-0">
           <div className="hidden sm:flex flex-col items-end">
             <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Cari Qiymət</span>
-            <span className="text-lg font-black text-[#057850] tracking-tighter leading-none">{price} ₼</span>
+            <span className="text-lg font-black text-brand-green tracking-tighter leading-none">{price} ₼</span>
           </div>
-          <a
-            href={ctaUrl}
-            target="_blank"
+          <a 
+            href={ctaUrl} 
+            target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2.5 bg-[#057850] text-white rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-[#046241] transition-all shadow-lg shadow-green-900/10 active:scale-95"
+            className="flex items-center gap-2 px-6 py-2.5 bg-brand-green hover:bg-brand-green-dark text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg shadow-brand-green/20"
           >
-            Sifariş Et
+            Mağazaya Keç
             <ExternalLink className="w-3 h-3 opacity-80" />
           </a>
         </div>

@@ -55,14 +55,14 @@ export function ProductCard({
       {/* Content */}
       <div className="p-6 flex-1 flex flex-col">
         <div className="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-[0.2em]">{storeName}</div>
-        <h3 className="text-sm font-bold text-[#1E3A8A] mb-6 line-clamp-2 leading-relaxed flex-1 group-hover:text-[#166534] transition-colors">
+        <h3 className="text-sm font-bold text-brand-navy mb-6 line-clamp-2 leading-relaxed flex-1 group-hover:text-brand-green transition-colors">
           {product.title}
         </h3>
         
         <div className="mt-auto">
           <div className="flex items-center gap-3">
             <span className="text-gray-400 line-through text-sm font-medium">{oldPrice} ₼</span>
-            <span className="text-[#EA580C] font-black text-2xl tracking-tighter">{newPrice} ₼</span>
+            <span className="text-brand-green font-black text-2xl tracking-tighter">{newPrice} ₼</span>
           </div>
         </div>
       </div>
