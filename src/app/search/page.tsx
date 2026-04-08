@@ -62,7 +62,7 @@ export default async function SearchPage({
   }
 
   return (
-    <div className="w-full flex-1 bg-[#F9FAFB] flex flex-col relative overflow-hidden z-0">
+    <div className="w-full flex-1 bg-[#F9FAFB] flex flex-col relative overflow-x-clip z-0">
       {/* Global dot-grid pattern overlay */}
       <div className="pointer-events-none fixed inset-0 z-0 bg-dot-pattern opacity-10" />
 
@@ -94,11 +94,11 @@ export default async function SearchPage({
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-1 flex flex-col lg:flex-row gap-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-1 flex flex-col lg:flex-row items-start gap-12 relative z-10">
         
         {/* Sidebar Filters */}
         <div className="hidden lg:block w-80 shrink-0">
-          <div className="bg-white rounded-[2.5rem] border border-gray-100 p-8 sticky top-28 self-start max-h-[85vh] overflow-y-auto shadow-xl shadow-[#1E3A8A]/5 space-y-10 no-scrollbar">
+          <div className="bg-white rounded-[2.5rem] border border-gray-100 p-8 sticky top-28 self-start h-[calc(100vh-8rem)] overflow-y-auto shadow-xl shadow-[#1E3A8A]/5 space-y-10 no-scrollbar">
             <div>
               <h2 className="text-xl font-black text-[#1E3A8A] mb-8 flex items-center gap-3 uppercase tracking-wider">
                 <Filter className="w-5 h-5 text-[#166534]" />
