@@ -21,7 +21,7 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               <li><Link href="#" className="text-sm text-gray-500 hover:text-green-600 transition-colors">Haqqımızda</Link></li>
               <li><Link href="#" className="text-sm text-gray-500 hover:text-green-600 transition-colors">Mağazalar</Link></li>
-              <li><Link href="#" className="text-sm text-gray-500 hover:text-green-600 transition-colors">Kəşbək</Link></li>
+              <li><Link href="/dashboard" className="text-sm text-gray-500 hover:text-green-600 transition-colors">Kəşbək</Link></li>
             </ul>
           </div>
 

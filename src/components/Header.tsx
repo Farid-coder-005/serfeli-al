@@ -126,7 +126,7 @@ export function Header() {
               </Link>
 
               <Link
-                href="/cashback"
+                href="/dashboard"
                 className="hidden sm:flex flex-col items-center justify-center text-[#1e293b] hover:text-[#057850] transition-all group px-2"
                 aria-label="Cashback"
               >
@@ -254,7 +254,7 @@ export function Header() {
                 Qeydlərim
               </Link>
               <Link
-                href="/cashback"
+                href="/dashboard"
                 className="flex items-center gap-6 px-6 py-4.5 rounded-3xl text-[17px] font-bold text-gray-800 hover:bg-gray-50 transition-all"
                 onClick={() => setMobileOpen(false)}
               >

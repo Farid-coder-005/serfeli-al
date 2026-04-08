@@ -189,7 +189,7 @@ export async function GET() {
 
     for (const pd of productsData) {
       const { offers, ...productDetails } = pd;
-      await prisma.product.create({
+      const product = await prisma.product.create({
         data: {
           ...productDetails,
           offers: {
@@ -201,6 +201,46 @@ export async function GET() {
           },
         },
       });
+
+      // Generate 3-5 PriceHistory points per offer/store
+      // We'll create scenarios:
+      // Half of products will have "Real Discounts" (current price <= min historical)
+      // Half will have "Süni/Fake Discounts" (past price was lower)
+      const isRealDiscount = productCount % 2 === 0;
+
+      for (const offer of offers) {
+        const storeId = storeMap.get(offer.storeName)!;
+        const historyPointsCount = 3 + Math.floor(Math.random() * 3); // 3-5 points
+
+        for (let i = 1; i <= historyPointsCount; i++) {
+          const daysAgo = i * 7 + Math.floor(Math.random() * 5); // Spread over 30 days
+          const recordedAt = new Date();
+          recordedAt.setDate(recordedAt.getDate() - daysAgo);
+
+          let historicalPrice: number;
+          if (isRealDiscount) {
+            // Real: past prices were higher
+            historicalPrice = offer.price * (1.1 + Math.random() * 0.2); // +10-30%
+          } else {
+            // Fake: some past price was lower
+            if (i === 1) {
+              historicalPrice = offer.price * (0.8 + Math.random() * 0.1); // -10-20% (the "trap")
+            } else {
+              historicalPrice = offer.price * (1.1 + Math.random() * 0.2); // others higher
+            }
+          }
+
+          await prisma.priceHistory.create({
+            data: {
+              productId: product.id,
+              storeId: storeId,
+              price: parseFloat(historicalPrice.toFixed(2)),
+              recordedAt: recordedAt,
+            },
+          });
+        }
+      }
+
       productCount++;
       offerCount += offers.length;
     }

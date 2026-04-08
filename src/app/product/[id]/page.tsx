@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { PriceHistoryChart } from "@/components/PriceHistoryChart";
+import { TrendingDown, AlertTriangle, History } from "lucide-react";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -21,6 +23,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       offers: {
         include: { store: true },
         orderBy: { currentPrice: 'asc' }, // Order by cheapest first
+      },
+      priceHistory: {
+        orderBy: { recordedAt: 'asc' }
       }
     }
   });
@@ -55,6 +60,20 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const cheapestOffer = product.offers.length > 0 ? product.offers[0] : null;
   const bestPrice = cheapestOffer?.currentPrice || 0;
   const oldPrice = bestPrice > 0 ? Math.floor(bestPrice * 1.15) : 0;
+
+  // Smart Price Analysis
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+  const recentHistory = product.priceHistory.filter(h => new Date(h.recordedAt) >= thirtyDaysAgo);
+  const minHistoricalPrice = recentHistory.length > 0 
+    ? Math.min(...recentHistory.map(h => h.price)) 
+    : bestPrice;
+
+  // Logic: "Real" if current price is <= the 30-day low.
+  // "Fake" if there was a lower price in the last 30 days.
+  const isRealDiscount = bestPrice <= minHistoricalPrice;
+  const priceDiff = minHistoricalPrice - bestPrice;
 
   return (
     <div className="flex flex-col w-full min-h-[calc(100vh-96px)] bg-[#F8FAFC]">
@@ -115,9 +134,24 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             {bestPrice > 0 ? (
               <div className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm">
                 <p className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">Başlanğıc qiymət</p>
-                <div className="flex items-end gap-4 mb-6">
+                <div className="flex items-center gap-4 mb-4">
                   <span className="text-[#EA580C] font-black text-4xl sm:text-5xl tracking-tighter">{bestPrice} ₼</span>
                   <span className="text-gray-300 line-through text-lg sm:text-xl font-bold mb-1.5">{oldPrice} ₼</span>
+                </div>
+
+                {/* Smart Badge */}
+                <div className="mb-6">
+                  {isRealDiscount ? (
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-[#057850] rounded-2xl border border-green-100 shadow-sm transition-all hover:shadow-md cursor-default">
+                      <TrendingDown className="w-4 h-4" />
+                      <span className="text-xs font-black uppercase tracking-wider">Əla Fürsət! (Real Endirim)</span>
+                    </div>
+                  ) : (
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-2xl border border-red-100 shadow-sm transition-all hover:shadow-md cursor-default">
+                      <AlertTriangle className="w-4 h-4" />
+                      <span className="text-xs font-black uppercase tracking-wider">Diqqət! (Süni Endirim)</span>
+                    </div>
+                  )}
                 </div>
                 {/* Store Preview tag */}
                 <div className="flex items-center gap-3 text-sm font-semibold text-gray-500">
@@ -231,6 +265,47 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   )}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+        {/* Price History & Analysis Section */}
+        <div className="mb-20">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#1E3A8A] tracking-tight flex items-center gap-3">
+              <History className="w-8 h-8 text-[#057850]" />
+              Qiymət Analizi & Tarixçə
+            </h2>
+            <div className="hidden sm:flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50 px-4 py-2 rounded-full border border-gray-100">
+              <span className="w-2 h-2 rounded-full bg-[#057850]"></span> Son 30 Gün
+            </div>
+          </div>
+
+          <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 sm:p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-green-50/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-center">
+              {/* Chart Area */}
+              <div className="lg:col-span-3">
+                <PriceHistoryChart data={product.priceHistory} />
+              </div>
+              
+              {/* Insight Sidebar */}
+              <div className="flex flex-col gap-6">
+                <div className="p-6 bg-gray-50/50 rounded-3xl border border-gray-50">
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">30 Günlük Ən Aşağı</p>
+                  <p className="text-2xl font-black text-[#057850]">{minHistoricalPrice} ₼</p>
+                </div>
+                <div className="p-6 bg-gray-50/50 rounded-3xl border border-gray-50">
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Cari Qiymət</p>
+                  <p className="text-2xl font-black text-[#EA580C]">{bestPrice} ₼</p>
+                </div>
+                <div className="mt-2">
+                  <p className="text-sm font-medium text-gray-500 leading-relaxed">
+                    Qiymət analizimiz göstərir ki, bu məhsul hazırda {bestPrice <= minHistoricalPrice ? "optimal" : "yüksək"} səviyyədədir.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
