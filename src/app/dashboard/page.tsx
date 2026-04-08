@@ -44,7 +44,7 @@ export default function DashboardPage() {
       <div className="pointer-events-none fixed inset-0 z-0 bg-dot-pattern opacity-10" />
 
       {/* Hero / Header Section */}
-      <section className="bg-gradient-to-br from-[#057850] to-[#046241] py-20 relative overflow-hidden border-b border-[#057850]/10">
+      <section className="bg-gradient-to-br from-[#057850] to-[#046241] py-20 relative border-b border-[#057850]/10">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none mix-blend-overlay"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">

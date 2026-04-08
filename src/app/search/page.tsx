@@ -62,43 +62,43 @@ export default async function SearchPage({
   }
 
   return (
-    <div className="w-full flex-1 bg-[#F9FAFB] flex flex-col relative z-0 min-h-[calc(100vh-96px)] overflow-x-clip">
+    <div className="w-full flex-1 bg-[#F9FAFB] flex flex-col relative z-0">
       {/* Global dot-grid pattern overlay */}
       <div className="pointer-events-none fixed inset-0 z-0 bg-dot-pattern opacity-10" />
 
       {/* Header for search results */}
-      <div className="bg-white/70 backdrop-blur-md border-b border-gray-100/50 py-8 shadow-sm">
+      <section className="bg-[#057850] py-6 sm:py-10 relative border-b border-[#046241]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div>
-            <h1 className="text-3xl font-black text-[#1E3A8A] tracking-tight">
+            <h1 className="text-3xl font-black text-white tracking-tight">
               {query ? `Search results for: '${query}'` : (selectedCategory ? `${categoryNames[selectedCategory] || selectedCategory} kateqoriyası` : "Axtarış Nəticələri")}
             </h1>
-            <p className="text-sm text-gray-500 mt-2 font-medium">
+            <p className="text-sm text-green-100 mt-2 font-medium">
               {products.length > 0 ? (
                 <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
                   {products.length} məhsul tapıldı
                 </span>
               ) : "Sizin üçün heç nə tapılmadı"}
             </p>
           </div>
           <div className="flex items-center gap-3 w-full md:w-auto">
-            <button className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-white border border-gray-100 rounded-2xl text-sm font-bold text-[#1E3A8A] hover:bg-gray-50 hover:shadow-lg transition-all">
+            <button className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-white/10 border border-white/20 rounded-2xl text-sm font-bold text-white hover:bg-white/20 transition-all">
               <ArrowUpDown className="w-4 h-4" /> Sırala
-              <ChevronDown className="w-4 h-4 ml-1 text-gray-400" />
+              <ChevronDown className="w-4 h-4 ml-1 text-green-200" />
             </button>
-            <button className="lg:hidden flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-[#1E3A8A] text-white rounded-2xl text-sm font-bold hover:bg-[#1a3275] transition-all">
+            <button className="lg:hidden flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#057850] rounded-2xl text-sm font-bold hover:bg-gray-50 transition-all">
               <Filter className="w-4 h-4" /> Filterlər
             </button>
           </div>
         </div>
-      </div>
+      </section>
 
       <div className="container mx-auto px-4 py-8 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
           
           {/* SIDEBAR WRAPPER */}
-          <aside className="hidden lg:block sticky top-28 h-[calc(100vh-8rem)] overflow-y-auto pr-2 no-scrollbar">
+          <aside className="hidden lg:block sticky top-32 self-start h-[calc(100vh-8rem)] overflow-y-auto pb-10 no-scrollbar">
             <div className="bg-white rounded-[2.5rem] border border-gray-100 p-8 shadow-xl shadow-[#1E3A8A]/5 space-y-10">
               <div>
                 <h2 className="text-xl font-black text-[#1E3A8A] mb-8 flex items-center gap-3 uppercase tracking-wider">

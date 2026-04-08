@@ -172,7 +172,7 @@ export function Header() {
       {/* BAR C — Categories (Refined: Perfectly Centered on White & Palette-aware) */}
       <nav
         aria-label="Category navigation"
-        className="bg-white hidden md:block h-16 border-b border-gray-100 shadow-sm overflow-hidden"
+        className="bg-white hidden md:block h-16 border-b border-gray-100 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <ul className="flex items-center gap-4 overflow-x-auto no-scrollbar list-none m-0 p-0 h-full scroll-smooth">
