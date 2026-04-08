@@ -7,14 +7,12 @@ export function Logo() {
   return (
     <Link href="/" className="flex items-center shrink-0">
       <Image 
-        src="/logo.png" 
+        src="/logo-full.png" 
         alt="Sərfəli.al" 
         width={300}
-        height={55}
-        className="h-[68px] sm:h-[84px] w-auto object-contain"
-        style={{ height: undefined, width: 'auto', maxWidth: 'none', maxHeight: 'none' }}
+        height={64}
+        className="h-14 sm:h-16 w-auto object-contain"
         priority
-        unoptimized={false}
       />
     </Link>
   );
