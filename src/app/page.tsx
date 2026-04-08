@@ -11,12 +11,8 @@ import {
   Tag
 } from "lucide-react";
 
-const CATEGORIES = [
-  { name: "Elektronika", slug: "elektronika", icon: Smartphone },
-  { name: "Mebel & Ev", slug: "mebel", icon: Sofa },
-  { name: "Geyim", slug: "geyim", icon: Shirt },
-  { name: "Parfumeriya", slug: "parfumeriya", icon: Sparkles },
-  { name: "Supermarket", slug: "supermarket", icon: ShoppingBag },
+const TRENDING_SEARCHES = [
+  "iPhone 15 Pro", "Kondisionerlər", "PlayStation 5", "Dyson Saç Qurudan", "AirPods Pro"
 ];
 
 const PARTNERS = ["Kontakt", "İrşad", "Baku Electronics", "Soliton", "Music Gallery", "Optimal"];
@@ -63,44 +59,49 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="py-16 relative z-10">
+      {/* Section 1: Trend Olan Axtarışlar */}
+      <section className="py-12 relative z-10 border-b border-gray-100 bg-white/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-sm font-black text-[#1E3A8A] mb-8 uppercase tracking-[0.2em]">Populyar Kateqoriyalar</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {CATEGORIES.map((category, idx) => {
-              const Icon = category.icon;
-              return (
-                <Link key={idx} href={`/search?category=${category.slug}`} className="group flex flex-col items-center justify-center p-8 bg-[#FFFFFF] rounded-3xl border border-gray-100 shadow-sm hover:border-[#1E3A8A]/10 hover:shadow-2xl hover:shadow-[#1E3A8A]/5 hover:-translate-y-1.5 transition-all duration-500 cursor-pointer">
-                  <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-[#166534] mb-5 shadow-inner group-hover:bg-[#166534] group-hover:text-white transition-all duration-300">
-                    <Icon className="w-7 h-7" />
-                  </div>
-                  <span className="text-sm font-bold text-gray-900 text-center tracking-tight">{category.name}</span>
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <span className="text-[13px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Trend Axtarışlar:</span>
+            <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-2 sm:pb-0 w-full">
+              {TRENDING_SEARCHES.map((tag) => (
+                <Link 
+                  key={tag} 
+                  href={`/search?q=${encodeURIComponent(tag)}`}
+                  className="px-5 py-2.5 bg-gray-100 hover:bg-[#057850] hover:text-white text-gray-600 text-[13px] font-bold rounded-full transition-all duration-300 whitespace-nowrap shadow-sm hover:shadow-md active:scale-95"
+                >
+                  {tag}
                 </Link>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Real Endirimler (Featured Deals) */}
-      <section className="py-20 relative z-10 border-y border-gray-100/50 bg-[#F1F5F9]">
+      {/* Section 2: Günün Real Endirimləri */}
+      <section className="py-24 relative z-10 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl font-black text-[#1E3A8A] flex items-center gap-3 tracking-tight">
-                <TrendingDown className="w-8 h-8 text-[#EA580C]" />
-                Günlük Təkliflər
+          <div className="flex justify-between items-end mb-16">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#057850]/10 rounded-full">
+                <Tag className="w-4 h-4 text-[#057850]" />
+                <span className="text-[11px] font-black text-[#057850] uppercase tracking-widest leading-none">Məhdud Təkliflər</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-black text-[#1E3A8A] tracking-tight">
+                🔥 Günün <span className="text-[#057850]">Real</span> Endirimləri
               </h2>
-              <p className="text-gray-500 mt-2 font-medium">Süni intellekt tərəfindən təsdiqlənmiş real endirimlər</p>
+              <p className="text-gray-500 font-medium text-lg leading-relaxed max-w-2xl">
+                Platformamız tərəfindən təsdiqlənmiş, qiyməti son 24 saatda ən çox düşən təkrarolunmaz təkliflər.
+              </p>
             </div>
-            <Link href="/search" className="hidden sm:flex text-[#166534] font-bold items-center hover:text-[#1E3A8A] transition-colors group">
-              Hamısına bax <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            <Link href="/search" className="hidden lg:flex items-center gap-3 px-8 py-4 bg-white border border-gray-200 rounded-2xl text-[13px] font-black text-[#1E3A8A] hover:bg-gray-50 transition-all shadow-sm hover:shadow-lg group">
+              Hamısına bax <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product: any, idx: number) => (
+ 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {products.slice(0, 4).map((product: any, idx: number) => (
               <ProductCard 
                 key={product.id} 
                 product={product} 
@@ -109,9 +110,10 @@ export default async function Page() {
               />
             ))}
           </div>
-          <div className="mt-12 text-center sm:hidden">
-            <Link href="/search" className="inline-flex items-center justify-center w-full py-4 px-6 border border-gray-200 rounded-2xl text-sm font-bold text-[#1E3A8A] bg-white hover:bg-gray-50 shadow-sm transition-all">
-              Hamısına bax
+ 
+          <div className="mt-16 text-center lg:hidden">
+            <Link href="/search" className="inline-flex items-center justify-center w-full py-5 px-8 bg-white border border-gray-200 rounded-[2rem] text-sm font-black text-[#1E3A8A] shadow-lg active:scale-95 transition-all">
+              Bütün endirimləri gör
             </Link>
           </div>
         </div>

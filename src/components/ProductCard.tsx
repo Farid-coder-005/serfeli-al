@@ -20,23 +20,24 @@ export function ProductCard({
   const oldPrice = newPrice > 0 ? Math.floor(newPrice * 1.15) : 0;
   const storeName = cheapestOffer?.store?.name || "Bilinmir";
   const realDiscount = true; // Placeholder for real discount logic
+  const discountPercent = oldPrice > 0 ? Math.round(((oldPrice - newPrice) / oldPrice) * 100) : 0;
 
   return (
     <Link 
       href={`/product/${product.id}`}
       key={product.id} 
-      className="bg-[#FFFFFF] rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden hover:shadow-2xl hover:shadow-[#1E3A8A]/10 hover:border-[#1E3A8A]/10 hover:-translate-y-2 transition-all duration-500 ease-out group flex flex-col cursor-pointer relative"
+      className="bg-[#FFFFFF] rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden hover:shadow-2xl hover:shadow-[#057850]/10 hover:border-[#057850]/10 hover:-translate-y-2 transition-all duration-500 ease-out group flex flex-col cursor-pointer relative"
     >
       {/* Image & Badge */}
       <div className="relative aspect-square overflow-hidden bg-gray-50/50 flex items-center justify-center p-8">
         <div className="absolute top-4 left-4 z-10">
           {realDiscount ? (
-            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-black bg-[#EA580C] text-white shadow-lg shadow-orange-500/30 uppercase tracking-wider">
-              <Tag className="w-3 h-3 mr-1.5" /> Real Endirim
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-black bg-[#057850] text-white shadow-lg shadow-green-500/30 uppercase tracking-wider">
+              <Tag className="w-3 h-3 mr-1.5" /> REAL ENDİRİM {discountPercent > 0 && `-${discountPercent}%`}
             </span>
           ) : (
             <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-black bg-gray-900 text-white uppercase tracking-wider">
-               Süni Endirim
+               SÜNİ ENDİRİM
             </span>
           )}
         </div>
