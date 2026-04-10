@@ -51,50 +51,54 @@ export function Header() {
       <header role="banner" className="bg-[#09233f] sticky top-0 z-[9999] text-white flex flex-col">
         
         {/* 1. Top Strip */}
-        <div className="bg-[#09233f] text-sm px-4 py-2 hidden md:flex items-center justify-between mx-auto max-w-screen-2xl w-full">
-          <nav className="flex items-center gap-6">
-            <Link href="/" className="font-bold border-b-2 border-[#ff5500] pb-0.5 text-[13px]">ALIŞ-VERİŞ</Link>
-            <Link href="#" className="font-bold text-gray-300 hover:text-white pb-0.5 transition-colors text-[13px]">UÇUŞLAR</Link>
-          </nav>
-          <div className="flex items-center gap-2 text-gray-300 hover:text-white cursor-pointer transition-colors">
-            <span className="text-[12px] font-medium">Sərfəli.al-da davamlılıq</span>
-            <Leaf className="w-3.5 h-3.5 text-[#ff5500]" />
+        <div className="bg-[#09233f] text-sm hidden md:flex items-center border-b border-white/5">
+          <div className="max-w-[1200px] mx-auto w-full px-4 py-2 flex items-center justify-between">
+            <nav className="flex items-center gap-6">
+              <Link href="/" className="font-bold border-b-2 border-[#ff5500] pb-0.5 text-[13px]">ALIŞ-VERİŞ</Link>
+              <Link href="#" className="font-bold text-gray-300 hover:text-white pb-0.5 transition-colors text-[13px]">UÇUŞLAR</Link>
+            </nav>
+            <div className="flex items-center gap-2 text-gray-300 hover:text-white cursor-pointer transition-colors">
+              <span className="text-[12px] font-medium">Sərfəli.al-da davamlılıq</span>
+              <Leaf className="w-3.5 h-3.5 text-[#ff5500]" />
+            </div>
           </div>
         </div>
 
         {/* 2. Main Row */}
-        <div className="flex items-center gap-4 sm:gap-6 px-4 py-3 bg-[#09233f] mx-auto max-w-screen-2xl w-full">
-          {/* Mobile Hamburger */}
-          <button onClick={() => setMobileOpen(true)} className="md:hidden text-white flex shrink-0 transition-colors hover:text-[#ff5500]">
-            <Menu className="w-6 h-6" strokeWidth={2} />
-          </button>
-          
-          {/* Logo */}
-          <Link href="/" className="shrink-0 flex items-center pr-2 md:pr-6">
-            <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight border-b-4 border-[#ff5500] pb-1 leading-none uppercase">
-              SƏRFƏLİ.AL
-            </span>
-          </Link>
-
-          {/* Search Bar */}
-          <div className="flex-1 max-w-3xl hidden md:block">
-            <SearchBar />
-          </div>
-
-          {/* Right User Actions */}
-          <div className="flex items-center gap-4 sm:gap-6 ml-auto shrink-0 pt-1">
-            <Link href="/wishlist" className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
-              <Heart className="w-6 h-6 stroke-[1.5]" />
-              <span className="text-[10px] mt-1 font-medium hidden sm:block">Qeydlərim</span>
-            </Link>
-            <button className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
-              <Clock className="w-6 h-6 stroke-[1.5]" />
-              <span className="text-[10px] mt-1 font-medium hidden sm:block">Qiymət bildirişi</span>
+        <div className="bg-[#09233f] py-3">
+          <div className="max-w-[1200px] mx-auto w-full px-4 flex items-center">
+            {/* Mobile Hamburger */}
+            <button onClick={() => setMobileOpen(true)} className="md:hidden text-white flex shrink-0 transition-colors hover:text-[#ff5500] mr-4">
+              <Menu className="w-6 h-6" strokeWidth={2} />
             </button>
-            <Link href={isLoggedIn ? "/dashboard" : "/login"} className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
-              <User className="w-6 h-6 stroke-[1.5]" />
-              <span className="text-[10px] mt-1 font-medium hidden sm:block">Profil</span>
+            
+            {/* Logo */}
+            <Link href="/" className="shrink-0 flex items-center md:pr-4">
+              <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight border-b-4 border-[#ff5500] pb-1 leading-none uppercase">
+                SƏRFƏLİ.AL
+              </span>
             </Link>
+
+            {/* Search Bar */}
+            <div className="flex-1 mx-8 hidden md:block">
+              <SearchBar />
+            </div>
+
+            {/* Right User Actions */}
+            <div className="flex items-center gap-4 sm:gap-6 ml-auto shrink-0 pt-1">
+              <Link href="/wishlist" className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+                <Heart className="w-6 h-6 stroke-[1.5]" />
+                <span className="text-[10px] mt-1 font-medium hidden sm:block">Qeydlərim</span>
+              </Link>
+              <button className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+                <Clock className="w-6 h-6 stroke-[1.5]" />
+                <span className="text-[10px] mt-1 font-medium hidden sm:block">Qiymət bildirişi</span>
+              </button>
+              <Link href={isLoggedIn ? "/dashboard" : "/login"} className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+                <User className="w-6 h-6 stroke-[1.5]" />
+                <span className="text-[10px] mt-1 font-medium hidden sm:block">Profil</span>
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -104,31 +108,31 @@ export function Header() {
         </div>
 
         {/* 3. Category Strip */}
-        <nav className="bg-[#102a46] px-4 py-3 hidden md:block w-full">
-          <ul className="flex overflow-x-auto gap-8 no-scrollbar max-w-screen-2xl mx-auto items-center">
+        <nav className="bg-[#102a46] py-3 hidden md:block w-full">
+          <div className="max-w-[1200px] mx-auto w-full px-4 flex gap-8 overflow-x-auto no-scrollbar items-center">
             {CATEGORIES.map(({ label, icon: Icon, href }, idx) => {
               if (idx === 0) {
                 return (
-                  <li key={label} className="shrink-0 mt-1">
+                  <div key={label} className="shrink-0 mt-1">
                     <Link href={href} className="flex flex-col items-center text-white hover:text-[#ff5500] transition-colors gap-1.5">
                       <div className="w-[26px] h-[26px] bg-[#ff5500] rounded-[3px] flex items-center justify-center">
                         <Percent className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
                       <span className="text-[11px] font-medium tracking-wide">{label}</span>
                     </Link>
-                  </li>
+                  </div>
                 );
               }
               return (
-                <li key={label} className="shrink-0 mt-1">
+                <div key={label} className="shrink-0 mt-1">
                   <Link href={href} className="flex flex-col items-center text-white hover:text-[#ff5500] transition-colors gap-1.5">
                     <Icon className="w-[26px] h-[26px] stroke-[1.5]" />
                     <span className="text-[11px] font-medium tracking-wide">{label}</span>
                   </Link>
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </div>
         </nav>
       </header>
 
