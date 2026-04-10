@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-green: #057850;
-  --color-brand-green-dark: #046241;
-  --color-brand-navy: #0a1d37;
-  --color-brand-navy-light: #1e293b;
-  --color-mint-tint: #f0fdf4;
+  --color-idealo-orange: #FF5500;
+  --color-idealo-orange-dark: #E04A00;
+  --color-idealo-dark: #111820;
+  --color-idealo-dark-light: #222222;
+  --color-idealo-gray: #f4f4f4;
 }
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    color: var(--color-brand-navy);
+    color: var(--color-idealo-dark);
   }
 }
 
 body {
-  background-color: #F8FAFC;
-  color: #1e293b;
+  background-color: #F4F4F4; /* Idealo light grey background */
+  color: #222222;
 }
 
 /* ── Global Mesh Gradient Overlay ────────────────────────────────────────── */
@@ -26,7 +26,7 @@ body {
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
-  background-color: #F8FAFC;
+  background-color: #F4F4F4;
 }
 
 .premium-bg-overlay::before {

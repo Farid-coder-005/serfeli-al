@@ -93,13 +93,13 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
             {payload[0].payload.fullDate}
           </p>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-3xl font-black text-[#059669] tracking-tighter">
+            <span className="text-3xl font-black text-[#FF5500] tracking-tighter">
               {payload[0].value}
             </span>
             <span className="text-[11px] font-black text-gray-400 uppercase">AZN</span>
           </div>
           {payload[0].value === minPrice && (
-            <div className="mt-2 flex items-center gap-1 text-[9px] font-black text-[#059669] uppercase tracking-wider bg-green-50 px-2 py-0.5 rounded-full w-max">
+            <div className="mt-2 flex items-center gap-1 text-[9px] font-black text-[#FF5500] uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full w-max">
               <TrendingDown className="w-2.5 h-2.5" strokeWidth={3} /> Ayın ən aşağısı
             </div>
           )}
@@ -122,8 +122,8 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
           <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 mb-12 sm:mb-16">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <div className="h-px w-6 bg-emerald-600/30" />
-                <span className="text-[10px] font-black text-emerald-600/60 uppercase tracking-[0.4em]">Smart Qiymət Təhlili</span>
+                <div className="h-px w-6 bg-orange-600/30" />
+                <span className="text-[10px] font-black text-orange-600/60 uppercase tracking-[0.4em]">Smart Qiymət Təhlili</span>
               </div>
               <div className="flex items-baseline gap-4">
                 <h3 className="text-4xl sm:text-6xl font-black text-[#1e293b] tracking-tighter leading-none">
@@ -131,7 +131,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                   <span className="text-lg sm:text-xl text-gray-300 ml-2 uppercase font-black tracking-widest">AZN</span>
                 </h3>
                 {priceChangePercent !== 0 && (
-                  <div className={`px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black tracking-wider ${priceChangePercent < 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}`}>
+                  <div className={`px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black tracking-wider ${priceChangePercent < 0 ? 'bg-orange-50 text-orange-600' : 'bg-red-50 text-red-600'}`}>
                     {priceChangePercent < 0 ? '↓' : '↑'} {Math.abs(priceChangePercent).toFixed(1)}%
                   </div>
                 )}
@@ -140,7 +140,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
 
             <div className="flex flex-wrap gap-4">
               {isLowest && (
-                <div className="flex items-center gap-3 px-6 py-4 bg-emerald-600 text-white rounded-[1.5rem] shadow-[0_15px_30px_rgba(5,150,105,0.25)] hover:shadow-[0_20px_40px_rgba(5,150,105,0.35)] transition-all cursor-default">
+                <div className="flex items-center gap-3 px-6 py-4 bg-[#FF5500] text-white rounded-[1.5rem] shadow-sm hover:shadow-md transition-all cursor-default">
                   <div className="w-6 h-6 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-md">
                     <TrendingDown className="w-4 h-4" strokeWidth={3} />
                   </div>
@@ -153,7 +153,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                   <span className="text-[11px] font-black uppercase tracking-[0.15em] opacity-80">Qiymət Dəyişkəndir</span>
                 </div>
               ) : (
-                <div className="flex items-center gap-3 px-6 py-4 bg-white border border-emerald-100/50 text-emerald-700/60 rounded-[1.5rem] shadow-sm cursor-default">
+                <div className="flex items-center gap-3 px-6 py-4 bg-white border border-orange-100/50 text-orange-700/60 rounded-[1.5rem] shadow-sm cursor-default">
                   <CheckCircle2 className="w-5 h-5" />
                   <span className="text-[11px] font-black uppercase tracking-[0.15em]">Stabil Qiymət</span>
                 </div>
@@ -167,9 +167,9 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
               <AreaChart data={chartData} margin={{ top: 20, right: 10, left: 10, bottom: 20 }}>
                 <defs>
                    <linearGradient id="premiumGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#059669" stopOpacity={0.15} />
-                    <stop offset="50%" stopColor="#059669" stopOpacity={0.02} />
-                    <stop offset="100%" stopColor="#059669" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15} />
+                    <stop offset="50%" stopColor="#FF5500" stopOpacity={0.02} />
+                    <stop offset="100%" stopColor="#FF5500" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 
@@ -201,7 +201,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                 <Tooltip 
                   content={<CustomTooltip />} 
                   cursor={{ 
-                    stroke: '#059669', 
+                    stroke: '#FF5500', 
                     strokeWidth: 2, 
                     strokeDasharray: '4 4', 
                     opacity: 0.3 
@@ -211,7 +211,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                 <Area
                   type="monotone"
                   dataKey="price"
-                  stroke="#059669"
+                  stroke="#FF5500"
                   strokeWidth={6}
                   fillOpacity={1}
                   fill="url(#premiumGradient)"
@@ -220,7 +220,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                   activeDot={{ 
                     r: 10, 
                     fill: '#fff', 
-                    stroke: '#059669', 
+                    stroke: '#FF5500', 
                     strokeWidth: 5,
                     className: "shadow-2xl"
                   }}
@@ -231,13 +231,13 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                   x={chartData.find(d => d.price === minPrice)?.date}
                   y={minPrice}
                   r={5}
-                  fill="#059669"
+                  fill="#FF5500"
                   stroke="#fff"
                   strokeWidth={3}
                   label={{ 
                     position: 'bottom', 
                     value: 'Ən Aşağı', 
-                    fill: '#059669', 
+                    fill: '#FF5500', 
                     fontSize: 10, 
                     letterSpacing: '0.1em',
                     fontWeight: 900,
@@ -250,15 +250,14 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
         </div>
       </div>
 
-      {/* Trust Footer */}
       <div className="flex items-center justify-between px-12 opacity-30 group-hover:opacity-100 transition-opacity duration-700">
         <div className="flex items-center gap-4">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+          <div className="w-1.5 h-1.5 rounded-full bg-orange-600" />
           <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.5em]">Təhlükəsiz Məlumat bazası</span>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.5em]">Real-Time Verifikasiya</span>
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+          <div className="w-1.5 h-1.5 rounded-full bg-orange-600" />
         </div>
       </div>
     </div>

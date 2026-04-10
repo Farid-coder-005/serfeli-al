@@ -22,14 +22,14 @@ export default function ProductSpecsGrid({
   ],
 }: ProductSpecsGridProps) {
   return (
-    <div className="grid grid-cols-2 gap-4 mt-8 bg-white/50 rounded-[2.5rem] border border-slate-100 p-6">
+    <div className="grid grid-cols-2 gap-4 mt-8 bg-[#F4F4F4] rounded-2xl border border-gray-200 p-6">
       {specifications.map((spec) => (
         <div key={spec.label} className="flex flex-col">
-          <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
-            <div className="w-1 h-1 bg-[#057850] rounded-full" />
+          <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 bg-[#FF5500] rounded-full" />
             {spec.label}
           </span>
-          <span className="text-xs font-black text-slate-700 leading-tight">
+          <span className="text-xs font-bold text-[#222222] leading-tight">
             {spec.value}
           </span>
         </div>

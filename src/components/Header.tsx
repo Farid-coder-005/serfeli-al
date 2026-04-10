@@ -48,7 +48,7 @@ export function Header() {
   return (
     <div className="z-[9999] relative">
       {/* BAR A — Top Utility (Refined: Perfectly Centered Content) */}
-      <div className="hidden md:block bg-[#dcfce7] text-white text-[11px] font-bold tracking-[0.15em] border-b border-green-100/50">
+      <div className="hidden md:block bg-[#111820] text-white text-[11px] font-bold tracking-[0.15em] border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center h-8">
           <nav aria-label="Top navigation" className="flex items-center gap-0">
             {TOP_LINKS.map(({ label, href, id }) => (
@@ -57,10 +57,10 @@ export function Header() {
                 href={href}
                 onClick={() => setActiveTopLink(id)}
                 className={[
-                  "px-4 py-1 transition-all relative h-8 flex items-center drop-shadow-[0_1.5px_1.5px_rgba(0,0,0,0.35)]",
+                  "px-4 py-1 transition-all relative h-8 flex items-center drop-shadow-sm",
                   activeTopLink === id
-                    ? "text-white after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-white after:rounded-full"
-                    : "text-white hover:opacity-80 scale-100 active:scale-95",
+                    ? "text-[#FF5500] after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-[#FF5500] after:rounded-full"
+                    : "text-gray-300 hover:text-white scale-100 active:scale-95",
                 ].join(" ")}
               >
                 {label}
@@ -87,7 +87,7 @@ export function Header() {
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-nav"
                 onClick={() => setMobileOpen((v) => !v)}
-                className="flex items-center justify-center w-14 h-14 rounded-2xl text-[#046241] hover:bg-gray-50 active:bg-gray-100 transition-all shrink-0"
+                className="flex items-center justify-center w-14 h-14 rounded-2xl text-[#FF5500] hover:bg-gray-50 active:bg-gray-100 transition-all shrink-0"
               >
                 {mobileOpen
                   ? <X className="w-9 h-9" strokeWidth={2.5} />
@@ -118,7 +118,7 @@ export function Header() {
 
               <Link
                 href="/wishlist"
-                className="flex flex-col items-center justify-center text-[#1e293b] hover:text-[#057850] transition-all group px-2"
+                className="flex flex-col items-center justify-center text-[#222222] hover:text-[#FF5500] transition-all group px-2"
                 aria-label="Qeydlərim"
               >
                 <Heart className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
@@ -127,7 +127,7 @@ export function Header() {
 
               <Link
                 href="/dashboard"
-                className="hidden sm:flex flex-col items-center justify-center text-[#1e293b] hover:text-[#057850] transition-all group px-2"
+                className="hidden sm:flex flex-col items-center justify-center text-[#222222] hover:text-[#FF5500] transition-all group px-2"
                 aria-label="Cashback"
               >
                 <Coins className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
@@ -137,7 +137,7 @@ export function Header() {
               {isLoggedIn ? (
                 <Link
                   href="/dashboard"
-                  className="flex flex-col items-center justify-center text-[#1e293b] hover:text-[#057850] transition-all group px-2"
+                  className="flex flex-col items-center justify-center text-[#222222] hover:text-[#FF5500] transition-all group px-2"
                   aria-label="Profilim"
                 >
                   <User className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
@@ -146,7 +146,7 @@ export function Header() {
               ) : (
                 <Link
                   href="/login"
-                  className="flex flex-col items-center justify-center text-[#1e293b] hover:text-[#057850] transition-all group px-2"
+                  className="flex flex-col items-center justify-center text-[#222222] hover:text-[#FF5500] transition-all group px-2"
                   aria-label="Profilim"
                 >
                   <User className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
@@ -178,22 +178,22 @@ export function Header() {
                     className={[
                       "flex items-center gap-3 px-5 transition-all whitespace-nowrap h-full relative group",
                       isActive 
-                        ? "text-[#057850] bg-[#f0fdf4]/40" 
-                        : "text-[#64748b] hover:text-[#057850] hover:bg-[#f0fdf4]/20"
+                        ? "text-[#FF5500] bg-gray-50/50" 
+                        : "text-[#64748b] hover:text-[#FF5500] hover:bg-gray-50/50"
                     ].join(" ")}
                   >
                     <Icon 
                       className={[
                         "w-5 h-5 shrink-0 transition-transform group-hover:scale-110",
-                        isActive ? "text-[#057850]" : "text-[#057850]/60"
+                        isActive ? "text-[#FF5500]" : "text-[#64748b]"
                       ].join(" ")} 
                       strokeWidth={isActive ? 2.5 : 2} 
                     />
                     <span className="text-[13px] font-black tracking-tight uppercase">{label}</span>
                     <div 
                       className={[
-                        "absolute bottom-0 left-0 right-0 h-[3px] bg-[#057850] rounded-full transition-opacity duration-300",
-                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-30"
+                        "absolute bottom-0 left-0 right-0 h-[3px] bg-[#FF5500] rounded-full transition-opacity duration-300",
+                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                       ].join(" ")}
                     />
                   </Link>
@@ -219,18 +219,18 @@ export function Header() {
         ].join(" ")}
       >
         <div className="px-8 py-10 space-y-5">
-          <p className="text-[13px] font-black text-[#057850] uppercase tracking-[0.35em] px-2 pb-5 border-b border-gray-100 mb-8 font-sans">KATEQORIYALAR</p>
+          <p className="text-[13px] font-black text-[#FF5500] uppercase tracking-[0.35em] px-2 pb-5 border-b border-gray-100 mb-8 font-sans">KATEQORIYALAR</p>
           
           <div className="grid grid-cols-1 gap-2.5">
             {CATEGORIES.map(({ label, icon: Icon, href }) => (
               <Link
                 key={label}
                 href={href}
-                className="flex items-center gap-6 px-6 py-4.5 rounded-3xl text-[17px] font-bold text-gray-800 hover:bg-[#057850]/5 active:bg-[#057850]/10 transition-all border border-transparent active:border-[#057850]/20"
+                className="flex items-center gap-6 px-6 py-4.5 rounded-3xl text-[17px] font-bold text-gray-800 hover:bg-[#FF5500]/5 active:bg-[#FF5500]/10 transition-all border border-transparent active:border-[#FF5500]/20"
                 onClick={() => setMobileOpen(false)}
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#f0fdf4] flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-[#057850]" strokeWidth={2} />
+                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center">
+                  <Icon className="w-6 h-6 text-[#222222]" strokeWidth={2} />
                 </div>
                 {label}
               </Link>
@@ -251,7 +251,7 @@ export function Header() {
                 className="flex items-center gap-6 px-6 py-4.5 rounded-3xl text-[17px] font-bold text-gray-800 hover:bg-gray-50 transition-all"
                 onClick={() => setMobileOpen(false)}
               >
-                <Coins className="w-7 h-7 text-[#057850]" />
+                <Coins className="w-7 h-7 text-[#FF5500]" />
                 Cashback
               </Link>
           </div>
@@ -261,7 +261,7 @@ export function Header() {
               <div className="space-y-5">
                 <Link
                   href="/dashboard"
-                  className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-[#057850] text-white font-black text-sm uppercase tracking-[0.35em] shadow-2xl shadow-[#057850]/25 transition-all active:scale-[0.97]"
+                  className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-[#FF5500] text-white font-black text-sm uppercase tracking-[0.35em] shadow-2xl shadow-[#FF5500]/25 transition-all active:scale-[0.97]"
                   onClick={() => setMobileOpen(false)}
                 >
                   <LayoutDashboard className="w-7 h-7" />
@@ -269,7 +269,7 @@ export function Header() {
                 </Link>
                 <button
                   onClick={() => { signOut(); setMobileOpen(false); }}
-                  className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-red-50 text-red-600 font-black text-sm uppercase tracking-[0.35em] transition-all active:scale-[0.97]"
+                  className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-gray-50 text-[#222222] font-black text-sm uppercase tracking-[0.35em] transition-all active:scale-[0.97]"
                 >
                   Çıxış
                 </button>
@@ -277,7 +277,7 @@ export function Header() {
             ) : (
               <Link
                 href="/login"
-                className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-[#057850] text-white font-black text-sm uppercase tracking-[0.35em] shadow-2xl shadow-[#057850]/25 transition-all active:scale-[0.97]"
+                className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-[#FF5500] text-white font-black text-sm uppercase tracking-[0.35em] shadow-2xl shadow-[#FF5500]/25 transition-all active:scale-[0.97]"
                 onClick={() => setMobileOpen(false)}
               >
                 <UserCircle className="w-7 h-7" />

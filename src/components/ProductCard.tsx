@@ -26,13 +26,13 @@ export function ProductCard({
     <Link 
       href={`/product/${product.id}`}
       key={product.id} 
-      className="bg-[#FFFFFF] rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden hover:shadow-2xl hover:shadow-[#057850]/10 hover:border-[#057850]/10 hover:-translate-y-2 transition-all duration-500 ease-out group flex flex-col cursor-pointer relative"
+      className="bg-[#FFFFFF] rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ease-out group flex flex-col cursor-pointer relative"
     >
       {/* Image & Badge */}
       <div className="relative aspect-square overflow-hidden bg-gray-50/50 flex items-center justify-center p-8">
         <div className="absolute top-4 left-4 z-10">
           {realDiscount ? (
-            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-black bg-[#057850] text-white shadow-lg shadow-green-500/30 uppercase tracking-wider">
+            <span className="inline-flex items-center px-3 py-1.5 rounded-md text-[10px] font-black bg-[#FF5500] text-white shadow-sm uppercase tracking-wider">
               <Tag className="w-3 h-3 mr-1.5" /> REAL ENDİRİM {discountPercent > 0 && `-${discountPercent}%`}
             </span>
           ) : (
@@ -55,14 +55,14 @@ export function ProductCard({
       {/* Content */}
       <div className="p-6 flex-1 flex flex-col">
         <div className="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-[0.2em]">{storeName}</div>
-        <h3 className="text-sm font-bold text-brand-navy mb-6 line-clamp-2 leading-relaxed flex-1 group-hover:text-brand-green transition-colors">
+        <h3 className="text-sm font-bold text-[#222222] mb-6 line-clamp-2 leading-relaxed flex-1 group-hover:text-[#FF5500] transition-colors">
           {product.title}
         </h3>
         
         <div className="mt-auto">
           <div className="flex items-center gap-3">
             <span className="text-gray-400 line-through text-sm font-medium">{oldPrice} ₼</span>
-            <span className="text-brand-green font-black text-2xl tracking-tighter">{newPrice} ₼</span>
+            <span className="text-[#222222] font-black text-2xl tracking-tighter">{newPrice} ₼</span>
           </div>
         </div>
       </div>
