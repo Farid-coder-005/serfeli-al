@@ -109,7 +109,7 @@ export function Header() {
 
         {/* 3. Category Strip */}
         <nav className="bg-[#102a46] py-3 hidden md:block w-full">
-          <div className="max-w-[1200px] mx-auto w-full px-4 flex gap-8 overflow-x-auto no-scrollbar items-center">
+          <div className="max-w-[1200px] mx-auto w-full px-4 flex justify-between items-start overflow-x-auto no-scrollbar">
             {CATEGORIES.map(({ label, icon: Icon, href }, idx) => {
               if (idx === 0) {
                 return (
