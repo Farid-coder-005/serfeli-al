@@ -47,155 +47,76 @@ export function Header() {
 
   return (
     <div className="z-[9999] relative">
-      {/* BAR A — Top Utility (Refined: Perfectly Centered Content) */}
-      <div className="hidden md:block bg-[#111820] text-white text-[11px] font-bold tracking-[0.15em] border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center h-8">
-          <nav aria-label="Top navigation" className="flex items-center gap-0">
-            {TOP_LINKS.map(({ label, href, id }) => (
-              <Link
-                key={id}
-                href={href}
-                onClick={() => setActiveTopLink(id)}
-                className={[
-                  "px-4 py-1 transition-all relative h-8 flex items-center drop-shadow-sm",
-                  activeTopLink === id
-                    ? "text-[#FF5500] after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-[#FF5500] after:rounded-full"
-                    : "text-gray-300 hover:text-white scale-100 active:scale-95",
-                ].join(" ")}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* ════════════════════════════════════════════════════════
-          BAR B — Main Header (Refined: Ultra-prominent Logo Scaled 2x)
-          ════════════════════════════════════════════════════════ */}
-      <header
-        role="banner"
-        className="bg-white sticky top-0 z-[9999] border-b border-gray-100 shadow-sm"
-      >
+      <header role="banner" className="bg-white sticky top-0 z-[9999] border-b border-gray-200 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-8 sm:gap-10 lg:gap-20 h-[130px] sm:h-[165px]">
+          <div className="flex items-center justify-between gap-6">
+            
+            {/* Logo */}
+            <Link href="/" className="shrink-0 flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Sərfəli.al"
+                width={160}
+                height={40}
+                className="h-[35px] sm:h-[45px] w-auto object-contain"
+                priority
+              />
+            </Link>
 
-            {/* ── Hamburger & Logo Container ── */}
-            <div className="flex items-center gap-6 sm:gap-10 shrink-0">
-              <button
-                aria-label={mobileOpen ? "Close menu" : "Open menu"}
-                aria-expanded={mobileOpen}
-                aria-controls="mobile-nav"
-                onClick={() => setMobileOpen((v) => !v)}
-                className="flex items-center justify-center w-14 h-14 rounded-2xl text-[#FF5500] hover:bg-gray-50 active:bg-gray-100 transition-all shrink-0"
-              >
-                {mobileOpen
-                  ? <X className="w-9 h-9" strokeWidth={2.5} />
-                  : <Menu className="w-10 h-10" strokeWidth={2.5} />
-                }
-              </button>
-
-              <Link href="/" aria-label="Sərfəli.al – Ana səhifə" className="shrink-0 relative group flex items-center p-0">
-                <Image
-                  src="/logo.png"
-                  alt="Sərfəli.al"
-                  width={500}
-                  height={165}
-                  className="h-[130px] sm:h-[165px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                  style={{ width: "auto" }}
-                  priority
-                />
-              </Link>
-            </div>
-
-            {/* ── Search Bar (Centrally Dominant) ── */}
-            <div className="flex-[3.5] hidden md:block max-w-5xl group transition-all">
+            {/* Search Bar */}
+            <div className="flex-1 max-w-[600px] hidden md:block">
               <SearchBar />
             </div>
 
-            {/* ── Right functional icons (Efficient Spacing) ── */}
-            <div className="flex items-center gap-10 lg:gap-14 ml-auto md:ml-10 shrink-0">
-
-              <Link
-                href="/wishlist"
-                className="flex flex-col items-center justify-center text-[#222222] hover:text-[#FF5500] transition-all group px-2"
-                aria-label="Qeydlərim"
-              >
-                <Heart className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                <span className="text-[10px] mt-2 hidden md:block font-extrabold tracking-[0.2em] uppercase text-[#64748b]">Qeydlərim</span>
+            {/* User Actions */}
+            <div className="flex items-center gap-6 shrink-0">
+              <Link href="/wishlist" className="flex flex-col items-center text-[#222222] hover:text-[#FF5500] transition-colors group">
+                <Heart className="w-6 h-6 stroke-[1.5] group-hover:fill-[#FF5500]/10" />
+                <span className="text-[10px] sm:text-[11px] mt-1 font-bold">Merkzettel</span>
               </Link>
-
-              <Link
-                href="/dashboard"
-                className="hidden sm:flex flex-col items-center justify-center text-[#222222] hover:text-[#FF5500] transition-all group px-2"
-                aria-label="Cashback"
-              >
-                <Coins className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                <span className="text-[10px] mt-2 hidden md:block font-extrabold tracking-[0.2em] uppercase text-[#64748b]">Cashback</span>
-              </Link>
-
               {isLoggedIn ? (
-                <Link
-                  href="/dashboard"
-                  className="flex flex-col items-center justify-center text-[#222222] hover:text-[#FF5500] transition-all group px-2"
-                  aria-label="Profilim"
-                >
-                  <User className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                  <span className="text-[10px] mt-2 hidden md:block font-extrabold tracking-[0.2em] uppercase text-[#64748b]">Profilim</span>
+                <Link href="/dashboard" className="flex flex-col items-center text-[#222222] hover:text-[#FF5500] transition-colors group">
+                  <User className="w-6 h-6 stroke-[1.5] group-hover:stroke-[#FF5500]" />
+                  <span className="text-[10px] sm:text-[11px] mt-1 font-bold">Mein Sərfəli</span>
                 </Link>
               ) : (
-                <Link
-                  href="/login"
-                  className="flex flex-col items-center justify-center text-[#222222] hover:text-[#FF5500] transition-all group px-2"
-                  aria-label="Profilim"
-                >
-                  <User className="w-8 h-8 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                  <span className="text-[10px] mt-2 hidden md:block font-extrabold tracking-[0.2em] uppercase text-[#64748b]">Profilim</span>
+                <Link href="/login" className="flex flex-col items-center text-[#222222] hover:text-[#FF5500] transition-colors group">
+                  <User className="w-6 h-6 stroke-[1.5] group-hover:stroke-[#FF5500]" />
+                  <span className="text-[10px] sm:text-[11px] mt-1 font-bold">Mein Sərfəli</span>
                 </Link>
               )}
+              {/* Mobile menu button */}
+              <button
+                className="md:hidden flex flex-col items-center text-[#222222] transition-colors"
+                onClick={() => setMobileOpen(true)}
+              >
+                <Menu className="w-6 h-6 stroke-[1.5]" />
+                <span className="text-[10px] mt-1 font-bold">Menü</span>
+              </button>
             </div>
           </div>
-
-          <div className="md:hidden pb-6">
+          
+          {/* Mobile Search */}
+          <div className="mt-3 md:hidden">
             <SearchBar />
           </div>
         </div>
       </header>
 
-      {/* BAR C — Categories (Refined: Perfectly Centered on White & Palette-aware) */}
-      <nav
-        aria-label="Category navigation"
-        className="bg-white hidden md:block h-16 border-b border-gray-100 shadow-sm"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <ul className="flex items-center gap-4 overflow-x-auto no-scrollbar list-none m-0 p-0 h-full scroll-smooth">
+      {/* Second Row (Sub-nav) */}
+      <nav className="bg-white hidden md:block border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ul className="flex items-center gap-8 overflow-x-auto no-scrollbar py-3">
             {CATEGORIES.map(({ label, icon: Icon, href }) => {
               const isActive = pathname === href;
               return (
-                <li key={label} className="h-full flex shrink-0">
-                  <Link
-                    href={href}
-                    className={[
-                      "flex items-center gap-3 px-5 transition-all whitespace-nowrap h-full relative group",
-                      isActive 
-                        ? "text-[#FF5500] bg-gray-50/50" 
-                        : "text-[#64748b] hover:text-[#FF5500] hover:bg-gray-50/50"
-                    ].join(" ")}
+                <li key={label} className="shrink-0">
+                  <Link 
+                    href={href} 
+                    className={`flex items-center gap-2 text-[13px] transition-colors font-bold ${isActive ? 'text-[#FF5500]' : 'text-[#222222] hover:text-[#FF5500]'}`}
                   >
-                    <Icon 
-                      className={[
-                        "w-5 h-5 shrink-0 transition-transform group-hover:scale-110",
-                        isActive ? "text-[#FF5500]" : "text-[#64748b]"
-                      ].join(" ")} 
-                      strokeWidth={isActive ? 2.5 : 2} 
-                    />
-                    <span className="text-[13px] font-black tracking-tight uppercase">{label}</span>
-                    <div 
-                      className={[
-                        "absolute bottom-0 left-0 right-0 h-[3px] bg-[#FF5500] rounded-full transition-opacity duration-300",
-                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                      ].join(" ")}
-                    />
+                    <Icon className="w-4 h-4 stroke-[2]" />
+                    {label}
                   </Link>
                 </li>
               );
@@ -204,95 +125,61 @@ export function Header() {
         </div>
       </nav>
 
-      {/* ════════════════════════════════════════════════════════
-          MOBILE DRAWER
-          ════════════════════════════════════════════════════════ */}
+      {/* Mobile Drawer */}
       <div
         id="mobile-nav"
         role="navigation"
-        aria-label="Mobile navigation"
         aria-hidden={!mobileOpen}
         className={[
-          "fixed left-0 right-0 z-[9998] bg-white shadow-2xl",
+          "fixed left-0 right-0 z-[9998] bg-white shadow-xl",
           "overflow-y-auto transition-all duration-300 ease-in-out",
-          mobileOpen ? "top-[184px] max-h-[calc(100vh-184px)] opacity-100" : "top-[184px] max-h-0 opacity-0 pointer-events-none",
+          mobileOpen ? "top-[120px] max-h-[calc(100vh-120px)] opacity-100" : "top-[120px] max-h-0 opacity-0 pointer-events-none",
         ].join(" ")}
       >
-        <div className="px-8 py-10 space-y-5">
-          <p className="text-[13px] font-black text-[#FF5500] uppercase tracking-[0.35em] px-2 pb-5 border-b border-gray-100 mb-8 font-sans">KATEQORIYALAR</p>
-          
-          <div className="grid grid-cols-1 gap-2.5">
-            {CATEGORIES.map(({ label, icon: Icon, href }) => (
-              <Link
-                key={label}
-                href={href}
-                className="flex items-center gap-6 px-6 py-4.5 rounded-3xl text-[17px] font-bold text-gray-800 hover:bg-[#FF5500]/5 active:bg-[#FF5500]/10 transition-all border border-transparent active:border-[#FF5500]/20"
-                onClick={() => setMobileOpen(false)}
-              >
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-[#222222]" strokeWidth={2} />
-                </div>
-                {label}
-              </Link>
-            ))}
+        <div className="px-6 py-6 space-y-2">
+          <div className="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+            <span className="font-bold text-lg text-[#222222]">Kategorien</span>
+            <button onClick={() => setMobileOpen(false)} className="p-2 text-gray-500 hover:text-red-500">
+               <X className="w-6 h-6" />
+            </button>
           </div>
-
-          <div className="mt-12 pt-10 border-t border-gray-100 space-y-5">
-             <Link
-                href="/wishlist"
-                className="flex items-center gap-6 px-6 py-4.5 rounded-3xl text-[17px] font-bold text-gray-800 hover:bg-gray-50 transition-all"
-                onClick={() => setMobileOpen(false)}
-              >
-                <Heart className="w-7 h-7 text-red-500" />
-                Qeydlərim
-              </Link>
-              <Link
-                href="/dashboard"
-                className="flex items-center gap-6 px-6 py-4.5 rounded-3xl text-[17px] font-bold text-gray-800 hover:bg-gray-50 transition-all"
-                onClick={() => setMobileOpen(false)}
-              >
-                <Coins className="w-7 h-7 text-[#FF5500]" />
-                Cashback
-              </Link>
-          </div>
-
-          <div className="mt-10">
-            {isLoggedIn ? (
-              <div className="space-y-5">
+          {CATEGORIES.map(({ label, icon: Icon, href }) => (
+            <Link
+              key={label}
+              href={href}
+              className="flex items-center gap-4 py-3 text-[15px] font-bold text-[#222222] hover:text-[#FF5500]"
+              onClick={() => setMobileOpen(false)}
+            >
+              <Icon className="w-5 h-5" />
+              {label}
+            </Link>
+          ))}
+          <div className="pt-6 mt-6 border-t border-gray-100">
+             {isLoggedIn ? (
+               <button
+                  onClick={() => { signOut(); setMobileOpen(false); }}
+                  className="w-full text-left py-3 text-[15px] font-bold text-red-600"
+               >
+                 Çıxış
+               </button>
+             ) : (
                 <Link
-                  href="/dashboard"
-                  className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-[#FF5500] text-white font-black text-sm uppercase tracking-[0.35em] shadow-2xl shadow-[#FF5500]/25 transition-all active:scale-[0.97]"
+                  href="/login"
+                  className="block w-full py-3 text-[15px] font-bold text-[#FF5500]"
                   onClick={() => setMobileOpen(false)}
                 >
-                  <LayoutDashboard className="w-7 h-7" />
-                  Profilim
+                  Giriş / Qeydiyyat
                 </Link>
-                <button
-                  onClick={() => { signOut(); setMobileOpen(false); }}
-                  className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-gray-50 text-[#222222] font-black text-sm uppercase tracking-[0.35em] transition-all active:scale-[0.97]"
-                >
-                  Çıxış
-                </button>
-              </div>
-            ) : (
-              <Link
-                href="/login"
-                className="flex items-center justify-center gap-5 w-full py-6 rounded-[2rem] bg-[#FF5500] text-white font-black text-sm uppercase tracking-[0.35em] shadow-2xl shadow-[#FF5500]/25 transition-all active:scale-[0.97]"
-                onClick={() => setMobileOpen(false)}
-              >
-                <UserCircle className="w-7 h-7" />
-                Giriş / Qeydiyyat
-              </Link>
-            )}
+             )}
           </div>
         </div>
       </div>
-
+      
       {mobileOpen && (
         <div
           aria-hidden="true"
           onClick={() => setMobileOpen(false)}
-          className="fixed inset-0 z-[9997] bg-black/60 backdrop-blur-xl transition-opacity animate-in fade-in duration-500"
+          className="fixed inset-0 z-[9997] bg-black/50 transition-opacity"
         />
       )}
     </div>

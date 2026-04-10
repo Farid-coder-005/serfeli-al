@@ -101,119 +101,96 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <span className="text-brand-navy truncate max-w-[150px]">{product.title}</span>
         </nav>
 
-        {/* Unified Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-[450px_1fr] gap-8 lg:gap-12 items-start mb-12">
+        {/* Unified Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_400px] gap-8 items-start mb-12">
           
-          {/* Left Column: Product Visual & Specs */}
-          <div className="flex flex-col">
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-10 shadow-sm flex items-center justify-center aspect-square relative overflow-hidden group">
-               <FavoriteButton productId={product.id} initialFavorited={isFavorited} className="absolute top-4 right-4 z-20 scale-90" />
-               <Image 
-                 src={product.imageUrl || "/iphone15pro.png"} 
-                 alt={product.title} 
-                 width={600} 
-                 height={600} 
-                 priority
-                 className="relative z-10 object-contain w-full h-full mix-blend-multiply" 
-               />
-            </div>
-            {/* Gallery Miniatures */}
-            <div className="flex gap-3 mt-4 justify-center">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="w-14 h-14 rounded-xl border border-gray-200 p-1.5 bg-white cursor-pointer hover:border-[#FF5500] transition-all">
-                   <Image src={product.imageUrl || "/iphone15pro.png"} alt="thumb" width={60} height={60} className="object-contain w-full h-full mix-blend-multiply" />
-                </div>
-              ))}
+          {/* Left Column: Title & Massive Product Visual */}
+          <div className="flex flex-col gap-6">
+            <div>
+               <h1 className="text-2xl sm:text-3xl font-bold text-[#222222] tracking-normal leading-[1.2]">
+                 {product.title}
+               </h1>
             </div>
 
+            <div className="bg-white rounded-sm border border-gray-200 p-6 sm:p-10 shadow-sm flex flex-col items-center justify-center relative group min-h-[500px]">
+               <FavoriteButton productId={product.id} initialFavorited={isFavorited} className="absolute top-4 right-4 z-20 scale-100" />
+               <div className="relative w-full h-[400px]">
+                 <Image 
+                   src={product.imageUrl || "/iphone15pro.png"} 
+                   alt={product.title} 
+                   fill
+                   sizes="(max-width: 768px) 100vw, 60vw"
+                   priority
+                   className="object-contain mix-blend-multiply flex-1" 
+                 />
+               </div>
+               
+               {/* Gallery Miniatures */}
+               <div className="flex gap-3 mt-8 justify-center w-full">
+                 {[1, 2, 3].map(i => (
+                   <div key={i} className="w-16 h-16 rounded-sm border border-gray-200 p-1.5 bg-white cursor-pointer hover:border-[#FF5500] transition-all relative">
+                      <Image src={product.imageUrl || "/iphone15pro.png"} alt="thumb" fill className="object-contain mix-blend-multiply p-1" />
+                   </div>
+                 ))}
+               </div>
+            </div>
+            
             <ProductSpecsGrid />
           </div>
 
-          {/* Right Column: Title & Table */}
-          <div className="flex flex-col gap-6">
-            <div>
-               <h1 className="text-2xl sm:text-3xl font-bold text-[#222222] tracking-normal leading-[1.2] mb-3">
-                 {product.title}
-               </h1>
-               <div className="flex items-center gap-3">
-                 <div className="flex items-center gap-1 text-[#222222] text-[11px] font-bold">
-                   <Timer className="w-3.5 h-3.5" /> Stokda Var
-                 </div>
-                 <span className="text-[11px] font-medium text-gray-500">Model: MYTP3CH/A</span>
-               </div>
-            </div>
-
-            {/* Smart Warning within Header Area */}
+          {/* Right Column: The Comparison Table Block */}
+          <div className="flex flex-col gap-4">
+            {/* Smart Warning */}
             {!isRealDiscount && (
-              <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg flex items-start gap-2.5">
+              <div className="p-4 bg-orange-50 border border-orange-200 rounded-sm flex items-start gap-2.5">
                 <AlertTriangle className="w-4 h-4 text-[#FF5500] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-[11px] font-bold text-[#FF5500] mb-0.5">Süni Artım Ola Bilər</p>
-                  <p className="text-[11px] text-gray-600 font-medium leading-tight">Bu qiymət son 30 günün ən aşağı qiyməti deyil.</p>
+                  <p className="text-[12px] font-bold text-[#FF5500] mb-0.5">Qiymət Xəbərdarlığı</p>
+                  <p className="text-[11px] text-[#222222]">Bu təklif son 30 günün minimumundan yuxarıdır.</p>
                 </div>
               </div>
             )}
 
-            {/* Compact Comparison Table */}
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex-1">
-              <div className="overflow-x-auto">
-                 <table className="w-full text-left border-collapse">
-                   <thead className="bg-[#F4F4F4] border-b border-gray-200">
-                     <tr>
-                       <th className="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Mağaza</th>
-                       <th className="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-wider hidden md:table-cell text-center">Zəmanət</th>
-                       <th className="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Qiymət</th>
-                       <th className="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-wider text-right">Keçid</th>
-                     </tr>
-                   </thead>
-                   <tbody className="divide-y divide-gray-100">
-                     {product.offers.map((offer: any, idx: number) => {
-                       const isCheapest = idx === 0;
-                       return (
-                         <tr key={offer.id} className={`group hover:bg-orange-50/20 transition-all`}>
-                           <td className="px-6 py-5">
-                             <div className="flex items-center gap-3">
-                               <div className="w-12 h-12 rounded-lg bg-white border border-gray-100 shadow-sm flex items-center justify-center p-2">
-                                 <Image src={getStoreLogo(offer.store.name)} alt={offer.store.name} width={32} height={32} className="object-contain opacity-90 group-hover:opacity-100" />
-                               </div>
-                               <div>
-                                 <p className="text-xs font-bold text-[#222222]">{offer.store.name}</p>
-                                 <div className="flex items-center gap-1 mt-1 text-[10px] font-medium text-gray-500">
-                                  <ShieldCheck className="w-3 h-3 text-gray-400" /> Tərəfdaş
-                                 </div>
-                               </div>
-                             </div>
-                           </td>
-                           <td className="px-6 py-5 hidden md:table-cell text-center">
-                              <span className="inline-flex items-center gap-1 text-[10px] font-medium text-gray-600 bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200">
-                                Rəsmi
-                              </span>
-                           </td>
-                           <td className="px-6 py-5">
-                             <div className="flex flex-col">
-                               <span className={`font-black tracking-tighter ${isCheapest ? "text-[#222222] text-xl" : "text-gray-700 text-lg"}`}>
-                                 {offer.currentPrice} ₼
-                               </span>
-                               {isCheapest && (
-                                 <span className="text-[10px] font-bold text-[#FF5500] mt-0.5">Top Təklif</span>
-                               )}
-                             </div>
-                           </td>
-                           <td className="px-6 py-5 text-right">
-                              <a href={offer.productUrl || "#"} target="_blank" rel="noopener noreferrer" 
-                                className={`inline-flex items-center justify-center min-w-[120px] gap-1.5 px-6 py-3 rounded-xl text-[12px] font-bold transition-all shadow-sm ${
-                                  isCheapest ? "bg-[#FF5500] text-white hover:bg-[#E04A00]" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                }`}
-                              >
-                                {isCheapest ? "Mağazaya keç" : "Mağazaya keç"}
-                                <ChevronRight className="w-3.5 h-3.5" />
-                              </a>
-                           </td>
-                         </tr>
-                       );
-                     })}
-                   </tbody>
-                 </table>
+            <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="px-5 py-4 bg-[#F4F4F4] border-b border-gray-200 flex justify-between items-center">
+                 <span className="text-[14px] font-bold text-[#222222]">Təkliflər ({product.offers.length})</span>
+              </div>
+              <div className="flex flex-col divide-y divide-gray-100">
+                {product.offers.map((offer: any, idx: number) => {
+                  const isCheapest = idx === 0;
+                  return (
+                    <div key={offer.id} className="p-5 flex flex-col gap-4 hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center gap-4">
+                        {/* Shop Logo */}
+                        <div className="w-14 h-14 rounded-sm border border-gray-200 bg-white flex items-center justify-center p-2 shrink-0">
+                          <Image src={getStoreLogo(offer.store.name)} alt={offer.store.name} width={40} height={40} className="object-contain mix-blend-multiply" />
+                        </div>
+                        <div className="flex flex-col flex-1">
+                          <span className="text-[13px] font-bold text-[#222222]">{offer.store.name}</span>
+                          <span className="text-[11px] text-gray-500 mt-0.5 flex items-center gap-1">
+                            <Timer className="w-3 h-3" /> Hazırda Stokda
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-end justify-between mt-2">
+                        {/* Price */}
+                        <div className="flex flex-col">
+                          {isCheapest && <span className="text-[10px] font-bold text-[#FF5500] mb-0.5 uppercase tracking-widest">Ən Yaxşı Təklif</span>}
+                          <span className="text-[22px] font-black text-[#222222] tracking-tighter leading-none">{offer.currentPrice} ₼</span>
+                        </div>
+                        {/* CTA */}
+                        <a href={offer.productUrl || "#"} target="_blank" rel="noopener noreferrer" 
+                          className={`flex items-center justify-center gap-2 px-6 py-2.5 rounded-sm text-[13px] font-bold transition-all ${
+                            isCheapest ? "bg-[#FF5500] text-white hover:bg-[#E04A00]" : "bg-gray-200 text-[#222222] hover:bg-gray-300"
+                          }`}
+                        >
+                          Zum Shop <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
