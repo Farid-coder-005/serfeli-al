@@ -1,27 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Smartphone,
-  Sofa,
-  Shirt,
-  Sparkles,
-  ShoppingBag,
-  ArrowRight,
-  TrendingDown,
-  Tag
+  Smartphone, Sofa, Shirt, Sparkles, ShoppingBag, 
+  ArrowRight, TrendingDown, Tag, Laptop,
+  Tv, Headset, Watch, Camera, Coffee,
+  ChevronRight
 } from "lucide-react";
-
-const TRENDING_SEARCHES = [
-  "iPhone 15 Pro", "Kondisionerlər", "PlayStation 5", "Dyson Saç Qurudan", "AirPods Pro"
-];
-
-const PARTNERS = ["Kontakt", "İrşad", "Baku Electronics", "Soliton", "Music Gallery", "Optimal"];
-
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { ProductCard } from "@/components/ProductCard";
-import { ProductGrid } from "@/components/ProductGrid";
 
 export default async function Page() {
   const products = await prisma.product.findMany({ 
@@ -37,77 +25,102 @@ export default async function Page() {
     });
     userFavoriteIds = faves.map(f => f.productId);
   }
+
+  const shortcuts = [
+    { label: "Telefonlar", icon: Smartphone, href: "/search?category=elektronika" },
+    { label: "Laptoplar", icon: Laptop, href: "/search?category=elektronika" },
+    { label: "TV", icon: Tv, href: "/search?category=elektronika" },
+    { label: "Saatlar", icon: Watch, href: "/search?category=elektronika" },
+    { label: "Qulaqlıqlar", icon: Headset, href: "/search?category=elektronika" },
+    { label: "Kameralar", icon: Camera, href: "/search?category=elektronika" },
+    { label: "Mətbəx", icon: Coffee, href: "/search?category=ev-bagca" },
+  ];
+
+  const relatedCategories = [
+    { label: "Smartfonlar", img: "/iphone15pro.png", href: "#" },
+    { label: "Qulaqlıqlar", img: "/iphone15pro.png", href: "#" },
+    { label: "Planşetlər", img: "/iphone15pro.png", href: "#" },
+    { label: "Ağıllı Saatlar", img: "/iphone15pro.png", href: "#" },
+  ];
+
   return (
-    <div className="flex flex-col w-full bg-[#F4F4F4] min-h-screen">
-      {/* Category Grid Section */}
-      <section className="pt-8 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl sm:text-3xl font-black text-[#222222] mb-6 sm:mb-8">Kategoriyaları kəşf et</h1>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Link href="/search?category=elektronika" className="bg-white p-6 rounded-sm border border-gray-200 hover:shadow-sm hover:border-gray-300 transition-all flex flex-col items-center text-center gap-3 group">
-              <Smartphone className="w-10 h-10 text-[#222222] group-hover:text-[#FF5500] transition-colors" strokeWidth={1.5} />
-              <span className="font-bold text-[15px] text-[#222222] group-hover:underline">Elektronika & Texnologiya</span>
-            </Link>
-            <Link href="/search?category=ev-bagca" className="bg-white p-6 rounded-sm border border-gray-200 hover:shadow-sm hover:border-gray-300 transition-all flex flex-col items-center text-center gap-3 group">
-              <Sofa className="w-10 h-10 text-[#222222] group-hover:text-[#FF5500] transition-colors" strokeWidth={1.5} />
-              <span className="font-bold text-[15px] text-[#222222] group-hover:underline">Ev və Bağça</span>
-            </Link>
-            <Link href="/search?category=moda" className="bg-white p-6 rounded-sm border border-gray-200 hover:shadow-sm hover:border-gray-300 transition-all flex flex-col items-center text-center gap-3 group">
-              <Shirt className="w-10 h-10 text-[#222222] group-hover:text-[#FF5500] transition-colors" strokeWidth={1.5} />
-              <span className="font-bold text-[15px] text-[#222222] group-hover:underline">Geyim və Moda</span>
-            </Link>
-            <Link href="/search?category=idman" className="bg-white p-6 rounded-sm border border-gray-200 hover:shadow-sm hover:border-gray-300 transition-all flex flex-col items-center text-center gap-3 group">
-              <TrendingDown className="w-10 h-10 text-[#222222] group-hover:text-[#FF5500] transition-colors" strokeWidth={1.5} />
-              <span className="font-bold text-[15px] text-[#222222] group-hover:underline">Top Deals & Təkliflər</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Top Deals Section */}
-      <section className="py-12 bg-white border-y border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-             <h2 className="text-2xl font-black text-[#222222]">Aktual Endirimlər</h2>
-             <Link href="/search" className="text-[#005ea8] font-bold hover:underline flex items-center gap-1 text-[15px]">
-               Bütün endirimlər <ArrowRight className="w-4 h-4" />
-             </Link>
-          </div>
-          <ProductGrid products={products.slice(0, 4)} userFavoriteIds={userFavoriteIds} />
-        </div>
-      </section>
-
-      {/* Trending Searches */}
-      <section className="py-10 bg-[#F4F4F4]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-lg font-bold text-[#222222] mb-4">Ən çox axtarılanlar</h3>
-          <div className="flex flex-wrap gap-2">
-            {TRENDING_SEARCHES.map((tag) => (
-              <Link 
-                key={tag} 
-                href={`/search?q=${encodeURIComponent(tag)}`}
-                className="px-4 py-2 bg-white border border-gray-200 text-[#005ea8] text-[13px] hover:underline hover:border-gray-300 transition-all"
-              >
-                {tag}
+    <div className="flex flex-col w-full bg-white min-h-screen">
+      
+      {/* 1. Block 1: Circular Shortcuts */}
+      <section className="py-8 border-b border-gray-100">
+        <div className="max-w-[1200px] mx-auto w-full px-4">
+          <div className="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar pb-2">
+            {shortcuts.map((item, idx) => (
+              <Link key={idx} href={item.href} className="flex flex-col items-center gap-2 group shrink-0">
+                <div className="w-[70px] h-[70px] rounded-full border-2 border-[#FF5500] flex items-center justify-center bg-white overflow-hidden p-3 transition-transform group-hover:scale-105">
+                  <item.icon className="w-8 h-8 text-[#222222]" strokeWidth={1.5} />
+                </div>
+                <span className="text-[12px] font-bold text-[#222222] text-center">{item.label}</span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Partner Stores */}
-      <section className="py-16 bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-sm font-bold text-gray-400 mb-8 uppercase tracking-widest">Mağazalarımız</h2>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 grayscale opacity-60">
-            {PARTNERS.map((partner, idx) => (
-              <div key={idx} className="text-lg sm:text-2xl font-black text-gray-800 select-none">
-                {partner}
-              </div>
+      {/* 2. Block 2: Popular Products */}
+      <section className="py-10">
+        <div className="max-w-[1200px] mx-auto w-full px-4">
+          <div className="flex justify-between items-baseline mb-6">
+            <h2 className="text-[22px] font-bold text-[#1a1a1a]">Populyar məhsullar</h2>
+            <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Hamısına bax</Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {products.slice(0, 10).map((p) => (
+              <ProductCard key={p.id} product={p} userFavoriteIds={userFavoriteIds} />
             ))}
           </div>
         </div>
       </section>
+
+      {/* 3. Block 3: The Blue Deals Band */}
+      <section className="py-12 bg-[#E8F0F8]">
+        <div className="max-w-[1200px] mx-auto w-full px-4">
+          <div className="flex flex-col items-center">
+            <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center">Sizin üçün təkliflər</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 w-full">
+              {products.slice(10, 14).map((p) => (
+                <ProductCard key={p.id} product={p} userFavoriteIds={userFavoriteIds} />
+              ))}
+            </div>
+            <Link href="/search" className="bg-[#005ea8] text-white px-8 py-3 rounded-sm font-bold text-[15px] hover:bg-[#004b86] transition-colors">
+              Bütün təkliflərə bax
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Block 4: Related Categories */}
+      <section className="py-12">
+        <div className="max-w-[1200px] mx-auto w-full px-4">
+          <h2 className="text-[22px] font-bold text-[#1a1a1a] mb-6 font-primary">Əlaqəli kateqoriyalar</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {relatedCategories.map((cat, idx) => (
+              <Link 
+                key={idx} 
+                href={cat.href} 
+                className="bg-gray-100 rounded-md p-4 flex items-center justify-between h-[100px] group overflow-hidden relative"
+              >
+                <div className="flex flex-col z-10">
+                  <span className="text-[15px] font-bold text-[#1a1a1a] group-hover:text-[#005ea8] transition-colors">{cat.label}</span>
+                  <div className="mt-1 flex items-center text-[11px] text-[#005ea8] font-bold">
+                    Keçid <ChevronRight className="w-3 h-3 ml-0.5" />
+                  </div>
+                </div>
+                <div className="relative w-20 h-20 -right-2 top-2 shrink-0 opacity-80 group-hover:opacity-100 transition-opacity">
+                   <Image src={cat.img} alt={cat.label} fill className="object-contain object-right" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
+
