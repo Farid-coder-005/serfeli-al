@@ -10,6 +10,7 @@ import {
   Smartphone, Dumbbell, Baby, Home,
   Apple, Gamepad2, HeartPulse, Car, Shirt,
   PawPrint, Plane, Tag, UserCircle, LayoutDashboard,
+  Leaf, Clock, Percent
 } from "lucide-react";
 import SearchBar from "./SearchBar";
 
@@ -47,83 +48,89 @@ export function Header() {
 
   return (
     <div className="z-[9999] relative">
-      <header role="banner" className="bg-white sticky top-0 z-[9999] border-b border-gray-200 py-3">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-6">
-            
-            {/* Logo */}
-            <Link href="/" className="shrink-0 flex items-center">
-              <Image
-                src="/logo.png"
-                alt="Sərfəli.al"
-                width={160}
-                height={40}
-                className="h-[35px] sm:h-[45px] w-auto object-contain"
-                priority
-              />
-            </Link>
-
-            {/* Search Bar */}
-            <div className="flex-1 max-w-[600px] hidden md:block">
-              <SearchBar />
-            </div>
-
-            {/* User Actions */}
-            <div className="flex items-center gap-6 shrink-0">
-              <Link href="/wishlist" className="flex flex-col items-center text-[#222222] hover:text-[#FF5500] transition-colors group">
-                <Heart className="w-6 h-6 stroke-[1.5] group-hover:fill-[#FF5500]/10" />
-                <span className="text-[10px] sm:text-[11px] mt-1 font-bold">Merkzettel</span>
-              </Link>
-              {isLoggedIn ? (
-                <Link href="/dashboard" className="flex flex-col items-center text-[#222222] hover:text-[#FF5500] transition-colors group">
-                  <User className="w-6 h-6 stroke-[1.5] group-hover:stroke-[#FF5500]" />
-                  <span className="text-[10px] sm:text-[11px] mt-1 font-bold">Mein Sərfəli</span>
-                </Link>
-              ) : (
-                <Link href="/login" className="flex flex-col items-center text-[#222222] hover:text-[#FF5500] transition-colors group">
-                  <User className="w-6 h-6 stroke-[1.5] group-hover:stroke-[#FF5500]" />
-                  <span className="text-[10px] sm:text-[11px] mt-1 font-bold">Mein Sərfəli</span>
-                </Link>
-              )}
-              {/* Mobile menu button */}
-              <button
-                className="md:hidden flex flex-col items-center text-[#222222] transition-colors"
-                onClick={() => setMobileOpen(true)}
-              >
-                <Menu className="w-6 h-6 stroke-[1.5]" />
-                <span className="text-[10px] mt-1 font-bold">Menü</span>
-              </button>
-            </div>
-          </div>
-          
-          {/* Mobile Search */}
-          <div className="mt-3 md:hidden">
-            <SearchBar />
+      <header role="banner" className="bg-[#09233f] sticky top-0 z-[9999] text-white flex flex-col">
+        
+        {/* 1. Top Strip */}
+        <div className="bg-[#09233f] text-sm px-4 py-2 hidden md:flex items-center justify-between mx-auto max-w-screen-2xl w-full">
+          <nav className="flex items-center gap-6">
+            <Link href="/" className="font-bold border-b-2 border-[#ff5500] pb-0.5 text-[13px]">ALIŞ-VERİŞ</Link>
+            <Link href="#" className="font-bold text-gray-300 hover:text-white pb-0.5 transition-colors text-[13px]">UÇUŞLAR</Link>
+          </nav>
+          <div className="flex items-center gap-2 text-gray-300 hover:text-white cursor-pointer transition-colors">
+            <span className="text-[12px] font-medium">Sərfəli.al-da davamlılıq</span>
+            <Leaf className="w-3.5 h-3.5 text-[#ff5500]" />
           </div>
         </div>
-      </header>
 
-      {/* Second Row (Sub-nav) */}
-      <nav className="bg-white hidden md:block border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ul className="flex items-center gap-8 overflow-x-auto no-scrollbar py-3">
-            {CATEGORIES.map(({ label, icon: Icon, href }) => {
-              const isActive = pathname === href;
+        {/* 2. Main Row */}
+        <div className="flex items-center gap-4 sm:gap-6 px-4 py-3 bg-[#09233f] mx-auto max-w-screen-2xl w-full">
+          {/* Mobile Hamburger */}
+          <button onClick={() => setMobileOpen(true)} className="md:hidden text-white flex shrink-0 transition-colors hover:text-[#ff5500]">
+            <Menu className="w-6 h-6" strokeWidth={2} />
+          </button>
+          
+          {/* Logo */}
+          <Link href="/" className="shrink-0 flex items-center pr-2 md:pr-6">
+            <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight border-b-4 border-[#ff5500] pb-1 leading-none uppercase">
+              SƏRFƏLİ.AL
+            </span>
+          </Link>
+
+          {/* Search Bar */}
+          <div className="flex-1 max-w-3xl hidden md:block">
+            <SearchBar />
+          </div>
+
+          {/* Right User Actions */}
+          <div className="flex items-center gap-4 sm:gap-6 ml-auto shrink-0 pt-1">
+            <Link href="/wishlist" className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+              <Heart className="w-6 h-6 stroke-[1.5]" />
+              <span className="text-[10px] mt-1 font-medium hidden sm:block">Qeydlərim</span>
+            </Link>
+            <button className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+              <Clock className="w-6 h-6 stroke-[1.5]" />
+              <span className="text-[10px] mt-1 font-medium hidden sm:block">Qiymət bildirişi</span>
+            </button>
+            <Link href={isLoggedIn ? "/dashboard" : "/login"} className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+              <User className="w-6 h-6 stroke-[1.5]" />
+              <span className="text-[10px] mt-1 font-medium hidden sm:block">Profil</span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Mobile Search */}
+        <div className="px-4 pb-3 md:hidden w-full">
+          <SearchBar />
+        </div>
+
+        {/* 3. Category Strip */}
+        <nav className="bg-[#102a46] px-4 py-3 hidden md:block w-full">
+          <ul className="flex overflow-x-auto gap-8 no-scrollbar max-w-screen-2xl mx-auto items-center">
+            {CATEGORIES.map(({ label, icon: Icon, href }, idx) => {
+              if (idx === 0) {
+                return (
+                  <li key={label} className="shrink-0 mt-1">
+                    <Link href={href} className="flex flex-col items-center text-white hover:text-[#ff5500] transition-colors gap-1.5">
+                      <div className="w-[26px] h-[26px] bg-[#ff5500] rounded-[3px] flex items-center justify-center">
+                        <Percent className="w-4 h-4 text-white" strokeWidth={3} />
+                      </div>
+                      <span className="text-[11px] font-medium tracking-wide">{label}</span>
+                    </Link>
+                  </li>
+                );
+              }
               return (
-                <li key={label} className="shrink-0">
-                  <Link 
-                    href={href} 
-                    className={`flex items-center gap-2 text-[13px] transition-colors font-bold ${isActive ? 'text-[#FF5500]' : 'text-[#222222] hover:text-[#FF5500]'}`}
-                  >
-                    <Icon className="w-4 h-4 stroke-[2]" />
-                    {label}
+                <li key={label} className="shrink-0 mt-1">
+                  <Link href={href} className="flex flex-col items-center text-white hover:text-[#ff5500] transition-colors gap-1.5">
+                    <Icon className="w-[26px] h-[26px] stroke-[1.5]" />
+                    <span className="text-[11px] font-medium tracking-wide">{label}</span>
                   </Link>
                 </li>
               );
             })}
           </ul>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {/* Mobile Drawer */}
       <div
@@ -131,34 +138,40 @@ export function Header() {
         role="navigation"
         aria-hidden={!mobileOpen}
         className={[
-          "fixed left-0 right-0 z-[9998] bg-white shadow-xl",
+          "fixed left-0 right-0 z-[9998] bg-[#09233f] text-white shadow-xl",
           "overflow-y-auto transition-all duration-300 ease-in-out",
-          mobileOpen ? "top-[120px] max-h-[calc(100vh-120px)] opacity-100" : "top-[120px] max-h-0 opacity-0 pointer-events-none",
+          mobileOpen ? "top-[115px] max-h-[calc(100vh-115px)] opacity-100" : "top-[115px] max-h-0 opacity-0 pointer-events-none",
         ].join(" ")}
       >
         <div className="px-6 py-6 space-y-2">
-          <div className="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
-            <span className="font-bold text-lg text-[#222222]">Kategorien</span>
-            <button onClick={() => setMobileOpen(false)} className="p-2 text-gray-500 hover:text-red-500">
+          <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+            <span className="font-bold text-lg">Kategoriyalar</span>
+            <button onClick={() => setMobileOpen(false)} className="p-2 text-gray-300 hover:text-white transition-colors">
                <X className="w-6 h-6" />
             </button>
           </div>
-          {CATEGORIES.map(({ label, icon: Icon, href }) => (
+          {CATEGORIES.map(({ label, icon: Icon, href }, idx) => (
             <Link
               key={label}
               href={href}
-              className="flex items-center gap-4 py-3 text-[15px] font-bold text-[#222222] hover:text-[#FF5500]"
+              className="flex items-center gap-4 py-3 text-[15px] font-bold text-gray-200 hover:text-[#ff5500] transition-colors"
               onClick={() => setMobileOpen(false)}
             >
-              <Icon className="w-5 h-5" />
+              {idx === 0 ? (
+                <div className="w-6 h-6 bg-[#ff5500] rounded-sm flex items-center justify-center">
+                  <Percent className="w-4 h-4 text-white" strokeWidth={2.5} />
+                </div>
+              ) : (
+                <Icon className="w-6 h-6" />
+              )}
               {label}
             </Link>
           ))}
-          <div className="pt-6 mt-6 border-t border-gray-100">
+          <div className="pt-6 mt-6 border-t border-white/10">
              {isLoggedIn ? (
                <button
                   onClick={() => { signOut(); setMobileOpen(false); }}
-                  className="w-full text-left py-3 text-[15px] font-bold text-red-600"
+                  className="w-full text-left py-3 text-[15px] font-bold text-red-500"
                >
                  Çıxış
                </button>
@@ -179,7 +192,7 @@ export function Header() {
         <div
           aria-hidden="true"
           onClick={() => setMobileOpen(false)}
-          className="fixed inset-0 z-[9997] bg-black/50 transition-opacity"
+          className="fixed inset-0 z-[9997] bg-black/60 transition-opacity"
         />
       )}
     </div>

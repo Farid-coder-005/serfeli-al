@@ -19,22 +19,22 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSearch}
-      className="flex w-full"
+      className="flex w-full relative"
     >
       <input
         id="main-search-input"
         type="text"
         placeholder="Nə axtarırsınız?"
-        className="flex-1 bg-white py-2.5 pl-4 pr-4 text-[15px] font-medium text-[#222222] placeholder-gray-500 outline-none border-2 border-[#FF5500] focus:border-[#FF5500] rounded-l-sm"
+        className="w-full bg-white py-3.5 pl-4 pr-12 text-[16px] text-[#222222] placeholder-gray-600 outline-none rounded-sm"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button
         type="submit"
         aria-label="Axtar"
-        className="bg-[#FF5500] hover:bg-[#E04A00] text-white px-6 py-2.5 transition-colors flex items-center justify-center shrink-0 rounded-r-sm"
+        className="absolute right-0 top-0 bottom-0 px-3 flex items-center justify-center bg-transparent"
       >
-        <Search className="w-5 h-5" strokeWidth={2.5} />
+        <Search className="w-6 h-6 text-[#ff5500]" strokeWidth={2.5} />
       </button>
     </form>
   );
