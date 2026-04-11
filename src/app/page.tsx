@@ -46,7 +46,7 @@ export default async function Page() {
   return (
     <div className="flex flex-col w-full bg-white min-h-screen">
       
-      {/* 1. Block 1: Circular Shortcuts */}
+      {/* Section 1: Circular Categories */}
       <section className="py-8 border-b border-gray-100">
         <div className="max-w-[1200px] mx-auto w-full px-4">
           <div className="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar pb-2">
@@ -62,33 +62,35 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* 2. Block 2: Populyar məhsullar (Carousel) */}
-      <section className="py-10">
-        <div className="max-w-[1200px] mx-auto w-full px-4">
-          <div className="flex justify-between items-baseline mb-6">
-            <h2 className="text-[22px] font-bold text-[#1a1a1a]">Populyar məhsullar</h2>
-            <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Hamısına bax</Link>
-          </div>
-          <div className="flex gap-4 overflow-x-auto snap-x scroll-smooth pb-6 no-scrollbar">
-            {products.slice(0, 10).map((p) => (
-              <div key={p.id} className="min-w-[260px] md:min-w-[280px] flex-shrink-0 snap-start">
-                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
+      {/* Section 2: Populyar məhsullar */}
+      <section className="max-w-[1200px] mx-auto w-full px-4 py-10">
+        <div className="flex justify-between items-baseline mb-6">
+          <h2 className="text-[22px] font-bold text-[#1a1a1a]">Populyar məhsullar</h2>
+          <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Hamısına bax</Link>
+        </div>
+        <div className="w-full relative">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {products.slice(0, 10).map((product) => (
+              <div key={product.id} className="flex-none w-[260px] md:w-[280px] snap-start">
+                <ProductCard product={product} userFavoriteIds={userFavoriteIds} />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Block 3: Sizin üçün təkliflər (Blue Band Carousel) */}
-      <section className="py-12 bg-[#E8F0F8]">
+      {/* Section 3: Sizin üçün təkliflər (Blue Band) */}
+      <section className="w-full bg-[#E8F0F8] py-12">
         <div className="max-w-[1200px] mx-auto w-full px-4">
           <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">Sizin üçün təkliflər</h2>
-          <div className="flex gap-4 overflow-x-auto snap-x scroll-smooth pb-10 no-scrollbar">
-            {products.slice(10, 20).map((p) => (
-              <div key={p.id} className="min-w-[260px] md:min-w-[280px] flex-shrink-0 snap-start">
-                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
-              </div>
-            ))}
+          <div className="w-full relative">
+            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-10 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {products.slice(10, 20).map((product) => (
+                <div key={product.id} className="flex-none w-[260px] md:w-[280px] snap-start">
+                  <ProductCard product={product} userFavoriteIds={userFavoriteIds} />
+                </div>
+              ))}
+            </div>
           </div>
           <div className="flex justify-center mt-4">
             <Link href="/search" className="bg-[#005ea8] text-white px-8 py-3 rounded-sm font-bold text-[15px] hover:bg-[#004b86] transition-colors">
@@ -98,51 +100,50 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* 4. Block 4: Bestsellerləri kəşf edin (New Carousel) */}
-      <section className="py-12 border-b border-gray-100">
-        <div className="max-w-[1200px] mx-auto w-full px-4">
-          <div className="flex justify-between items-baseline mb-6">
-            <h2 className="text-[22px] font-bold text-[#1a1a1a]">Bestsellerləri kəşf edin</h2>
-            <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Daha çox</Link>
-          </div>
-          <div className="flex gap-4 overflow-x-auto snap-x scroll-smooth pb-6 no-scrollbar">
-            {products.slice(20, 30).map((p) => (
-              <div key={p.id} className="min-w-[260px] md:min-w-[280px] flex-shrink-0 snap-start">
-                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
+      {/* Section 4: Bestsellerləri kəşf edin */}
+      <section className="max-w-[1200px] mx-auto w-full px-4 py-12 border-b border-gray-100">
+        <div className="flex justify-between items-baseline mb-6">
+          <h2 className="text-2xl font-bold text-[#222222]">Bestsellerləri kəşf edin</h2>
+          <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Daha çox</Link>
+        </div>
+        <div className="w-full relative">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {products.slice(20, 30).map((product) => (
+              <div key={product.id} className="flex-none w-[260px] md:w-[280px] snap-start">
+                <ProductCard product={product} userFavoriteIds={userFavoriteIds} />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. Block 5: Related Categories */}
-      <section className="py-12">
-        <div className="max-w-[1200px] mx-auto w-full px-4">
-          <h2 className="text-[22px] font-bold text-[#1a1a1a] mb-6 font-primary">Əlaqəli kateqoriyalar</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {relatedCategories.map((cat, idx) => (
-              <Link 
-                key={idx} 
-                href={cat.href} 
-                className="bg-gray-100 rounded-md p-4 flex items-center justify-between h-[100px] group overflow-hidden relative"
-              >
-                <div className="flex flex-col z-10">
-                  <span className="text-[15px] font-bold text-[#1a1a1a] group-hover:text-[#005ea8] transition-colors">{cat.label}</span>
-                  <div className="mt-1 flex items-center text-[11px] text-[#005ea8] font-bold">
-                    Keçid <ChevronRight className="w-3 h-3 ml-0.5" />
-                  </div>
+      {/* Section 5: Əlaqəli kateqoriyalar */}
+      <section className="max-w-[1200px] mx-auto w-full px-4 py-12">
+        <h2 className="text-[22px] font-bold text-[#1a1a1a] mb-6 font-primary">Əlaqəli kateqoriyalar</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {relatedCategories.map((cat, idx) => (
+            <Link 
+              key={idx} 
+              href={cat.href} 
+              className="bg-gray-100 rounded-md p-4 flex items-center justify-between h-[100px] group overflow-hidden relative"
+            >
+              <div className="flex flex-col z-10">
+                <span className="text-[15px] font-bold text-[#1a1a1a] group-hover:text-[#005ea8] transition-colors">{cat.label}</span>
+                <div className="mt-1 flex items-center text-[11px] text-[#005ea8] font-bold">
+                  Keçid <ChevronRight className="w-3 h-3 ml-0.5" />
                 </div>
-                <div className="relative w-20 h-20 -right-2 top-2 shrink-0 opacity-80 group-hover:opacity-100 transition-opacity">
-                   <Image src={cat.img} alt={cat.label} fill className="object-contain object-right" />
-                </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+              <div className="relative w-20 h-20 -right-2 top-2 shrink-0 opacity-80 group-hover:opacity-100 transition-opacity">
+                 <Image src={cat.img} alt={cat.label} fill className="object-contain object-right" />
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
     </div>
   );
 }
+
 
 
