@@ -45,16 +45,30 @@ export default function ProductListingPage() {
 
          {/* RIGHT MAIN CONTENT (GRID) */}
          <section className="w-full md:w-3/4">
-            <div className="grid grid-cols-1 md:grid-cols-3 border-t border-l border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-l border-gray-200">
                {mockProducts.map(product => (
-                 <div key={product.id} className="border-r border-b border-gray-200 p-4 flex flex-col relative hover:shadow-lg transition-shadow bg-white">
-                    <img src={product.image} alt={product.name} className="h-40 object-contain mx-auto mb-4 mt-2" />
-                    <h3 className="font-bold text-[#222222] text-sm mb-2 hover:underline cursor-pointer">{product.name}</h3>
-                    <p className="text-xs text-gray-600 mb-6">{product.specs}</p>
-                    <div className="mt-auto">
+                 <div key={product.id} className="border-r border-b border-gray-200 p-4 flex flex-col relative hover:shadow-lg transition-shadow bg-white h-full">
+                    {/* Image */}
+                    <img src={product.image} alt={product.name} className="h-40 w-full object-contain mb-4" />
+
+                    {/* Title & Specs (Tight leading, perfectly left-aligned) */}
+                    <div className="flex flex-col flex-grow">
+                      <h3 className="font-bold text-[#222222] text-sm mb-1 hover:underline cursor-pointer leading-tight">{product.name}</h3>
+                      <p className="text-xs text-gray-600 mb-4 leading-tight">{product.specs}</p>
+                    </div>
+
+                    {/* Price & Bottom Details */}
+                    <div className="mt-auto pt-2">
                        <div className="text-xs text-gray-500 mb-1">{product.offers}</div>
-                       <div className="text-xl font-bold text-[#FF5500]">from {product.price} ₼</div>
-                       <div className="text-[#005ea8] text-sm font-bold mt-4 flex items-center gap-1 cursor-pointer hover:underline">
+                       
+                       {/* MASSIVE PRICE FIX */}
+                       <div className="flex items-baseline gap-1">
+                         <span className="text-xs text-gray-500">from</span>
+                         <span className="text-3xl font-extrabold text-[#FF5500] tracking-tight">{product.price} ₼</span>
+                       </div>
+                       
+                       {/* Prominent Details Link */}
+                       <div className="text-[#005ea8] text-sm font-bold mt-3 flex items-center gap-1 cursor-pointer hover:underline">
                           <span className="text-lg leading-none">↗</span> Məhsul detalları
                        </div>
                     </div>
