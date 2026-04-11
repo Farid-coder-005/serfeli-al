@@ -77,14 +77,12 @@ const DEALS = [
 ];
 
 export default function CategoryPage() {
-  const bestSellerRef = useRef<HTMLDivElement>(null);
-  const dealsRef = useRef<HTMLDivElement>(null);
+  const bestSellerRef = useRef<HTMLDivElement | null>(null);
+  const dealsRef = useRef<HTMLDivElement | null>(null);
 
-  const scroll = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+  const scroll = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
     if (ref.current) {
-      const { scrollLeft, clientWidth } = ref.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-      ref.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+      ref.current.scrollBy({ left: direction === 'left' ? -320 : 320, behavior: 'smooth' });
     }
   };
 
