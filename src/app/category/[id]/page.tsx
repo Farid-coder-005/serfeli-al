@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -108,7 +109,11 @@ export default function CategoryPage() {
              </h3>
              <ul className="space-y-2">
                 {cat.links.map((link, j) => (
-                  <li key={j} className="text-sm text-gray-600 hover:text-[#005ea8] transition-colors cursor-pointer">{link}</li>
+                  <li key={j} className="text-sm text-gray-600 hover:text-[#005ea8] transition-colors cursor-pointer">
+                    <Link href={`/products/${link.toLowerCase().replace(/ /g, '-').normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
+                      {link}
+                    </Link>
+                  </li>
                 ))}
              </ul>
            </div>
