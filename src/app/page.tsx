@@ -9,7 +9,7 @@ import {
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { ProductCard } from "@/components/ProductCard";
+import { ProductCarousel } from "@/components/ProductCarousel";
 
 export default async function Page() {
   const products = await prisma.product.findMany({ 
@@ -43,6 +43,11 @@ export default async function Page() {
     { label: "Ağıllı Saatlar", img: "/iphone15pro.png", href: "#" },
   ];
 
+  // Guarantee data even if database is small
+  const populars = products.slice(0, 10);
+  const deals = products.length > 10 ? products.slice(10, 20) : [...products].reverse();
+  const bestsellers = products.length > 4 ? products.slice(0, 8) : products;
+
   return (
     <div className="flex flex-col w-full bg-white min-h-screen">
       
@@ -68,30 +73,14 @@ export default async function Page() {
           <h2 className="text-[22px] font-bold text-[#1a1a1a]">Populyar məhsullar</h2>
           <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Hamısına bax</Link>
         </div>
-        <div className="w-full relative">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {products.slice(0, 10).map((product) => (
-              <div key={product.id} className="flex-none w-[260px] md:w-[280px] snap-start">
-                <ProductCard product={product} userFavoriteIds={userFavoriteIds} />
-              </div>
-            ))}
-          </div>
-        </div>
+        <ProductCarousel products={populars} userFavoriteIds={userFavoriteIds} />
       </section>
 
       {/* Section 3: Sizin üçün təkliflər (Blue Band) */}
       <section className="w-full bg-[#E8F0F8] py-12">
         <div className="max-w-[1200px] mx-auto w-full px-4">
           <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">Sizin üçün təkliflər</h2>
-          <div className="w-full relative">
-            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-10 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              {products.slice(10, 20).map((product) => (
-                <div key={product.id} className="flex-none w-[260px] md:w-[280px] snap-start">
-                  <ProductCard product={product} userFavoriteIds={userFavoriteIds} />
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProductCarousel products={deals} userFavoriteIds={userFavoriteIds} />
           <div className="flex justify-center mt-4">
             <Link href="/search" className="bg-[#005ea8] text-white px-8 py-3 rounded-sm font-bold text-[15px] hover:bg-[#004b86] transition-colors">
               Bütün təkliflərə bax
@@ -106,15 +95,7 @@ export default async function Page() {
           <h2 className="text-2xl font-bold text-[#222222]">Bestsellerləri kəşf edin</h2>
           <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Daha çox</Link>
         </div>
-        <div className="w-full relative">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {products.slice(20, 30).map((product) => (
-              <div key={product.id} className="flex-none w-[260px] md:w-[280px] snap-start">
-                <ProductCard product={product} userFavoriteIds={userFavoriteIds} />
-              </div>
-            ))}
-          </div>
-        </div>
+        <ProductCarousel products={bestsellers} userFavoriteIds={userFavoriteIds} />
       </section>
 
       {/* Section 5: Əlaqəli kateqoriyalar */}
