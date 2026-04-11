@@ -1,4 +1,8 @@
+"use client";
+
+import { useRef } from "react";
 import { ProductCard } from "@/components/ProductCard";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SUB_CATEGORIES = [
   {
@@ -28,22 +32,29 @@ const BESTSELLERS = [
     id: "b1",
     title: "iPhone 15 Pro 256GB Natural Titanium",
     category: "Smartfonlar",
-    imageUrl: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692847118915",
+    imageUrl: "https://placehold.co/400x400/png?text=iPhone+15+Pro",
     offers: [{ currentPrice: 2849, store: { name: "Kontakt Home" } }]
   },
   {
     id: "b2",
     title: "MacBook Air 13 M2 8GB/256GB - Space Gray",
     category: "Noutbuklar",
-    imageUrl: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-spacegray-select-20220606?wid=900&hei=1050&fmt=jpeg&qlt=90&.v=1653084303665",
+    imageUrl: "https://placehold.co/400x400/png?text=MacBook+Air",
     offers: [{ currentPrice: 2199, store: { name: "Irsad" } }]
   },
   {
     id: "b3",
     title: "Sony WH-1000XM5 Wireless Headphones",
     category: "Qulaqlıqlar",
-    imageUrl: "https://m.media-amazon.com/images/I/51aXvjzcukL._AC_SL1500_.jpg",
+    imageUrl: "https://placehold.co/400x400/png?text=Sony+WH-1000XM5",
     offers: [{ currentPrice: 649, store: { name: "Baku Electronics" } }]
+  },
+  {
+    id: "b4",
+    title: "Apple Watch Ultra 2",
+    category: "Smart Saatlar",
+    imageUrl: "https://placehold.co/400x400/png?text=Apple+Watch+Ultra",
+    offers: [{ currentPrice: 1749, store: { name: "Kontakt Home" } }]
   }
 ];
 
@@ -53,19 +64,30 @@ const DEALS = [
     id: "d1",
     title: "Samsung Galaxy S24 Ultra 512GB",
     category: "Smartfonlar",
-    imageUrl: "https://m.media-amazon.com/images/I/71Wkad619RL._AC_SL1500_.jpg",
+    imageUrl: "https://placehold.co/400x400/png?text=Galaxy+S24+Ultra",
     offers: [{ currentPrice: 2459, store: { name: "Kontakt Home" } }]
   },
   {
     id: "d2",
     title: "PlayStation 5 Slim Edition",
     category: "Oyun Konsolları",
-    imageUrl: "https://m.media-amazon.com/images/I/51fS8rT0iPL._AC_SL1500_.jpg",
+    imageUrl: "https://placehold.co/400x400/png?text=PS5+Slim",
     offers: [{ currentPrice: 1149, store: { name: "Music Gallery" } }]
   }
 ];
 
 export default function CategoryPage() {
+  const bestSellerRef = useRef<HTMLDivElement>(null);
+  const dealsRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const { scrollLeft, clientWidth } = ref.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      ref.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
   return (
     <main className="max-w-[1200px] mx-auto w-full px-4 py-8 bg-white">
       {/* 1. Breadcrumbs & Title */}
@@ -95,31 +117,53 @@ export default function CategoryPage() {
          ))}
       </div>
 
-      {/* 3. Bestsellers Static Grid (Not a carousel) */}
+      {/* 3. Bestsellers Carousel */}
       <div className="mb-16">
-        <div className="flex justify-between items-end mb-6">
-          <h2 className="text-2xl font-extrabold text-[#1a1a1a]">Bestsellers in "Elektronika"</h2>
-          <span className="text-[#005ea8] font-bold text-sm cursor-pointer hover:underline">Hamsına bax</span>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">"Elektronika" bölməsində ən çox satılanlar</h2>
+          <div className="flex gap-2">
+            <button onClick={() => scroll(bestSellerRef, 'left')} className="p-2 border rounded-full hover:bg-gray-50">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button onClick={() => scroll(bestSellerRef, 'right')} className="p-2 border rounded-full hover:bg-gray-50">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {BESTSELLERS.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+        <div 
+          ref={bestSellerRef} 
+          className="flex gap-4 overflow-x-auto snap-x pb-6 no-scrollbar"
+        >
+          {BESTSELLERS.map((product) => (
+             <div key={product.id} className="min-w-[280px] md:min-w-[300px] flex-none snap-start">
+               <ProductCard product={product} />
+             </div>
+          ))}
         </div>
       </div>
 
       {/* 4. Deals Carousel */}
       <div className="mb-16">
-        <div className="flex justify-between items-end mb-6">
-          <h2 className="text-2xl font-extrabold text-[#1a1a1a]">Deals in "Elektronika"</h2>
-          <span className="text-[#005ea8] font-bold text-sm cursor-pointer hover:underline">Hamsına bax</span>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">"Elektronika" bölməsində təkliflər</h2>
+          <div className="flex gap-2">
+            <button onClick={() => scroll(dealsRef, 'left')} className="p-2 border rounded-full hover:bg-gray-50">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button onClick={() => scroll(dealsRef, 'right')} className="p-2 border rounded-full hover:bg-gray-50">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
-        <div className="flex gap-4 overflow-x-auto snap-x pb-6 no-scrollbar">
-            {DEALS.map((product) => (
-              <div key={product.id} className="min-w-[280px] md:min-w-[300px] flex-none snap-start">
-                <ProductCard product={product} />
-              </div>
-            ))}
+        <div 
+          ref={dealsRef} 
+          className="flex gap-4 overflow-x-auto snap-x pb-6 no-scrollbar"
+        >
+          {DEALS.map((product) => (
+            <div key={product.id} className="min-w-[280px] md:min-w-[300px] flex-none snap-start">
+              <ProductCard product={product} />
+            </div>
+          ))}
         </div>
       </div>
     </main>
