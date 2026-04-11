@@ -21,17 +21,17 @@ const TOP_LINKS = [
 
 /* ─── Category bar items ──────────────────────────────────── */
 const CATEGORIES = [
-  { label: "Təkliflər", icon: Tag, href: "/search?category=teklifler" },
-  { label: "Elektronika", icon: Smartphone, href: "/search?category=elektronika" },
-  { label: "İdman", icon: Dumbbell, href: "/search?category=idman" },
-  { label: "Uşaq", icon: Baby, href: "/search?category=usaq" },
-  { label: "Ev və Bağça", icon: Home, href: "/search?category=ev-bagca" },
-  { label: "Qida", icon: Apple, href: "/search?category=qida" },
-  { label: "Oyunlar", icon: Gamepad2, href: "/search?category=oyunlar" },
-  { label: "Sağlamlıq", icon: HeartPulse, href: "/search?category=saglamliq" },
-  { label: "Avtomobil", icon: Car, href: "/search?category=avtomobil" },
-  { label: "Moda", icon: Shirt, href: "/search?category=moda" },
-  { label: "Heyvanlar", icon: PawPrint, href: "/search?category=heyvanlar" },
+  { label: "Təkliflər", icon: Tag, href: "/category/teklifler" },
+  { label: "Elektronika", icon: Smartphone, href: "/category/elektronika" },
+  { label: "İdman", icon: Dumbbell, href: "/category/idman" },
+  { label: "Uşaq", icon: Baby, href: "/category/usaq" },
+  { label: "Ev və Bağça", icon: Home, href: "/category/ev-bagca" },
+  { label: "Qida", icon: Apple, href: "/category/qida" },
+  { label: "Oyunlar", icon: Gamepad2, href: "/category/oyunlar" },
+  { label: "Sağlamlıq", icon: HeartPulse, href: "/category/saglamliq" },
+  { label: "Avtomobil", icon: Car, href: "/category/avtomobil" },
+  { label: "Moda", icon: Shirt, href: "/category/moda" },
+  { label: "Heyvanlar", icon: PawPrint, href: "/category/heyvanlar" },
   { label: "Reyslər", icon: Plane, href: "#" },
 ];
 
