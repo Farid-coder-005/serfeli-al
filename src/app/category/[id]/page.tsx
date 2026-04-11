@@ -116,22 +116,22 @@ export default function CategoryPage() {
       </div>
 
       {/* 3. Bestsellers Carousel */}
-      <div className="mb-16">
+      <div className="mb-16 relative group">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">"Elektronika" bölməsində ən çox satılanlar</h2>
         </div>
         
-        <div className="relative group">
+        <div className="relative">
           <button 
             onClick={() => scroll(bestSellerRef, 'left')} 
-            className="absolute top-1/2 -translate-y-1/2 z-10 text-[#FF5500] hover:text-[#FF7733] transition-colors p-1 -left-2"
+            className="absolute top-1/2 -translate-y-1/2 z-50 text-[#FF5500] transition-all duration-300 p-2 -left-4 opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-lg hover:rounded-full bg-white/0"
             aria-label="Əvvəlki"
           >
             <ChevronLeft className="w-6 h-6 stroke-[1.5]" />
           </button>
           <button 
             onClick={() => scroll(bestSellerRef, 'right')} 
-            className="absolute top-1/2 -translate-y-1/2 z-10 text-[#FF5500] hover:text-[#FF7733] transition-colors p-1 -right-2"
+            className="absolute top-1/2 -translate-y-1/2 z-50 text-[#FF5500] transition-all duration-300 p-2 -right-4 opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-lg hover:rounded-full bg-white/0"
             aria-label="Növbəti"
           >
             <ChevronRight className="w-6 h-6 stroke-[1.5]" />
@@ -151,22 +151,22 @@ export default function CategoryPage() {
       </div>
 
       {/* 4. Deals Carousel */}
-      <div className="mb-16">
+      <div className="mb-16 relative group">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">"Elektronika" bölməsində təkliflər</h2>
         </div>
 
-        <div className="relative group">
+        <div className="relative">
           <button 
             onClick={() => scroll(dealsRef, 'left')} 
-            className="absolute top-1/2 -translate-y-1/2 z-10 text-[#FF5500] hover:text-[#FF7733] transition-colors p-1 -left-2"
+            className="absolute top-1/2 -translate-y-1/2 z-50 text-[#FF5500] transition-all duration-300 p-2 -left-4 opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-lg hover:rounded-full bg-white/0"
             aria-label="Əvvəlki"
           >
             <ChevronLeft className="w-6 h-6 stroke-[1.5]" />
           </button>
           <button 
             onClick={() => scroll(dealsRef, 'right')} 
-            className="absolute top-1/2 -translate-y-1/2 z-10 text-[#FF5500] hover:text-[#FF7733] transition-colors p-1 -right-2"
+            className="absolute top-1/2 -translate-y-1/2 z-50 text-[#FF5500] transition-all duration-300 p-2 -right-4 opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-lg hover:rounded-full bg-white/0"
             aria-label="Növbəti"
           >
             <ChevronRight className="w-6 h-6 stroke-[1.5]" />
