@@ -137,9 +137,12 @@ export default function ProductListingPage() {
                            <span className="text-3xl font-extrabold text-[#FF5500] tracking-tight">{product.price} ₼</span>
                          </div>
                          
-                         <div className="text-[#005ea8] text-xs font-bold mt-2 flex items-center gap-1 cursor-pointer hover:underline">
+                         <Link 
+                            href={`/product/${product.id}`}
+                            className="text-[#005ea8] text-xs font-bold mt-2 flex items-center gap-1 cursor-pointer hover:underline"
+                         >
                             <span className="text-sm leading-none">↗</span> Məhsul detalları
-                         </div>
+                         </Link>
                       </div>
                    </div>
                  ))}
