@@ -37,12 +37,12 @@ export default function ProductDetailPage() {
            <div className="mb-2 font-bold">Variant:</div>
            <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
               {product.variants.map((v, i) => (
-                <div key={i} className={`border p-2 min-w-[120px] cursor-pointer relative transition-all ${v.active ? 'border-[#005ea8] shadow-md ring-1 ring-[#005ea8]' : 'border-gray-300 hover:shadow-sm hover:border-[#005ea8]'}`}>
-                   {v.discount && <div className={`absolute top-0 left-0 text-white text-[10px] font-bold px-1.5 py-0.5 ${v.discount.includes('%') ? 'bg-[#FF5500]' : 'bg-[#005ea8]'}`}>{v.discount}</div>}
-                   <div className="h-16 bg-gray-50 mb-2 mt-4 flex items-center justify-center">
-                     <div className="w-8 h-10 border border-gray-200"></div>
+                <div key={i} className={`border p-2 min-w-[124px] cursor-pointer relative transition-all duration-200 ${v.active ? 'border-[#005ea8] shadow-md ring-1 ring-[#005ea8]' : 'border-gray-300 hover:shadow-md hover:border-[#005ea8] bg-white'}`}>
+                   {v.discount && <div className={`absolute top-0 left-0 text-white text-[10px] font-bold px-1.5 py-0.5 z-10 ${v.discount.includes('%') ? 'bg-[#FF5500]' : 'bg-[#005ea8]'}`}>{v.discount}</div>}
+                   <div className="h-16 bg-gray-50 mb-2 mt-4 flex items-center justify-center rounded-sm">
+                     <div className="w-8 h-10 border border-gray-200 bg-white shadow-sm"></div>
                    </div> {/* Mock Image space */}
-                   <div className="text-[10px] font-bold leading-tight mb-2 uppercase tracking-tighter line-clamp-2">{v.name}</div>
+                   <div className="text-[10px] font-bold leading-tight mb-2 uppercase tracking-tighter line-clamp-2 h-7">{v.name}</div>
                    <div className="text-[#FF5500] font-bold text-sm">€{v.price}</div>
                 </div>
               ))}
@@ -52,9 +52,17 @@ export default function ProductDetailPage() {
         {/* Right: Price Chart Placeholder */}
         <div className="w-full md:w-1/4 bg-[#f8f9fa] border border-gray-200 p-5 flex flex-col justify-center items-center h-52 rounded-sm shadow-sm">
            <div className="text-xs font-bold text-gray-600 mb-4 uppercase tracking-widest">Price development</div>
-           <div className="w-full h-20 border-b-2 border-l-2 border-[#FF5500] border-dashed mb-6 relative">
-              <div className="absolute bottom-2 left-1/4 w-full h-[1px] bg-gray-200"></div>
-              <div className="absolute top-4 left-0 w-2 h-2 rounded-full bg-[#FF5500]"></div>
+           <div className="w-full h-24 mb-4 relative">
+              <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
+                 {/* Grid lines */}
+                 <line x1="0" y1="10" x2="100" y2="10" stroke="#f3f4f6" strokeWidth="0.5" />
+                 <line x1="0" y1="20" x2="100" y2="20" stroke="#f3f4f6" strokeWidth="0.5" />
+                 <line x1="0" y1="30" x2="100" y2="30" stroke="#f3f4f6" strokeWidth="0.5" />
+                 {/* The Price Line */}
+                 <polyline points="0,15 10,15 12,25 15,20 25,20 30,35 35,25 50,25 55,10 65,10 70,22 85,22 90,30 100,28" fill="none" stroke="#FF5500" strokeWidth="1.5" strokeLinejoin="round" />
+                 {/* Current Point */}
+                 <circle cx="100" cy="28" r="2" fill="#FF5500" />
+              </svg>
            </div>
            <button className="border-2 border-[#005ea8] text-[#005ea8] w-full py-2.5 text-xs font-bold hover:bg-blue-50 transition-colors uppercase tracking-wider">⏰ Price alerts</button>
         </div>
@@ -91,11 +99,11 @@ export default function ProductDetailPage() {
       {/* SECTION 3: PRODUCT DETAILS (Specs Table) */}
       <div className="mb-16">
         <h2 className="text-2xl font-bold mb-6 border-b-2 border-[#222222] pb-2">Product details</h2>
-        <div className="grid grid-cols-1 border-gray-200 divide-y divide-gray-100">
-           <div className="flex py-4 transition-colors hover:bg-gray-50"><div className="w-1/3 text-gray-500 text-sm font-medium">Market launch</div><div className="w-2/3 text-sm font-bold">2023</div></div>
-           <div className="flex py-4 transition-colors hover:bg-gray-50"><div className="w-1/3 text-gray-500 text-sm font-medium">Display size</div><div className="w-2/3 text-sm font-bold">6.5 inches / 16.51 cm</div></div>
-           <div className="flex py-4 transition-colors hover:bg-gray-50"><div className="w-1/3 text-gray-500 text-sm font-medium">Display resolution</div><div className="w-2/3 text-sm font-bold">2400 x 1080 pixels</div></div>
-           <div className="flex py-4 transition-colors hover:bg-gray-50 bg-[#f9f9f9]/50"><div className="w-1/3 text-[#005ea8] text-sm font-bold">Display type</div><div className="w-2/3 text-sm font-black text-[#005ea8]">POLED</div></div>
+        <div className="grid grid-cols-1 border-t border-gray-200">
+           <div className="flex border-b border-gray-200 py-3 even:bg-gray-50 odd:bg-white px-2 transition-colors hover:bg-blue-50/30 font-medium"><div className="w-1/3 text-gray-500 text-sm">Market launch</div><div className="w-2/3 text-sm font-bold">2023</div></div>
+           <div className="flex border-b border-gray-200 py-3 even:bg-gray-50 odd:bg-white px-2 transition-colors hover:bg-blue-50/30 font-medium"><div className="w-1/3 text-gray-500 text-sm">Display size</div><div className="w-2/3 text-sm font-bold">6.5 inches / 16.51 cm</div></div>
+           <div className="flex border-b border-gray-200 py-3 even:bg-gray-50 odd:bg-white px-2 transition-colors hover:bg-blue-50/30 font-medium"><div className="w-1/3 text-gray-500 text-sm">Display resolution</div><div className="w-2/3 text-sm font-bold">2400 x 1080 pixels</div></div>
+           <div className="flex border-b border-gray-200 py-3 even:bg-gray-50 odd:bg-white px-2 transition-colors hover:bg-blue-50/30 font-black text-[#005ea8]"><div className="w-1/3 text-sm">Display type</div><div className="w-2/3 text-sm">POLED</div></div>
         </div>
       </div>
 
@@ -133,12 +141,53 @@ export default function ProductDetailPage() {
            </div>
         </div>
         
-        <div className="flex flex-wrap gap-2 pt-6 border-t border-gray-100">
+        <div className="flex flex-wrap gap-2 pt-6 border-t border-gray-100 mb-16">
            {["Bluetooth 5.3", "120 Hz", "5,000 mAh", "Android 14", "50 MP Camera", "256 GB", "OLED"].map(tag => (
              <span key={tag} className="bg-gray-100 text-gray-600 px-4 py-1.5 text-xs font-bold rounded-full cursor-pointer hover:bg-[#005ea8] hover:text-white transition-all">
                {tag}
              </span>
            ))}
+        </div>
+
+        {/* SECTION 5: USER REVIEWS */}
+        <div className="mb-16 border-t border-gray-200 pt-8">
+           <h2 className="text-2xl font-bold mb-6">User reviews & Ratings</h2>
+           <div className="flex flex-col md:flex-row gap-8">
+              {/* Left: Overall Rating */}
+              <div className="w-full md:w-1/4 flex flex-col items-center justify-center bg-gray-50 p-6 rounded-sm border border-gray-200">
+                 <div className="text-5xl font-extrabold text-[#222222] mb-2">4.6</div>
+                 <div className="flex text-[#FFCC00] text-xl mb-2">★★★★★</div>
+                 <div className="text-sm text-gray-500">Based on 128 reviews</div>
+              </div>
+              
+              {/* Right: Review List */}
+              <div className="w-full md:w-3/4 flex flex-col gap-6">
+                 {/* Review 1 */}
+                 <div className="border-b border-gray-200 pb-4">
+                    <div className="flex justify-between items-center mb-2">
+                       <div className="flex items-center gap-2">
+                          <div className="text-[#FFCC00] text-sm">★★★★★</div>
+                          <div className="font-bold text-sm">Great value for money</div>
+                       </div>
+                       <div className="text-xs text-gray-500">12.04.2026</div>
+                    </div>
+                    <p className="text-sm text-gray-700 leading-relaxed">The battery life is incredible and the POLED display is very vibrant. For this price point, you really can't complain. The camera is decent in daylight.</p>
+                    <div className="text-xs text-gray-500 mt-2">By <span className="font-bold">TechEnthusiast99</span></div>
+                 </div>
+                 {/* Review 2 */}
+                 <div className="border-b border-gray-200 pb-4">
+                    <div className="flex justify-between items-center mb-2">
+                       <div className="flex items-center gap-2">
+                          <div className="text-[#FFCC00] text-sm">★★★★☆</div>
+                          <div className="font-bold text-sm">Solid mid-ranger</div>
+                       </div>
+                       <div className="text-xs text-gray-500">05.04.2026</div>
+                    </div>
+                    <p className="text-sm text-gray-700 leading-relaxed">Good phone overall. The UI is clean (almost stock Android). Only giving 4 stars because the processor struggles a bit with heavy 3D games.</p>
+                    <div className="text-xs text-gray-500 mt-2">By <span className="font-bold">Markus T.</span></div>
+                 </div>
+              </div>
+           </div>
         </div>
       </div>
     </main>
