@@ -55,38 +55,42 @@ export default async function Page() {
                 <div className="w-[70px] h-[70px] rounded-full border-2 border-[#FF5500] flex items-center justify-center bg-white overflow-hidden p-3 transition-transform group-hover:scale-105">
                   <item.icon className="w-8 h-8 text-[#222222]" strokeWidth={1.5} />
                 </div>
-                <span className="text-[12px] font-bold text-[#222222] text-center">{item.label}</span>
+                <span className="text-[12px] font-bold text-[#222222] text-center uppercase tracking-tight">{item.label}</span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 2. Block 2: Popular Products */}
+      {/* 2. Block 2: Populyar məhsullar (Carousel) */}
       <section className="py-10">
         <div className="max-w-[1200px] mx-auto w-full px-4">
           <div className="flex justify-between items-baseline mb-6">
             <h2 className="text-[22px] font-bold text-[#1a1a1a]">Populyar məhsullar</h2>
             <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Hamısına bax</Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="flex gap-4 overflow-x-auto snap-x scroll-smooth pb-6 no-scrollbar">
             {products.slice(0, 10).map((p) => (
-              <ProductCard key={p.id} product={p} userFavoriteIds={userFavoriteIds} />
+              <div key={p.id} className="min-w-[260px] md:min-w-[280px] flex-shrink-0 snap-start">
+                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Block 3: The Blue Deals Band */}
+      {/* 3. Block 3: Sizin üçün təkliflər (Blue Band Carousel) */}
       <section className="py-12 bg-[#E8F0F8]">
         <div className="max-w-[1200px] mx-auto w-full px-4">
-          <div className="flex flex-col items-center">
-            <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center">Sizin üçün təkliflər</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 w-full">
-              {products.slice(10, 14).map((p) => (
-                <ProductCard key={p.id} product={p} userFavoriteIds={userFavoriteIds} />
-              ))}
-            </div>
+          <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">Sizin üçün təkliflər</h2>
+          <div className="flex gap-4 overflow-x-auto snap-x scroll-smooth pb-10 no-scrollbar">
+            {products.slice(10, 20).map((p) => (
+              <div key={p.id} className="min-w-[260px] md:min-w-[280px] flex-shrink-0 snap-start">
+                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-center mt-4">
             <Link href="/search" className="bg-[#005ea8] text-white px-8 py-3 rounded-sm font-bold text-[15px] hover:bg-[#004b86] transition-colors">
               Bütün təkliflərə bax
             </Link>
@@ -94,7 +98,24 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* 4. Block 4: Related Categories */}
+      {/* 4. Block 4: Bestsellerləri kəşf edin (New Carousel) */}
+      <section className="py-12 border-b border-gray-100">
+        <div className="max-w-[1200px] mx-auto w-full px-4">
+          <div className="flex justify-between items-baseline mb-6">
+            <h2 className="text-[22px] font-bold text-[#1a1a1a]">Bestsellerləri kəşf edin</h2>
+            <Link href="/search" className="text-[#005ea8] text-[14px] font-semibold hover:underline">Daha çox</Link>
+          </div>
+          <div className="flex gap-4 overflow-x-auto snap-x scroll-smooth pb-6 no-scrollbar">
+            {products.slice(20, 30).map((p) => (
+              <div key={p.id} className="min-w-[260px] md:min-w-[280px] flex-shrink-0 snap-start">
+                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Block 5: Related Categories */}
       <section className="py-12">
         <div className="max-w-[1200px] mx-auto w-full px-4">
           <h2 className="text-[22px] font-bold text-[#1a1a1a] mb-6 font-primary">Əlaqəli kateqoriyalar</h2>
@@ -123,4 +144,5 @@ export default async function Page() {
     </div>
   );
 }
+
 
