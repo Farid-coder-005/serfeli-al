@@ -119,24 +119,34 @@ export default function CategoryPage() {
       <div className="mb-16">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">"Elektronika" bölməsində ən çox satılanlar</h2>
-          <div className="flex gap-2">
-            <button onClick={() => scroll(bestSellerRef, 'left')} className="p-2 border rounded-full hover:bg-gray-50">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button onClick={() => scroll(bestSellerRef, 'right')} className="p-2 border rounded-full hover:bg-gray-50">
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
         </div>
-        <div 
-          ref={bestSellerRef} 
-          className="flex gap-4 overflow-x-auto snap-x pb-6 no-scrollbar"
-        >
-          {BESTSELLERS.map((product) => (
-             <div key={product.id} className="min-w-[280px] md:min-w-[300px] flex-none snap-start">
-               <ProductCard product={product} />
-             </div>
-          ))}
+        
+        <div className="relative group">
+          <button 
+            onClick={() => scroll(bestSellerRef, 'left')} 
+            className="absolute top-1/2 -translate-y-1/2 z-10 text-[#FF5500] hover:text-[#FF7733] transition-colors p-1 -left-2"
+            aria-label="Əvvəlki"
+          >
+            <ChevronLeft className="w-6 h-6 stroke-[1.5]" />
+          </button>
+          <button 
+            onClick={() => scroll(bestSellerRef, 'right')} 
+            className="absolute top-1/2 -translate-y-1/2 z-10 text-[#FF5500] hover:text-[#FF7733] transition-colors p-1 -right-2"
+            aria-label="Növbəti"
+          >
+            <ChevronRight className="w-6 h-6 stroke-[1.5]" />
+          </button>
+
+          <div 
+            ref={bestSellerRef} 
+            className="flex gap-4 overflow-x-auto snap-x pb-6 no-scrollbar"
+          >
+            {BESTSELLERS.map((product) => (
+               <div key={product.id} className="min-w-[280px] md:min-w-[300px] flex-none snap-start">
+                 <ProductCard product={product} />
+               </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -144,24 +154,34 @@ export default function CategoryPage() {
       <div className="mb-16">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">"Elektronika" bölməsində təkliflər</h2>
-          <div className="flex gap-2">
-            <button onClick={() => scroll(dealsRef, 'left')} className="p-2 border rounded-full hover:bg-gray-50">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button onClick={() => scroll(dealsRef, 'right')} className="p-2 border rounded-full hover:bg-gray-50">
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
         </div>
-        <div 
-          ref={dealsRef} 
-          className="flex gap-4 overflow-x-auto snap-x pb-6 no-scrollbar"
-        >
-          {DEALS.map((product) => (
-            <div key={product.id} className="min-w-[280px] md:min-w-[300px] flex-none snap-start">
-              <ProductCard product={product} />
-            </div>
-          ))}
+
+        <div className="relative group">
+          <button 
+            onClick={() => scroll(dealsRef, 'left')} 
+            className="absolute top-1/2 -translate-y-1/2 z-10 text-[#FF5500] hover:text-[#FF7733] transition-colors p-1 -left-2"
+            aria-label="Əvvəlki"
+          >
+            <ChevronLeft className="w-6 h-6 stroke-[1.5]" />
+          </button>
+          <button 
+            onClick={() => scroll(dealsRef, 'right')} 
+            className="absolute top-1/2 -translate-y-1/2 z-10 text-[#FF5500] hover:text-[#FF7733] transition-colors p-1 -right-2"
+            aria-label="Növbəti"
+          >
+            <ChevronRight className="w-6 h-6 stroke-[1.5]" />
+          </button>
+
+          <div 
+            ref={dealsRef} 
+            className="flex gap-4 overflow-x-auto snap-x pb-6 no-scrollbar"
+          >
+            {DEALS.map((product) => (
+              <div key={product.id} className="min-w-[280px] md:min-w-[300px] flex-none snap-start">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </main>
