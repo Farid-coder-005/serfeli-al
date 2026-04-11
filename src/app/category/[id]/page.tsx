@@ -116,7 +116,7 @@ export default function CategoryPage() {
       </div>
 
       {/* 3. Bestsellers Carousel */}
-      <div className="mb-16 relative group">
+      <div className="relative group mb-16">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">"Elektronika" bölməsində ən çox satılanlar</h2>
         </div>
@@ -124,17 +124,15 @@ export default function CategoryPage() {
         <div className="relative">
           <button 
             onClick={() => scroll(bestSellerRef, 'left')} 
-            className="absolute top-1/2 -translate-y-1/2 z-50 text-[#FF5500] transition-all duration-300 p-2 -left-4 opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-lg hover:rounded-full bg-white/0"
-            aria-label="Əvvəlki"
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 text-[#FF5500] hover:bg-white hover:shadow-md rounded-full cursor-pointer"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[1.5]" />
+            <ChevronLeft className="w-6 h-6" />
           </button>
           <button 
             onClick={() => scroll(bestSellerRef, 'right')} 
-            className="absolute top-1/2 -translate-y-1/2 z-50 text-[#FF5500] transition-all duration-300 p-2 -right-4 opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-lg hover:rounded-full bg-white/0"
-            aria-label="Növbəti"
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 text-[#FF5500] hover:bg-white hover:shadow-md rounded-full cursor-pointer"
           >
-            <ChevronRight className="w-6 h-6 stroke-[1.5]" />
+            <ChevronRight className="w-6 h-6" />
           </button>
 
           <div 
@@ -151,7 +149,7 @@ export default function CategoryPage() {
       </div>
 
       {/* 4. Deals Carousel */}
-      <div className="mb-16 relative group">
+      <div className="relative group mb-16">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">"Elektronika" bölməsində təkliflər</h2>
         </div>
@@ -159,17 +157,15 @@ export default function CategoryPage() {
         <div className="relative">
           <button 
             onClick={() => scroll(dealsRef, 'left')} 
-            className="absolute top-1/2 -translate-y-1/2 z-50 text-[#FF5500] transition-all duration-300 p-2 -left-4 opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-lg hover:rounded-full bg-white/0"
-            aria-label="Əvvəlki"
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 text-[#FF5500] hover:bg-white hover:shadow-md rounded-full cursor-pointer"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[1.5]" />
+            <ChevronLeft className="w-6 h-6" />
           </button>
           <button 
             onClick={() => scroll(dealsRef, 'right')} 
-            className="absolute top-1/2 -translate-y-1/2 z-50 text-[#FF5500] transition-all duration-300 p-2 -right-4 opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-lg hover:rounded-full bg-white/0"
-            aria-label="Növbəti"
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 text-[#FF5500] hover:bg-white hover:shadow-md rounded-full cursor-pointer"
           >
-            <ChevronRight className="w-6 h-6 stroke-[1.5]" />
+            <ChevronRight className="w-6 h-6" />
           </button>
 
           <div 
