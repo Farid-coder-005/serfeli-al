@@ -75,9 +75,12 @@ export default function ProductListingPage() {
          <div className="flex flex-col md:flex-row gap-6">
            {/* 2. LEFT SIDEBAR (FILTERS) - Structured & High Quality */}
            <aside className="w-full md:w-1/4 bg-[#f4f7f9] p-5 rounded-sm border border-gray-200">
-              <div className="flex items-center gap-2 mb-6 border-b border-white pb-3">
-                 <Filter className="w-5 h-5 text-gray-700" />
-                 <h3 className="font-bold text-xl text-[#222222]">Filtirlər</h3>
+              <div className="flex justify-between items-center mb-6 border-b border-gray-300 pb-3">
+                 <div className="flex items-center gap-2">
+                    <Filter className="w-5 h-5 text-gray-700" />
+                    <h3 className="font-bold text-xl text-[#222222]">Filtirlər</h3>
+                 </div>
+                 <button onClick={() => { setPriceMin(''); setPriceMax(''); }} className="text-[#005ea8] text-sm hover:underline cursor-pointer">Sıfırla</button>
               </div>
 
               {/* Price Filter */}
@@ -140,6 +143,21 @@ export default function ProductListingPage() {
                       </div>
                    </div>
                  ))}
+              </div>
+
+              {/* Pagination */}
+              <div className="flex justify-end items-stretch mt-0 border-t border-gray-200">
+                 <div className="flex items-center text-[#005ea8] text-lg mr-6 gap-5 py-4">
+                    <button className="text-3xl hover:text-[#004a87] transition-colors leading-none -mt-1">&#8249;</button>
+                    <button className="hover:underline">1</button>
+                    <button className="text-[#222222]">2</button>
+                    <button className="hover:underline">3</button>
+                    <span className="text-[#222222]">...</span>
+                    <button className="hover:underline">5</button>
+                 </div>
+                 <button className="bg-[#005ea8] text-white px-6 hover:bg-[#004a87] transition-colors flex items-center justify-center cursor-pointer">
+                    <span className="text-3xl leading-none -mt-1">&#8250;</span>
+                 </button>
               </div>
            </section>
          </div>
