@@ -1,10 +1,39 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
+import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
+
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-[#FF5500] text-white text-xs font-bold px-3 py-2 rounded shadow-xl border border-[#CC4400]">
+        <div className="text-base">{Number(payload[0].value).toFixed(2)} ₼</div>
+        <div className="font-normal opacity-90">{payload[0].payload.date} 2026</div>
+      </div>
+    );
+  }
+  return null;
+};
 
 export default function ProductDetailsPage() {
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [hoveredPoint, setHoveredPoint] = useState<any>(null);
+  const [timeFrame, setTimeFrame] = useState<string>('3 Ay');
+
+  const richChartData: Record<string, any[]> = {
+    '1 Ay': [
+      { date: '01 Apr', price: 820 }, { date: '05 Apr', price: 810 }, { date: '10 Apr', price: 790 }, { date: '13 Apr', price: 749.90 }
+    ],
+    '3 Ay': [
+      { date: '01 Fev', price: 849 }, { date: '15 Fev', price: 830 }, { date: '07 Mar', price: 817 }, { date: '20 Mar', price: 825 }, { date: '05 Apr', price: 780 }, { date: '13 Apr', price: 749.90 }
+    ],
+    '6 Ay': [
+      { date: 'Noy', price: 899 }, { date: 'Dek', price: 880 }, { date: 'Yan', price: 850 }, { date: 'Fev', price: 830 }, { date: 'Mar', price: 817 }, { date: 'Apr', price: 749.90 }
+    ],
+    '1 İl': [
+      { date: 'Yay 25', price: 999 }, { date: 'Payız 25', price: 950 }, { date: 'Qış 25', price: 899 }, { date: 'Bahar 26', price: 749.90 }
+    ]
+  };
 
   // Advanced Mock Data with coordinates (x, y), price, and date
   const detailedChartData = [
@@ -197,78 +226,50 @@ export default function ProductDetailsPage() {
       {/* INTERACTIVE CHART MODAL */}
       {isChartModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="bg-white w-full max-w-3xl rounded-sm shadow-2xl flex flex-col">
-            {/* Modal Header */}
-            <div className="flex justify-between items-center p-6 border-b border-gray-200">
-              <div>
-                <h2 className="text-2xl font-bold text-[#222222]">Qiymət dinamikası</h2>
-                <p className="text-sm text-gray-500 mt-1">{product.name}</p>
-              </div>
-              <button onClick={() => setIsChartModalOpen(false)} className="text-gray-400 hover:text-black text-3xl leading-none">&times;</button>
-            </div>
-            
-            {/* Modal Body - Large Interactive Chart */}
-            <div className="p-8 relative h-96">
-              <div className="absolute top-4 right-8 flex gap-2">
-                 <button className="border border-gray-300 text-gray-600 px-3 py-1 text-sm rounded hover:bg-gray-50">1 Ay</button>
-                 <button className="bg-[#005ea8] text-white border border-[#005ea8] px-3 py-1 text-sm rounded">3 Ay</button>
-                 <button className="border border-gray-300 text-gray-600 px-3 py-1 text-sm rounded hover:bg-gray-50">6 Ay</button>
-              </div>
+<div className="bg-white w-full max-w-4xl rounded-sm shadow-2xl flex flex-col relative overflow-hidden">
+  {/* FIXED ABSOLUTE CLOSE BUTTON */}
+  <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-gray-400 hover:text-[#FF5500] text-4xl leading-none z-50 transition-colors">&times;</button>
+  
+  <div className="flex flex-col p-8">
+    <h2 className="text-2xl font-bold text-[#222222]">Qiymət dinamikası</h2>
+    <p className="text-sm text-gray-500 mt-1">{product.name}</p>
+    
+    {/* Timeframe Toggles */}
+    <div className="flex justify-end gap-2 mt-4 mb-8">
+       {Object.keys(richChartData).map(tf => (
+          <button key={tf} onClick={() => setTimeFrame(tf)} className={`px-4 py-1.5 text-sm font-bold rounded transition-all ${timeFrame === tf ? 'bg-[#005ea8] text-white shadow-md' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'}`}>
+            {tf}
+          </button>
+       ))}
+    </div>
 
-              <svg viewBox="0 0 100 100" className="w-full h-full mt-10 overflow-visible" onMouseLeave={() => setHoveredPoint(null)}>
-                 <defs>
-                    <linearGradient id="modalGradient" x1="0" x2="0" y1="0" y2="1">
-                       <stop offset="0%" stopColor="#FF5500" stopOpacity="0.25"/>
-                       <stop offset="100%" stopColor="#FF5500" stopOpacity="0"/>
-                    </linearGradient>
-                 </defs>
-                 
-                 {/* Grid Lines */}
-                 <line x1="0" y1="25" x2="100" y2="25" stroke="#f3f4f6" strokeWidth="0.5" />
-                 <line x1="0" y1="50" x2="100" y2="50" stroke="#f3f4f6" strokeWidth="0.5" />
-                 <line x1="0" y1="75" x2="100" y2="75" stroke="#f3f4f6" strokeWidth="0.5" />
-                 <line x1="0" y1="100" x2="100" y2="100" stroke="#e5e7eb" strokeWidth="1" />
-                 
-                 {/* Filled Area & Line */}
-                 <polygon points={polygonPoints} fill="url(#modalGradient)" />
-                 <polyline points={polylinePoints} fill="none" stroke="#FF5500" strokeWidth="1.5" strokeLinejoin="round" />
-                 
-                 {/* Interactive Overlay & Tooltips */}
-                 {detailedChartData.map((d, i) => (
-                    <g key={i}>
-                       {/* Invisible wide circle for easier hovering */}
-                       <circle cx={d.x} cy={d.y} r="6" fill="transparent" className="cursor-crosshair outline-none" 
-                               onMouseEnter={() => setHoveredPoint(d)} />
-                       
-                       {/* The visible dot and tooltip when hovered */}
-                       {hoveredPoint?.x === d.x && (
-                          <>
-                             <line x1={d.x} y1={d.y} x2={d.x} y2="100" stroke="#9ca3af" strokeWidth="0.5" strokeDasharray="1,1" />
-                             <circle cx={d.x} cy={d.y} r="2" fill="#FF5500" stroke="white" strokeWidth="1" />
-                             
-                             {/* HTML Tooltip mapped to SVG coordinates via foreignObject */}
-                             <foreignObject x={d.x > 50 ? d.x - 32 : d.x + 2} y={d.y > 20 ? d.y - 20 : d.y + 2} width="30" height="15" className="overflow-visible">
-                                <div className="bg-[#FF5500] text-white text-[6px] font-bold p-1 rounded-sm shadow-md whitespace-nowrap">
-                                   {d.price} ₼ <br/>
-                                   <span className="font-normal opacity-90">{d.date} 2026</span>
-                                </div>
-                             </foreignObject>
-                          </>
-                       )}
-                    </g>
-                 ))}
-              </svg>
-            </div>
-            
-            {/* Modal Footer */}
-            <div className="bg-gray-50 p-6 flex justify-between items-center border-t border-gray-200">
-              <div>
-                 <div className="text-gray-500 text-sm">Ən aşağı qiymət</div>
-                 <div className="text-xs text-gray-400">74 gün əvvəl</div>
-              </div>
-              <div className="text-2xl font-bold text-[#222222]">668.33 ₼</div>
-            </div>
-          </div>
+    {/* RECHARTS IMPLEMENTATION */}
+    <div className="w-full h-80">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={richChartData[timeFrame]} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+          <defs>
+            <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#FF5500" stopOpacity={0.4}/>
+              <stop offset="95%" stopColor="#FF5500" stopOpacity={0}/>
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="date" hide />
+          <YAxis domain={['dataMin - 20', 'dataMax + 20']} hide />
+          <RechartsTooltip content={<CustomTooltip />} cursor={{ stroke: '#9ca3af', strokeWidth: 1.5, strokeDasharray: '4 4' }} />
+          <Area type="monotone" dataKey="price" stroke="#FF5500" strokeWidth={3} fillOpacity={1} fill="url(#colorPrice)" animationDuration={800} />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+  
+  <div className="bg-gray-50 p-6 flex justify-between items-center border-t border-gray-200 mt-auto">
+    <div>
+       <div className="text-gray-500 text-sm">Ən aşağı qiymət</div>
+       <div className="text-xs text-gray-400">74 gün əvvəl</div>
+    </div>
+    <div className="text-3xl font-bold text-[#222222]">668.33 ₼</div>
+  </div>
+</div>
         </div>
       )}
     </main>
