@@ -184,58 +184,60 @@ export default function ProductDetailsPage() {
              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
              <p className="text-sm text-gray-700 leading-relaxed mb-6"><span className="font-bold">Məhsulun xülasəsi:</span> {product.overview}</p>
              
-             <div className="mt-8">
-               <h3 className="text-lg font-bold text-[#222222] mb-4">Variantlar:</h3>
+             <div className="mt-8 mb-10">
+               <h3 className="text-[18px] font-bold text-[#222222] mb-4">Variantlar:</h3>
                
                <div className="relative group">
-                 {/* Navigation Arrows */}
+                 {/* Navigation */}
                  <button 
                   onClick={() => scroll('left')}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 text-gray-400 p-2 hidden group-hover:flex items-center justify-center hover:bg-white hover:text-[#005ea8] rounded-full shadow-md transition-all ml-2 border border-gray-100"
+                  className="absolute left-[-20px] top-[70px] z-20 bg-white border border-gray-200 shadow-md rounded-full p-2 text-gray-400 hover:text-gray-600 hidden group-hover:block transition-all"
                  >
-                   <ChevronLeft size={20} />
+                   <ChevronLeft size={24} />
                  </button>
                  <button 
                   onClick={() => scroll('right')}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 text-gray-400 p-2 hidden group-hover:flex items-center justify-center hover:bg-white hover:text-[#005ea8] rounded-full shadow-md transition-all mr-2 border border-gray-100"
+                  className="absolute right-[-20px] top-[70px] z-20 bg-white border border-gray-200 shadow-md rounded-full p-2 text-gray-400 hover:text-gray-600 hidden group-hover:block transition-all"
                  >
-                   <ChevronRight size={20} />
+                   <ChevronRight size={24} />
                  </button>
 
-                 {/* Cards Container */}
+                 {/* Cards Scroll Area */}
                  <div 
                   ref={scrollContainerRef}
-                  className="flex overflow-x-auto gap-3 pb-4 no-scrollbar scroll-smooth"
+                  className="flex overflow-x-auto gap-[12px] pb-6 no-scrollbar scroll-smooth"
                  >
                    {product.variants.map((v) => (
                      <div 
                        key={v.id}
-                       className={`flex-shrink-0 w-[165px] border rounded-md overflow-hidden cursor-pointer transition-all ${v.active ? 'border-2 border-[#005ea8]' : 'border-gray-200'}`}
+                       className={`flex-shrink-0 w-[160px] border rounded-md transition-all duration-200 ${
+                         v.active ? 'border-2 border-[#005ea8] ring-1 ring-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
+                       }`}
                      >
-                       {/* Image Section */}
-                       <div className="bg-[#f6f6f6] h-[140px] flex items-center justify-center p-2">
-                         <img src={v.image} alt={v.name} className="max-h-full max-w-full object-contain" />
+                       {/* Image: Light Gray Top */}
+                       <div className="bg-[#f6f6f6] h-[130px] w-full flex items-center justify-center p-3">
+                         <img src={v.image} alt={v.name} className="max-h-full max-w-full object-contain mix-blend-multiply" />
                        </div>
                        
-                       {/* Details Section */}
-                       <div className="p-3 bg-white flex flex-col gap-0.5">
-                         <div className="text-[14px] font-bold text-[#222222] leading-tight min-h-[40px]">
-                           {v.name}
+                       {/* Info: White Bottom */}
+                       <div className="p-3 bg-white min-h-[110px] flex flex-col justify-between">
+                         <div>
+                           <div className="text-[13px] font-bold text-[#222222] leading-[18px] line-clamp-2 mb-1">
+                             {v.name}
+                           </div>
+                           <div className="text-[11px] text-[#767676] italic">stokda</div>
                          </div>
-                         <div className="text-[12px] text-[#767676] italic">
-                           stokda
-                         </div>
-                         <div className="text-[22px] font-bold text-[#ff5500] mt-1 flex items-baseline gap-0.5">
-                           {v.price} <span className="text-sm font-bold">₼</span>
+                         <div className="text-[20px] font-bold text-[#ff5500] flex items-baseline gap-1 mt-2">
+                           {v.price} <span className="text-[14px]">₼</span>
                          </div>
                        </div>
                      </div>
                    ))}
                  </div>
                  
-                 {/* Custom Scrollbar Shadow UI */}
-                 <div className="w-full h-1.5 bg-gray-100 rounded-full mt-2 relative overflow-hidden">
-                   <div className="absolute left-0 top-0 h-full bg-gray-400 w-1/3 rounded-full"></div>
+                 {/* Custom Idealo-style Scrollbar */}
+                 <div className="w-full h-[3px] bg-gray-100 rounded-full overflow-hidden">
+                   <div className="bg-gray-400 h-full w-1/3 rounded-full"></div>
                  </div>
                </div>
              </div>
