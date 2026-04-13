@@ -92,23 +92,23 @@ export function Header() {
             </button>
             
             <Link href="/" className="shrink-0 flex flex-col items-start md:pr-4 group select-none">
-              {/* Logo Text with Papyrus Font */}
+              {/* Logo Text with Montserrat Font */}
               <div className="flex items-center leading-[0.85]">
                 <span 
-                  className="text-[36px] font-bold tracking-normal text-white" 
-                  style={{ fontFamily: "'Papyrus', fantasy" }}
+                  className="text-[36px] font-[800] tracking-tight text-white line-clamp-1" 
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   Sərfəli
                 </span>
                 <span 
-                  className="text-[36px] font-bold tracking-normal text-[#FF5500]" 
-                  style={{ fontFamily: "'Papyrus', fantasy" }}
+                  className="text-[36px] font-[800] tracking-tight text-[#FF5500]" 
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   .al
                 </span>
               </div>
               
-              {/* The solid, thick underline */}
+              {/* The solid, thick underline (Preserved) */}
               <div className="w-full h-[6px] bg-[#FF5500] mt-[5px]" />
             </Link>
 
