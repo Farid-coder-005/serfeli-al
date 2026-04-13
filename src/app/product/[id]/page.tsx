@@ -15,27 +15,43 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
+// Helper to generate continuous daily mock data
+const generateDailyData = (days: number, startPrice: number) => {
+  const data = [];
+  let currentPrice = startPrice;
+  const today = new Date('2026-04-13'); // Fixed current date context
+  
+  for (let i = days; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(today.getDate() - i);
+    
+    // Add slight realistic random fluctuation
+    const fluctuation = (Math.random() - 0.4) * 5; 
+    currentPrice = currentPrice + fluctuation;
+    
+    // Force a big drop specifically 74 days ago to match the "Lowest price" UI
+    if (i === 74) currentPrice = 668.33;
+    if (i < 74 && currentPrice < 668.33) currentPrice = 675.00; // Bounce back
+
+    data.push({
+      date: date.toLocaleDateString('az-AZ', { day: '2-digit', month: 'short' }),
+      price: Number(currentPrice.toFixed(2))
+    });
+  }
+  return data;
+};
+
+const richChartData = {
+  '1 Ay': generateDailyData(30, 800),
+  '3 Ay': generateDailyData(90, 850),
+  '6 Ay': generateDailyData(180, 900),
+  '1 İl': generateDailyData(365, 1000)
+};
+
 export default function ProductDetailsPage() {
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [hoveredPoint, setHoveredPoint] = useState<any>(null);
-  const [timeFrame, setTimeFrame] = useState<string>('3 Ay');
-
-  const richChartData: Record<string, any[]> = {
-    '1 Ay': [
-      { date: '01 Apr', price: 820 }, { date: '03 Apr', price: 815 }, { date: '05 Apr', price: 810 }, 
-      { date: '07 Apr', price: 795 }, { date: '09 Apr', price: 799 }, { date: '11 Apr', price: 760 }, 
-      { date: '13 Apr', price: 749.90 }
-    ],
-    '3 Ay': [
-      { date: '01 Fev', price: 849 }, { date: '15 Fev', price: 830 }, { date: '07 Mar', price: 817 }, { date: '20 Mar', price: 825 }, { date: '05 Apr', price: 780 }, { date: '13 Apr', price: 749.90 }
-    ],
-    '6 Ay': [
-      { date: 'Noy', price: 899 }, { date: 'Dek', price: 880 }, { date: 'Yan', price: 850 }, { date: 'Fev', price: 830 }, { date: 'Mar', price: 817 }, { date: 'Apr', price: 749.90 }
-    ],
-    '1 İl': [
-      { date: 'Yay 25', price: 999 }, { date: 'Payız 25', price: 950 }, { date: 'Qış 25', price: 899 }, { date: 'Bahar 26', price: 749.90 }
-    ]
-  };
+  const [timeFrame, setTimeFrame] = useState<keyof typeof richChartData>('3 Ay');
 
   // Advanced Mock Data with coordinates (x, y), price, and date
   const detailedChartData = [
@@ -227,7 +243,7 @@ export default function ProductDetailsPage() {
       </div>
       {/* INTERACTIVE CHART MODAL */}
       {isChartModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
 <div className="bg-white w-full max-w-4xl rounded-sm shadow-2xl flex flex-col relative overflow-hidden">
   {/* FIXED ABSOLUTE CLOSE BUTTON */}
   <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-gray-400 hover:text-[#FF5500] text-4xl leading-none z-50 transition-colors">&times;</button>
@@ -289,7 +305,7 @@ export default function ProductDetailsPage() {
             strokeWidth={3} 
             fillOpacity={1} 
             fill="url(#colorPrice)" 
-            activeDot={{ r: 6, fill: '#FF5500', stroke: '#fff', strokeWidth: 2 }}
+            activeDot={{ r: 5, fill: '#FF5500', stroke: '#fff', strokeWidth: 2 }}
             animationDuration={800} 
           />
         </AreaChart>
@@ -299,10 +315,10 @@ export default function ProductDetailsPage() {
   
   <div className="bg-gray-50 p-6 flex justify-between items-center border-t border-gray-200 mt-auto">
     <div>
-       <div className="text-gray-500 text-sm">Ən aşağı qiymət</div>
-       <div className="text-xs text-gray-400">74 gün əvvəl</div>
+       <div className="text-gray-700 font-medium text-sm">Ən aşağı qiymət</div>
+       <div className="text-sm text-gray-500 mt-0.5">74 gün əvvəl</div>
     </div>
-    <div className="text-3xl font-bold text-[#222222]">668.33 ₼</div>
+    <div className="text-4xl font-extrabold text-[#222222]">668.33 ₼</div>
   </div>
 </div>
         </div>
