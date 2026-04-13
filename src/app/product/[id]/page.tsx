@@ -89,7 +89,7 @@ export default function ProductDetailsPage() {
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
       scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
     }
   };
@@ -114,18 +114,18 @@ export default function ProductDetailsPage() {
   // Generate polygon path for gradient fill (closing the bottom)
   const polygonPoints = `${polylinePoints} 100,100 0,100`;
 
-  // TRANSLATED MOCK DATA
+  const [variants, setVariants] = useState([
+    { id: 1, name: "128GB Black", price: "230.00", active: true, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
+    { id: 2, name: "256GB Black", price: "249.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" },
+    { id: 3, name: "128GB Blue", price: "219.00", active: false, image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=300&auto=format&fit=crop" },
+    { id: 4, name: "256GB Blue", price: "239.00", active: false, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
+    { id: 5, name: "512GB Black", price: "319.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" }
+  ]);
+
   const product = {
     name: "Motorola Moto G84 12GB Gecə Mavisi",
     overview: "6.5-düym · Full HD · 120 Hz · 50 MP · 12 GB RAM · 256 GB daxili yaddaş · Snapdragon 695 · Android 14 · 5,000 mAh batareya",
-    image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=600&auto=format&fit=crop",
-    variants: [
-      { id: 1, name: "128GB Black", price: "230.00", active: true, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
-      { id: 2, name: "256GB Black", price: "249.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" },
-      { id: 3, name: "128GB Blue", price: "219.00", active: false, image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=300&auto=format&fit=crop" },
-      { id: 4, name: "256GB Blue", price: "239.00", active: false, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
-      { id: 5, name: "512GB Black", price: "319.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" }
-    ]
+    image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=600&auto=format&fit=crop"
   };
 
   const comparisonOffers = [
@@ -204,15 +204,15 @@ export default function ProductDetailsPage() {
                       {/* Navigation Arrows */}
                       <button 
                         onClick={() => scroll('left')}
-                        className="absolute left-[-15px] top-[40px] z-20 bg-white border border-gray-200 shadow-sm rounded-full p-1.5 text-gray-400 hover:text-[#005ea8] hidden group-hover:block transition-all"
+                        className="absolute left-[-15px] top-[50px] z-20 bg-white border border-gray-200 shadow-md rounded-full p-2 text-gray-400 hover:text-[#005ea8] hidden group-hover:block transition-all focus:outline-none"
                       >
-                        <ChevronLeft size={18} />
+                        <ChevronLeft size={20} />
                       </button>
                       <button 
                         onClick={() => scroll('right')}
-                        className="absolute right-[-15px] top-[40px] z-20 bg-white border border-gray-200 shadow-sm rounded-full p-1.5 text-gray-400 hover:text-[#005ea8] hidden group-hover:block transition-all"
+                        className="absolute right-[-15px] top-[50px] z-20 bg-white border border-gray-200 shadow-md rounded-full p-2 text-gray-400 hover:text-[#005ea8] hidden group-hover:block transition-all focus:outline-none"
                       >
-                        <ChevronRight size={18} />
+                        <ChevronRight size={20} />
                       </button>
 
                       {/* Cards Scroll Area */}
@@ -220,11 +220,17 @@ export default function ProductDetailsPage() {
                         ref={scrollContainerRef}
                         className="flex overflow-x-auto gap-2 pb-4 no-scrollbar scroll-smooth"
                       >
-                        {product.variants.map((v) => (
+                        {variants.map((v) => (
                           <div 
                             key={v.id}
-                            className={`flex-shrink-0 w-[115px] border rounded-md overflow-hidden transition-all ${
-                              v.active ? 'border-2 border-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
+                            onClick={() => {
+                              setVariants(variants.map(varItem => ({
+                                ...varItem,
+                                active: varItem.id === v.id
+                              })));
+                            }}
+                            className={`flex-shrink-0 w-[115px] border rounded-md overflow-hidden cursor-pointer transition-all ${
+                              v.active ? 'border-2 border-[#005ea8] ring-1 ring-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
                             }`}
                           >
                             {/* Grey Image Box */}
