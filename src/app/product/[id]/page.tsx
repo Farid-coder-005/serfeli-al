@@ -108,7 +108,6 @@ export default function ProductDetailsPage() {
       { name: "12GB Gecə Mavisi", price: "230.00", discount: "-31%", active: true },
       { name: "12GB Qırmızı", price: "249.00", discount: "-12%", active: false },
       { name: "8GB Qırmızı", price: "209.99", discount: "Ən yaxşı qiymət", active: false }
-    ],
     ]
   };
 
