@@ -138,15 +138,23 @@ export default function ProductDetailsPage() {
             {/* Header */}
             <div className="text-xl font-bold text-center text-[#222222] mb-4">Qiymət dinamikası</div>
 
-            {/* Timeframe Row (Decorative in mini-view) */}
-            <div className="flex justify-center gap-1 mb-5">
-              {['1 Ay', '3 Ay', '6 Ay', '1 İl'].map((tf) => (
-                <span 
-                  key={tf} 
-                  className={`text-[10px] font-extrabold px-2 py-1 rounded border transition-colors ${tf === '3 Ay' ? 'bg-[#005ea8] text-white border-[#005ea8]' : 'bg-white text-gray-400 border-gray-200'}`}
+            <div className="flex justify-center gap-2 mb-4 relative z-10">
+              {Object.keys(richChartData).map((tf) => (
+                <button
+                  key={tf}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // CRITICAL: Prevents the modal from opening when clicking buttons
+                    setTimeFrame(tf as "1 Ay" | "3 Ay" | "6 Ay" | "1 İl");
+                  }}
+                  className={`px-3 py-1.5 text-sm font-bold rounded transition-all ${
+                    timeFrame === tf
+                      ? 'bg-[#005ea8] text-white shadow-md'
+                      : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
+                  }`}
                 >
                   {tf}
-                </span>
+                </button>
               ))}
             </div>
 
@@ -154,7 +162,7 @@ export default function ProductDetailsPage() {
             {/* Dynamic Mini Recharts Instance */}
             <div className="w-full h-32 mt-4 pointer-events-none">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={richChartData['3 Ay']} margin={{ top: 5, right: 0, left: 0, bottom: 0 }}>
+                <AreaChart data={richChartData[timeFrame]} margin={{ top: 5, right: 0, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="miniIdealoFill" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15}/>
