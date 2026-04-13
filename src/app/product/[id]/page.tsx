@@ -217,9 +217,8 @@ export default function ProductDetailsPage() {
                     ))}
                   </div>
                 </div>
-             </div>
+            </div>
            </div>
-          </div>
 
           {/* RIGHT SIDE: Price Chart Sidebar */}
           <div className="lg:col-span-4 xl:col-span-3 flex flex-col">
