@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef } from 'react';
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -84,6 +85,15 @@ export default function ProductDetailsPage() {
   const [creditTerm, setCreditTerm] = useState(24);
   const creditOptions = [3, 6, 9, 12, 15, 18, 21, 24];
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -110,8 +120,11 @@ export default function ProductDetailsPage() {
     overview: "6.5-düym · Full HD · 120 Hz · 50 MP · 12 GB RAM · 256 GB daxili yaddaş · Snapdragon 695 · Android 14 · 5,000 mAh batareya",
     image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=600&auto=format&fit=crop",
     variants: [
-      { id: 1, type: "Memory", name: "12GB", colors: [ { name: "Göy", hex: "#007AFF", price: "230.00", active: true }, { name: "Qırmızı", hex: "#FF0000", price: "249.00", active: false } ] },
-      { id: 2, type: "Memory", name: "8GB", colors: [ { name: "Qırmızı", hex: "#FF0000", price: "209.99", active: true } ] },
+      { id: 1, name: "128GB Black", price: "230.00", active: true, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
+      { id: 2, name: "256GB Black", price: "249.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" },
+      { id: 3, name: "128GB Blue", price: "219.00", active: false, image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=300&auto=format&fit=crop" },
+      { id: 4, name: "256GB Blue", price: "239.00", active: false, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
+      { id: 5, name: "512GB Black", price: "319.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" }
     ]
   };
 
@@ -177,46 +190,66 @@ export default function ProductDetailsPage() {
                  <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
                  <p className="text-sm text-gray-700 leading-relaxed mb-6"><span className="font-bold">Məhsulun xülasəsi:</span> {product.overview}</p>
                  
-                 <div className="mt-8 mb-10 w-full">
-                    <h3 className="text-lg font-bold text-[#222222] mb-4">Variantlar:</h3>
+                 <div className="mt-6 mb-8 w-full">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-base font-bold text-[#222222]">Variantlar:</h3>
+                    </div>
                     
-                    {product.variants.map((group: any) => (
-                      <div key={group.id} className="w-full">
-                        <div className="text-sm font-semibold text-[#555555] mb-2 mt-6 uppercase tracking-tight">
-                          {group.name}
-                        </div>
-                        
-                        <div className="flex flex-wrap gap-3">
-                          {group.colors.map((color: any) => (
-                            <div 
-                              key={color.name}
-                              className={`flex-shrink-0 w-[140px] border rounded-md transition-all duration-200 p-3 flex flex-col items-center justify-center text-center ${
-                                color.active ? 'border-2 border-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
-                              }`}
-                            >
-                              {/* Color Swatch Circle */}
-                              <div 
-                                style={{ backgroundColor: color.hex }} 
-                                className="w-[32px] h-[32px] rounded-full border border-gray-200 shadow-sm mb-3"
-                                title={color.name}
-                              />
-                              
-                              {/* Details Section */}
-                              <div className="flex flex-col gap-0.5">
-                                <div className="text-[12px] font-normal text-[#767676]">
-                                  {color.name}
-                                </div>
-                                <div className="text-[14px] font-bold text-[#FF5500] mt-1 flex items-baseline gap-0.5">
-                                  {color.price} <span className="text-sm font-bold">₼</span>
-                                </div>
+                    <div className="relative group">
+                      {/* Navigation Arrows */}
+                      <button 
+                        onClick={() => scroll('left')}
+                        className="absolute left-[-15px] top-[40px] z-20 bg-white border border-gray-200 shadow-sm rounded-full p-1.5 text-gray-400 hover:text-[#005ea8] hidden group-hover:block transition-all"
+                      >
+                        <ChevronLeft size={18} />
+                      </button>
+                      <button 
+                        onClick={() => scroll('right')}
+                        className="absolute right-[-15px] top-[40px] z-20 bg-white border border-gray-200 shadow-sm rounded-full p-1.5 text-gray-400 hover:text-[#005ea8] hidden group-hover:block transition-all"
+                      >
+                        <ChevronRight size={18} />
+                      </button>
+
+                      {/* Cards Scroll Area */}
+                      <div 
+                        ref={scrollContainerRef}
+                        className="flex overflow-x-auto gap-2 pb-4 no-scrollbar scroll-smooth"
+                      >
+                        {product.variants.map((v) => (
+                          <div 
+                            key={v.id}
+                            className={`flex-shrink-0 w-[115px] border rounded-md overflow-hidden transition-all ${
+                              v.active ? 'border-2 border-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
+                            }`}
+                          >
+                            {/* Grey Image Box */}
+                            <div className="bg-[#f6f6f6] h-[100px] flex items-center justify-center p-2">
+                              <img src={v.image} alt={v.name} className="max-h-full object-contain" />
+                            </div>
+                            
+                            {/* Info Area */}
+                            <div className="p-2 bg-white flex flex-col gap-0.5">
+                              <div className="text-[11px] font-bold text-[#222222] truncate leading-tight">
+                                {v.name}
+                              </div>
+                              <div className="text-[10px] text-[#767676] italic">stokda</div>
+                              <div className="text-[15px] font-bold text-[#ff5500] mt-1">
+                                {v.price} <span className="text-[10px]">₼</span>
                               </div>
                             </div>
-                          ))}
-                        </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                      
+                      {/* Custom Idealo-style Scrollbar Handle */}
+                      <div className="w-full h-[3px] bg-gray-100 rounded-full overflow-hidden">
+                        <div className="bg-gray-400 h-full w-1/4 rounded-full"></div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+              </div>
+            </div>
+          </div>
             </div>
            </div>
 
