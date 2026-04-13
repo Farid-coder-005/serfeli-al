@@ -191,15 +191,15 @@ export default function ProductDetailsPage() {
                  {/* Navigation Arrows */}
                  <button 
                   onClick={() => scroll('left')}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/20 text-white p-2 hidden group-hover:block hover:bg-black/40 rounded-full transition-all ml-2"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 text-gray-400 p-2 hidden group-hover:flex items-center justify-center hover:bg-white hover:text-[#005ea8] rounded-full shadow-md transition-all ml-2 border border-gray-100"
                  >
-                   <ChevronLeft size={24} />
+                   <ChevronLeft size={20} />
                  </button>
                  <button 
                   onClick={() => scroll('right')}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/20 text-white p-2 hidden group-hover:block hover:bg-black/40 rounded-full transition-all mr-2"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 text-gray-400 p-2 hidden group-hover:flex items-center justify-center hover:bg-white hover:text-[#005ea8] rounded-full shadow-md transition-all mr-2 border border-gray-100"
                  >
-                   <ChevronRight size={24} />
+                   <ChevronRight size={20} />
                  </button>
 
                  {/* Cards Container */}
@@ -210,25 +210,31 @@ export default function ProductDetailsPage() {
                    {product.variants.map((v) => (
                      <div 
                        key={v.id}
-                       className={`flex-shrink-0 w-[180px] border rounded-lg overflow-hidden cursor-pointer transition-all ${v.active ? 'border-2 border-[#005ea8]' : 'border-gray-200 hover:border-gray-400'}`}
+                       className={`flex-shrink-0 w-[165px] border rounded-md overflow-hidden cursor-pointer transition-all ${v.active ? 'border-2 border-[#005ea8]' : 'border-gray-200'}`}
                      >
-                       {/* Top Half: Image Container */}
-                       <div className="bg-[#f6f6f6] p-4 flex justify-center h-[160px]">
-                         <img src={v.image} alt={v.name} className="object-contain" />
+                       {/* Image Section */}
+                       <div className="bg-[#f6f6f6] h-[140px] flex items-center justify-center p-2">
+                         <img src={v.image} alt={v.name} className="max-h-full max-w-full object-contain" />
                        </div>
                        
-                       {/* Bottom Half: Details */}
-                       <div className="p-3 bg-white">
-                         <div className="text-sm font-bold text-[#222222] truncate">{v.name}</div>
-                         <div className="text-xs text-gray-500 mt-1 italic">stokda</div>
-                         <div className="text-xl font-bold text-[#ff5500] mt-1">{v.price} ₼</div>
+                       {/* Details Section */}
+                       <div className="p-3 bg-white flex flex-col gap-0.5">
+                         <div className="text-[14px] font-bold text-[#222222] leading-tight min-h-[40px]">
+                           {v.name}
+                         </div>
+                         <div className="text-[12px] text-[#767676] italic">
+                           stokda
+                         </div>
+                         <div className="text-[22px] font-bold text-[#ff5500] mt-1 flex items-baseline gap-0.5">
+                           {v.price} <span className="text-sm font-bold">₼</span>
+                         </div>
                        </div>
                      </div>
                    ))}
                  </div>
                  
                  {/* Custom Scrollbar Shadow UI */}
-                 <div className="w-full h-1.5 bg-gray-200 rounded-full mt-2 relative overflow-hidden">
+                 <div className="w-full h-1.5 bg-gray-100 rounded-full mt-2 relative overflow-hidden">
                    <div className="absolute left-0 top-0 h-full bg-gray-400 w-1/3 rounded-full"></div>
                  </div>
                </div>
