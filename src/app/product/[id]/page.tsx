@@ -79,6 +79,10 @@ export default function ProductDetailsPage() {
   const [timeFrame, setTimeFrame] = useState<keyof typeof richChartData>('3 Ay');
   const [mounted, setMounted] = useState(false);
 
+  const [paymentMethod, setPaymentMethod] = useState<'nagd' | 'kredit'>('nagd');
+  const [creditTerm, setCreditTerm] = useState(24);
+  const creditOptions = [3, 6, 9, 12, 15, 18, 21, 24];
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -278,7 +282,42 @@ export default function ProductDetailsPage() {
 
         {/* SECTION 2: PRICE COMPARISON */}
         <div className="mb-16">
-          <h2 className="text-xl font-bold mb-0 bg-[#F4F4F4] p-4 border border-b-0 border-gray-200">Qiymət müqayisəsi</h2>
+          <div className="bg-gray-50 border-b border-gray-200">
+            {/* Main Header & Tabs */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between px-6 pt-4">
+              <h2 className="text-xl font-bold text-[#222222] pb-4">Qiymət müqayisəsi</h2>
+              
+              <div className="flex text-lg font-medium text-[#005ea8]">
+                <button 
+                  onClick={() => setPaymentMethod('kredit')}
+                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'kredit' ? 'border-[#005ea8] text-[#005ea8]' : 'border-transparent text-gray-500 hover:text-[#005ea8]'}`}
+                >
+                  Kredit qiymətləri
+                </button>
+                <button 
+                  onClick={() => setPaymentMethod('nagd')}
+                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'nagd' ? 'border-[#005ea8] text-[#005ea8]' : 'border-transparent text-gray-500 hover:text-[#005ea8]'}`}
+                >
+                  Nağd alış qiymətləri
+                </button>
+              </div>
+            </div>
+
+            {/* Credit Months Sub-menu (Only visible if Kredit is active) */}
+            {paymentMethod === 'kredit' && (
+              <div className="bg-white border-t border-gray-200 p-4 flex justify-end gap-2">
+                {creditOptions.map(months => (
+                  <button
+                    key={months}
+                    onClick={() => setCreditTerm(months)}
+                    className={`px-5 py-1.5 border rounded text-sm transition-colors ${creditTerm === months ? 'bg-[#1877f2] text-white border-[#1877f2]' : 'bg-gray-50 text-[#222222] border-gray-300 hover:bg-gray-100'}`}
+                  >
+                    {months} ay
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <div className="flex flex-col border border-gray-200 rounded-b-sm overflow-hidden">
              {comparisonOffers.map((offer, index) => (
                <div key={offer.id} className={`flex items-center justify-between p-6 ${index !== comparisonOffers.length - 1 ? 'border-b border-gray-100' : ''}`}>
@@ -292,10 +331,15 @@ export default function ProductDetailsPage() {
                  {/* Price & Badge */}
                  <div className="w-1/4 flex flex-col items-center">
                    <div className="flex items-end gap-1">
-                     <span className="text-3xl font-extrabold text-[#222222]">{offer.price.toFixed(2)}</span>
+                     <span className="text-3xl font-extrabold text-[#222222]">
+                       {paymentMethod === 'nagd' ? offer.price.toFixed(2) : (offer.price / creditTerm).toFixed(2)}
+                     </span>
                      <span className="text-xl font-bold text-[#222222] mb-1">₼</span>
                    </div>
-                   {offer.isLowest && (
+                   {paymentMethod === 'kredit' && (
+                     <span className="text-sm text-gray-500 font-medium mt-0.5">/ ayda</span>
+                   )}
+                   {offer.isLowest && paymentMethod === 'nagd' && (
                      <span className="mt-1 text-[10px] font-bold text-[#ff5500] border border-[#ff5500] px-2 py-0.5 rounded uppercase tracking-wider">
                        Ən ucuz yekun qiymət
                      </span>
