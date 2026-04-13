@@ -255,7 +255,11 @@ export default function ProductDetailsPage() {
     {/* Timeframe Toggles */}
     <div className="flex justify-end gap-2 mt-4 mb-8">
        {Object.keys(richChartData).map(tf => (
-          <button key={tf} onClick={() => setTimeFrame(tf)} className={`px-4 py-1.5 text-sm font-bold rounded transition-all ${timeFrame === tf ? 'bg-[#005ea8] text-white shadow-md' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'}`}>
+          <button 
+            key={tf} 
+            onClick={() => setTimeFrame(tf as "1 Ay" | "3 Ay" | "6 Ay" | "1 İl")} 
+            className={`px-4 py-1.5 text-sm font-bold rounded transition-all ${timeFrame === tf ? 'bg-[#005ea8] text-white shadow-md' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
+          >
             {tf}
           </button>
        ))}
