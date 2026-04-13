@@ -151,17 +151,27 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* Mini-Chart Line */}
-            <div className="w-full h-24 mb-6 relative pointer-events-none px-2">
-               <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+            {/* Dynamic Mini Recharts Instance */}
+            <div className="w-full h-32 mt-4 pointer-events-none">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={richChartData['3 Ay']} margin={{ top: 5, right: 0, left: 0, bottom: 0 }}>
                   <defs>
-                     <linearGradient id="miniChartGradient" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="#FF5500" stopOpacity={0.1}/>
-                        <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
-                     </linearGradient>
+                    <linearGradient id="miniIdealoFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15}/>
+                      <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
+                    </linearGradient>
                   </defs>
-                  <polygon points={polygonPoints} fill="url(#miniChartGradient)" />
-                  <polyline points={polylinePoints} fill="none" stroke="#FF5500" strokeWidth="1.5" strokeLinejoin="round" />
-               </svg>
+                  <Area 
+                    type="linear" 
+                    dataKey="price" 
+                    stroke="#FF5500" 
+                    strokeWidth={1.5} 
+                    fillOpacity={1} 
+                    fill="url(#miniIdealoFill)" 
+                    isAnimationActive={false}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
             </div>
 
             {/* Detailed Statistics Row */}
