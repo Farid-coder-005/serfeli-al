@@ -1,7 +1,27 @@
 "use client";
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function ProductDetailsPage() {
+  const [isChartModalOpen, setIsChartModalOpen] = useState(false);
+  const [hoveredPoint, setHoveredPoint] = useState<any>(null);
+
+  // Advanced Mock Data with coordinates (x, y), price, and date
+  const detailedChartData = [
+    { x: 0, y: 20, price: '849.00', date: '01 Fev' },
+    { x: 15, y: 25, price: '830.00', date: '15 Fev' },
+    { x: 30, y: 40, price: '817.99', date: '07 Mar' }, // Example dip
+    { x: 50, y: 35, price: '825.00', date: '20 Mar' },
+    { x: 70, y: 60, price: '780.00', date: '05 Apr' },
+    { x: 90, y: 80, price: '749.90', date: '11 Apr' },
+    { x: 100, y: 80, price: '749.90', date: '13 Apr' }
+  ];
+
+  // Generate polyline path
+  const polylinePoints = detailedChartData.map(d => `${d.x},${d.y}`).join(' ');
+  // Generate polygon path for gradient fill (closing the bottom)
+  const polygonPoints = `${polylinePoints} 100,100 0,100`;
+
   // TRANSLATED MOCK DATA
   const product = {
     name: "Motorola Moto G84 12GB Gecə Mavisi",
@@ -48,19 +68,24 @@ export default function ProductDetailsPage() {
            </div>
         </div>
 
-        <div className="w-full md:w-1/4 bg-[#f8f9fa] border border-gray-200 p-4 flex flex-col justify-center items-center h-52 rounded-sm shadow-sm">
-           <div className="text-xs tracking-wider uppercase font-bold text-gray-600 mb-4">Qiymət dinamikası</div>
-           {/* Kept the premium SVG Chart */}
-           <div className="w-full h-24 mb-4 relative">
-              <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
-                 <line x1="0" y1="10" x2="100" y2="10" stroke="#e5e7eb" strokeWidth="0.5" />
-                 <line x1="0" y1="20" x2="100" y2="20" stroke="#e5e7eb" strokeWidth="0.5" />
-                 <line x1="0" y1="30" x2="100" y2="30" stroke="#e5e7eb" strokeWidth="0.5" />
-                 <polyline points="0,15 10,15 12,25 15,20 25,20 30,35 35,25 50,25 55,10 65,10 70,22 85,22 90,30 100,28" fill="none" stroke="#FF5500" strokeWidth="1.5" strokeLinejoin="round" />
-                 <circle cx="100" cy="28" r="2.5" fill="#FF5500" />
+        <div className="w-full md:w-1/4 bg-gray-50 border border-gray-200 p-4 flex flex-col justify-center h-48 rounded-sm cursor-pointer hover:shadow-md transition-shadow group" onClick={() => setIsChartModalOpen(true)}>
+           <div className="flex justify-between items-center mb-4">
+              <div className="text-[10px] tracking-wider uppercase font-bold text-gray-600 group-hover:text-[#005ea8] transition-colors">Qiymət dinamikası ↗</div>
+           </div>
+           
+           <div className="w-full h-24 mb-4 relative pointer-events-none">
+              <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+                 <defs>
+                    <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+                       <stop offset="0%" stopColor="#FF5500" stopOpacity="0.2"/>
+                       <stop offset="100%" stopColor="#FF5500" stopOpacity="0"/>
+                    </linearGradient>
+                 </defs>
+                 <polygon points={polygonPoints} fill="url(#chartGradient)" />
+                 <polyline points={polylinePoints} fill="none" stroke="#FF5500" strokeWidth="2" strokeLinejoin="round" />
               </svg>
            </div>
-           <button className="border-2 border-[#005ea8] text-[#005ea8] bg-white px-4 py-2.5 text-xs font-bold hover:bg-blue-50 transition-colors w-full uppercase tracking-wider">⏰ Qiymət bildirişi</button>
+           <button className="border border-[#005ea8] text-[#005ea8] bg-white px-4 py-1.5 text-sm font-bold w-full pointer-events-none">Geniş baxış</button>
         </div>
       </div>
 
@@ -169,6 +194,83 @@ export default function ProductDetailsPage() {
             </div>
          </div>
       </div>
+      {/* INTERACTIVE CHART MODAL */}
+      {isChartModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white w-full max-w-3xl rounded-sm shadow-2xl flex flex-col">
+            {/* Modal Header */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-200">
+              <div>
+                <h2 className="text-2xl font-bold text-[#222222]">Qiymət dinamikası</h2>
+                <p className="text-sm text-gray-500 mt-1">{product.name}</p>
+              </div>
+              <button onClick={() => setIsChartModalOpen(false)} className="text-gray-400 hover:text-black text-3xl leading-none">&times;</button>
+            </div>
+            
+            {/* Modal Body - Large Interactive Chart */}
+            <div className="p-8 relative h-96">
+              <div className="absolute top-4 right-8 flex gap-2">
+                 <button className="border border-gray-300 text-gray-600 px-3 py-1 text-sm rounded hover:bg-gray-50">1 Ay</button>
+                 <button className="bg-[#005ea8] text-white border border-[#005ea8] px-3 py-1 text-sm rounded">3 Ay</button>
+                 <button className="border border-gray-300 text-gray-600 px-3 py-1 text-sm rounded hover:bg-gray-50">6 Ay</button>
+              </div>
+
+              <svg viewBox="0 0 100 100" className="w-full h-full mt-10 overflow-visible" onMouseLeave={() => setHoveredPoint(null)}>
+                 <defs>
+                    <linearGradient id="modalGradient" x1="0" x2="0" y1="0" y2="1">
+                       <stop offset="0%" stopColor="#FF5500" stopOpacity="0.25"/>
+                       <stop offset="100%" stopColor="#FF5500" stopOpacity="0"/>
+                    </linearGradient>
+                 </defs>
+                 
+                 {/* Grid Lines */}
+                 <line x1="0" y1="25" x2="100" y2="25" stroke="#f3f4f6" strokeWidth="0.5" />
+                 <line x1="0" y1="50" x2="100" y2="50" stroke="#f3f4f6" strokeWidth="0.5" />
+                 <line x1="0" y1="75" x2="100" y2="75" stroke="#f3f4f6" strokeWidth="0.5" />
+                 <line x1="0" y1="100" x2="100" y2="100" stroke="#e5e7eb" strokeWidth="1" />
+                 
+                 {/* Filled Area & Line */}
+                 <polygon points={polygonPoints} fill="url(#modalGradient)" />
+                 <polyline points={polylinePoints} fill="none" stroke="#FF5500" strokeWidth="1.5" strokeLinejoin="round" />
+                 
+                 {/* Interactive Overlay & Tooltips */}
+                 {detailedChartData.map((d, i) => (
+                    <g key={i}>
+                       {/* Invisible wide circle for easier hovering */}
+                       <circle cx={d.x} cy={d.y} r="6" fill="transparent" className="cursor-crosshair outline-none" 
+                               onMouseEnter={() => setHoveredPoint(d)} />
+                       
+                       {/* The visible dot and tooltip when hovered */}
+                       {hoveredPoint?.x === d.x && (
+                          <>
+                             <line x1={d.x} y1={d.y} x2={d.x} y2="100" stroke="#9ca3af" strokeWidth="0.5" strokeDasharray="1,1" />
+                             <circle cx={d.x} cy={d.y} r="2" fill="#FF5500" stroke="white" strokeWidth="1" />
+                             
+                             {/* HTML Tooltip mapped to SVG coordinates via foreignObject */}
+                             <foreignObject x={d.x > 50 ? d.x - 32 : d.x + 2} y={d.y > 20 ? d.y - 20 : d.y + 2} width="30" height="15" className="overflow-visible">
+                                <div className="bg-[#FF5500] text-white text-[6px] font-bold p-1 rounded-sm shadow-md whitespace-nowrap">
+                                   {d.price} ₼ <br/>
+                                   <span className="font-normal opacity-90">{d.date} 2026</span>
+                                </div>
+                             </foreignObject>
+                          </>
+                       )}
+                    </g>
+                 ))}
+              </svg>
+            </div>
+            
+            {/* Modal Footer */}
+            <div className="bg-gray-50 p-6 flex justify-between items-center border-t border-gray-200">
+              <div>
+                 <div className="text-gray-500 text-sm">Ən aşağı qiymət</div>
+                 <div className="text-xs text-gray-400">74 gün əvvəl</div>
+              </div>
+              <div className="text-2xl font-bold text-[#222222]">668.33 ₼</div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
