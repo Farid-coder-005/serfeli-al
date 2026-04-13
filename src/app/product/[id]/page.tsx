@@ -337,7 +337,7 @@ export default function ProductDetailsPage() {
                      <span className="text-xl font-bold text-[#222222] mb-1">₼</span>
                    </div>
                    {paymentMethod === 'kredit' && (
-                     <span className="text-sm text-gray-500 font-medium mt-0.5">/ ayda</span>
+                     <span className="text-sm text-gray-500 font-medium mt-0.5">{creditTerm} / ayda</span>
                    )}
                    {offer.isLowest && paymentMethod === 'nagd' && (
                      <span className="mt-1 text-[10px] font-bold text-[#ff5500] border border-[#ff5500] px-2 py-0.5 rounded uppercase tracking-wider">
