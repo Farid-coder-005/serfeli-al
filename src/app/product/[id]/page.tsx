@@ -191,25 +191,21 @@ export default function ProductDetailsPage() {
         {/* SECTION 1: HERO (12-COLUMN GRID) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
           
-          {/* LEFT SIDE: Product Header (Image + Price History Text) (col-span-8) */}
-          <div className="lg:col-span-8 xl:col-span-9">
-            <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-10 items-start">
+          {/* LEFT SIDE: Product Header (Image + Title) (col-span-8) - ADDING min-w-0 overflow-hidden TO PREVENT SIDEBAR OVERLAP */}
+          <div className="lg:col-span-8 xl:col-span-9 min-w-0 overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 items-start mb-8">
               
-              {/* LEFT: LARGE PRODUCT IMAGE */}
-              <div className="flex flex-col items-center">
-                <div className="w-full bg-white border border-gray-100 rounded-xl p-6 h-[400px] flex items-center justify-center relative">
-                  <img 
-                    src="https://m.media-amazon.com/images/I/61S98mky69L._AC_SL1500_.jpg" 
-                    alt="Main Product" 
-                    className="max-h-full max-w-full object-contain"
-                  />
-                  {/* Optional: Add Image dots here like in the screenshot */}
-                </div>
+              {/* LEFT: PRODUCT IMAGE BOX (SURGICAL SIZING) */}
+              <div className="w-full aspect-[3/4] md:h-[380px] bg-white border border-gray-100 rounded-xl p-6 flex items-center justify-center shadow-sm shrink-0">
+                <img 
+                  src="https://m.media-amazon.com/images/I/61S98mky69L._AC_SL1500_.jpg" 
+                  alt="Main Product" 
+                  className="max-h-full w-auto object-contain"
+                />
               </div>
 
-              {/* RIGHT: PRODUCT INFO & VARIANTS */}
-              <div className="flex flex-col gap-6">
-                {/* Title Section */}
+              {/* RIGHT: PRODUCT INFO & VARIANTS (NESTED Column with min-w-0) */}
+              <div className="flex flex-col gap-6 min-w-0">
                 <div>
                   <h1 className="text-3xl font-extrabold text-[#222222] leading-tight mb-4">
                     Motorola Moto G84 12GB Gecə Mavisi
@@ -219,11 +215,11 @@ export default function ProductDetailsPage() {
                   </div>
                 </div>
 
-                {/* Variant Section */}
-                <div className="mt-4">
-                  <h3 className="text-[16px] font-bold text-[#222222] mb-3">Variant:</h3>
-                  <div className="relative group border-none shadow-none">
-                    {/* Navigation Arrows */}
+                {/* Variant Section (Nested inside info column to respect constraints) */}
+                <div className="relative group w-full overflow-hidden">
+                  <h3 className="text-base font-bold text-[#222222] mb-3">Variant:</h3>
+                  {/* Navigation Arrows */}
+                  <div className="relative border-none shadow-none">
                     <button 
                       type="button"
                       onClick={(e) => { e.stopPropagation(); handleVariantScroll('left'); }}
@@ -241,7 +237,7 @@ export default function ProductDetailsPage() {
 
                     <div 
                       ref={variantScrollRef}
-                      className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none outline-none shadow-none"
+                      className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none outline-none shadow-none max-w-full"
                     >
                       {variants.map((v) => (
                         <div 
