@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 
@@ -98,6 +98,39 @@ export default function ProductDetailsPage() {
     ]
   };
 
+  const stats = useMemo(() => {
+    const currentData = richChartData[timeFrame];
+    if (!currentData || currentData.length === 0) return null;
+
+    const prices = currentData.map(d => d.price);
+    const minPrice = Math.min(...prices);
+    const maxPrice = Math.max(...prices);
+    const avgPrice = prices.reduce((a, b) => a + b, 0) / prices.length;
+    
+    const minIndex = prices.indexOf(minPrice);
+    const maxIndex = prices.indexOf(maxPrice);
+    
+    // Array ends with today, so index 0 is oldest
+    const daysAgoMin = currentData.length - 1 - minIndex;
+    const daysAgoMax = currentData.length - 1 - maxIndex;
+    const totalDays = currentData.length;
+    
+    const currentPrice = prices[prices.length - 1];
+    
+    const getDiff = (comparePrice: number) => {
+      const diff = currentPrice - comparePrice;
+      if (diff > 0) return { value: `↗ ${diff.toFixed(2)} ₼`, color: 'text-[#d32f2f]' };
+      if (diff < 0) return { value: `↘ ${Math.abs(diff).toFixed(2)} ₼`, color: 'text-[#1da661]' };
+      return { value: `- 0.00 ₼`, color: 'text-gray-500' };
+    };
+
+    return {
+      min: { price: minPrice.toFixed(2), daysAgo: daysAgoMin, diff: getDiff(minPrice) },
+      max: { price: maxPrice.toFixed(2), daysAgo: daysAgoMax, diff: getDiff(maxPrice) },
+      avg: { price: avgPrice.toFixed(2), daysAgo: totalDays, diff: getDiff(avgPrice) }
+    };
+  }, [timeFrame]);
+
   return (
     <>
       <main className="max-w-[1200px] mx-auto w-full px-4 py-6 text-[#222222] bg-white">
@@ -183,29 +216,31 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* Detailed Statistics Row */}
-            <div className="flex items-center justify-between border-y border-gray-100 py-4 mb-6">
-              <div className="flex flex-col items-center flex-1">
-                <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən aşağı</div>
-                <div className="text-lg font-black text-[#222222]">668.33 ₼</div>
-                <div className="text-[9px] text-gray-400">74 gün əvvəl</div>
-              </div>
-              
-              <div className="w-px h-10 bg-gray-100"></div>
+            {stats && (
+              <div className="flex items-center justify-between border-y border-gray-100 py-4 mb-6">
+                <div className="flex flex-col items-center flex-1">
+                  <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən aşağı</div>
+                  <div className="text-lg font-black text-[#222222]">{stats.min.price} ₼</div>
+                  <div className="text-[9px] text-gray-400">{stats.min.daysAgo} gün əvvəl</div>
+                </div>
+                
+                <div className="w-px h-10 bg-gray-100"></div>
 
-              <div className="flex flex-col items-center flex-1">
-                <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Orta</div>
-                <div className="text-lg font-black text-[#222222]">805.35 ₼</div>
-                <div className="text-[9px] text-gray-400">91 gün ərzində</div>
-              </div>
+                <div className="flex flex-col items-center flex-1">
+                  <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Orta</div>
+                  <div className="text-lg font-black text-[#222222]">{stats.avg.price} ₼</div>
+                  <div className="text-[9px] text-gray-400">{stats.avg.daysAgo} gün ərzində</div>
+                </div>
 
-              <div className="w-px h-10 bg-gray-100"></div>
+                <div className="w-px h-10 bg-gray-100"></div>
 
-              <div className="flex flex-col items-center flex-1">
-                <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən yüksək</div>
-                <div className="text-lg font-black text-[#222222]">847.00 ₼</div>
-                <div className="text-[9px] text-gray-400">90 gün əvvəl</div>
+                <div className="flex flex-col items-center flex-1">
+                  <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən yüksək</div>
+                  <div className="text-lg font-black text-[#222222]">{stats.max.price} ₼</div>
+                  <div className="text-[9px] text-gray-400">{stats.max.daysAgo} gün əvvəl</div>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Centered Bottom Button */}
             <div className="flex justify-center">
@@ -405,61 +440,63 @@ export default function ProductDetailsPage() {
             </div>
             
             {/* NEW MODAL FOOTER: Full Statistics Panel */}
-            <div className="bg-white px-8 pb-8 pt-4 flex flex-col mt-auto border-t border-gray-200">
-              
-              {/* Row 1: Lowest */}
-              <div className="flex items-center justify-between py-4 border-b border-gray-100">
-                <div className="w-1/3">
-                  <div className="text-[#222222] font-medium text-base">Ən aşağı qiymət</div>
-                  <div className="text-sm text-gray-500 mt-0.5">74 gün əvvəl</div>
+            {stats && (
+              <div className="bg-white px-8 pb-8 pt-4 flex flex-col mt-auto border-t border-gray-200">
+                
+                {/* Row 1: Lowest */}
+                <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                  <div className="w-1/3">
+                    <div className="text-[#222222] font-medium text-base">Ən aşağı qiymət</div>
+                    <div className="text-sm text-gray-500 mt-0.5">{stats.min.daysAgo} gün əvvəl</div>
+                  </div>
+                  <div className="w-1/3 text-center">
+                    <span className="text-2xl font-normal text-[#222222]">{stats.min.price} ₼</span>
+                  </div>
+                  <div className="w-1/3 text-right">
+                    <span className={`${stats.min.diff.color} text-sm font-medium`}>{stats.min.diff.value}</span>
+                  </div>
                 </div>
-                <div className="w-1/3 text-center">
-                  <span className="text-2xl font-normal text-[#222222]">668.33 ₼</span>
-                </div>
-                <div className="w-1/3 text-right">
-                  <span className="text-[#d32f2f] text-sm font-medium">↗ 81.57 ₼</span>
-                </div>
-              </div>
 
-              {/* Row 2: Average */}
-              <div className="flex items-center justify-between py-4 border-b border-gray-100">
-                <div className="w-1/3">
-                  <div className="text-[#222222] font-medium text-base">Orta qiymət</div>
-                  <div className="text-sm text-gray-500 mt-0.5">91 gün ərzində</div>
+                {/* Row 2: Average */}
+                <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                  <div className="w-1/3">
+                    <div className="text-[#222222] font-medium text-base">Orta qiymət</div>
+                    <div className="text-sm text-gray-500 mt-0.5">{stats.avg.daysAgo} gün ərzində</div>
+                  </div>
+                  <div className="w-1/3 text-center">
+                    <span className="text-2xl font-normal text-[#222222]">{stats.avg.price} ₼</span>
+                  </div>
+                  <div className="w-1/3 text-right">
+                    <span className={`${stats.avg.diff.color} text-sm font-medium`}>{stats.avg.diff.value}</span>
+                  </div>
                 </div>
-                <div className="w-1/3 text-center">
-                  <span className="text-2xl font-normal text-[#222222]">805.35 ₼</span>
-                </div>
-                <div className="w-1/3 text-right">
-                  <span className="text-[#1da661] text-sm font-medium">↘ 55.45 ₼</span>
-                </div>
-              </div>
 
-              {/* Row 3: Highest */}
-              <div className="flex items-center justify-between py-4 border-b border-gray-100 mb-6">
-                <div className="w-1/3">
-                  <div className="text-[#222222] font-medium text-base">Ən yüksək qiymət</div>
-                  <div className="text-sm text-gray-500 mt-0.5">90 gün əvvəl</div>
+                {/* Row 3: Highest */}
+                <div className="flex items-center justify-between py-4 border-b border-gray-100 mb-6">
+                  <div className="w-1/3">
+                    <div className="text-[#222222] font-medium text-base">Ən yüksək qiymət</div>
+                    <div className="text-sm text-gray-500 mt-0.5">{stats.max.daysAgo} gün əvvəl</div>
+                  </div>
+                  <div className="w-1/3 text-center">
+                    <span className="text-2xl font-normal text-[#222222]">{stats.max.price} ₼</span>
+                  </div>
+                  <div className="w-1/3 text-right">
+                    <span className={`${stats.max.diff.color} text-sm font-medium`}>{stats.max.diff.value}</span>
+                  </div>
                 </div>
-                <div className="w-1/3 text-center">
-                  <span className="text-2xl font-normal text-[#222222]">847.00 ₼</span>
-                </div>
-                <div className="w-1/3 text-right">
-                  <span className="text-[#1da661] text-sm font-medium">↘ 97.10 ₼</span>
-                </div>
-              </div>
 
-              {/* Price Alerts Button */}
-              <div className="flex justify-center">
-                <button className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-6 py-2 rounded text-sm font-bold hover:bg-blue-50 transition-colors">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <circle cx="12" cy="12" r="9" strokeWidth="2"></circle>
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 7v5l3 3"></path>
-                  </svg>
-                  Qiymət bildirişi
-                </button>
+                {/* Price Alerts Button */}
+                <div className="flex justify-center">
+                  <button className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-6 py-2 rounded text-sm font-bold hover:bg-blue-50 transition-colors">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <circle cx="12" cy="12" r="9" strokeWidth="2"></circle>
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 7v5l3 3"></path>
+                    </svg>
+                    Qiymət bildirişi
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>,
         document.body
