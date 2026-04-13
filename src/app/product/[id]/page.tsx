@@ -202,12 +202,11 @@ export default function ProductDetailsPage() {
                  <h1 className="text-3xl font-extrabold mb-4">{product.name}</h1>
                  <p className="text-sm text-gray-700 leading-relaxed mb-6"><span className="font-bold">Məhsulun xülasəsi:</span> {product.overview}</p>
                  
-                 <div className="mt-6 mb-8 w-full">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-base font-bold text-[#222222]">Variantlar:</h3>
-                    </div>
+                 {/* NUCLEAR CLEANUP: STRICT BORDER-NONE WRAPPER */}
+                 <div className="mt-8 mb-10 border-none shadow-none outline-none">
+                    <h3 className="text-[18px] font-bold text-[#222222] mb-4">Variantlar:</h3>
                     
-                    <div className="relative group">
+                    <div className="relative group border-none">
                       {/* Navigation Arrows */}
                       <button 
                         type="button"
@@ -224,10 +223,9 @@ export default function ProductDetailsPage() {
                         <ChevronRight size={24} strokeWidth={2.5} />
                       </button>
 
-                      {/* Cards Scroll Area */}
                       <div 
                         ref={variantScrollRef}
-                        className="flex overflow-x-auto gap-2 pb-4 no-scrollbar scroll-smooth snap-x"
+                        className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none shadow-none"
                       >
                         {variants.map((v) => (
                           <div 
@@ -242,20 +240,13 @@ export default function ProductDetailsPage() {
                               v.active ? 'border-2 border-[#005ea8] ring-1 ring-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
                             }`}
                           >
-                            {/* Grey Image Box */}
                             <div className="bg-[#f6f6f6] h-[100px] flex items-center justify-center p-2">
                               <img src={v.image} alt={v.name} className="max-h-full object-contain" />
                             </div>
-                            
-                            {/* Info Area */}
                             <div className="p-2 bg-white flex flex-col gap-0.5">
-                              <div className="text-[11px] font-bold text-[#222222] truncate leading-tight">
-                                {v.name}
-                              </div>
+                              <div className="text-[11px] font-bold text-[#222222] truncate leading-tight">{v.name}</div>
                               <div className="text-[10px] text-[#767676] italic">stokda</div>
-                              <div className="text-[15px] font-bold text-[#ff5500] mt-1">
-                                {v.price} <span className="text-[10px]">₼</span>
-                              </div>
+                              <div className="text-[15px] font-bold text-[#ff5500] mt-1">{v.price} <span className="text-[10px]">₼</span></div>
                             </div>
                           </div>
                         ))}
