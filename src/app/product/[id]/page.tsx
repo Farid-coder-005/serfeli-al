@@ -192,79 +192,84 @@ export default function ProductDetailsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
           
           {/* LEFT SIDE: Product Header (Image + Price History Text) (col-span-8) */}
-          <div className="lg:col-span-8 xl:col-span-9 flex flex-col gap-4">
-            {/* COMPACT PRODUCT HEADER BLOCK */}
-            <div className="flex flex-col md:flex-row items-start gap-6 border-b border-gray-100 pb-6">
-              {/* Image Box: Fixed and Small */}
-              <div className="flex-shrink-0 w-[150px] h-[150px] bg-[#f6f6f6] rounded-xl border border-gray-100 p-4 flex items-center justify-center overflow-hidden">
-                <img 
-                  src="https://m.media-amazon.com/images/I/61S98mky69L._AC_SL1500_.jpg" 
-                  alt="Motorola G84" 
-                  className="max-h-full max-w-full object-contain mix-blend-multiply transition-opacity duration-300"
-                  onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
-                />
-              </div>
-
-              {/* Title and Info: Floating next to image */}
-              <div className="flex-1 pt-2">
-                <h1 className="text-2xl font-extrabold text-[#222222] leading-tight mb-2">
-                  Motorola Moto G84 12GB Gecə Mavisi
-                </h1>
-                <div className="text-sm text-gray-600 leading-relaxed">
-                  <span className="font-bold text-gray-800">Məhsulun xülasəsi:</span> 6.5-düym · Full HD · 120 Hz · 50 MP · 12 GB RAM · 256 GB daxili yaddaş · Snapdragon 695 · Android 14 · 5,000 mAh batareya
+          <div className="lg:col-span-8 xl:col-span-9">
+            <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-10 items-start">
+              
+              {/* LEFT: LARGE PRODUCT IMAGE */}
+              <div className="flex flex-col items-center">
+                <div className="w-full bg-white border border-gray-100 rounded-xl p-6 h-[400px] flex items-center justify-center relative">
+                  <img 
+                    src="https://m.media-amazon.com/images/I/61S98mky69L._AC_SL1500_.jpg" 
+                    alt="Main Product" 
+                    className="max-h-full max-w-full object-contain"
+                  />
+                  {/* Optional: Add Image dots here like in the screenshot */}
                 </div>
               </div>
-            </div>
 
-            {/* VARIANT SECTION: Starts IMMEDIATELY below the line */}
-            <div className="mt-4">
-               <h3 className="text-[18px] font-bold text-[#222222] mb-4">Variantlar:</h3>
-               <div className="relative group border-none shadow-none">
-                 {/* Navigation Arrows */}
-                 <button 
-                   type="button"
-                   onClick={(e) => { e.stopPropagation(); handleVariantScroll('left'); }}
-                   className="absolute left-[-20px] top-[45%] -translate-y-1/2 z-[50] bg-white border border-gray-200 shadow-lg rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
-                 >
-                   <ChevronLeft size={24} strokeWidth={2.5} />
-                 </button>
-                 <button 
-                   type="button"
-                   onClick={(e) => { e.stopPropagation(); handleVariantScroll('right'); }}
-                   className="absolute right-[-20px] top-[45%] -translate-y-1/2 z-[50] bg-white border border-gray-200 shadow-lg rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
-                 >
-                   <ChevronRight size={24} strokeWidth={2.5} />
-                 </button>
+              {/* RIGHT: PRODUCT INFO & VARIANTS */}
+              <div className="flex flex-col gap-6">
+                {/* Title Section */}
+                <div>
+                  <h1 className="text-3xl font-extrabold text-[#222222] leading-tight mb-4">
+                    Motorola Moto G84 12GB Gecə Mavisi
+                  </h1>
+                  <div className="text-[14px] text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <span className="font-bold text-gray-900">Məhsulun xülasəsi:</span> 6.5-düym · Full HD · 120 Hz · 50 MP · 12 GB RAM · 256 GB daxili yaddaş · Snapdragon 695 · Android 14 · 5,000 mAh batareya
+                  </div>
+                </div>
 
-                 <div 
-                   ref={variantScrollRef}
-                   className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none outline-none shadow-none"
-                 >
-                   {variants.map((v) => (
-                     <div 
-                       key={v.id}
-                       onClick={() => {
-                         setVariants(variants.map(varItem => ({
-                           ...varItem,
-                           active: varItem.id === v.id
-                         })));
-                       }}
-                       className={`flex-shrink-0 w-[115px] border rounded-md overflow-hidden cursor-pointer transition-all snap-start ${
-                         v.active ? 'border-2 border-[#005ea8] ring-1 ring-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
-                       }`}
-                     >
-                       <div className="bg-[#f6f6f6] h-[100px] flex items-center justify-center p-2">
-                         <img src={v.image} alt={v.name} className="max-h-full object-contain" />
-                       </div>
-                       <div className="p-2 bg-white flex flex-col gap-0.5">
-                         <div className="text-[11px] font-bold text-[#222222] truncate leading-tight">{v.name}</div>
-                         <div className="text-[10px] text-[#767676] italic">stokda</div>
-                         <div className="text-[15px] font-bold text-[#ff5500] mt-1">{v.price} <span className="text-[10px]">₼</span></div>
-                       </div>
-                     </div>
-                   ))}
-                 </div>
-               </div>
+                {/* Variant Section */}
+                <div className="mt-4">
+                  <h3 className="text-[16px] font-bold text-[#222222] mb-3">Variant:</h3>
+                  <div className="relative group border-none shadow-none">
+                    {/* Navigation Arrows */}
+                    <button 
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); handleVariantScroll('left'); }}
+                      className="absolute left-[-20px] top-[45%] -translate-y-1/2 z-[50] bg-white border border-gray-200 shadow-lg rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                    >
+                      <ChevronLeft size={24} strokeWidth={2.5} />
+                    </button>
+                    <button 
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); handleVariantScroll('right'); }}
+                      className="absolute right-[-20px] top-[45%] -translate-y-1/2 z-[50] bg-white border border-gray-200 shadow-lg rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                    >
+                      <ChevronRight size={24} strokeWidth={2.5} />
+                    </button>
+
+                    <div 
+                      ref={variantScrollRef}
+                      className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none outline-none shadow-none"
+                    >
+                      {variants.map((v) => (
+                        <div 
+                          key={v.id}
+                          onClick={() => {
+                            setVariants(variants.map(varItem => ({
+                              ...varItem,
+                              active: varItem.id === v.id
+                            })));
+                          }}
+                          className={`flex-shrink-0 w-[115px] border rounded-md overflow-hidden cursor-pointer transition-all snap-start ${
+                            v.active ? 'border-2 border-[#005ea8] ring-1 ring-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
+                          }`}
+                        >
+                          <div className="bg-[#f6f6f6] h-[100px] flex items-center justify-center p-2">
+                            <img src={v.image} alt={v.name} className="max-h-full object-contain" />
+                          </div>
+                          <div className="p-2 bg-white flex flex-col gap-0.5">
+                            <div className="text-[11px] font-bold text-[#222222] truncate leading-tight">{v.name}</div>
+                            <div className="text-[10px] text-[#767676] italic">stokda</div>
+                            <div className="text-[15px] font-bold text-[#ff5500] mt-1">{v.price} <span className="text-[10px]">₼</span></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
