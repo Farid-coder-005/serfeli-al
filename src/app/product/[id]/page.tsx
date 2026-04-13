@@ -215,29 +215,29 @@ export default function ProductDetailsPage() {
                   </div>
                 </div>
 
-                {/* Variant Section (Nested inside info column to respect constraints) */}
-                <div className="relative group w-full overflow-hidden">
+                {/* Variant Section (Isolated from overflow clipping) */}
+                <div className="relative group w-full px-4">
                   <h3 className="text-base font-bold text-[#222222] mb-3">Variant:</h3>
-                  {/* Navigation Arrows */}
+                  {/* Navigation Arrows (Positioned within padding zone) */}
                   <div className="relative border-none shadow-none">
                     <button 
                       type="button"
                       onClick={(e) => { e.stopPropagation(); handleVariantScroll('left'); }}
-                      className="absolute left-[-20px] top-[45%] -translate-y-1/2 z-[50] bg-white border border-gray-200 shadow-lg rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                      className="absolute left-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
                     >
                       <ChevronLeft size={24} strokeWidth={2.5} />
                     </button>
                     <button 
                       type="button"
                       onClick={(e) => { e.stopPropagation(); handleVariantScroll('right'); }}
-                      className="absolute right-[-20px] top-[45%] -translate-y-1/2 z-[50] bg-white border border-gray-200 shadow-lg rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                      className="absolute right-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
                     >
                       <ChevronRight size={24} strokeWidth={2.5} />
                     </button>
 
                     <div 
                       ref={variantScrollRef}
-                      className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none outline-none shadow-none max-w-full"
+                      className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none outline-none shadow-none w-full"
                     >
                       {variants.map((v) => (
                         <div 
