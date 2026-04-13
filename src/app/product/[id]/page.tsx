@@ -187,26 +187,26 @@ export default function ProductDetailsPage() {
           <span className="text-gray-900">{product.name}</span>
         </div>
 
-        {/* SECTION 1: HERO (12-COLUMN GRID) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+            {/* SECTION 1: HERO (12-COLUMN GRID) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
           
-          {/* LEFT SIDE: Gallery & Product Info */}
+          {/* LEFT SIDE: Gallery & Product Info (col-span-8) */}
           <div className="lg:col-span-8 xl:col-span-9">
             <div className="flex flex-col md:flex-row gap-10">
-              {/* Gallery */}
+              {/* Gallery Image */}
               <div className="w-full md:w-1/3">
                  <img src={product.image} alt={product.name} className="w-full object-contain" />
               </div>
               
+              {/* Product Info & Variants */}
               <div className="w-full md:w-2/3">
                  <h1 className="text-3xl font-extrabold mb-4">{product.name}</h1>
                  <p className="text-sm text-gray-700 leading-relaxed mb-6"><span className="font-bold">Məhsulun xülasəsi:</span> {product.overview}</p>
                  
-                 {/* NUCLEAR CLEANUP: STRICT BORDER-NONE WRAPPER */}
-                 <div className="mt-8 mb-10 border-none shadow-none outline-none">
+                 {/* VARIANT SECTION (NUCLEAR CLEANUP: BORDER-NONE) */}
+                 <div className="mt-8 mb-4 border-none shadow-none outline-none">
                     <h3 className="text-[18px] font-bold text-[#222222] mb-4">Variantlar:</h3>
-                    
-                    <div className="relative group border-none">
+                    <div className="relative group border-none shadow-none">
                       {/* Navigation Arrows */}
                       <button 
                         type="button"
@@ -225,7 +225,7 @@ export default function ProductDetailsPage() {
 
                       <div 
                         ref={variantScrollRef}
-                        className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none shadow-none"
+                        className="flex overflow-x-auto gap-3 pb-2 no-scrollbar scroll-smooth snap-x border-none outline-none shadow-none"
                       >
                         {variants.map((v) => (
                           <div 
@@ -256,102 +256,84 @@ export default function ProductDetailsPage() {
               </div>
             </div>
           </div>
-        </div>
 
-          {/* RIGHT SIDE: Price Chart Sidebar */}
-          <div className="lg:col-span-4 xl:col-span-3 flex flex-col">
-            <div 
-              className="cursor-pointer transition-all hover:opacity-95 group border border-gray-100 p-6 rounded-sm bg-gray-50/30 shadow-sm" 
-              onClick={() => setIsChartModalOpen(true)}
-            >
-              {/* Header */}
-              <div className="text-xl font-bold text-center text-[#222222] mb-4">Qiymət dinamikası</div>
-
-              <div className="flex justify-center gap-2 mb-4 relative z-10">
-                {Object.keys(richChartData).map((tf) => (
-                  <button
-                    key={tf}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation(); // CRITICAL: Prevents the modal from opening when clicking buttons
-                      setTimeFrame(tf as "1 Ay" | "3 Ay" | "6 Ay" | "1 İl");
-                    }}
-                    className={`px-3 py-1.5 text-sm font-bold rounded transition-all ${
-                      timeFrame === tf
-                        ? 'bg-[#005ea8] text-white shadow-md'
-                        : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
-                    }`}
-                  >
-                    {tf}
-                  </button>
-                ))}
-              </div>
-
-              {/* Mini-Chart Line */}
-              <div className="w-full h-32 mt-4 pointer-events-none">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={richChartData[timeFrame]} margin={{ top: 5, right: 0, left: 0, bottom: 0 }}>
-                    <defs>
-                      <linearGradient id="miniIdealoFill" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15}/>
-                        <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
-                    <Area 
-                      type="linear" 
-                      dataKey="price" 
-                      stroke="#FF5500" 
-                      strokeWidth={1.5} 
-                      fillOpacity={1} 
-                      fill="url(#miniIdealoFill)" 
-                      isAnimationActive={false}
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-
-              {/* Detailed Statistics Row */}
-              {stats && (
-                <div className="flex items-center justify-between border-y border-gray-100 py-4 mb-6">
-                  <div className="flex flex-col items-center flex-1">
-                    <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən aşağı</div>
-                    <div className="text-lg font-black text-[#222222]">{stats.min.price} ₼</div>
-                    <div className="text-[9px] text-gray-400">{stats.min.daysAgo} gün əvvəl</div>
-                  </div>
-                  
-                  <div className="w-px h-10 bg-gray-100"></div>
-
-                  <div className="flex flex-col items-center flex-1">
-                    <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Orta</div>
-                    <div className="text-lg font-black text-[#222222]">{stats.avg.price} ₼</div>
-                    <div className="text-[9px] text-gray-400">{stats.avg.daysAgo} gün ərzində</div>
-                  </div>
-
-                  <div className="w-px h-10 bg-gray-100"></div>
-
-                  <div className="flex flex-col items-center flex-1">
-                    <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən yüksək</div>
-                    <div className="text-lg font-black text-[#222222]">{stats.max.price} ₼</div>
-                    <div className="text-[9px] text-gray-400">{stats.max.daysAgo} gün əvvəl</div>
-                  </div>
+          {/* RIGHT SIDE: Price Chart Sidebar (col-span-4) */}
+          <div className="lg:col-span-4 xl:col-span-3">
+            <div className="lg:sticky lg:top-8 flex flex-col gap-6">
+              <div 
+                className="cursor-pointer transition-all hover:opacity-95 group border border-gray-100 p-6 rounded-sm bg-gray-50/30 shadow-sm" 
+                onClick={() => setIsChartModalOpen(true)}
+              >
+                <div className="text-xl font-bold text-center text-[#222222] mb-4">Qiymət dinamikası</div>
+                <div className="flex justify-center gap-2 mb-4 relative z-10">
+                  {Object.keys(richChartData).map((tf) => (
+                    <button
+                      key={tf}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setTimeFrame(tf as "1 Ay" | "3 Ay" | "6 Ay" | "1 İl");
+                      }}
+                      className={`px-3 py-1.5 text-sm font-bold rounded transition-all ${
+                        timeFrame === tf ? 'bg-[#005ea8] text-white shadow-md' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
+                      }`}
+                    >
+                      {tf}
+                    </button>
+                  ))}
                 </div>
-              )}
 
-              {/* Centered Bottom Button */}
-              <div className="flex justify-center">
-                <button className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-5 py-2 rounded-sm text-xs font-bold hover:bg-blue-50 transition-colors">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  Qiymət bildirişi
-                </button>
+                <div className="w-full h-32 mt-4 pointer-events-none">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={richChartData[timeFrame]} margin={{ top: 5, right: 0, left: 0, bottom: 0 }}>
+                      <defs>
+                        <linearGradient id="miniIdealoFill" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15}/>
+                          <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      <Area type="linear" dataKey="price" stroke="#FF5500" strokeWidth={1.5} fillOpacity={1} fill="url(#miniIdealoFill)" isAnimationActive={false} />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+
+                {stats && (
+                  <div className="flex items-center justify-between border-y border-gray-100 py-4 mb-6">
+                    <div className="flex flex-col items-center flex-1 text-center">
+                      <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən aşağı</div>
+                      <div className="text-lg font-black text-[#222222]">{stats.min.price} ₼</div>
+                      <div className="text-[9px] text-gray-400">{stats.min.daysAgo} gün əvvəl</div>
+                    </div>
+                    <div className="w-px h-10 bg-gray-100"></div>
+                    <div className="flex flex-col items-center flex-1 text-center">
+                      <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Orta</div>
+                      <div className="text-lg font-black text-[#222222]">{stats.avg.price} ₼</div>
+                      <div className="text-[9px] text-gray-400">{stats.avg.daysAgo} g. ərzində</div>
+                    </div>
+                    <div className="w-px h-10 bg-gray-100"></div>
+                    <div className="flex flex-col items-center flex-1 text-center">
+                      <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən yüksək</div>
+                      <div className="text-lg font-black text-[#222222]">{stats.max.price} ₼</div>
+                      <div className="text-[9px] text-gray-400">{stats.max.daysAgo} gün əvvəl</div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-center">
+                  <button className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-5 py-2 rounded-sm text-xs font-bold hover:bg-blue-50 transition-colors">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Qiymət bildirişi
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* FULL WIDTH BOTTOM SECTION 2: PRICE COMPARISON */}
-        <div className="mt-16 w-full">
+        {/* SECTION 2: PRICE COMPARISON (OUTSIDE GRID, FULL WIDTH) */}
+        <div className="mt-16 w-full border-t-0 border-none shadow-none">
           <div className="bg-gray-50 border-b border-gray-200">
             {/* Main Header & Tabs */}
             <div className="flex flex-col md:flex-row md:items-end justify-between px-6 pt-4">
