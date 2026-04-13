@@ -4,14 +4,15 @@
  
  export function Logo() {
    return (
-     <Link href="/" className="shrink-0 flex flex-col items-center md:items-start md:pr-4 group leading-none">
-       <span 
-         className="text-3xl sm:text-[36px] font-[900] text-white tracking-[-0.05em] leading-none relative font-nunito"
-         style={{ fontFamily: 'var(--font-nunito)' }}
+     <Link href="/" className="shrink-0 flex flex-col items-center md:items-start md:pr-4 group select-none">
+       <div 
+         className="flex items-center leading-[0.85] font-nunito" 
+         style={{ fontFamily: "var(--font-nunito), 'Museo Sans Rounded', sans-serif" }}
        >
-         Sərfəli<span className="text-[#ff5500]">.al</span>
-         <div className="absolute bottom-[-10px] left-0 w-full h-[4px] bg-[#FF5500] rounded-full" />
-       </span>
+         <span className="text-[36px] font-[900] tracking-[-0.04em] text-white">Sərfəli</span>
+         <span className="text-[36px] font-[900] tracking-[-0.04em] text-[#FF5500]">.al</span>
+       </div>
+       <div className="w-full h-[6px] bg-[#FF5500] mt-[5px]" />
      </Link>
    );
  }
