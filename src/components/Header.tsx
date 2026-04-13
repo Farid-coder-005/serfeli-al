@@ -41,11 +41,11 @@ export function Header() {
   const isLoggedIn = status === "authenticated";
   const user = session?.user;
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeTopLink, setActiveTopLink] = useState("shopping");
-
+  const [activeTab, setActiveTab] = useState("shopping");
+ 
   // Close mobile drawer on route change
   useEffect(() => { setMobileOpen(false); }, [pathname]);
-
+ 
   return (
     <div className="z-[9999] relative">
       <header role="banner" className="bg-[#09233f] sticky top-0 z-[9999] text-white flex flex-col">
@@ -54,12 +54,31 @@ export function Header() {
         <div className="bg-[#09233f] text-sm hidden md:flex items-center border-b border-white/5">
           <div className="max-w-[1200px] mx-auto w-full px-4 py-2 flex items-center justify-between">
             <nav className="flex items-center gap-6">
-              <Link href="/" className="font-bold border-b-2 border-[#ff5500] pb-0.5 text-[13px]">ALIŞ-VERİŞ</Link>
-              <Link href="#" className="font-bold text-gray-300 hover:text-white pb-0.5 transition-colors text-[13px]">UÇUŞLAR</Link>
+              <Link 
+                href="/" 
+                onClick={() => setActiveTab('shopping')}
+                className={`font-bold pb-0.5 text-[13px] transition-all ${
+                  activeTab === 'shopping' 
+                  ? 'border-b-2 border-[#ff5500] text-white' 
+                  : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+                }`}
+              >
+                ALIŞ-VERİŞ
+              </Link>
+              <button 
+                onClick={() => setActiveTab('flights')}
+                className={`font-bold pb-0.5 text-[13px] transition-all cursor-pointer ${
+                  activeTab === 'flights' 
+                  ? 'border-b-2 border-[#ff5500] text-white' 
+                  : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+                }`}
+              >
+                UÇUŞLAR
+              </button>
             </nav>
-            <div className="flex items-center gap-2 text-gray-300 hover:text-white cursor-pointer transition-colors">
-              <span className="text-[12px] font-medium">Sərfəli.al-da davamlılıq</span>
-              <Leaf className="w-3.5 h-3.5 text-[#ff5500]" />
+            <div className="flex items-center gap-2 text-gray-400 hover:text-white cursor-pointer transition-colors group">
+              <span className="text-[12px] font-medium transition-colors">Sərfəli.al-da davamlılıq</span>
+              <Leaf className="w-3.5 h-3.5 text-[#ff5500] group-hover:scale-110 transition-transform" />
             </div>
           </div>
         </div>
