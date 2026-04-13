@@ -85,12 +85,14 @@ export default function ProductDetailsPage() {
   const [creditTerm, setCreditTerm] = useState(24);
   const creditOptions = [3, 6, 9, 12, 15, 18, 21, 24];
 
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
-      scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+  const variantScrollRef = useRef<HTMLDivElement>(null);
+  const handleVariantScroll = (direction: 'left' | 'right') => {
+    if (variantScrollRef.current) {
+      const scrollAmount = 300; // Fixed scroll distance
+      variantScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -203,22 +205,24 @@ export default function ProductDetailsPage() {
                     <div className="relative group">
                       {/* Navigation Arrows */}
                       <button 
-                        onClick={() => scroll('left')}
-                        className="absolute left-[-15px] top-[50px] z-20 bg-white border border-gray-200 shadow-md rounded-full p-2 text-gray-400 hover:text-[#005ea8] hidden group-hover:block transition-all focus:outline-none"
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); handleVariantScroll('left'); }}
+                        className="absolute left-[-20px] top-[45%] -translate-y-1/2 z-[50] bg-white border border-gray-200 shadow-lg rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
                       >
-                        <ChevronLeft size={20} />
+                        <ChevronLeft size={24} strokeWidth={2.5} />
                       </button>
                       <button 
-                        onClick={() => scroll('right')}
-                        className="absolute right-[-15px] top-[50px] z-20 bg-white border border-gray-200 shadow-md rounded-full p-2 text-gray-400 hover:text-[#005ea8] hidden group-hover:block transition-all focus:outline-none"
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); handleVariantScroll('right'); }}
+                        className="absolute right-[-20px] top-[45%] -translate-y-1/2 z-[50] bg-white border border-gray-200 shadow-lg rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
                       >
-                        <ChevronRight size={20} />
+                        <ChevronRight size={24} strokeWidth={2.5} />
                       </button>
 
                       {/* Cards Scroll Area */}
                       <div 
-                        ref={scrollContainerRef}
-                        className="flex overflow-x-auto gap-2 pb-4 no-scrollbar scroll-smooth"
+                        ref={variantScrollRef}
+                        className="flex overflow-x-auto gap-2 pb-4 no-scrollbar scroll-smooth snap-x"
                       >
                         {variants.map((v) => (
                           <div 
@@ -229,7 +233,7 @@ export default function ProductDetailsPage() {
                                 active: varItem.id === v.id
                               })));
                             }}
-                            className={`flex-shrink-0 w-[115px] border rounded-md overflow-hidden cursor-pointer transition-all ${
+                            className={`flex-shrink-0 w-[115px] border rounded-md overflow-hidden cursor-pointer transition-all snap-start ${
                               v.active ? 'border-2 border-[#005ea8] ring-1 ring-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
                             }`}
                           >
