@@ -8,12 +8,14 @@ const CustomTooltip = ({ active, payload }: any) => {
     return (
       <div className="bg-[#FF5500] text-white text-xs font-bold px-3 py-2 rounded shadow-xl border border-[#CC4400]">
         <div className="text-base">{Number(payload[0].value).toFixed(2)} ₼</div>
-        <div className="font-normal opacity-90">{payload[0].payload.date} 2026</div>
+        <div className="font-normal opacity-90">{payload[0].payload.date} {payload[0].payload.year}</div>
       </div>
     );
   }
   return null;
 };
+
+const azMonths = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'İyn', 'İyl', 'Avq', 'Sen', 'Okt', 'Noy', 'Dek'];
 
 // Helper to generate continuous daily mock data
 const generateDailyData = (days: number, startPrice: number) => {
@@ -33,8 +35,13 @@ const generateDailyData = (days: number, startPrice: number) => {
     if (i === 74) currentPrice = 668.33;
     if (i < 74 && currentPrice < 668.33) currentPrice = 675.00; // Bounce back
 
+    // Manual formatting to bypass Vercel locale limitations
+    const dayString = date.getDate().toString().padStart(2, '0');
+    const monthString = azMonths[date.getMonth()];
+
     data.push({
-      date: date.toLocaleDateString('az-AZ', { day: '2-digit', month: 'short' }),
+      date: `${dayString} ${monthString}`,
+      year: date.getFullYear(),
       price: Number(currentPrice.toFixed(2))
     });
   }
@@ -243,10 +250,11 @@ export default function ProductDetailsPage() {
       </div>
       {/* INTERACTIVE CHART MODAL */}
       {isChartModalOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-<div className="bg-white w-full max-w-4xl rounded-sm shadow-2xl flex flex-col relative overflow-hidden">
-  {/* FIXED ABSOLUTE CLOSE BUTTON */}
-  <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-gray-400 hover:text-[#FF5500] text-4xl leading-none z-50 transition-colors">&times;</button>
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6 overflow-hidden">
+          {/* Inner modal constrained to 95% of viewport height, scrolling internally if needed */}
+          <div className="bg-white w-full max-w-4xl max-h-[95vh] overflow-y-auto rounded-sm shadow-2xl flex flex-col relative">
+            {/* ABSOLUTE CLOSE BUTTON (Sticky to the top right of the modal) */}
+            <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-gray-400 hover:text-[#FF5500] text-4xl leading-none z-50 transition-colors">&times;</button>
   
   <div className="flex flex-col p-8">
     <h2 className="text-2xl font-bold text-[#222222]">Qiymət dinamikası</h2>
