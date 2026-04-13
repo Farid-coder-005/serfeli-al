@@ -130,9 +130,9 @@ export default function ProductDetailsPage() {
   ]);
 
   const product = {
-    name: "Motorola Moto G84 12GB Gecə Mavisi",
-    overview: "6.5-düym · Full HD · 120 Hz · 50 MP · 12 GB RAM · 256 GB daxili yaddaş · Snapdragon 695 · Android 14 · 5,000 mAh batareya",
-    image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=600&auto=format&fit=crop"
+    name: "Google Pixel 8",
+    overview: "6.2-düym · OLED · 120 Hz · 50 MP · 8 GB RAM · 128/256 GB daxili yaddaş · Google Tensor G3 · Android 14 · 4,575 mAh batareya",
+    image: "https://idealocdn.de/product/203117282/1/220x165/google-pixel-8.jpg"
   };
 
   const comparisonOffers = [
@@ -191,22 +191,31 @@ export default function ProductDetailsPage() {
         {/* SECTION 1: HERO (12-COLUMN GRID) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
           
-          {/* LEFT SIDE: Main Gallery & Product Info (col-span-8) */}
-          <div className="lg:col-span-8 xl:col-span-9 flex flex-col gap-10">
+          {/* LEFT SIDE: Product Header (Image + Price History Text) (col-span-8) */}
+          <div className="lg:col-span-8 xl:col-span-9 flex flex-col gap-8">
             
-            {/* NEW: Large Main Product Image / Gallery */}
-            <div className="bg-white p-6 rounded-md border border-gray-100 flex items-center justify-center h-[400px]">
-              <img 
-                src={product.image} 
-                alt={product.name} 
-                className="max-h-full max-w-full object-contain mix-blend-multiply" 
-              />
-            </div>
+            {/* SECTION 1: Product Header (Mini-Image + Price History Title) */}
+            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 items-center">
+              {/* Miniature Image Box (Left) */}
+              <div className="bg-[#f6f6f6] border border-gray-100 p-4 rounded-md h-[150px] flex items-center justify-center">
+                <img 
+                  src={product.image} 
+                  alt={product.name} 
+                  className="max-h-full max-w-full object-contain mix-blend-multiply" 
+                />
+              </div>
 
-            {/* Product Title & Overview */}
-            <div className="flex flex-col gap-4">
-               <h1 className="text-3xl font-extrabold text-[#222222]">{product.name}</h1>
-               <p className="text-sm text-gray-700 leading-relaxed"><span className="font-bold">Məhsulun xülasəsi:</span> {product.overview}</p>
+              {/* Price History Title (Right) */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                 <div className="flex-1">
+                   <h1 className="text-2xl font-extrabold text-[#222222] leading-tight">
+                      Qiymət tarixi: {product.name}
+                   </h1>
+                   <div className="text-sm text-gray-500 mt-1 italic">
+                     Ən son yenilənməyə əsasən qiymət dinamikası və bazar analizi
+                   </div>
+                 </div>
+              </div>
             </div>
 
             {/* VARIANT SECTION (STRICT BORDER-NONE) */}
