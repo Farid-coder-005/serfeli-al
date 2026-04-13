@@ -330,19 +330,36 @@ export default function ProductDetailsPage() {
                  
                  {/* Price & Badge */}
                  <div className="w-1/4 flex flex-col items-center">
-                   <div className="flex items-end gap-1">
-                     <span className="text-3xl font-extrabold text-[#222222]">
-                       {paymentMethod === 'nagd' ? offer.price.toFixed(2) : (offer.price / creditTerm).toFixed(2)}
-                     </span>
-                     <span className="text-xl font-bold text-[#222222] mb-1">₼</span>
-                   </div>
-                   {paymentMethod === 'kredit' && (
-                     <span className="text-sm text-gray-500 font-medium mt-0.5">{creditTerm} / ayda</span>
-                   )}
-                   {offer.isLowest && paymentMethod === 'nagd' && (
-                     <span className="mt-1 text-[10px] font-bold text-[#ff5500] border border-[#ff5500] px-2 py-0.5 rounded uppercase tracking-wider">
-                       Ən ucuz yekun qiymət
-                     </span>
+                   {paymentMethod === 'kredit' ? (
+                     <div className="flex flex-col items-center">
+                       <div className="flex items-baseline font-bold text-[#222222]">
+                         {/* Large Integer Part */}
+                         <span className="text-4xl">
+                           {Math.floor(offer.price / creditTerm)}
+                         </span>
+                         
+                         {/* Small Fractional Part (Cents) */}
+                         <span className="text-lg ml-0.5" style={{ transform: 'translateY(-2px)' }}>
+                           ,{( (offer.price / creditTerm) % 1 ).toFixed(2).substring(2)}
+                         </span>
+                         
+                         {/* Currency and Multiplier */}
+                         <span className="text-xl ml-2 mr-2">₼</span>
+                         <span className="text-2xl ml-1">x {creditTerm} ay</span>
+                       </div>
+                     </div>
+                   ) : (
+                     <div className="flex flex-col items-center">
+                       <div className="flex items-end gap-1 font-extrabold text-[#222222]">
+                         <span className="text-3xl">{offer.price.toFixed(2)}</span>
+                         <span className="text-xl mb-1">₼</span>
+                       </div>
+                       {offer.isLowest && (
+                         <span className="mt-1 text-[10px] font-bold text-[#ff5500] border border-[#ff5500] px-2 py-0.5 rounded uppercase tracking-wider">
+                           Ən ucuz yekun qiymət
+                         </span>
+                       )}
+                     </div>
                    )}
                  </div>
                  
