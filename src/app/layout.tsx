@@ -10,10 +10,6 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "Sərfəli Al - Azərbaycanın ən ağıllı alış platforması",
   description: "Bütün mağazalardakı qiymətləri müqayisə edin, real endirimləri tapın və kəşbək qazanın.",
