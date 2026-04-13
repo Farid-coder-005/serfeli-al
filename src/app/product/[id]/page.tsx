@@ -172,8 +172,13 @@ export default function ProductDetailsPage() {
   return (
     <>
       <main className="max-w-[1550px] mx-auto w-full px-4 sm:px-6 lg:px-10 py-6 text-[#222222] bg-white">
-        {/* Breadcrumbs */}
-        <div className="text-sm text-gray-500 mb-6"><Link href="/" className="hover:underline">Elektronika</Link> {'>'} Smartfonlar {'>'} Motorola {'>'} {product.name}</div>
+        {/* BREADCRUMB AREA */}
+        <div className="text-sm text-gray-500 mb-6 font-medium">
+          <Link href="/" className="hover:underline hover:text-[#005ea8]">Elektronika</Link> {'>'} 
+          <span className="mx-1">Smartfonlar</span> {'>'} 
+          <span className="mx-1">Motorola</span> {'>'} 
+          <span className="text-gray-900">{product.name}</span>
+        </div>
 
         {/* SECTION 1: HERO (12-COLUMN GRID) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
@@ -187,7 +192,7 @@ export default function ProductDetailsPage() {
               </div>
               
               <div className="w-full md:w-2/3">
-                 <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+                 <h1 className="text-3xl font-extrabold mb-4">{product.name}</h1>
                  <p className="text-sm text-gray-700 leading-relaxed mb-6"><span className="font-bold">Məhsulun xülasəsi:</span> {product.overview}</p>
                  
                  <div className="mt-6 mb-8 w-full">
@@ -244,14 +249,12 @@ export default function ProductDetailsPage() {
                       {/* Custom Idealo-style Scrollbar Handle */}
                       <div className="w-full h-[3px] bg-gray-100 rounded-full overflow-hidden">
                         <div className="bg-gray-400 h-full w-1/4 rounded-full"></div>
-                      </div>
                     </div>
                   </div>
               </div>
             </div>
           </div>
-            </div>
-           </div>
+        </div>
 
           {/* RIGHT SIDE: Price Chart Sidebar */}
           <div className="lg:col-span-4 xl:col-span-3 flex flex-col">
@@ -345,8 +348,8 @@ export default function ProductDetailsPage() {
           </div>
         </div>
 
-        {/* SECTION 2: PRICE COMPARISON */}
-        <div className="mb-16">
+        {/* FULL WIDTH BOTTOM SECTION 2: PRICE COMPARISON */}
+        <div className="mt-16 w-full">
           <div className="bg-gray-50 border-b border-gray-200">
             {/* Main Header & Tabs */}
             <div className="flex flex-col md:flex-row md:items-end justify-between px-6 pt-4">
@@ -667,6 +670,7 @@ export default function ProductDetailsPage() {
         </div>,
         document.body
       )}
+      </main>
     </>
   );
 }
