@@ -334,12 +334,61 @@ export default function ProductDetailsPage() {
               </div>
             </div>
             
-            <div className="bg-gray-50 p-6 flex justify-between items-center border-t border-gray-200 mt-auto">
-              <div>
-                 <div className="text-gray-700 font-medium text-sm">Ən aşağı qiymət</div>
-                 <div className="text-sm text-gray-500 mt-0.5">74 gün əvvəl</div>
+            {/* NEW MODAL FOOTER: Full Statistics Panel */}
+            <div className="bg-white px-8 pb-8 pt-4 flex flex-col mt-auto border-t border-gray-200">
+              
+              {/* Row 1: Lowest */}
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <div className="w-1/3">
+                  <div className="text-[#222222] font-medium text-base">Ən aşağı qiymət</div>
+                  <div className="text-sm text-gray-500 mt-0.5">74 gün əvvəl</div>
+                </div>
+                <div className="w-1/3 text-center">
+                  <span className="text-2xl font-normal text-[#222222]">668.33 ₼</span>
+                </div>
+                <div className="w-1/3 text-right">
+                  <span className="text-[#d32f2f] text-sm font-medium">↗ 81.57 ₼</span>
+                </div>
               </div>
-              <div className="text-4xl font-extrabold text-[#222222]">668.33 ₼</div>
+
+              {/* Row 2: Average */}
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <div className="w-1/3">
+                  <div className="text-[#222222] font-medium text-base">Orta qiymət</div>
+                  <div className="text-sm text-gray-500 mt-0.5">91 gün ərzində</div>
+                </div>
+                <div className="w-1/3 text-center">
+                  <span className="text-2xl font-normal text-[#222222]">805.35 ₼</span>
+                </div>
+                <div className="w-1/3 text-right">
+                  <span className="text-[#1da661] text-sm font-medium">↘ 55.45 ₼</span>
+                </div>
+              </div>
+
+              {/* Row 3: Highest */}
+              <div className="flex items-center justify-between py-4 border-b border-gray-100 mb-6">
+                <div className="w-1/3">
+                  <div className="text-[#222222] font-medium text-base">Ən yüksək qiymət</div>
+                  <div className="text-sm text-gray-500 mt-0.5">90 gün əvvəl</div>
+                </div>
+                <div className="w-1/3 text-center">
+                  <span className="text-2xl font-normal text-[#222222]">847.00 ₼</span>
+                </div>
+                <div className="w-1/3 text-right">
+                  <span className="text-[#1da661] text-sm font-medium">↘ 97.10 ₼</span>
+                </div>
+              </div>
+
+              {/* Price Alerts Button */}
+              <div className="flex justify-center">
+                <button className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-6 py-2 rounded text-sm font-bold hover:bg-blue-50 transition-colors">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <circle cx="12" cy="12" r="9" strokeWidth="2"></circle>
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 7v5l3 3"></path>
+                  </svg>
+                  Qiymət bildirişi
+                </button>
+              </div>
             </div>
           </div>
         </div>,
