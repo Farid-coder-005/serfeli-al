@@ -88,7 +88,7 @@ export default function ProductDetailsPage() {
   const variantScrollRef = useRef<HTMLDivElement>(null);
   const handleVariantScroll = (direction: 'left' | 'right') => {
     if (variantScrollRef.current) {
-      const scrollAmount = 300; // Fixed scroll distance
+      const scrollAmount = 350; // Fixed scroll distance (approx 3 cards)
       variantScrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -121,7 +121,12 @@ export default function ProductDetailsPage() {
     { id: 2, name: "256GB Black", price: "249.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" },
     { id: 3, name: "128GB Blue", price: "219.00", active: false, image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=300&auto=format&fit=crop" },
     { id: 4, name: "256GB Blue", price: "239.00", active: false, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
-    { id: 5, name: "512GB Black", price: "319.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" }
+    { id: 5, name: "512GB Black", price: "319.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" },
+    { id: 6, name: "128GB White", price: "225.00", active: false, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
+    { id: 7, name: "256GB White", price: "245.00", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" },
+    { id: 8, name: "512GB Blue", price: "329.00", active: false, image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=300&auto=format&fit=crop" },
+    { id: 9, name: "1TB Black", price: "450.00", active: false, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
+    { id: 10, name: "1TB Blue", price: "460.00", active: false, image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=300&auto=format&fit=crop" },
   ]);
 
   const product = {
