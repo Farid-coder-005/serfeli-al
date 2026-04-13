@@ -7,8 +7,8 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="text-2xl font-bold text-white flex items-center gap-2">
-              <span className="text-[#FF5500]">Sərfəli</span>.al
+            <Link href="/" className="text-2xl font-black text-white flex items-center tracking-tighter">
+              Sərfəli<span className="text-[#ff5500]">.al</span>
             </Link>
             <p className="mt-4 text-sm text-slate-400 leading-relaxed">
               Azərbaycanın ən ağıllı alış platforması. Bütün mağazalardakı qiymətləri müqayisə edin, real endirimləri tapın və hər alışdan kəşbək qazanın.

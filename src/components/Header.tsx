@@ -74,8 +74,8 @@ export function Header() {
             
             {/* Logo */}
             <Link href="/" className="shrink-0 flex items-center md:pr-4">
-              <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight border-b-4 border-[#ff5500] pb-1 leading-none uppercase">
-                SƏRFƏLİ.AL
+              <span className="text-2xl sm:text-3xl font-black text-white tracking-tighter leading-none">
+                Sərfəli<span className="text-[#ff5500]">.al</span>
               </span>
             </Link>
 
