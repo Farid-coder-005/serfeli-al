@@ -155,12 +155,12 @@ export default function ProductDetailsPage() {
                <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible" preserveAspectRatio="none">
                   <defs>
                      <linearGradient id="miniChartGradient" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="#FF5500" stopOpacity="0.3"/>
-                        <stop offset="100%" stopColor="#FF5500" stopOpacity="0"/>
+                        <stop offset="0%" stopColor="#FF5500" stopOpacity={0.1}/>
+                        <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
                      </linearGradient>
                   </defs>
                   <polygon points={polygonPoints} fill="url(#miniChartGradient)" />
-                  <polyline points={polylinePoints} fill="none" stroke="#FF5500" strokeWidth="2.5" strokeLinejoin="round" />
+                  <polyline points={polylinePoints} fill="none" stroke="#FF5500" strokeWidth="1.5" strokeLinejoin="round" />
                </svg>
             </div>
 
@@ -339,7 +339,7 @@ export default function ProductDetailsPage() {
                   <AreaChart data={richChartData[timeFrame]} margin={{ top: 20, right: 20, left: 10, bottom: 0 }}>
                     <defs>
                       <linearGradient id="idealoFill" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15}/>
+                        <stop offset="0%" stopColor="#FF5500" stopOpacity={0.1}/>
                         <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
                       </linearGradient>
                     </defs>
@@ -375,7 +375,7 @@ export default function ProductDetailsPage() {
                       type="linear" 
                       dataKey="price" 
                       stroke="#FF5500" 
-                      strokeWidth={2} 
+                      strokeWidth={1.5} 
                       fillOpacity={1} 
                       fill="url(#idealoFill)" 
                       activeDot={{ r: 5, fill: '#FF5500', stroke: '#ffffff', strokeWidth: 2 }} 
