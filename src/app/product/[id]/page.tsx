@@ -192,32 +192,32 @@ export default function ProductDetailsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
           
           {/* LEFT SIDE: Product Header (Image + Price History Text) (col-span-8) */}
-          <div className="lg:col-span-8 xl:col-span-9 flex flex-col gap-6">
-            {/* COMPACT TOP HEADER: IMAGE + TITLE */}
-            <div className="flex items-center gap-6 border-b border-gray-100 pb-6 mb-2">
-              {/* Left: Precise Image Box */}
-              <div className="flex-shrink-0 w-[140px] h-[140px] bg-[#f6f6f6] rounded-xl border border-gray-200 p-3 flex items-center justify-center overflow-hidden">
+          <div className="lg:col-span-8 xl:col-span-9 flex flex-col gap-4">
+            {/* COMPACT PRODUCT HEADER BLOCK */}
+            <div className="flex flex-col md:flex-row items-start gap-6 border-b border-gray-100 pb-6">
+              {/* Image Box: Fixed and Small */}
+              <div className="flex-shrink-0 w-[150px] h-[150px] bg-[#f6f6f6] rounded-xl border border-gray-100 p-4 flex items-center justify-center overflow-hidden">
                 <img 
-                  src="https://idealocdn.de/product/203117282/1/220x165/google-pixel-8.jpg" 
-                  alt="Product Image" 
-                  className="max-h-full max-w-full object-contain mix-blend-multiply"
-                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/150?text=Phone'; }}
+                  src="https://m.media-amazon.com/images/I/61S98mky69L._AC_SL1500_.jpg" 
+                  alt="Motorola G84" 
+                  className="max-h-full max-w-full object-contain mix-blend-multiply transition-opacity duration-300"
+                  onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                 />
               </div>
 
-              {/* Right: Title and Summary */}
-              <div className="flex-1">
+              {/* Title and Info: Floating next to image */}
+              <div className="flex-1 pt-2">
                 <h1 className="text-2xl font-extrabold text-[#222222] leading-tight mb-2">
                   Motorola Moto G84 12GB Gecə Mavisi
                 </h1>
-                <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
-                  <span className="font-bold">Məhsulun xülasəsi:</span> 6.5-düym · Full HD · 120 Hz · 50 MP · 12 GB RAM · 256 GB daxili yaddaş · Snapdragon 695 · Android 14 · 5,000 mAh batareya
-                </p>
+                <div className="text-sm text-gray-600 leading-relaxed">
+                  <span className="font-bold text-gray-800">Məhsulun xülasəsi:</span> 6.5-düym · Full HD · 120 Hz · 50 MP · 12 GB RAM · 256 GB daxili yaddaş · Snapdragon 695 · Android 14 · 5,000 mAh batareya
+                </div>
               </div>
             </div>
 
-            {/* VARIANT SECTION: (Sits directly below the header) */}
-            <div className="mt-0">
+            {/* VARIANT SECTION: Starts IMMEDIATELY below the line */}
+            <div className="mt-4">
                <h3 className="text-[18px] font-bold text-[#222222] mb-4">Variantlar:</h3>
                <div className="relative group border-none shadow-none">
                  {/* Navigation Arrows */}
