@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRef } from 'react';
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
@@ -83,6 +85,16 @@ export default function ProductDetailsPage() {
   const [creditTerm, setCreditTerm] = useState(24);
   const creditOptions = [3, 6, 9, 12, 15, 18, 21, 24];
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -109,9 +121,9 @@ export default function ProductDetailsPage() {
     overview: "6.5-düym · Full HD · 120 Hz · 50 MP · 12 GB RAM · 256 GB daxili yaddaş · Snapdragon 695 · Android 14 · 5,000 mAh batareya",
     image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=600&auto=format&fit=crop",
     variants: [
-      { name: "12GB Gecə Mavisi", price: "230.00", discount: "-31%", active: true },
-      { name: "12GB Qırmızı", price: "249.00", discount: "-12%", active: false },
-      { name: "8GB Qırmızı", price: "209.99", discount: "Ən yaxşı qiymət", active: false }
+      { id: 1, name: "12GB Gecə Mavisi", price: "230.00", discount: "-31%", active: true, image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=300&auto=format&fit=crop" },
+      { id: 2, name: "12GB Qırmızı", price: "249.00", discount: "-12%", active: false, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300&auto=format&fit=crop" },
+      { id: 3, name: "8GB Qırmızı", price: "209.99", discount: "Ən yaxşı qiymət", active: false, image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=300&auto=format&fit=crop" }
     ]
   };
 
@@ -172,18 +184,54 @@ export default function ProductDetailsPage() {
              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
              <p className="text-sm text-gray-700 leading-relaxed mb-6"><span className="font-bold">Məhsulun xülasəsi:</span> {product.overview}</p>
              
-             <div className="mb-2 font-bold">Variantlar:</div>
-             <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-                {product.variants.map((v, i) => (
-                  <div key={i} className={`border p-2 min-w-[124px] cursor-pointer transition-shadow relative ${v.active ? 'border-[#005ea8] shadow-md ring-1 ring-[#005ea8]' : 'border-gray-300 hover:shadow-md hover:border-[#005ea8] bg-white'}`}>
-                     {v.discount && <div className={`absolute top-0 left-0 text-white text-[10px] font-bold px-1.5 py-0.5 z-10 ${v.discount.includes('%') ? 'bg-[#FF5500]' : 'bg-[#005ea8]'}`}>{v.discount}</div>}
-                     <div className="h-16 bg-gray-50 mb-2 mt-4 flex items-center justify-center rounded-sm">
-                       <div className="w-8 h-10 border border-gray-200 bg-white shadow-sm"></div>
+             <div className="mt-8">
+               <h3 className="text-lg font-bold text-[#222222] mb-4">Variantlar:</h3>
+               
+               <div className="relative group">
+                 {/* Navigation Arrows */}
+                 <button 
+                  onClick={() => scroll('left')}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/20 text-white p-2 hidden group-hover:block hover:bg-black/40 rounded-full transition-all ml-2"
+                 >
+                   <ChevronLeft size={24} />
+                 </button>
+                 <button 
+                  onClick={() => scroll('right')}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/20 text-white p-2 hidden group-hover:block hover:bg-black/40 rounded-full transition-all mr-2"
+                 >
+                   <ChevronRight size={24} />
+                 </button>
+
+                 {/* Cards Container */}
+                 <div 
+                  ref={scrollContainerRef}
+                  className="flex overflow-x-auto gap-3 pb-4 no-scrollbar scroll-smooth"
+                 >
+                   {product.variants.map((v) => (
+                     <div 
+                       key={v.id}
+                       className={`flex-shrink-0 w-[180px] border rounded-lg overflow-hidden cursor-pointer transition-all ${v.active ? 'border-2 border-[#005ea8]' : 'border-gray-200 hover:border-gray-400'}`}
+                     >
+                       {/* Top Half: Image Container */}
+                       <div className="bg-[#f6f6f6] p-4 flex justify-center h-[160px]">
+                         <img src={v.image} alt={v.name} className="object-contain" />
+                       </div>
+                       
+                       {/* Bottom Half: Details */}
+                       <div className="p-3 bg-white">
+                         <div className="text-sm font-bold text-[#222222] truncate">{v.name}</div>
+                         <div className="text-xs text-gray-500 mt-1 italic">stokda</div>
+                         <div className="text-xl font-bold text-[#ff5500] mt-1">{v.price} ₼</div>
+                       </div>
                      </div>
-                     <div className="text-[10px] font-bold leading-tight mb-2 uppercase tracking-tighter line-clamp-2 h-7">{v.name}</div>
-                     <div className="text-[#FF5500] font-bold text-sm">{v.price} ₼</div>
-                  </div>
-                ))}
+                   ))}
+                 </div>
+                 
+                 {/* Custom Scrollbar Shadow UI */}
+                 <div className="w-full h-1.5 bg-gray-200 rounded-full mt-2 relative overflow-hidden">
+                   <div className="absolute left-0 top-0 h-full bg-gray-400 w-1/3 rounded-full"></div>
+                 </div>
+               </div>
              </div>
           </div>
 
