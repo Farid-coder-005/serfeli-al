@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -59,6 +60,11 @@ export default function ProductDetailsPage() {
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [hoveredPoint, setHoveredPoint] = useState<any>(null);
   const [timeFrame, setTimeFrame] = useState<keyof typeof richChartData>('3 Ay');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Advanced Mock Data with coordinates (x, y), price, and date
   const detailedChartData = [
@@ -251,8 +257,8 @@ export default function ProductDetailsPage() {
         </div>
       </main>
 
-      {/* MODAL COMPLETELY OUTSIDE MAIN TO ESCAPE STACKING CONTEXT */}
-      {isChartModalOpen && (
+      {/* REACT PORTAL: FORCING MODAL TO document.body TO BYPASS ALL HEADERS */}
+      {isChartModalOpen && mounted && createPortal(
         <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6 overflow-hidden" style={{ zIndex: 2147483647 }}>
           <div className="bg-white w-full max-w-4xl max-h-[95vh] overflow-y-auto rounded-sm shadow-2xl flex flex-col relative">
             {/* ABSOLUTE CLOSE BUTTON (Sticky to the top right of the modal) */}
@@ -320,7 +326,7 @@ export default function ProductDetailsPage() {
                       strokeWidth={3} 
                       fillOpacity={1} 
                       fill="url(#colorPrice)" 
-                      activeDot={{ r: 5, fill: '#FF5500', stroke: '#fff', strokeWidth: 2 }}
+                      activeDot={{ r: 6, fill: '#FF5500', stroke: '#fff', strokeWidth: 2 }}
                       animationDuration={800} 
                     />
                   </AreaChart>
@@ -336,7 +342,8 @@ export default function ProductDetailsPage() {
               <div className="text-4xl font-extrabold text-[#222222]">668.33 ₼</div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
