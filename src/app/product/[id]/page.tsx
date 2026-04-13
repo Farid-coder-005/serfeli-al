@@ -57,24 +57,18 @@ const richChartData = {
 };
 
 const StoreLogo = ({ storeName }: { storeName: string }) => {
-  // We use brand colors and text to create realistic-looking mock logos.
-  // This avoids 404 errors with real URLs during prototyping.
   const brands: Record<string, { bg: string, text: string }> = {
-    'Kontakt Home': { bg: 'bg-[#e30613]', text: 'text-white' }, // Correct Kontakt Red
-    'İrşad': { bg: 'bg-[#00a651]', text: 'text-white' },        // Correct Irşad Green
-    'Baku Electronics': { bg: 'bg-[#0033a0]', text: 'text-white' }, // Correct Baku Electronics Blue
-    'Maxi.az': { bg: 'bg-[#01509a]', text: 'text-[#f47920]' },   // Blue with Orange accent
-    'Optimal': { bg: 'bg-[#003c9b]', text: 'text-white' }         // Correct Optimal Blue
+    'Kontakt Home': { bg: 'bg-[#e30613]', text: 'text-white' },
+    'İrşad': { bg: 'bg-[#00a651]', text: 'text-white' },
+    'Baku Electronics': { bg: 'bg-[#0033a0]', text: 'text-white' },
+    'Maxi.az': { bg: 'bg-[#01509a]', text: 'text-[#f47920]' },
+    'Optimal': { bg: 'bg-[#003c9b]', text: 'text-white' }
   };
   const style = brands[storeName] || { bg: 'bg-gray-800', text: 'text-white' };
-
+  
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className={`flex items-center justify-center px-4 py-1.5 rounded-sm font-bold text-base shadow-sm ${style.bg} ${style.text} w-36 h-10`}>
-        {storeName}
-      </div>
-      {/* Subtle addition: small placeholder star rating right below the logo box */}
-      <span className="text-[10px] text-gray-500 mt-1">4.9 ★★★★★</span>
+    <div className={`flex items-center justify-center px-4 py-1.5 rounded-sm font-bold text-sm shadow-sm ${style.bg} ${style.text} w-32 h-10`}>
+      {storeName}
     </div>
   );
 };
@@ -115,14 +109,16 @@ export default function ProductDetailsPage() {
       { name: "12GB Qırmızı", price: "249.00", discount: "-12%", active: false },
       { name: "8GB Qırmızı", price: "209.99", discount: "Ən yaxşı qiymət", active: false }
     ],
-    offers: [
-      { id: 1, shop: 'İrşad', price: "230.00", delivery: 'Pulsuz çatdırılma', isCheapest: true, rating: 4.9 },
-      { id: 2, shop: 'Kontakt Home', price: "235.50", delivery: 'Pulsuz çatdırılma', isCheapest: false, rating: 4.8 },
-      { id: 3, shop: 'Baku Electronics', price: "239.00", delivery: 'Pulsuz çatdırılma', isCheapest: false, rating: 4.7 },
-      { id: 4, shop: 'Maxi.az', price: "245.99", delivery: 'Pulsuz çatdırılma', isCheapest: false, rating: 4.5 },
-      { id: 5, shop: 'Optimal', price: "249.00", delivery: 'Pulsuz çatdırılma', isCheapest: false, rating: 4.6 },
     ]
   };
+
+  const comparisonOffers = [
+    { id: 1, store: 'İrşad', price: 230.00, delivery: 'Pulsuz çatdırılma', isLowest: true },
+    { id: 2, store: 'Kontakt Home', price: 235.50, delivery: 'Pulsuz çatdırılma', isLowest: false },
+    { id: 3, store: 'Baku Electronics', price: 239.00, delivery: 'Pulsuz çatdırılma', isLowest: false },
+    { id: 4, store: 'Maxi.az', price: 245.99, delivery: 'Pulsuz çatdırılma', isLowest: false },
+    { id: 5, store: 'Optimal', price: 249.00, delivery: 'Pulsuz çatdırılma', isLowest: false },
+  ];
 
   const stats = useMemo(() => {
     const currentData = richChartData[timeFrame];
@@ -285,20 +281,40 @@ export default function ProductDetailsPage() {
         <div className="mb-16">
           <h2 className="text-xl font-bold mb-0 bg-[#F4F4F4] p-4 border border-b-0 border-gray-200">Qiymət müqayisəsi</h2>
           <div className="flex flex-col border border-gray-200 rounded-b-sm overflow-hidden">
-             {product.offers.map((offer, i) => (
-               <div key={i} className="flex flex-col md:flex-row justify-between items-center bg-white border-b border-gray-100 last:border-b-0 py-6 px-4 hover:bg-gray-50 transition-colors">
-                  <div className="w-full md:w-1/4 font-bold text-sm text-[#005ea8] hover:underline cursor-pointer md:mb-0 mb-4 line-clamp-2 leading-tight">{product.name}</div>
-                  <div className="w-full md:w-1/5 mb-4 md:mb-0 flex flex-col justify-center">
-                     <div className="text-3xl font-extrabold text-[#222222] tracking-tighter">{offer.price} ₼</div>
-                     {offer.isCheapest && <div className="text-[#FF5500] text-[10px] uppercase font-bold tracking-wider border border-[#FF5500] px-1.5 py-0.5 mt-2 inline-block w-max">Ən ucuz yekun qiymət</div>}
-                  </div>
-                  <div className="w-full md:w-1/4 text-xs text-gray-500 mb-4 md:mb-0 font-medium">{offer.delivery}</div>
-                  <div className="w-full md:w-1/6 text-sm font-bold flex flex-col items-center mb-4 md:mb-0">
-                    <StoreLogo storeName={offer.shop} />
-                  </div>
-                  <div className="w-full md:w-1/6 text-right">
-                     <button className="bg-[#1da661] text-white font-bold px-8 py-3 rounded-sm hover:bg-[#15894f] transition-colors w-full shadow-md uppercase text-sm">Mağazaya keç</button>
-                  </div>
+             {comparisonOffers.map((offer, index) => (
+               <div key={offer.id} className={`flex items-center justify-between p-6 ${index !== comparisonOffers.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                 {/* Product Name */}
+                 <div className="w-1/4">
+                   <div className="text-[#005ea8] font-bold hover:underline cursor-pointer">
+                     {product.name}
+                   </div>
+                 </div>
+                 
+                 {/* Price & Badge */}
+                 <div className="w-1/4 flex flex-col items-center">
+                   <div className="flex items-end gap-1">
+                     <span className="text-3xl font-extrabold text-[#222222]">{offer.price.toFixed(2)}</span>
+                     <span className="text-xl font-bold text-[#222222] mb-1">₼</span>
+                   </div>
+                   {offer.isLowest && (
+                     <span className="mt-1 text-[10px] font-bold text-[#ff5500] border border-[#ff5500] px-2 py-0.5 rounded uppercase tracking-wider">
+                       Ən ucuz yekun qiymət
+                     </span>
+                   )}
+                 </div>
+                 
+                 {/* Delivery Info */}
+                 <div className="w-1/4 text-center text-sm text-gray-500">
+                   {offer.delivery}
+                 </div>
+                 
+                 {/* Store Logo & Button (NO RATINGS/STARS) */}
+                 <div className="w-1/4 flex items-center justify-end gap-6">
+                   <StoreLogo storeName={offer.store} />
+                   <button className="bg-[#1da661] hover:bg-[#15874f] text-white font-bold py-2 px-6 rounded transition-colors shadow-sm">
+                     MAĞAZAYA KEÇ
+                   </button>
+                 </div>
                </div>
              ))}
           </div>
