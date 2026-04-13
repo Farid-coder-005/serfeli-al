@@ -260,12 +260,8 @@ export default function ProductDetailsPage() {
                           </div>
                         ))}
                       </div>
-                      
-                      {/* Custom Idealo-style Scrollbar Handle */}
-                      <div className="w-full h-[3px] bg-gray-100 rounded-full overflow-hidden">
-                        <div className="bg-gray-400 h-full w-1/4 rounded-full"></div>
                     </div>
-                  </div>
+                 </div>
               </div>
             </div>
           </div>
