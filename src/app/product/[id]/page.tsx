@@ -524,12 +524,11 @@ export default function ProductDetailsPage() {
                        <div className="text-xs text-gray-400">05 Aprel 2026</div>
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed mb-3">Ümumilikdə yaxşı telefondur. İnterfeys çox təmizdir. Sadəcə 4 ulduz verirəm, çünki prosessor ağır 3D oyunlarda bir az çətinlik çəkir.</p>
-                    <div className="text-xs text-gray-500 font-medium font-medium">Müəllif: <span className="font-bold text-gray-700">Rəşad Ə.</span></div>
+                    <div className="text-xs text-gray-500 font-medium">Müəllif: <span className="font-bold text-gray-700">Rəşad Ə.</span></div>
                  </div>
               </div>
            </div>
         </div>
-      </main>
 
       {/* REACT PORTAL: FORCING MODAL TO document.body TO BYPASS ALL HEADERS */}
       {isChartModalOpen && mounted && createPortal(
