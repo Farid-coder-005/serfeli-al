@@ -56,6 +56,23 @@ const richChartData = {
   '1 İl': generateDailyData(365, 1000)
 };
 
+const StoreLogo = ({ storeName }: { storeName: string }) => {
+  const brands: Record<string, { bg: string, text: string }> = {
+    'Kontakt Home': { bg: 'bg-[#e30613]', text: 'text-white' },
+    'İrşad': { bg: 'bg-[#00a651]', text: 'text-white' },
+    'Baku Electronics': { bg: 'bg-[#0033a0]', text: 'text-white' },
+    'Maxi.az': { bg: 'bg-[#f47920]', text: 'text-white' },
+    'Optimal': { bg: 'bg-[#ed1c24]', text: 'text-white' }
+  };
+  const style = brands[storeName] || { bg: 'bg-gray-800', text: 'text-white' };
+  
+  return (
+    <div className={`flex items-center justify-center px-3 py-1.5 rounded-sm font-bold text-sm tracking-wide ${style.bg} ${style.text} w-32 h-10 shadow-sm`}>
+      {storeName}
+    </div>
+  );
+};
+
 export default function ProductDetailsPage() {
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [hoveredPoint, setHoveredPoint] = useState<any>(null);
@@ -93,8 +110,11 @@ export default function ProductDetailsPage() {
       { name: "8GB Qırmızı", price: "209.99", discount: "Ən yaxşı qiymət", active: false }
     ],
     offers: [
-      { shop: "Amazon.de", price: "230.00", isCheapest: true, delivery: "Anbarda. Sürətli çatdırılma.", rating: 4.9 },
-      { shop: "Kaufland.de", price: "312.99", isCheapest: false, delivery: "17 Aprelə qədər çatdırılma.", rating: 4.4 }
+      { id: 1, shop: 'İrşad', price: "230.00", delivery: 'Pulsuz çatdırılma', isCheapest: true, rating: 4.9 },
+      { id: 2, shop: 'Kontakt Home', price: "235.50", delivery: 'Pulsuz çatdırılma', isCheapest: false, rating: 4.8 },
+      { id: 3, shop: 'Baku Electronics', price: "239.00", delivery: 'Pulsuz çatdırılma', isCheapest: false, rating: 4.7 },
+      { id: 4, shop: 'Maxi.az', price: "245.99", delivery: 'Pulsuz çatdırılma', isCheapest: false, rating: 4.5 },
+      { id: 5, shop: 'Optimal', price: "249.00", delivery: 'Pulsuz çatdırılma', isCheapest: false, rating: 4.6 },
     ]
   };
 
@@ -267,9 +287,9 @@ export default function ProductDetailsPage() {
                      {offer.isCheapest && <div className="text-[#FF5500] text-[10px] uppercase font-bold tracking-wider border border-[#FF5500] px-1.5 py-0.5 mt-2 inline-block w-max">Ən ucuz yekun qiymət</div>}
                   </div>
                   <div className="w-full md:w-1/4 text-xs text-gray-500 mb-4 md:mb-0 font-medium">{offer.delivery}</div>
-                  <div className="w-full md:w-1/6 text-sm font-bold flex flex-col mb-4 md:mb-0">
-                    <span className="text-[#222222]">{offer.shop}</span>
-                    <span className="text-[#FFCC00] text-xs">★ {offer.rating}</span>
+                  <div className="w-full md:w-1/6 text-sm font-bold flex flex-col items-center mb-4 md:mb-0">
+                    <StoreLogo storeName={offer.shop} />
+                    <span className="text-[#FFCC00] text-[10px] mt-1">★ {offer.rating}</span>
                   </div>
                   <div className="w-full md:w-1/6 text-right">
                      <button className="bg-[#1da661] text-white font-bold px-8 py-3 rounded-sm hover:bg-[#15894f] transition-colors w-full shadow-md uppercase text-sm">Mağazaya keç</button>
