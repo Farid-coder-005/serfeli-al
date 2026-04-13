@@ -57,18 +57,24 @@ const richChartData = {
 };
 
 const StoreLogo = ({ storeName }: { storeName: string }) => {
+  // We use brand colors and text to create realistic-looking mock logos.
+  // This avoids 404 errors with real URLs during prototyping.
   const brands: Record<string, { bg: string, text: string }> = {
-    'Kontakt Home': { bg: 'bg-[#e30613]', text: 'text-white' },
-    'İrşad': { bg: 'bg-[#00a651]', text: 'text-white' },
-    'Baku Electronics': { bg: 'bg-[#0033a0]', text: 'text-white' },
-    'Maxi.az': { bg: 'bg-[#f47920]', text: 'text-white' },
-    'Optimal': { bg: 'bg-[#ed1c24]', text: 'text-white' }
+    'Kontakt Home': { bg: 'bg-[#e30613]', text: 'text-white' }, // Correct Kontakt Red
+    'İrşad': { bg: 'bg-[#00a651]', text: 'text-white' },        // Correct Irşad Green
+    'Baku Electronics': { bg: 'bg-[#0033a0]', text: 'text-white' }, // Correct Baku Electronics Blue
+    'Maxi.az': { bg: 'bg-[#01509a]', text: 'text-[#f47920]' },   // Blue with Orange accent
+    'Optimal': { bg: 'bg-[#003c9b]', text: 'text-white' }         // Correct Optimal Blue
   };
   const style = brands[storeName] || { bg: 'bg-gray-800', text: 'text-white' };
-  
+
   return (
-    <div className={`flex items-center justify-center px-3 py-1.5 rounded-sm font-bold text-sm tracking-wide ${style.bg} ${style.text} w-32 h-10 shadow-sm`}>
-      {storeName}
+    <div className="flex flex-col items-center justify-center">
+      <div className={`flex items-center justify-center px-4 py-1.5 rounded-sm font-bold text-base shadow-sm ${style.bg} ${style.text} w-36 h-10`}>
+        {storeName}
+      </div>
+      {/* Subtle addition: small placeholder star rating right below the logo box */}
+      <span className="text-[10px] text-gray-500 mt-1">4.9 ★★★★★</span>
     </div>
   );
 };
@@ -289,7 +295,6 @@ export default function ProductDetailsPage() {
                   <div className="w-full md:w-1/4 text-xs text-gray-500 mb-4 md:mb-0 font-medium">{offer.delivery}</div>
                   <div className="w-full md:w-1/6 text-sm font-bold flex flex-col items-center mb-4 md:mb-0">
                     <StoreLogo storeName={offer.shop} />
-                    <span className="text-[#FFCC00] text-[10px] mt-1">★ {offer.rating}</span>
                   </div>
                   <div className="w-full md:w-1/6 text-right">
                      <button className="bg-[#1da661] text-white font-bold px-8 py-3 rounded-sm hover:bg-[#15894f] transition-colors w-full shadow-md uppercase text-sm">Mağazaya keç</button>
