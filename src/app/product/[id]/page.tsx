@@ -110,7 +110,7 @@ export default function ProductDetailsPage() {
              <img src={product.image} alt={product.name} className="w-full object-contain" />
           </div>
           
-          <div className="w-full md:w-2/4">
+          <div className="w-full md:w-[45%]">
              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
              <p className="text-sm text-gray-700 leading-relaxed mb-6"><span className="font-bold">Məhsulun xülasəsi:</span> {product.overview}</p>
              
@@ -129,26 +129,78 @@ export default function ProductDetailsPage() {
              </div>
           </div>
 
-          <div className="w-full md:w-1/4 bg-gray-50 border border-gray-200 p-4 flex flex-col justify-center h-48 rounded-sm cursor-pointer hover:shadow-md transition-shadow group" onClick={() => setIsChartModalOpen(true)}>
-             <div className="flex justify-between items-center mb-4">
-                <div className="text-[10px] tracking-wider uppercase font-bold text-gray-600 group-hover:text-[#005ea8] transition-colors">Qiymət dinamikası ↗</div>
-             </div>
-             
-             <div className="w-full h-24 mb-4 relative pointer-events-none">
-                <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible" preserveAspectRatio="none">
-                   <defs>
-                      <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
-                         <stop offset="0%" stopColor="#FF5500" stopOpacity="0.2"/>
-                         <stop offset="100%" stopColor="#FF5500" stopOpacity="0"/>
-                      </linearGradient>
-                   </defs>
-                   <polygon points={polygonPoints} fill="url(#chartGradient)" />
-                   <polyline points={polylinePoints} fill="none" stroke="#FF5500" strokeWidth="2" strokeLinejoin="round" />
+        {/* RIGHT COLUMN: RICH MINI-CHART BLOCK */}
+        <div className="w-full md:w-[30%] flex flex-col mt-4 md:mt-0">
+          <div 
+            className="cursor-pointer transition-all hover:opacity-95 group" 
+            onClick={() => setIsChartModalOpen(true)}
+          >
+            {/* Header */}
+            <div className="text-xl font-bold text-center text-[#222222] mb-4">Qiymət dinamikası</div>
+
+            {/* Timeframe Row (Decorative in mini-view) */}
+            <div className="flex justify-center gap-1 mb-5">
+              {['1 Ay', '3 Ay', '6 Ay', '1 İl'].map((tf) => (
+                <span 
+                  key={tf} 
+                  className={`text-[10px] font-extrabold px-2 py-1 rounded border transition-colors ${tf === '3 Ay' ? 'bg-[#005ea8] text-white border-[#005ea8]' : 'bg-white text-gray-400 border-gray-200'}`}
+                >
+                  {tf}
+                </span>
+              ))}
+            </div>
+
+            {/* Mini-Chart Line */}
+            <div className="w-full h-24 mb-6 relative pointer-events-none px-2">
+               <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+                  <defs>
+                     <linearGradient id="miniChartGradient" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stopColor="#FF5500" stopOpacity="0.3"/>
+                        <stop offset="100%" stopColor="#FF5500" stopOpacity="0"/>
+                     </linearGradient>
+                  </defs>
+                  <polygon points={polygonPoints} fill="url(#miniChartGradient)" />
+                  <polyline points={polylinePoints} fill="none" stroke="#FF5500" strokeWidth="2.5" strokeLinejoin="round" />
+               </svg>
+            </div>
+
+            {/* Detailed Statistics Row */}
+            <div className="flex items-center justify-between border-y border-gray-100 py-4 mb-6">
+              <div className="flex flex-col items-center flex-1">
+                <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən aşağı</div>
+                <div className="text-lg font-black text-[#222222]">668.33 ₼</div>
+                <div className="text-[9px] text-gray-400">74 gün əvvəl</div>
+              </div>
+              
+              <div className="w-px h-10 bg-gray-100"></div>
+
+              <div className="flex flex-col items-center flex-1">
+                <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Orta</div>
+                <div className="text-lg font-black text-[#222222]">805.35 ₼</div>
+                <div className="text-[9px] text-gray-400">91 gün ərzində</div>
+              </div>
+
+              <div className="w-px h-10 bg-gray-100"></div>
+
+              <div className="flex flex-col items-center flex-1">
+                <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən yüksək</div>
+                <div className="text-lg font-black text-[#222222]">847.00 ₼</div>
+                <div className="text-[9px] text-gray-400">90 gün əvvəl</div>
+              </div>
+            </div>
+
+            {/* Centered Bottom Button */}
+            <div className="flex justify-center">
+              <button className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-5 py-2 rounded-sm text-xs font-bold hover:bg-blue-50 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-             </div>
-             <button className="border border-[#005ea8] text-[#005ea8] bg-white px-4 py-1.5 text-sm font-bold w-full pointer-events-none">Geniş baxış</button>
+                Qiymət bildirişi
+              </button>
+            </div>
           </div>
         </div>
+      </div>
 
         {/* SECTION 2: PRICE COMPARISON */}
         <div className="mb-16">
