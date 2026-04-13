@@ -338,9 +338,9 @@ export default function ProductDetailsPage() {
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={richChartData[timeFrame]} margin={{ top: 20, right: 20, left: 10, bottom: 0 }}>
                     <defs>
-                      <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#FF5500" stopOpacity={0.4}/>
-                        <stop offset="95%" stopColor="#FF5500" stopOpacity={0}/>
+                      <linearGradient id="idealoFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15}/>
+                        <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
                       </linearGradient>
                     </defs>
                     
@@ -372,14 +372,14 @@ export default function ProductDetailsPage() {
                     />
                     
                     <Area 
-                      type="monotone" 
+                      type="linear" 
                       dataKey="price" 
                       stroke="#FF5500" 
-                      strokeWidth={3} 
+                      strokeWidth={2} 
                       fillOpacity={1} 
-                      fill="url(#colorPrice)" 
-                      activeDot={{ r: 6, fill: '#FF5500', stroke: '#fff', strokeWidth: 2 }}
-                      animationDuration={800} 
+                      fill="url(#idealoFill)" 
+                      activeDot={{ r: 5, fill: '#FF5500', stroke: '#ffffff', strokeWidth: 2 }} 
+                      animationDuration={500} 
                     />
                   </AreaChart>
                 </ResponsiveContainer>
