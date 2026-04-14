@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="az">
-      <body className={`${inter.className} min-h-screen bg-[#F8FAFC] flex flex-col antialiased text-[#1e293b] selection:bg-[#166534]/10`}>
+      <body className={`${inter.className} min-h-screen bg-[#F8FAFC] flex flex-col antialiased text-[#1e293b] selection:bg-[#166534]/10 overflow-x-hidden`}>
         <div className="premium-bg-overlay" />
         <Providers>
           <LoadingBar />
