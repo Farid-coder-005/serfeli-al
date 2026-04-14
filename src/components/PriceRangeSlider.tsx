@@ -1,17 +1,27 @@
 "use client";
 
 import React, { useState, useRef, useCallback, useEffect } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 interface PriceRangeSliderProps {
   min?: number;
   max?: number;
 }
 
-export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSliderProps) {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
-  const minValRef = useRef(minVal);
-  const maxValRef = useRef(maxVal);
+export default function PriceRangeSlider({ min = 0, max = 10000 }: PriceRangeSliderProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Initialize from URL or defaults
+  const initialMin = Number(searchParams.get("minPrice")) || min;
+  const initialMax = Number(searchParams.get("maxPrice")) || max;
+
+  const [minVal, setMinVal] = useState(initialMin);
+  const [maxVal, setMaxVal] = useState(initialMax);
+  
+  const minValRef = useRef(initialMin);
+  const maxValRef = useRef(initialMax);
   const rangeRef = useRef<HTMLDivElement>(null);
 
   const getPercent = useCallback(
@@ -19,6 +29,30 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
     [min, max]
   );
 
+  // Sync with URL when params change externally (e.g. clear filters)
+  useEffect(() => {
+    const urlMin = Number(searchParams.get("minPrice")) || min;
+    const urlMax = Number(searchParams.get("maxPrice")) || max;
+    setMinVal(urlMin);
+    setMaxVal(urlMax);
+    minValRef.current = urlMin;
+    maxValRef.current = urlMax;
+  }, [searchParams, min, max]);
+
+  // Update URL function (debounced)
+  const updateURL = useCallback((newMin: number, newMax: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    
+    if (newMin > min) params.set("minPrice", newMin.toString());
+    else params.delete("minPrice");
+    
+    if (newMax < max) params.set("maxPrice", newMax.toString());
+    else params.delete("maxPrice");
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [pathname, router, searchParams, min, max]);
+
+  // Handle slider changes
   useEffect(() => {
     const minPercent = getPercent(minVal);
     const maxPercent = getPercent(maxValRef.current);
@@ -41,12 +75,22 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
       {/* Value Labels */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex flex-col">
-          <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1 leading-none">Min</span>
-          <span className="text-sm font-black text-slate-800 tracking-tight leading-none">{minVal.toLocaleString()} ₼</span>
+          <span 
+            className="text-[10px] text-slate-400 font-[900] uppercase tracking-widest mb-1 leading-none"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            Min
+          </span>
+          <span className="text-sm font-bold text-slate-800 tracking-tight leading-none">{minVal.toLocaleString()} ₼</span>
         </div>
         <div className="flex flex-col items-end">
-          <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1 leading-none">Max</span>
-          <span className="text-sm font-black text-slate-800 tracking-tight leading-none">{maxVal.toLocaleString()} ₼</span>
+          <span 
+            className="text-[10px] text-slate-400 font-[900] uppercase tracking-widest mb-1 leading-none"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            Max
+          </span>
+          <span className="text-sm font-bold text-slate-800 tracking-tight leading-none">{maxVal.toLocaleString()} ₼</span>
         </div>
       </div>
 
@@ -58,7 +102,7 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
         {/* Active range highlight */}
         <div
           ref={rangeRef}
-          className="absolute top-0 h-1.5 bg-[#057850] rounded-full shadow-[0_0_10px_rgba(5,120,80,0.1)]"
+          className="absolute top-0 h-1.5 bg-[#FF5500] rounded-full shadow-[0_0_10px_rgba(255,85,0,0.1)]"
         />
 
         {/* Min Thumb */}
@@ -67,13 +111,15 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
           min={min}
           max={max}
           value={minVal}
-          step={10}
+          step={50}
           onChange={(e) => {
-            const value = Math.min(Number(e.target.value), maxVal - 100);
+            const value = Math.min(Number(e.target.value), maxVal - 200);
             setMinVal(value);
             minValRef.current = value;
           }}
-          className="absolute w-full h-1.5 appearance-none bg-transparent cursor-pointer thumb-slider"
+          onMouseUp={() => updateURL(minVal, maxVal)}
+          onTouchEnd={() => updateURL(minVal, maxVal)}
+          className="absolute w-full h-1.5 appearance-none bg-transparent cursor-pointer thumb-slider-orange"
           style={{ zIndex: minVal > max - 100 ? 5 : 3 }}
         />
 
@@ -83,13 +129,15 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
           min={min}
           max={max}
           value={maxVal}
-          step={10}
+          step={50}
           onChange={(e) => {
-            const value = Math.max(Number(e.target.value), minVal + 100);
+            const value = Math.max(Number(e.target.value), minVal + 200);
             setMaxVal(value);
             maxValRef.current = value;
           }}
-          className="absolute w-full h-1.5 appearance-none bg-transparent cursor-pointer thumb-slider"
+          onMouseUp={() => updateURL(minVal, maxVal)}
+          onTouchEnd={() => updateURL(minVal, maxVal)}
+          className="absolute w-full h-1.5 appearance-none bg-transparent cursor-pointer thumb-slider-orange"
           style={{ zIndex: 4 }}
         />
       </div>
@@ -98,16 +146,22 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
       <div className="flex gap-2 mb-2 flex-wrap">
         {[
           { label: "0–500", min: 0, max: 500 },
-          { label: "500–1500", min: 500, max: 1500 },
-          { label: "1500–3000", min: 1500, max: 3000 },
+          { label: "500–2000", min: 500, max: 2000 },
+          { label: "2000–5000", min: 2000, max: 5000 },
         ].map((preset) => (
           <button
             key={preset.label}
-            onClick={() => { setMinVal(preset.min); setMaxVal(preset.max); minValRef.current = preset.min; maxValRef.current = preset.max; }}
-            className={`px-3 py-1.5 rounded-lg text-[11px] font-black border transition-all active:scale-95 ${
+            onClick={() => { 
+              setMinVal(preset.min); 
+              setMaxVal(preset.max); 
+              minValRef.current = preset.min; 
+              maxValRef.current = preset.max; 
+              updateURL(preset.min, preset.max);
+            }}
+            className={`px-3 py-1.5 rounded-lg text-[11px] font-bold border transition-all active:scale-95 ${
               minVal === preset.min && maxVal === preset.max
-                ? "bg-[#057850] text-white border-[#057850] shadow-lg shadow-[#057850]/20"
-                : "bg-white text-slate-500 border-slate-100 hover:border-[#057850]/30 hover:text-[#057850]"
+                ? "bg-[#FF5500] text-white border-[#FF5500] shadow-lg shadow-[#FF5500]/20"
+                : "bg-white text-slate-500 border-slate-100 hover:border-[#FF5500]/30 hover:text-[#FF5500]"
             }`}
           >
             {preset.label} ₼
@@ -117,28 +171,28 @@ export default function PriceRangeSlider({ min = 0, max = 5000 }: PriceRangeSlid
 
       {/* CSS for thumb styling */}
       <style jsx>{`
-        .thumb-slider::-webkit-slider-thumb {
+        .thumb-slider-orange::-webkit-slider-thumb {
           -webkit-appearance: none;
-          height: 18px;
-          width: 18px;
+          height: 20px;
+          width: 20px;
           border-radius: 50%;
           background: white;
-          border: 3px solid #057850;
-          box-shadow: 0 4px 10px rgba(5, 120, 80, 0.2);
+          border: 4px solid #FF5500;
+          box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
           cursor: pointer;
           pointer-events: all;
           transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .thumb-slider::-webkit-slider-thumb:hover {
-          transform: scale(1.2);
+        .thumb-slider-orange::-webkit-slider-thumb:hover {
+          transform: scale(1.1);
         }
-        .thumb-slider::-moz-range-thumb {
-          height: 18px;
-          width: 18px;
+        .thumb-slider-orange::-moz-range-thumb {
+          height: 20px;
+          width: 20px;
           border-radius: 50%;
           background: white;
-          border: 3px solid #057850;
-          box-shadow: 0 4px 10px rgba(5, 120, 80, 0.2);
+          border: 4px solid #FF5500;
+          box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
           cursor: pointer;
         }
       `}</style>

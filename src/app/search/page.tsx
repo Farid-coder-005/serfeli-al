@@ -18,20 +18,64 @@ export default async function SearchPage({
   const query = typeof resolvedParams.q === 'string' ? resolvedParams.q : null;
   const selectedCategory = typeof resolvedParams.category === 'string' ? resolvedParams.category : null;
 
-  // Build the where clause based on what parameters exist
-  const whereClause: any = {};
+  // Extract custom filters from URL
+  const brands = typeof resolvedParams.brand === 'string' ? [resolvedParams.brand] : (Array.isArray(resolvedParams.brand) ? resolvedParams.brand : []);
+  const stores = typeof resolvedParams.store === 'string' ? [resolvedParams.store] : (Array.isArray(resolvedParams.store) ? resolvedParams.store : []);
+  const minPrice = typeof resolvedParams.minPrice === 'string' ? parseFloat(resolvedParams.minPrice) : null;
+  const maxPrice = typeof resolvedParams.maxPrice === 'string' ? parseFloat(resolvedParams.maxPrice) : null;
+  const ram = typeof resolvedParams.ram === 'string' ? [resolvedParams.ram] : (Array.isArray(resolvedParams.ram) ? resolvedParams.ram : []);
+  const storage = typeof resolvedParams.storage === 'string' ? [resolvedParams.storage] : (Array.isArray(resolvedParams.storage) ? resolvedParams.storage : []);
+
+  // Build the complex where clause
+  const whereClause: any = { AND: [] };
   
   if (query) {
-    whereClause.title = { contains: query, mode: 'insensitive' };
+    whereClause.AND.push({ title: { contains: query, mode: 'insensitive' } });
   }
   
   if (selectedCategory) {
-    whereClause.category = selectedCategory;
+    whereClause.AND.push({ category: selectedCategory });
+  }
+
+  // Multi-select Filters (OR within the same group, AND between groups)
+  if (brands.length > 0) {
+    whereClause.AND.push({
+      OR: brands.map(brand => ({ title: { contains: brand, mode: 'insensitive' } }))
+    });
+  }
+
+  if (ram.length > 0) {
+    whereClause.AND.push({
+      OR: ram.map(r => ({ title: { contains: r, mode: 'insensitive' } }))
+    });
+  }
+
+  if (storage.length > 0) {
+    whereClause.AND.push({
+      OR: storage.map(s => ({ title: { contains: s, mode: 'insensitive' } }))
+    });
+  }
+
+  // Nested Filters (Stores & Price) through offers
+  const offerWhere: any = {};
+  if (stores.length > 0) {
+    offerWhere.store = { name: { in: stores, mode: 'insensitive' } };
+  }
+  if (minPrice !== null || maxPrice !== null) {
+    offerWhere.currentPrice = {};
+    if (minPrice !== null) offerWhere.currentPrice.gte = minPrice;
+    if (maxPrice !== null) offerWhere.currentPrice.lte = maxPrice;
+  }
+
+  if (Object.keys(offerWhere).length > 0) {
+    whereClause.AND.push({
+      offers: { some: offerWhere }
+    });
   }
 
   // Fetch products from database
   const products = await prisma.product.findMany({
-    where: Object.keys(whereClause).length > 0 ? whereClause : undefined,
+    where: whereClause.AND.length > 0 ? whereClause : undefined,
     include: { offers: { include: { store: true } } }
   });
 
