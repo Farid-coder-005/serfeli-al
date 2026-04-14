@@ -1,125 +1,81 @@
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Search } from 'lucide-react';
+import { ProductGrid } from "@/components/ProductGrid";
 import FilterSidebar from '@/components/FilterSidebar';
+import prisma from "@/lib/prisma";
+import { authOptions } from "@/lib/auth";
+import { extractFacets, ProductWithOffers } from "@/lib/filter-utils";
 
-// Real generic products with high-quality placeholder URLs
-const genericElectronicProducts = [
-  { 
-    id: 1, 
-    name: "Apple iPhone 15 Pro", 
-    price: "2489.00", 
-    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=600&auto=format&fit=crop", 
-    specs: "5G, 6.1 inch, 120Hz, 8GB RAM, 256GB Storage", 
-    offers: "120 təklif" 
-  },
-  { 
-    id: 2, 
-    name: "Samsung Galaxy S24 Ultra", 
-    price: "2799.00", 
-    image: "https://images.unsplash.com/photo-1707291143890-71172a1e355c?q=80&w=600&auto=format&fit=crop", 
-    specs: "5G, 6.8 inch, 120Hz, 12GB RAM, 512GB Storage", 
-    offers: "85 təklif" 
+export default async function SmartfonlarPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const resolvedParams = await searchParams;
+  
+  // 1. Fetch products from DB
+  const products: ProductWithOffers[] = await prisma.product.findMany({
+    where: {
+      OR: [
+        { category: 'elektronika' },
+        { title: { contains: 'iphone', mode: 'insensitive' } },
+        { title: { contains: 'samsung', mode: 'insensitive' } },
+        { title: { contains: 'xiaomi', mode: 'insensitive' } },
+      ]
     },
-  { 
-    id: 3, 
-    name: "Xiaomi 14 Pro", 
-    price: "1899.00", 
-    image: "https://images.unsplash.com/photo-1709292817812-7da4eb8bd853?q=80&w=600&auto=format&fit=crop", 
-    specs: "5G, 6.7 inch, 120Hz, 12GB RAM, 256GB Storage", 
-    offers: "45 təklif" 
-    },
-  { 
-    id: 4, 
-    name: "Apple MacBook Pro 14 M3", 
-    price: "3650.00", 
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=600&auto=format&fit=crop", 
-    specs: "M3 chip, 14.2 inch, 16GB RAM, 512GB SSD", 
-    offers: "95 təklif" 
-  },
-  { 
-    id: 5, 
-    name: "Dell XPS 15 9530", 
-    price: "2999.00", 
-    image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=600&auto=format&fit=crop", 
-    specs: "Intel i9, 15.6 inch 4K, 32GB RAM, 1TB SSD", 
-    offers: "66 təklif" 
-  },
-  { 
-    id: 6, 
-    name: "Sony WH-1000XM5", 
-    price: "649.00", 
-    image: "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?q=80&w=600&auto=format&fit=crop", 
-    specs: "Noise Cancelling, Bluetooth, 30hr Battery", 
-    offers: "110 təklif" 
+    include: { offers: { include: { store: true } } }
+  }) as ProductWithOffers[];
+
+  // 2. Fetch user favorites if logged in
+  const session = await getServerSession(authOptions);
+  let userFavoriteIds: string[] = [];
+  if (session?.user && (session.user as any).id) {
+    const faves = await prisma.favorite.findMany({
+      where: { userId: (session.user as any).id },
+      select: { productId: true }
+    });
+    userFavoriteIds = faves.map(f => f.productId);
   }
-];
 
-export default function ProductListingPage() {
+  // 3. Extract dynamic facets
+  const facets = extractFacets(products);
 
   return (
-    <main className="max-w-[1200px] mx-auto w-full px-4 py-8">
-      {/* 1. Master Container (Standard 1200px) */}
+    <main className="max-w-[1200px] mx-auto w-full px-4 py-8 bg-[#F9FAFB]">
       <div className="w-full">
          {/* Top Header */}
-         <div className="text-sm text-gray-500 mb-4"><Link href="/" className="hover:underline">Ana Səhifə</Link> {'>'} Elektronika {'>'} Məhsullar</div>
-         <div className="flex justify-between items-end mb-6 border-b border-gray-300 pb-4">
-           <h1 className="text-3xl font-bold text-[#222222]">Məhsullar <span className="text-gray-500 text-lg font-normal">({genericElectronicProducts.length})*</span></h1>
-           <div className="flex items-center gap-1 text-sm cursor-pointer border-b border-gray-400 pb-1 hover:text-[#FF5500]">
+         <div className="text-sm text-gray-500 mb-4 px-1">
+           <Link href="/" className="hover:underline">Ana Səhifə</Link> {'>'} Elektronika {'>'} Smartfonlar
+         </div>
+         <div className="flex justify-between items-end mb-8 border-b border-gray-200 pb-6 px-1">
+           <div>
+             <h1 className="text-4xl font-black text-[#1a1a1a] tracking-tight">Smartfonlar</h1>
+             <p className="text-sm text-gray-500 mt-2 font-medium">
+               {products.length} məhsul tapıldı
+             </p>
+           </div>
+           <div className="hidden md:flex items-center gap-2 text-sm font-bold text-[#1E3A8A] cursor-pointer border-b-2 border-[#FF5500] pb-1 hover:text-[#FF5500] transition-colors">
               Ən populyarlar <ChevronDown className="w-4 h-4" />
            </div>
          </div>
 
-         <div className="flex flex-col md:flex-row gap-6">
-           <FilterSidebar />
+         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
+           {/* DYNAMIC SIDEBAR */}
+           <aside className="hidden lg:block sticky top-32 self-start h-[calc(100vh-8rem)] overflow-y-auto pb-10 no-scrollbar">
+             <FilterSidebar facets={facets} />
+           </aside>
 
-           {/* 3. RIGHT MAIN CONTENT (GRID) - CRITICAL SPACING FIX */}
-           <section className="w-full md:w-3/4">
-              {/* Standard 3-column static grid with tight spacing (gap-1 max) */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-1 border-t border-l border-gray-200">
-                 {genericElectronicProducts.map(product => (
-                   <div key={product.id} className="border-r border-b border-gray-200 p-3 flex flex-col relative hover:shadow-xl transition-shadow bg-white h-full">
-                      {/* Image - object-contain prevents stretching */}
-                      <img src={product.image} alt={product.name} className="h-40 w-full object-contain mb-3 mt-1" />
-                      
-                      <div className="flex flex-col flex-grow">
-                         <h3 className="font-bold text-[#222222] text-sm mb-1 hover:underline cursor-pointer leading-tight">{product.name}</h3>
-                         <p className="text-xs text-gray-600 mb-4 leading-tight">{product.specs}</p>
-                      </div>
-                      
-                      <div className="mt-auto pt-2 border-t border-gray-100">
-                         <div className="text-xs text-gray-500 mb-1">{product.offers}</div>
-                         
-                         {/* Price & Typography Fix */}
-                         <div className="flex items-baseline gap-1 mb-1">
-                           <span className="text-xs text-gray-500">from</span>
-                           <span className="text-3xl font-extrabold text-[#FF5500] tracking-tight">{product.price} ₼</span>
-                         </div>
-                         
-                         <Link 
-                            href={`/product/${product.id}`}
-                            className="text-[#005ea8] text-xs font-bold mt-2 flex items-center gap-1 cursor-pointer hover:underline"
-                         >
-                            <span className="text-sm leading-none">↗</span> Məhsul detalları
-                         </Link>
-                      </div>
-                   </div>
-                 ))}
-              </div>
-
-              {/* Pagination */}
-              <div className="flex justify-end items-stretch mt-0 border-t border-gray-200">
-                 <div className="flex items-center text-[#005ea8] text-lg mr-6 gap-5 py-4">
-                    <button className="text-3xl hover:text-[#004a87] transition-colors leading-none -mt-1">&#8249;</button>
-                    <button className="hover:underline">1</button>
-                    <button className="text-[#222222]">2</button>
-                    <button className="hover:underline">3</button>
-                    <span className="text-[#222222]">...</span>
-                    <button className="hover:underline">5</button>
-                 </div>
-                 <button className="bg-[#005ea8] text-white px-6 hover:bg-[#004a87] transition-colors flex items-center justify-center cursor-pointer">
-                    <span className="text-3xl leading-none -mt-1">&#8250;</span>
-                 </button>
-              </div>
+           {/* PRODUCT GRID */}
+           <section className="min-w-0">
+              {products.length === 0 ? (
+                <div className="bg-white rounded-[3rem] border border-gray-100 p-20 text-center shadow-xl">
+                    <Search className="w-10 h-10 text-gray-300 mx-auto mb-6" />
+                    <h3 className="text-xl font-bold text-[#1a1a1a]">Heç bir məhsul tapılmadı</h3>
+                    <p className="text-gray-400">Bu kategoriya üçün hələlik məhsul yoxdur.</p>
+                </div>
+              ) : (
+                <ProductGrid products={products} userFavoriteIds={userFavoriteIds} />
+              )}
            </section>
          </div>
       </div>

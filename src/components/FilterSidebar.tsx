@@ -1,95 +1,162 @@
 'use client';
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useCallback, useState, useMemo } from 'react';
+import { Filter, ChevronDown, ChevronRight, CheckCircle2, RotateCcw } from "lucide-react";
+import PriceRangeSlider from "./PriceRangeSlider";
+import { FacetGroup } from "@/lib/filter-utils";
 
-// 1. Configuration Object
-const filtersConfig: Record<string, { id: string; label: string; options: string[] }[]> = {
-  telefonlar: [
-    { id: 'brand', label: 'İstehsalçı', options: ['Apple', 'Samsung', 'Xiaomi'] },
-    { id: 'storage', label: 'Yaddaş', options: ['128GB', '256GB', '512GB'] }
-  ],
-  smartfonlar: [
-    { id: 'brand', label: 'İstehsalçı', options: ['Apple', 'Samsung', 'Xiaomi'] },
-    { id: 'storage', label: 'Yaddaş', options: ['128GB', '256GB', '512GB'] }
-  ],
-  televizorlar: [
-    { id: 'brand', label: 'İstehsalçı', options: ['Samsung', 'LG', 'Sony'] },
-    { id: 'screen', label: 'Ekran', options: ['43"', '50"', '55"', '65"'] }
-  ]
-};
+interface SidebarContentProps {
+  facets?: FacetGroup[];
+}
 
-// 2. Inner Component
-function SidebarContent() {
+/**
+ * Data-driven FilterSidebar that renders groups dynamically based on the passed facets prop.
+ */
+function SidebarContent({ facets = [] }: SidebarContentProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Local UI state for accordions
+  const [openSections, setOpenSections] = useState<string[]>(["brand"]);
+
+  const toggleSection = (sectionId: string) => {
+    setOpenSections((prev) =>
+      prev.includes(sectionId) ? prev.filter((id) => id !== sectionId) : [...prev, sectionId]
+    );
+  };
+
+  // URL state checking logic
+  const isOptionChecked = useCallback(
+    (key: string, value: string) => {
+      const currentValues = searchParams.getAll(key);
+      return currentValues.includes(value.toLowerCase());
+    },
+    [searchParams]
+  );
+
   const handleToggle = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
+    const val = value.toLowerCase();
     const currentValues = params.getAll(key);
     
-    if (currentValues.includes(value)) {
-      // Create new params object to fully rebuild that key's values
+    if (currentValues.includes(val)) {
+      // Logic to fully rebuild the multi-value parameter without the toggled item
       const newParams = new URLSearchParams();
       params.forEach((v, k) => {
         if (k !== key) newParams.append(k, v);
       });
-      currentValues.filter(v => v !== value).forEach(v => newParams.append(key, v));
+      currentValues.filter(v => v !== val).forEach(v => newParams.append(key, v));
       router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
     } else {
-      params.append(key, value);
+      params.append(key, val);
       router.push(`${pathname}?${params.toString()}`, { scroll: false });
     }
   };
 
-  // Detect category from URL (fallback to smartfonlar if not matched)
-  const category = pathname.includes('telefonlar') ? 'telefonlar' : 
-                   pathname.includes('smartfonlar') ? 'smartfonlar' :
-                   pathname.includes('televizorlar') ? 'televizorlar' : null;
-
-  const currentFilters = category ? (filtersConfig[category] || filtersConfig['smartfonlar']) : filtersConfig['smartfonlar'];
+  const clearFilters = () => {
+    const params = new URLSearchParams();
+    const q = searchParams.get("q");
+    const cat = searchParams.get("category");
+    if (q) params.set("q", q);
+    if (cat) params.set("category", cat);
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   return (
-    <div className="w-full lg:w-[250px] flex flex-col gap-6 bg-[#f4f7f9] p-5 rounded-sm border border-gray-200 h-fit">
-      {/* Price Filter (Static for all) */}
-      <div>
-        <h3 className="font-bold mb-3 text-lg text-[#222222]">Qiymət</h3>
-        <div className="flex items-center gap-2">
-          <input type="number" placeholder="Min ₼" className="w-full border border-gray-300 p-2 rounded text-sm bg-white" />
-          <span>-</span>
-          <input type="number" placeholder="Max ₼" className="w-full border border-gray-300 p-2 rounded text-sm bg-white" />
-        </div>
+    <div className="bg-white rounded-[2rem] border border-gray-100 p-7 shadow-sm space-y-2">
+      {/* Sidebar Header */}
+      <div className="pb-4 border-b border-gray-50 mb-2 flex items-center justify-between">
+        <h2 
+          className="text-lg font-[900] text-slate-800 flex items-center gap-3 uppercase tracking-wider"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          <Filter className="w-5 h-5 text-[#FF5500]" />
+          Filterlər
+        </h2>
+        <button 
+          onClick={clearFilters}
+          className="text-slate-400 hover:text-[#FF5500] transition-colors p-2 rounded-lg hover:bg-orange-50"
+          title="Sıfırla"
+        >
+          <RotateCcw className="w-4 h-4" />
+        </button>
       </div>
 
-      {/* Dynamic Render Loop */}
-      {currentFilters.map((filterGroup) => (
-        <div key={filterGroup.id} className="border-t border-gray-300 pt-4">
-          <h3 className="font-bold mb-3 text-lg text-[#222222]">{filterGroup.label}</h3>
-          <div className="flex flex-col gap-2">
-            {filterGroup.options.map((option) => (
-              <label key={option} className="flex items-center gap-3 cursor-pointer group hover:text-[#FF5500] transition-colors">
-                <input 
-                  type="checkbox" 
-                  checked={searchParams.getAll(filterGroup.id).includes(option)}
-                  onChange={() => handleToggle(filterGroup.id, option)}
-                  className="w-4 h-4 accent-[#FF5500] border-gray-300 rounded cursor-pointer"
-                />
-                <span className="text-sm">{option}</span>
-              </label>
-            ))}
-          </div>
+      {/* Price Range (Permanent Group) */}
+      <div className="py-4">
+        <h3 
+          className="text-[10px] font-[900] text-slate-400 mb-6 uppercase tracking-[0.2em]"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          Qiymət Aralığı (₼)
+        </h3>
+        <PriceRangeSlider min={0} max={10000} />
+      </div>
+
+      {/* Dynamic Facet Groups */}
+      {facets.map((group) => (
+        <div key={group.id} className="border-t border-gray-50 pt-1">
+          <button
+            onClick={() => toggleSection(group.id)}
+            className="w-full flex items-center justify-between py-4 group transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="w-4 h-4 text-[#FF5500]" />
+              <span 
+                className="text-[11px] font-[800] text-slate-800 uppercase tracking-[0.2em] group-hover:text-[#FF5500] transition-colors"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                {group.label}
+              </span>
+            </div>
+            {openSections.includes(group.id) ? (
+              <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-[#FF5500]" />
+            ) : (
+              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#FF5500]" />
+            )}
+          </button>
+          
+          {openSections.includes(group.id) && (
+            <div className="space-y-3 pb-4 animate-in fade-in slide-in-from-top-2 duration-300">
+              {group.options.map((option) => (
+                <label 
+                  key={option.value} 
+                  className="flex items-center justify-between cursor-pointer group px-1"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="relative flex items-center">
+                      <input 
+                        type="checkbox" 
+                        className="peer w-5 h-5 opacity-0 absolute cursor-pointer"
+                        checked={isOptionChecked(group.id, option.value)}
+                        onChange={() => handleToggle(group.id, option.value)}
+                      />
+                      <div className="w-5 h-5 border-2 border-slate-200 rounded-lg bg-white peer-checked:bg-[#FF5500] peer-checked:border-[#FF5500] transition-all duration-200" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-white absolute left-[3.25px] opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
+                    </div>
+                    <span className="text-sm font-bold text-slate-600 group-hover:text-slate-900 transition-colors">
+                      {option.label}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-bold text-slate-400 group-hover:text-[#FF5500] transition-colors">
+                    {option.count}
+                  </span>
+                </label>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
 }
 
-// 3. Exported Wrapped Component
-export default function FilterSidebar() {
+export default function FilterSidebar(props: SidebarContentProps) {
   return (
-    <Suspense fallback={<div className="w-[250px] bg-[#f4f7f9] p-5 rounded-sm border border-gray-200">Yüklənir...</div>}>
-      <SidebarContent />
+    <Suspense fallback={<div className="p-10 text-center animate-pulse">Filterlər yüklənir...</div>}>
+      <SidebarContent {...props} />
     </Suspense>
   );
 }

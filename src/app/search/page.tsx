@@ -6,6 +6,8 @@ import FilterSidebar from "@/components/FilterSidebar";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
+import { extractFacets, ProductWithOffers } from "@/lib/filter-utils";
+
 
 export default async function SearchPage({
   searchParams,
@@ -72,10 +74,10 @@ export default async function SearchPage({
   }
 
   // Fetch products from database
-  const products = await prisma.product.findMany({
+  const products: ProductWithOffers[] = await prisma.product.findMany({
     where: whereClause.AND.length > 0 ? whereClause : undefined,
     include: { offers: { include: { store: true } } }
-  });
+  }) as ProductWithOffers[];
 
   // Fetch user favorites if logged in
   const session = await getServerSession(authOptions);
@@ -141,7 +143,7 @@ export default async function SearchPage({
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
           
           <aside className="hidden lg:block sticky top-32 self-start h-[calc(100vh-8rem)] overflow-y-auto pb-10 no-scrollbar">
-            <FilterSidebar />
+            <FilterSidebar facets={extractFacets(products)} />
           </aside>
 
           {/* MAIN CONTENT WRAPPER */}
