@@ -4,6 +4,7 @@ import { ProductGrid } from "@/components/ProductGrid";
 import FilterSidebar from '@/components/FilterSidebar';
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth/next";
 import { extractFacets, ProductWithOffers } from "@/lib/filter-utils";
 
 export default async function SmartfonlarPage({
