@@ -6,22 +6,41 @@ import { Filter, ChevronDown, ChevronRight, CheckCircle2, RotateCcw } from "luci
 import PriceRangeSlider from "./PriceRangeSlider";
 import { CATEGORY_FILTER_CONFIG, DEFAULT_FILTERS } from "@/lib/filter-config";
 
-interface FilterPanelProps {
+interface FilterSidebarProps {
   category?: string | null;
 }
 
-export default function FilterPanel({ category }: FilterPanelProps) {
+/**
+ * FilterSidebar component that strictly uses URL Search Parameters for state.
+ * It dynamically detects the active category from the pathname or props.
+ */
+export default function FilterSidebar({ category: categoryProp }: FilterSidebarProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Get active filters from config based on category lowercase
-  const filterGroups = useMemo(() => {
-    const catId = category?.toLowerCase();
-    return (catId && CATEGORY_FILTER_CONFIG[catId]) || DEFAULT_FILTERS;
-  }, [category]);
+  // 1. DYNAMIC CATEGORY DETECTION: Pathname priority -> Prop -> Query Param
+  const activeCategory = useMemo(() => {
+    if (categoryProp) return categoryProp;
+    
+    // Check if we are on a category-specific route (/category/[id])
+    const pathParts = pathname.split("/");
+    const categoryIdx = pathParts.indexOf("category");
+    if (categoryIdx !== -1 && pathParts[categoryIdx + 1]) {
+      return pathParts[categoryIdx + 1];
+    }
+    
+    // Fallback to query parameter ?category=...
+    return searchParams.get("category");
+  }, [categoryProp, pathname, searchParams]);
 
-  // State for accordions (default to open for brand, closed for others)
+  // Load correct filter configuration based on detected category
+  const filterGroups = useMemo(() => {
+    const catId = activeCategory?.toLowerCase();
+    return (catId && CATEGORY_FILTER_CONFIG[catId]) || DEFAULT_FILTERS;
+  }, [activeCategory]);
+
+  // Local state for UI only (accordions), not for values
   const [openSections, setOpenSections] = useState<string[]>(["brand"]);
 
   const toggleSection = (sectionId: string) => {
@@ -30,39 +49,39 @@ export default function FilterPanel({ category }: FilterPanelProps) {
     );
   };
 
-  // Helper to check if an option is active (supports multiple values)
-  const isSelected = useCallback(
+  // 2. TRUE URL SYNCING: Checkboxes strictly derive state from searchParams.getAll()
+  const isOptionChecked = useCallback(
     (key: string, value: string) => {
-      const current = searchParams.getAll(key);
-      return current.includes(value);
+      const currentValues = searchParams.getAll(key);
+      return currentValues.includes(value);
     },
     [searchParams]
   );
 
-  // Update URL params
+  // 3. PARAMETER WRITING: Updates URL to persist state on refresh
   const handleFilterChange = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
     const currentValues = params.getAll(key);
 
     if (currentValues.includes(value)) {
-      // Remove value
+      // Toggle off: remove this specific value from the multi-value key
       const newValues = currentValues.filter((v) => v !== value);
       params.delete(key);
       newValues.forEach((v) => params.append(key, v));
     } else {
-      // Add value
+      // Toggle on: append new value to existing ones
       params.append(key, value);
     }
 
-    // Refresh the page data without full reload
+    // Update URL without a full page refresh
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   const clearFilters = () => {
-    // Preserve core identifiers like query and basic category if they were in URL
+    const params = new URLSearchParams();
+    // Preserve core identifiers like query and basic category if they exist
     const q = searchParams.get("q");
     const cat = searchParams.get("category");
-    const params = new URLSearchParams();
     if (q) params.set("q", q);
     if (cat) params.set("category", cat);
     
@@ -104,13 +123,13 @@ export default function FilterPanel({ category }: FilterPanelProps) {
         <button 
           onClick={clearFilters}
           className="text-slate-400 hover:text-[#FF5500] transition-colors p-2 rounded-lg hover:bg-orange-50"
-          title="Filterləri sıfırla"
+          title="Sıfırla"
         >
           <RotateCcw className="w-4 h-4" />
         </button>
       </div>
 
-      {/* Price Range Section (Always Open) */}
+      {/* Price Range */}
       <div className="py-4">
         <h3 
           className="text-[10px] font-[900] text-slate-400 mb-6 uppercase tracking-[0.2em]"
@@ -121,7 +140,7 @@ export default function FilterPanel({ category }: FilterPanelProps) {
         <PriceRangeSlider min={0} max={10000} />
       </div>
 
-      {/* Dynamic Filter Groups from Config */}
+      {/* Dynamic Filter Groups */}
       {filterGroups.map((group) => (
         <div key={group.id} className="border-t border-gray-50 pt-1">
           <SectionHeader title={group.title} id={group.id} icon={CheckCircle2} />
@@ -137,7 +156,7 @@ export default function FilterPanel({ category }: FilterPanelProps) {
                       <input 
                         type="checkbox" 
                         className="peer w-5 h-5 opacity-0 absolute"
-                        checked={isSelected(group.id, option.value)}
+                        checked={isOptionChecked(group.id, option.value)}
                         onChange={() => handleFilterChange(group.id, option.value)}
                       />
                       <div className="w-5 h-5 border-2 border-slate-200 rounded-lg bg-white peer-checked:bg-[#FF5500] peer-checked:border-[#FF5500] transition-all duration-200" />
@@ -157,7 +176,7 @@ export default function FilterPanel({ category }: FilterPanelProps) {
         </div>
       ))}
 
-      {/* Stores (Global Filter) */}
+      {/* Stores */}
       <div className="border-t border-gray-50 pt-1">
         <SectionHeader title="Mağazalar" id="store" icon={CheckCircle2} />
         {openSections.includes("store") && (
@@ -169,7 +188,7 @@ export default function FilterPanel({ category }: FilterPanelProps) {
                     <input 
                       type="checkbox" 
                       className="peer w-5 h-5 opacity-0 absolute" 
-                      checked={isSelected("store", store)}
+                      checked={isOptionChecked("store", store)}
                       onChange={() => handleFilterChange("store", store)}
                     />
                     <div className="w-5 h-5 border-2 border-slate-200 rounded-lg bg-white peer-checked:bg-[#FF5500] peer-checked:border-[#FF5500] transition-all duration-200" />

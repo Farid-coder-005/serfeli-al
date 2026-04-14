@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Filter, ChevronDown, CheckCircle2, Search, ArrowUpDown } from "lucide-react";
-import PriceRangeSlider from "@/components/PriceRangeSlider";
-import { ProductCard } from "@/components/ProductCard";
 import { ProductGrid } from "@/components/ProductGrid";
-import FilterPanel from "@/components/FilterPanel";
+import FilterSidebar from "@/components/FilterSidebar";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
@@ -144,7 +141,7 @@ export default async function SearchPage({
           
           {/* SIDEBAR WRAPPER */}
           <aside className="hidden lg:block sticky top-32 self-start h-[calc(100vh-8rem)] overflow-y-auto pb-10 no-scrollbar">
-            <FilterPanel category={selectedCategory} />
+            <FilterSidebar category={selectedCategory} />
           </aside>
 
           {/* MAIN CONTENT WRAPPER */}
