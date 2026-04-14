@@ -1,7 +1,6 @@
-"use client";
-import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Search, Filter } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import FilterSidebar from '@/components/FilterSidebar';
 
 // Real generic products with high-quality placeholder URLs
 const genericElectronicProducts = [
@@ -56,8 +55,6 @@ const genericElectronicProducts = [
 ];
 
 export default function ProductListingPage() {
-  const [priceMin, setPriceMin] = useState<string>("Min ₼");
-  const [priceMax, setPriceMax] = useState<string>("Max ₼");
 
   return (
     <main className="max-w-[1200px] mx-auto w-full px-4 py-8">
@@ -73,46 +70,7 @@ export default function ProductListingPage() {
          </div>
 
          <div className="flex flex-col md:flex-row gap-6">
-           {/* 2. LEFT SIDEBAR (FILTERS) - Structured & High Quality */}
-           <aside className="w-full md:w-1/4 bg-[#f4f7f9] p-5 rounded-sm border border-gray-200">
-              <div className="flex justify-between items-center mb-6 border-b border-gray-300 pb-3">
-                 <div className="flex items-center gap-2">
-                    <Filter className="w-5 h-5 text-gray-700" />
-                    <h3 className="font-bold text-xl text-[#222222]">Filtirlər</h3>
-                 </div>
-                 <button onClick={() => { setPriceMin(''); setPriceMax(''); }} className="text-[#005ea8] text-sm hover:underline cursor-pointer">Sıfırla</button>
-              </div>
-
-              {/* Price Filter */}
-              <div className="mb-8">
-                 <h4 className="font-bold text-base mb-4 text-[#222222]">Qiymət</h4>
-                 <div className="flex gap-2 items-center mb-5">
-                   <input type="text" value={priceMin} onChange={(e)=>setPriceMin(e.target.value)} className="w-full p-2 border border-gray-300 rounded text-sm bg-white" />
-                   <span>-</span>
-                   <input type="text" value={priceMax} onChange={(e)=>setPriceMax(e.target.value)} className="w-full p-2 border border-gray-300 rounded text-sm bg-white" />
-                   <button className="bg-[#005ea8] text-white px-3 py-2 rounded hover:bg-[#004a87] transition-colors">{'>'}</button>
-                 </div>
-                 <div className="space-y-3">
-                    <label className="flex items-center gap-3 text-sm cursor-pointer group"><input type="checkbox" className="w-4 h-4 border-gray-300 text-[#005ea8] rounded focus:ring-[#005ea8]" /> 1000 ₼-ə qədər</label>
-                    <label className="flex items-center gap-3 text-sm cursor-pointer group"><input type="checkbox" className="w-4 h-4 border-gray-300 text-[#005ea8] rounded focus:ring-[#005ea8]" /> 1000 ₼ - 2000 ₼</label>
-                    <label className="flex items-center gap-3 text-sm cursor-pointer group"><input type="checkbox" className="w-4 h-4 border-gray-300 text-[#005ea8] rounded focus:ring-[#005ea8]" /> 2000 ₼-dən yuxarı</label>
-                 </div>
-              </div>
-
-              {/* Manufacturer Filter */}
-              <div className="mb-8 border-t border-white pt-5">
-                 <h4 className="font-bold text-base mb-4 text-[#222222]">İstehsalçı</h4>
-                 <div className="relative mb-4">
-                    <input type="text" placeholder="İstehsalçı axtar..." className="w-full p-2 pl-9 border border-gray-300 rounded text-sm bg-white" />
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                 </div>
-                 <div className="space-y-3">
-                    <label className="flex items-center gap-3 text-sm cursor-pointer group"><input type="checkbox" className="w-4 h-4 border-gray-300 text-[#005ea8] rounded focus:ring-[#005ea8]" /> Apple</label>
-                    <label className="flex items-center gap-3 text-sm cursor-pointer group"><input type="checkbox" className="w-4 h-4 border-gray-300 text-[#005ea8] rounded focus:ring-[#005ea8]" /> Samsung</label>
-                    <label className="flex items-center gap-3 text-sm cursor-pointer group"><input type="checkbox" className="w-4 h-4 border-gray-300 text-[#005ea8] rounded focus:ring-[#005ea8]" /> Xiaomi</label>
-                 </div>
-              </div>
-           </aside>
+           <FilterSidebar />
 
            {/* 3. RIGHT MAIN CONTENT (GRID) - CRITICAL SPACING FIX */}
            <section className="w-full md:w-3/4">

@@ -140,9 +140,8 @@ export default async function SearchPage({
       <div className="container mx-auto px-4 py-8 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
           
-          {/* SIDEBAR WRAPPER */}
           <aside className="hidden lg:block sticky top-32 self-start h-[calc(100vh-8rem)] overflow-y-auto pb-10 no-scrollbar">
-            <FilterSidebar category={selectedCategory} />
+            <FilterSidebar />
           </aside>
 
           {/* MAIN CONTENT WRAPPER */}
