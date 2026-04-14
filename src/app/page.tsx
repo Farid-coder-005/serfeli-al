@@ -27,20 +27,20 @@ export default async function Page() {
   }
 
   const shortcuts = [
-    { label: "Telefonlar", icon: Smartphone, href: "/search?category=elektronika" },
-    { label: "Laptoplar", icon: Laptop, href: "/search?category=elektronika" },
-    { label: "TV", icon: Tv, href: "/search?category=elektronika" },
-    { label: "Saatlar", icon: Watch, href: "/search?category=elektronika" },
-    { label: "Qulaqlıqlar", icon: Headset, href: "/search?category=elektronika" },
-    { label: "Kameralar", icon: Camera, href: "/search?category=elektronika" },
-    { label: "Mətbəx", icon: Coffee, href: "/search?category=ev-bagca" },
+    { label: "Telefonlar", icon: Smartphone, href: "/category/smartfonlar" },
+    { label: "Laptoplar", icon: Laptop, href: "/category/noutbuklar" },
+    { label: "TV", icon: Tv, href: "/category/elektronika" },
+    { label: "Saatlar", icon: Watch, href: "/category/elektronika" },
+    { label: "Qulaqlıqlar", icon: Headset, href: "/category/qulaqliqlar" },
+    { label: "Kameralar", icon: Camera, href: "/category/elektronika" },
+    { label: "Mətbəx", icon: Coffee, href: "/category/metbex" },
   ];
 
   const relatedCategories = [
-    { label: "Smartfonlar", img: "/iphone15pro.png", href: "#" },
-    { label: "Qulaqlıqlar", img: "/iphone15pro.png", href: "#" },
-    { label: "Planşetlər", img: "/iphone15pro.png", href: "#" },
-    { label: "Ağıllı Saatlar", img: "/iphone15pro.png", href: "#" },
+    { label: "Smartfonlar", img: "/iphone15pro.png", href: "/category/smartfonlar" },
+    { label: "Qulaqlıqlar", img: "/iphone15pro.png", href: "/category/qulaqliqlar" },
+    { label: "Planşetlər", img: "/iphone15pro.png", href: "/category/plansetler" },
+    { label: "Oyun Konsolları", img: "/iphone15pro.png", href: "/category/konsollar" },
   ];
 
   // Guarantee data even if database is small

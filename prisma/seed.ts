@@ -27,6 +27,8 @@ async function main() {
   await prisma.priceHistory.deleteMany();
   await prisma.productOffer.deleteMany();
   await prisma.product.deleteMany();
+  await prisma.subCategory.deleteMany();
+  await prisma.category.deleteMany();
   await prisma.store.deleteMany();
 
   console.log('🏪 Creating stores...');
@@ -45,11 +47,62 @@ async function main() {
     storeMap.set(s.name, store.id);
   }
 
+  console.log('📂 Creating categories and subcategories...');
+  const categoriesData = [
+    {
+      name: 'Elektronika',
+      slug: 'elektronika',
+      image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=2670&auto=format&fit=crop',
+      subCategories: [
+        { name: 'Smartfonlar', slug: 'smartfonlar', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=2680&auto=format&fit=crop' },
+        { name: 'Noutbuklar', slug: 'noutbuklar', image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=2671&auto=format&fit=crop' },
+        { name: 'Qulaqlıqlar', slug: 'qulaqliqlar', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2670&auto=format&fit=crop' },
+        { name: 'Planşetlər', slug: 'plansetler', image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=2670&auto=format&fit=crop' },
+      ]
+    },
+    {
+      name: 'Ev və Bağça',
+      slug: 'ev-ve-bagca',
+      image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=2674&auto=format&fit=crop',
+      subCategories: [
+        { name: 'Mətbəx', slug: 'metbex', image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2670&auto=format&fit=crop' },
+        { name: 'Mebel', slug: 'mebel', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2670&auto=format&fit=crop' },
+      ]
+    },
+    {
+      name: 'Sağlamlıq',
+      slug: 'saglamliq',
+      image: 'https://images.unsplash.com/photo-1505751172107-1111624b5952?q=80&w=2670&auto=format&fit=crop',
+      subCategories: []
+    },
+    {
+      name: 'Oyunlar',
+      slug: 'oyunlar',
+      image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2670&auto=format&fit=crop',
+      subCategories: [
+        { name: 'Konsollar', slug: 'konsollar', image: 'https://images.unsplash.com/photo-1486401899868-2e93522ba0a5?q=80&w=2670&auto=format&fit=crop' },
+      ]
+    }
+  ];
+
+  for (const cat of categoriesData) {
+    const { subCategories, ...catData } = cat;
+    await prisma.category.create({
+      data: {
+        ...catData,
+        subCategories: {
+          create: subCategories
+        }
+      }
+    });
+  }
+
   console.log('📦 Creating products with offers...');
   const productsData = [
     {
       title: 'Apple iPhone 15 Pro, 256GB, Natural Titanium',
       category: 'elektronika',
+      categorySlug: 'smartfonlar',
       description: 'The latest iPhone 15 Pro with A17 Pro chip and titanium design.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -61,6 +114,7 @@ async function main() {
     {
       title: 'Sony PlayStation 5 Console (Disc Edition)',
       category: 'elektronika',
+      categorySlug: 'konsollar',
       description: 'Next-gen gaming with lightning-fast loading and 3D audio.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -72,6 +126,7 @@ async function main() {
     {
       title: 'Samsung Galaxy S24 Ultra, 512GB, Titanium Black',
       category: 'elektronika',
+      categorySlug: 'smartfonlar',
       description: 'Galaxy AI is here. Experience the new era of mobile AI.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -83,6 +138,7 @@ async function main() {
     {
       title: 'Dyson V15 Detect Absolute',
       category: 'elektronika',
+      categorySlug: 'metbex', // Just for testing
       description: "Dyson's most powerful, most intelligent cordless vacuum.",
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -93,6 +149,7 @@ async function main() {
     {
       title: 'Apple MacBook Air M3, 16GB RAM, 512GB SSD',
       category: 'elektronika',
+      categorySlug: 'noutbuklar',
       description: "Supercharged by M3. The world's best thin and light laptop.",
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -103,6 +160,7 @@ async function main() {
     {
       title: 'LG OLED evo C3 55" 4K Smart TV',
       category: 'elektronika',
+      categorySlug: 'elektronika',
       description: 'Self-lit OLED pixels create infinite contrast.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -114,6 +172,7 @@ async function main() {
     {
       title: 'Apple AirPods Pro (2nd generation) with USB-C',
       category: 'elektronika',
+      categorySlug: 'qulaqliqlar',
       description: 'Rich audio experience with Active Noise Cancellation.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -125,6 +184,7 @@ async function main() {
     {
       title: 'Sony WH-1000XM5 Wireless Noise Canceling Headphones',
       category: 'elektronika',
+      categorySlug: 'qulaqliqlar',
       description: 'Industry leading noise canceling headphones.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -135,6 +195,7 @@ async function main() {
     {
       title: 'Apple Watch Series 9 GPS 45mm Midnight Aluminum',
       category: 'elektronika',
+      categorySlug: 'elektronika',
       description: 'Smarter, brighter, and mightier.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -145,6 +206,7 @@ async function main() {
     {
       title: 'Nintendo Switch OLED Model',
       category: 'elektronika',
+      categorySlug: 'konsollar',
       description: 'Play at home or on the go with a vibrant 7-inch OLED screen.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -155,6 +217,7 @@ async function main() {
     {
       title: 'ASUS ROG Strix G16 Gaming Laptop',
       category: 'elektronika',
+      categorySlug: 'noutbuklar',
       description: 'High-performance gaming laptop with RTX 4060.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -165,6 +228,7 @@ async function main() {
     {
       title: 'Samsung Galaxy Tab S9 Ultra 512GB',
       category: 'elektronika',
+      categorySlug: 'plansetler',
       description: 'The largest Dynamic AMOLED 2X display on a Galaxy tablet.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -175,6 +239,7 @@ async function main() {
     {
       title: 'GoPro HERO12 Black',
       category: 'elektronika',
+      categorySlug: 'elektronika',
       description: 'Incredible image quality, even better HyperSmooth video stabilization.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -185,6 +250,7 @@ async function main() {
     {
       title: 'Müasir Minimalist İkili Divan',
       category: 'mebel',
+      categorySlug: 'mebel',
       description: 'Gözəl və rahat dizayn.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -195,6 +261,7 @@ async function main() {
     {
       title: 'Kişi Üçün Ağ T-shirt (100% Pambıq)',
       category: 'geyim',
+      categorySlug: 'geyim',
       description: 'Gündəlik rahatlıq.',
       imageUrl: '/iphone15pro.png',
       offers: [
@@ -219,12 +286,16 @@ async function main() {
     });
   }
 
+  const catCount = await prisma.category.count();
+  const subCount = await prisma.subCategory.count();
   const productCount = await prisma.product.count();
   const offerCount = await prisma.productOffer.count();
   const storeCount = await prisma.store.count();
 
   console.log(`✅ Seeding complete!`);
   console.log(`   ${storeCount} stores`);
+  console.log(`   ${catCount} categories`);
+  console.log(`   ${subCount} subcategories`);
   console.log(`   ${productCount} products`);
   console.log(`   ${offerCount} offers`);
 }

@@ -25,7 +25,7 @@ const CATEGORIES = [
   { label: "Elektronika", icon: Smartphone, href: "/category/elektronika" },
   { label: "İdman", icon: Dumbbell, href: "/category/idman" },
   { label: "Uşaq", icon: Baby, href: "/category/usaq" },
-  { label: "Ev və Bağça", icon: Home, href: "/category/ev-bagca" },
+  { label: "Ev və Bağça", icon: Home, href: "/category/ev-ve-bagca" },
   { label: "Qida", icon: Apple, href: "/category/qida" },
   { label: "Oyunlar", icon: Gamepad2, href: "/category/oyunlar" },
   { label: "Sağlamlıq", icon: HeartPulse, href: "/category/saglamliq" },
