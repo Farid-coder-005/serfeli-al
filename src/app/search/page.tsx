@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpDown, ChevronDown, Search, Filter } from "lucide-react";
 import { ProductGrid } from "@/components/ProductGrid";
 import FilterSidebar from "@/components/FilterSidebar";
 import prisma from "@/lib/prisma";
