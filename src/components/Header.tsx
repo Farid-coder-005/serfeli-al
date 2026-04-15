@@ -48,10 +48,10 @@ export function Header() {
  
   return (
     <div className="z-[9999] relative">
-      <header role="banner" className="bg-[#09233f] sticky top-0 z-[9999] text-white flex flex-col">
+      <header role="banner" className="bg-[#0F172A] sticky top-0 z-[9999] text-white flex flex-col">
         
         {/* 1. Top Strip */}
-        <div className="bg-[#09233f] text-sm hidden md:flex items-center border-b border-white/5">
+        <div className="bg-[#0F172A] text-sm hidden md:flex items-center border-b border-white/5">
           <div className="max-w-[1200px] mx-auto w-full px-4 py-2 flex items-center justify-between">
             <nav className="flex items-center gap-6">
               <Link 
@@ -84,7 +84,7 @@ export function Header() {
         </div>
 
         {/* 2. Main Row */}
-        <div className="bg-[#09233f] py-3">
+        <div className="bg-[#0F172A] py-3">
           <div className="max-w-[1200px] mx-auto w-full px-4 flex items-center">
             {/* Mobile Hamburger */}
             <button onClick={() => setMobileOpen(true)} className="md:hidden text-white flex shrink-0 transition-colors hover:text-[#ff5500] mr-4">
@@ -141,7 +141,7 @@ export function Header() {
         </div>
 
         {/* 3. Category Strip */}
-        <nav className="bg-[#102a46] py-3 hidden md:block w-full">
+        <nav className="bg-[#1E293B] py-3 hidden md:block w-full">
           <div className="max-w-[1200px] mx-auto w-full px-4 flex justify-between items-start overflow-x-auto no-scrollbar">
             {CATEGORIES.map(({ label, icon: Icon, href }, idx) => {
               if (idx === 0) {
@@ -175,7 +175,7 @@ export function Header() {
         role="navigation"
         aria-hidden={!mobileOpen}
         className={[
-          "fixed left-0 right-0 z-[9998] bg-[#09233f] text-white shadow-xl",
+          "fixed left-0 right-0 z-[9998] bg-[#0F172A] text-white shadow-xl",
           "overflow-y-auto transition-all duration-300 ease-in-out",
           mobileOpen ? "top-[115px] max-h-[calc(100vh-115px)] opacity-100" : "top-[115px] max-h-0 opacity-0 pointer-events-none",
         ].join(" ")}

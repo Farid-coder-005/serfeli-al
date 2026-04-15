@@ -44,7 +44,7 @@ function LoginForm() {
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10">
           <Link href="/" className="inline-block group">
-            <h1 className="text-4xl font-black text-[#09233f] tracking-tighter mb-2 group-hover:scale-105 transition-transform">
+            <h1 className="text-4xl font-black text-[#0F172A] tracking-tighter mb-2 group-hover:scale-105 transition-transform">
               Sərfəli<span className="text-[#FF5500]">.al</span>
             </h1>
           </Link>
