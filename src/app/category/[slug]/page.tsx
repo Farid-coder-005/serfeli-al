@@ -110,7 +110,18 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   const displayName = isSubCategory 
     ? subCategoryData?.name 
-    : categoryData.name;
+    : categoryData?.name || 'Kateqoriya';
+
+  if (!categoryData && !isSubCategory) {
+     return (
+       <div className="min-h-screen flex items-center justify-center bg-gray-50">
+         <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-800 mb-2">Kateqoriya tapılmadı</h1>
+            <Link href="/" className="text-[#FF5500] font-bold hover:underline">Ana Səhifəyə Qayıt</Link>
+         </div>
+       </div>
+     );
+  }
 
   return (
     <main className="max-w-[1200px] mx-auto w-full px-4 py-8 bg-[#F9FAFB]">
@@ -120,7 +131,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <ChevronRight className="w-3 h-3" />
         {isSubCategory ? (
           <>
-            <Link href={`/category/${categoryData.slug}`} className="hover:underline">{categoryData.name}</Link>
+            <Link href={`/category/${categoryData?.slug}`} className="hover:underline">{categoryData?.name}</Link>
             <ChevronRight className="w-3 h-3" />
             <span className="font-medium text-gray-900">{displayName}</span>
           </>
@@ -132,7 +143,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {/* Hero Header */}
       <div className="relative h-[250px] rounded-[2.5rem] overflow-hidden mb-12 shadow-2xl group">
         <Image 
-          src={ (isSubCategory ? subCategoryData?.image : categoryData.image) || 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=2670'} 
+          src={ (isSubCategory ? subCategoryData?.image : categoryData?.image) || 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=2670'} 
           alt={displayName || ""} 
           fill 
           className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -148,7 +159,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </div>
 
       {/* Dynamic Sub-categories Grid - Only show if current page is TOP level */}
-      {!isSubCategory && categoryData.subCategories.length > 0 && (
+      {!isSubCategory && categoryData?.subCategories && categoryData.subCategories.length > 0 && (
         <div className="mb-16">
           <h2 className="text-2xl font-black text-[#1a1a1a] mb-8 px-1 uppercase tracking-tight flex items-center gap-3">
              <span className="w-2 h-8 bg-[#FF5500] rounded-full"></span>
