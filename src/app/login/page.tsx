@@ -46,10 +46,12 @@ function LoginForm() {
       
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10">
-          <Logo 
-            variant="dark" 
-            className="items-center" 
-          />
+          <div className="w-full flex justify-center mb-0">
+            <Logo 
+              variant="dark" 
+              className="items-center" 
+            />
+          </div>
           <p className="text-gray-500 font-medium">Ağıllı alış-verişə xoş gəldiniz</p>
         </div>
 
