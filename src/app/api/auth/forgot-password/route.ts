@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const resetUrl = `${process.env.NEXTAUTH_URL || 'https://serfeli-al.vercel.app'}/auth/reset-password/${resetToken}`;
 
     const { data, error } = await resend.emails.send({
-      from: "Serfeli.al <onboarding@resend.dev>",
+      from: "Serfeli.al <auth@send.serfeli.al>",
       to: [normalizedEmail],
       subject: "Şifrənin sıfırlanması - Serfeli.al",
       html: `
@@ -71,18 +71,8 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("[ForgotPassword] ❌ RESEND API ERROR:", JSON.stringify(error, null, 2));
-      
-      // Sandbox Mode Detection
-      if (error.name === 'validation_error' || error.name === 'forbidden') {
-        console.warn("[ForgotPassword] ⚠️ SANDBOX DETECTED: Resend is restricted. You must verify your domain in the Resend dashboard to send emails to external addresses.");
-      }
-
-      return NextResponse.json({ 
-        error: "Email göndərilərkən xəta baş verdi",
-        details: error.message,
-        code: error.name
-      }, { status: 500 });
+      console.error("[ForgotPassword] Resend API Error:", JSON.stringify(error, null, 2));
+      return NextResponse.json({ error: "Email göndərilərkən xəta baş verdi" }, { status: 500 });
     }
 
     console.log(`[ForgotPassword] Success: Email sent to ${normalizedEmail}. MessageId: ${data?.id}`);
