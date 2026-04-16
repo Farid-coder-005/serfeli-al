@@ -40,35 +40,52 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   if (!categoryData) {
     // Try looking in SubCategory table
-    subCategoryData = await prisma.subCategory.findFirst({
+    const result = await prisma.subCategory.findFirst({
       where: { slug: { equals: slug, mode: 'insensitive' } },
       include: { category: { include: { subCategories: true } } }
     });
 
-    if (subCategoryData) {
+    if (result) {
       isSubCategory = true;
-      categoryData = subCategoryData.category;
+      subCategoryData = result;
+      categoryData = result.category;
     }
   }
 
+  // Fallback for slugs that don't exist in DB as Category/SubCategory records
   if (!categoryData) {
-    return notFound();
+    categoryData = {
+      id: "virtual",
+      name: slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, " "),
+      slug: slug,
+      image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=2670",
+      subCategories: [],
+      createdAt: new Date(),
+      updatedAt: new Date()
+    } as any;
   }
 
   // 2. Fetch products belonging to THIS category or its subcategories
   let products = [] as ProductWithOffers[];
   if (isSubCategory) {
     products = await prisma.product.findMany({
-      where: { categorySlug: { equals: slug, mode: 'insensitive' } },
+      where: { 
+        OR: [
+          { categorySlug: { equals: slug, mode: 'insensitive' } },
+          { category: { equals: slug, mode: 'insensitive' } }
+        ]
+      },
       include: { offers: { include: { store: true } } },
       take: 50
     }) as ProductWithOffers[];
   } else {
-    const subCategorySlugs = categoryData.subCategories.map(sub => sub.slug);
+    // Top-level or Virtual Category
+    const subCategorySlugs = categoryData?.subCategories?.map((sub: any) => sub.slug) || [];
     products = await prisma.product.findMany({
       where: { 
         OR: [
           { categorySlug: { equals: slug, mode: 'insensitive' } },
+          { category: { equals: slug, mode: 'insensitive' } },
           { categorySlug: { in: subCategorySlugs } }
         ]
       },
