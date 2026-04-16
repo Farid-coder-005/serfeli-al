@@ -71,8 +71,18 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("[ForgotPassword] Resend API Error:", JSON.stringify(error, null, 2));
-      return NextResponse.json({ error: "Email göndərilərkən xəta baş verdi" }, { status: 500 });
+      console.error("[ForgotPassword] ❌ RESEND API ERROR:", JSON.stringify(error, null, 2));
+      
+      // Sandbox Mode Detection
+      if (error.name === 'validation_error' || error.name === 'forbidden') {
+        console.warn("[ForgotPassword] ⚠️ SANDBOX DETECTED: Resend is restricted. You must verify your domain in the Resend dashboard to send emails to external addresses.");
+      }
+
+      return NextResponse.json({ 
+        error: "Email göndərilərkən xəta baş verdi",
+        details: error.message,
+        code: error.name
+      }, { status: 500 });
     }
 
     console.log(`[ForgotPassword] Success: Email sent to ${normalizedEmail}. MessageId: ${data?.id}`);
