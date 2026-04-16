@@ -53,16 +53,22 @@ export default async function Page() {
       
       {/* Section 1: Circular Categories */}
       <section className="py-8 border-b border-gray-100">
-        <div className="max-w-[1200px] mx-auto w-full px-4">
-          <div className="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar pb-2">
+        <div className="max-w-[1200px] mx-auto w-full px-4 font-sans">
+          {/* Increased vertical padding (py-4) and horizontal (px-2) to prevent clipping on click/scale */}
+          <div className="flex items-center justify-between gap-6 overflow-x-auto no-scrollbar py-4 px-2">
             {shortcuts.map((item, idx) => (
-              <Link key={idx} href={item.href} className="flex flex-col items-center gap-2 group shrink-0">
-                <div className="w-[70px] h-[70px] rounded-full border-2 border-[#FF5500] flex items-center justify-center bg-white overflow-hidden p-3 transition-transform group-hover:scale-105">
+              <Link key={idx} href={item.href} className="flex flex-col items-center gap-3 group shrink-0 transition-all active:scale-95">
+                {/* Removed overflow-hidden to prevent border clipping during scale animations */}
+                <div className="w-[72px] h-[72px] rounded-full border-2 border-[#FF5500] flex items-center justify-center bg-white p-3 transition-transform group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#FF5500]/20">
                   <item.icon className="w-8 h-8 text-[#222222]" strokeWidth={1.5} />
                 </div>
-                <span className="text-[12px] font-bold text-[#222222] text-center uppercase tracking-tight">{item.label}</span>
+                <span className="text-[11px] font-black text-[#222222] text-center uppercase tracking-wider group-hover:text-[#FF5500] transition-colors">
+                  {item.label}
+                </span>
               </Link>
             ))}
+            {/* Spacer for rightmost item on mobile to prevent clipping against edge */}
+            <div className="w-4 shrink-0 md:hidden"></div>
           </div>
         </div>
       </section>
