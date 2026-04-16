@@ -74,6 +74,7 @@ export default function PriceAlertModal({
 
   const feasibility = getFeasibility();
 
+  const handleSave = async () => {
     if (!product.id) {
       setStatus("error");
       setMessage("Məhsul ID-si tapılmadı. Zəhmət olmasa səhifəni yeniləyin.");

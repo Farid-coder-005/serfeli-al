@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import {
-  Heart, Coins, User, Menu, X,
+  Heart, Coins, User, Menu, X, Bell,
   Smartphone, Dumbbell, Baby, Home,
   Apple, Gamepad2, HeartPulse, Car, Shirt,
   PawPrint, Plane, Tag, UserCircle, LayoutDashboard,

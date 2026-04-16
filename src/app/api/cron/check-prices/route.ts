@@ -39,7 +39,7 @@ export async function GET(request: Request) {
     const skippedDryRun = [];
 
     for (const alert of activeAlerts) {
-      const availableOffers = alert.product.offers?.filter((o) => o.isAvailable) || [];
+      const availableOffers = alert.product.offers?.filter((o: any) => o.isAvailable) || [];
       
       if (availableOffers.length === 0) {
         console.log(`[Cron] Skip: No available offers for ${alert.productName}`);
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
       }
 
       // 3. Find the lowest current price safely
-      const lowestPrice = Math.min(...availableOffers.map((o) => o.currentPrice));
+      const lowestPrice = Math.min(...availableOffers.map((o: any) => o.currentPrice));
 
       // 4. Compare with target price
       if (lowestPrice <= alert.targetPrice) {
