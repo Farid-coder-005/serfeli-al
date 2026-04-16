@@ -343,23 +343,22 @@ export default function ProductDetailsPage() {
                   </div>
                 )}
 
-                <div className="flex justify-center">
+              </div>
+                <div className="flex justify-center mt-4">
                   <button 
                     onClick={(e) => {
-                      e.stopPropagation();
                       if (!session) {
                         alert("Lütfən qiymət bildirişi quraşdırmaq üçün daxil olun.");
                         return;
                       }
                       setIsPriceAlertModalOpen(true);
                     }}
-                    className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-5 py-2 rounded-sm text-xs font-bold hover:bg-blue-50 transition-colors"
+                    className="w-full flex items-center justify-center gap-2 border-2 border-[#005ea8] text-[#005ea8] bg-white px-5 py-4 rounded-xl text-sm font-black uppercase tracking-widest hover:bg-blue-50 transition-all active:scale-[0.98]"
                   >
-                    <Bell className="w-4 h-4" />
+                    <Bell className="w-5 h-5" />
                     Qiymət bildirişi
                   </button>
                 </div>
-              </div>
             </div>
           </div>
         </div>
