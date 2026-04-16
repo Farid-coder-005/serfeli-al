@@ -44,12 +44,12 @@ export async function POST(request: Request) {
     const resetUrl = `${process.env.NEXTAUTH_URL || 'https://serfeli-al.vercel.app'}/auth/reset-password/${resetToken}`;
 
     const { data, error } = await resend.emails.send({
-      from: "Serfeli.al <auth@serfeli.al>",
-      to: [email],
+      from: "Serfeli.al <onboarding@resend.dev>",
+      to: [normalizedEmail],
       subject: "Şifrənin sıfırlanması - Serfeli.al",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-          <h1 style="color: #005ea8; text-align: center;">Şifrə Sıfırlama</h1>
+          <h1 style="color: #FF5500; text-align: center;">Şifrə Sıfırlama</h1>
           <p style="font-size: 16px; color: #333;">
             Sizin hesabınız üçün şifrə sıfırlama tələbi daxil olub. Əgər bunu siz etməmisinizsə, bu e-poçta məhəl qoymayın.
           </p>
@@ -71,13 +71,14 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("Resend Error:", error);
+      console.error("[ForgotPassword] Resend API Error:", JSON.stringify(error, null, 2));
       return NextResponse.json({ error: "Email göndərilərkən xəta baş verdi" }, { status: 500 });
     }
 
+    console.log(`[ForgotPassword] Success: Email sent to ${normalizedEmail}. MessageId: ${data?.id}`);
     return NextResponse.json({ success: true, message: "Sıfırlama linki göndərildi" });
   } catch (err: any) {
-    console.error("Forgot Password Error:", err);
+    console.error("[ForgotPassword] CRITICAL SERVER ERROR:", err.message, err.stack);
     return NextResponse.json({ error: "Server xətası baş verdi" }, { status: 500 });
   }
 }
