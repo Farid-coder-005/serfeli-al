@@ -45,10 +45,25 @@ function LoginForm() {
       
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10">
-          <Link href="/" className="inline-block group">
-            <h1 className="text-4xl font-black text-[#0F172A] tracking-tighter mb-2 group-hover:scale-105 transition-transform">
-              Sərfəli<span className="text-[#FF5500]">.al</span>
-            </h1>
+          <Link href="/" className="inline-flex flex-col items-center group select-none">
+            {/* Logo Text with Rounded Nunito Font - matching Header style */}
+            <div className="flex items-center leading-[0.85]">
+              <span 
+                className="text-[36px] font-[900] tracking-[-0.04em] text-[#0F172A]" 
+                style={{ fontFamily: "'Nunito', sans-serif" }}
+              >
+                Sərfəli
+              </span>
+              <span 
+                className="text-[36px] font-[900] tracking-[-0.04em] text-[#FF5500]" 
+                style={{ fontFamily: "'Nunito', sans-serif" }}
+              >
+                .al
+              </span>
+            </div>
+            
+            {/* The solid, thick Idealo-style underline */}
+            <div className="w-full h-[6px] bg-[#FF5500] mt-[5px]" />
           </Link>
           <p className="text-gray-500 font-medium">Ağıllı alış-verişə xoş gəldiniz</p>
         </div>
