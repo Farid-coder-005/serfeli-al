@@ -83,15 +83,7 @@ function LoginForm() {
             </div>
 
             <div className="space-y-2">
-              <div className="flex items-center justify-between ml-1">
-                <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest">Şifrə</label>
-                <Link 
-                  href="/auth/forgot-password" 
-                  className="text-[10px] font-black text-gray-400 hover:text-[#FF5500] transition-colors uppercase tracking-widest"
-                >
-                  Şifrəni unutmusunuz?
-                </Link>
-              </div>
+              <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">Şifrə</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                   <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF5500] transition-colors" />
@@ -104,6 +96,14 @@ function LoginForm() {
                   placeholder="••••••••"
                   className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF5500]/10 focus:border-[#FF5500] outline-none transition-all placeholder:text-gray-300"
                 />
+              </div>
+              <div className="text-center pt-2">
+                <Link 
+                  href="/auth/forgot-password" 
+                  className="text-[10px] font-black text-gray-400 hover:text-[#FF5500] transition-colors uppercase tracking-widest"
+                >
+                  Şifrəni unutmusunuz?
+                </Link>
               </div>
             </div>
 

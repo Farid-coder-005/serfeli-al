@@ -8,21 +8,24 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
   try {
     const { email } = await request.json();
+    const normalizedEmail = (email || "").trim().toLowerCase();
 
-    if (!email) {
+    console.log(`[ForgotPassword] Lookup request for: "${normalizedEmail}" (Raw: "${email}")`);
+
+    if (!normalizedEmail) {
       return NextResponse.json({ error: "Email daxil edilməyib" }, { status: 400 });
     }
 
     const user = await prisma.user.findUnique({
-      where: { email },
+      where: { email: normalizedEmail },
     });
 
     if (!user) {
-      // For security, don't reveal if user exists or not, 
-      // but the user requirement said to show success/error.
-      // Usually, we return success regardless, but let's follow user feedback.
+      console.log(`[ForgotPassword] USER NOT FOUND in database for: "${normalizedEmail}"`);
       return NextResponse.json({ error: "Bu email ilə qeydiyyatdan keçmiş istifadəçi tapılmadı" }, { status: 404 });
     }
+
+    console.log(`[ForgotPassword] User found: ${user.id}. Generating token...`);
 
     // 1. Generate Token
     const resetToken = crypto.randomBytes(32).toString("hex");
