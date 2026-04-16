@@ -21,6 +21,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   favorites     Favorite[]
+  priceAlerts   PriceAlert[]
 }
 
 model Account {
@@ -100,6 +101,7 @@ model Product {
   offers       ProductOffer[]
   priceHistory PriceHistory[]
   favorites    Favorite[]
+  priceAlerts  PriceAlert[]
 }
 
 model Favorite {
@@ -135,4 +137,19 @@ model PriceHistory {
 
   product Product @relation(fields: [productId], references: [id])
   store   Store   @relation(fields: [storeId], references: [id])
+}
+
+model PriceAlert {
+  id                   String   @id @default(cuid())
+  userId               String
+  productId            String
+  productName          String
+  targetPrice          Float
+  currentPriceAtAlert  Float
+  email                String
+  isActive             Boolean  @default(true)
+  createdAt            DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }

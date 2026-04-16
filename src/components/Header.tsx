@@ -123,10 +123,10 @@ export function Header() {
                 <Heart className="w-6 h-6 stroke-[1.5]" />
                 <span className="text-[10px] mt-1 font-medium hidden sm:block">Qeydlərim</span>
               </Link>
-              <button className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
-                <Clock className="w-6 h-6 stroke-[1.5]" />
+              <Link href="/dashboard/price-alerts" className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+                <Bell className="w-6 h-6 stroke-[1.5]" />
                 <span className="text-[10px] mt-1 font-medium hidden sm:block">Qiymət bildirişi</span>
-              </button>
+              </Link>
               <Link href={isLoggedIn ? "/dashboard" : "/login"} className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
                 <User className="w-6 h-6 stroke-[1.5]" />
                 <span className="text-[10px] mt-1 font-medium hidden sm:block">Profil</span>

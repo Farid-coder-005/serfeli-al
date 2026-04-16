@@ -1,9 +1,11 @@
 "use client";
 import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
+import { useSession } from 'next-auth/react';
 import { createPortal } from 'react-dom';
 import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Bell } from 'lucide-react';
+import PriceAlertModal from '@/components/PriceAlertModal';
 import { useRef } from 'react';
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -77,6 +79,8 @@ const StoreLogo = ({ storeName }: { storeName: string }) => {
 
 export default function ProductDetailsPage() {
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
+  const [isPriceAlertModalOpen, setIsPriceAlertModalOpen] = useState(false);
+  const { data: session } = useSession();
   const [hoveredPoint, setHoveredPoint] = useState<any>(null);
   const [timeFrame, setTimeFrame] = useState<keyof typeof richChartData>('3 Ay');
   const [mounted, setMounted] = useState(false);
@@ -337,10 +341,18 @@ export default function ProductDetailsPage() {
                 )}
 
                 <div className="flex justify-center">
-                  <button className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-5 py-2 rounded-sm text-xs font-bold hover:bg-blue-50 transition-colors">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!session) {
+                        alert("Lütfən qiymət bildirişi quraşdırmaq üçün daxil olun.");
+                        return;
+                      }
+                      setIsPriceAlertModalOpen(true);
+                    }}
+                    className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-5 py-2 rounded-sm text-xs font-bold hover:bg-blue-50 transition-colors"
+                  >
+                    <Bell className="w-4 h-4" />
                     Qiymət bildirişi
                   </button>
                 </div>
@@ -348,6 +360,19 @@ export default function ProductDetailsPage() {
             </div>
           </div>
         </div>
+
+        {/* PRICE ALERT MODAL */}
+        <PriceAlertModal 
+          isOpen={isPriceAlertModalOpen}
+          onClose={() => setIsPriceAlertModalOpen(false)}
+          product={{
+            id: product.id,
+            name: "Motorola Moto G84 12GB Gecə Mavisi",
+            currentPrice: Number(richChartData["1 Ay"][richChartData["1 Ay"].length - 1].price),
+            historicalMin: stats?.min ? Number(stats.min.price) : undefined
+          }}
+          userEmail={session?.user?.email || ""}
+        />
 
         {/* SECTION 2: PRICE COMPARISON (OUTSIDE GRID, FULL WIDTH) */}
         <div className="mt-16 w-full border-t-0 border-none shadow-none">
