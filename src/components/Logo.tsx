@@ -15,7 +15,7 @@ export function Logo({ variant = "light", className = "", onClick }: LogoProps) 
     <Link 
       href="/" 
       onClick={onClick}
-      className={`shrink-0 flex flex-col select-none group ${className}`}
+      className={`shrink-0 flex flex-col items-start select-none group w-fit ${className}`}
     >
       {/* Logo Text with Rounded Nunito Font */}
       <div className="flex items-center leading-[0.85]">
