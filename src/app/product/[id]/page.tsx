@@ -54,12 +54,7 @@ const generateDailyData = (days: number, startPrice: number) => {
   return data;
 };
 
-const richChartData = {
-  '1 Ay': generateDailyData(30, 800),
-  '3 Ay': generateDailyData(90, 850),
-  '6 Ay': generateDailyData(180, 900),
-  '1 İl': generateDailyData(365, 1000)
-};
+// richChartData moved inside component to avoid hydration mismatch
 
 const StoreLogo = ({ storeName }: { storeName: string }) => {
   const brands: Record<string, { bg: string, text: string }> = {
@@ -85,8 +80,17 @@ export default function ProductDetailsPage() {
   const [isPriceAlertModalOpen, setIsPriceAlertModalOpen] = useState(false);
   const { data: session } = useSession();
   const [hoveredPoint, setHoveredPoint] = useState<any>(null);
-  const [timeFrame, setTimeFrame] = useState<keyof typeof richChartData>('3 Ay');
   const [mounted, setMounted] = useState(false);
+  const [timeFrame, setTimeFrame] = useState<'1 Ay' | '3 Ay' | '6 Ay' | '1 İl'>('3 Ay');
+  
+  const richChartData = useMemo(() => {
+    return {
+      '1 Ay': generateDailyData(30, 800),
+      '3 Ay': generateDailyData(90, 850),
+      '6 Ay': generateDailyData(180, 900),
+      '1 İl': generateDailyData(365, 1000)
+    };
+  }, []); // Stable across re-renders
 
   const [paymentMethod, setPaymentMethod] = useState<'nagd' | 'kredit'>('nagd');
   const [creditTerm, setCreditTerm] = useState(24);
