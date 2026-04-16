@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Mail, Lock, ArrowRight, ShieldCheck } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 function LoginForm() {
   const router = useRouter();
@@ -45,26 +46,10 @@ function LoginForm() {
       
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10">
-          <Link href="/" className="inline-flex flex-col items-center group select-none">
-            {/* Logo Text with Rounded Nunito Font - matching Header style */}
-            <div className="flex items-center leading-[0.85]">
-              <span 
-                className="text-[36px] font-[900] tracking-[-0.04em] text-[#0F172A]" 
-                style={{ fontFamily: "'Nunito', sans-serif" }}
-              >
-                Sərfəli
-              </span>
-              <span 
-                className="text-[36px] font-[900] tracking-[-0.04em] text-[#FF5500]" 
-                style={{ fontFamily: "'Nunito', sans-serif" }}
-              >
-                .al
-              </span>
-            </div>
-            
-            {/* The solid, thick Idealo-style underline */}
-            <div className="w-full h-[6px] bg-[#FF5500] mt-[5px]" />
-          </Link>
+          <Logo 
+            variant="dark" 
+            className="items-center" 
+          />
           <p className="text-gray-500 font-medium">Ağıllı alış-verişə xoş gəldiniz</p>
         </div>
 

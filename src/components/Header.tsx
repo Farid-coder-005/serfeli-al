@@ -13,6 +13,7 @@ import {
   Leaf, Clock, Percent
 } from "lucide-react";
 import SearchBar from "./SearchBar";
+import { Logo } from "./Logo";
 
 /* ─── Top Bar links ───────────────────────────────────────── */
 const TOP_LINKS = [
@@ -91,26 +92,10 @@ export function Header() {
               <Menu className="w-6 h-6" strokeWidth={2} />
             </button>
             
-            <Link href="/" className="shrink-0 flex flex-col items-start md:pr-4 group select-none">
-              {/* Logo Text with Rounded Nunito Font */}
-              <div className="flex items-center leading-[0.85]">
-                <span 
-                  className="text-[36px] font-[900] tracking-[-0.04em] text-white" 
-                  style={{ fontFamily: "'Nunito', sans-serif" }}
-                >
-                  Sərfəli
-                </span>
-                <span 
-                  className="text-[36px] font-[900] tracking-[-0.04em] text-[#FF5500]" 
-                  style={{ fontFamily: "'Nunito', sans-serif" }}
-                >
-                  .al
-                </span>
-              </div>
-              
-              {/* The solid, thick Idealo-style underline */}
-              <div className="w-full h-[6px] bg-[#FF5500] mt-[5px]" />
-            </Link>
+            <Logo 
+              onClick={() => setActiveTab('shopping')}
+              className="md:pr-4"
+            />
 
             {/* Search Bar */}
             <div className="flex-1 mx-8 hidden md:block">
