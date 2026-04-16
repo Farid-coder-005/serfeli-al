@@ -85,6 +85,12 @@ function LoginForm() {
             <div className="space-y-2">
               <div className="flex items-center justify-between ml-1">
                 <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest">Şifrə</label>
+                <Link 
+                  href="/auth/forgot-password" 
+                  className="text-[10px] font-black text-gray-400 hover:text-[#FF5500] transition-colors uppercase tracking-widest"
+                >
+                  Şifrəni unutmusunuz?
+                </Link>
               </div>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">

@@ -22,6 +22,8 @@ model User {
   sessions      Session[]
   favorites     Favorite[]
   priceAlerts   PriceAlert[]
+  resetToken       String?   @unique
+  resetTokenExpiry DateTime?
 }
 
 model Account {
