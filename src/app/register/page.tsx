@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { User, Mail, Lock, ArrowRight, ShieldCheck } from "lucide-react";
 import { signIn } from "next-auth/react";
@@ -49,13 +50,18 @@ export default function RegisterPage() {
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#FF5500]/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/2" />
       
       <div className="w-full max-w-md relative z-10 my-10">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <Link href="/" className="inline-block group">
-            <h1 className="text-4xl font-black text-[#0F172A] tracking-tighter mb-2 group-hover:scale-105 transition-transform">
-              Sərfəli<span className="text-[#FF5500]">.al</span>
-            </h1>
+            <Image 
+              src="/logo.png" 
+              alt="Sərfəli.al Logo" 
+              width={220} 
+              height={55} 
+              priority
+              className="h-14 w-auto object-contain mx-auto transition-transform group-hover:scale-[1.02]"
+            />
           </Link>
-          <p className="text-gray-500 font-medium">Bizə qoşulun, qazanın</p>
+          <p className="text-gray-500 font-medium mt-2">Fərdi hesabınızı yaradın</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-[#FF5500]/5 p-10 sm:p-12">

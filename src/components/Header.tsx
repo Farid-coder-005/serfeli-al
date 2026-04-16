@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import {
+import { 
   Heart, Coins, User, Menu, X, Bell,
   Smartphone, Dumbbell, Baby, Home,
   Apple, Gamepad2, HeartPulse, Car, Shirt,
@@ -91,25 +91,15 @@ export function Header() {
               <Menu className="w-6 h-6" strokeWidth={2} />
             </button>
             
-            <Link href="/" className="shrink-0 flex flex-col items-start md:pr-4 group select-none">
-              {/* Logo Text with Rounded Nunito Font */}
-              <div className="flex items-center leading-[0.85]">
-                <span 
-                  className="text-[36px] font-[900] tracking-[-0.04em] text-white" 
-                  style={{ fontFamily: "'Nunito', sans-serif" }}
-                >
-                  Sərfəli
-                </span>
-                <span 
-                  className="text-[36px] font-[900] tracking-[-0.04em] text-[#FF5500]" 
-                  style={{ fontFamily: "'Nunito', sans-serif" }}
-                >
-                  .al
-                </span>
-              </div>
-              
-              {/* The solid, thick Idealo-style underline */}
-              <div className="w-full h-[6px] bg-[#FF5500] mt-[5px]" />
+            <Link href="/" className="shrink-0 flex flex-col items-start md:pr-6 group select-none">
+              <Image 
+                src="/logo.png" 
+                alt="Sərfəli.al Logo" 
+                width={160} 
+                height={40} 
+                priority
+                className="h-10 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              />
             </Link>
 
             {/* Search Bar */}
