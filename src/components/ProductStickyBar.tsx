@@ -59,7 +59,7 @@ export default function ProductStickyBar({
             <span className="text-lg font-black text-[#FF5500] tracking-tighter leading-none">{price} ₼</span>
           </div>
           <a 
-            href={ctaUrl} 
+            href={ctaUrl.startsWith('http') ? ctaUrl : `https://${ctaUrl}`} 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-2.5 bg-[#FF5500] hover:bg-[#E04A00] text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"

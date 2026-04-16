@@ -31,7 +31,9 @@ function LoginForm() {
       setErrorMsg(res.error);
       setIsLoading(false);
     } else {
-      router.push(callbackUrl);
+      // Explicitly redirect to dashboard as requested, or fallback to callbackUrl
+      const destination = callbackUrl && callbackUrl !== "/login" ? callbackUrl : "/dashboard";
+      router.push(destination);
       router.refresh();
     }
   };

@@ -16,8 +16,8 @@ interface CategoryPageProps {
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const category = await prisma.category.findUnique({
-    where: { slug }
+  const category = await prisma.category.findFirst({
+    where: { slug: { equals: slug, mode: 'insensitive' } }
   });
 
   return {
@@ -29,9 +29,9 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
 
-  // 1. Fetch category details from DB
-  const categoryData = await prisma.category.findUnique({
-    where: { slug: slug },
+  // 1. Fetch category details from DB - Case Insensitive
+  const categoryData = await prisma.category.findFirst({
+    where: { slug: { equals: slug, mode: 'insensitive' } },
     include: { subCategories: true }
   });
 

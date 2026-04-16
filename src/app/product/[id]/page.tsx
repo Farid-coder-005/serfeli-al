@@ -136,11 +136,11 @@ export default function ProductDetailsPage() {
   };
 
   const comparisonOffers = [
-    { id: 1, store: 'İrşad', price: 230.00, delivery: 'Pulsuz çatdırılma', isLowest: true },
-    { id: 2, store: 'Kontakt Home', price: 235.50, delivery: 'Pulsuz çatdırılma', isLowest: false },
-    { id: 3, store: 'Baku Electronics', price: 239.00, delivery: 'Pulsuz çatdırılma', isLowest: false },
-    { id: 4, store: 'Maxi.az', price: 245.99, delivery: 'Pulsuz çatdırılma', isLowest: false },
-    { id: 5, store: 'Optimal', price: 249.00, delivery: 'Pulsuz çatdırılma', isLowest: false },
+    { id: 1, store: 'İrşad', price: 230.00, delivery: 'Pulsuz çatdırılma', isLowest: true, url: 'irshad.az' },
+    { id: 2, store: 'Kontakt Home', price: 235.50, delivery: 'Pulsuz çatdırılma', isLowest: false, url: 'kontakt.az' },
+    { id: 3, store: 'Baku Electronics', price: 239.00, delivery: 'Pulsuz çatdırılma', isLowest: false, url: 'bakuelectronics.az' },
+    { id: 4, store: 'Maxi.az', price: 245.99, delivery: 'Pulsuz çatdırılma', isLowest: false, url: 'maxi.az' },
+    { id: 5, store: 'Optimal', price: 249.00, delivery: 'Pulsuz çatdırılma', isLowest: false, url: 'optimal.az' },
   ];
 
   const stats = useMemo(() => {
@@ -175,6 +175,11 @@ export default function ProductDetailsPage() {
       avg: { price: avgPrice.toFixed(2), daysAgo: totalDays, diff: getDiff(avgPrice) }
     };
   }, [timeFrame]);
+
+  const handleRedirect = (url: string) => {
+    const finalUrl = url.startsWith('http') ? url : `https://${url}`;
+    window.open(finalUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <>
@@ -435,7 +440,10 @@ export default function ProductDetailsPage() {
                  {/* Store Logo & Button (NO RATINGS/STARS) */}
                  <div className="w-1/4 flex items-center justify-end gap-6">
                    <StoreLogo storeName={offer.store} />
-                   <button className="bg-[#1da661] hover:bg-[#15874f] text-white font-bold py-2 px-6 rounded transition-colors shadow-sm">
+                   <button 
+                     onClick={() => handleRedirect(offer.url)}
+                     className="bg-[#1da661] hover:bg-[#15874f] text-white font-bold py-2 px-6 rounded transition-colors shadow-sm"
+                   >
                      MAĞAZAYA KEÇ
                    </button>
                  </div>

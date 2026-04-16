@@ -1,9 +1,18 @@
 "use client";
 
+import React, { useState } from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, ArrowLeft, Send } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowLeft, Send, CheckCircle2 } from "lucide-react";
 
 export default function ContactPage() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    // In a real app, you would send the data here
+  };
+
   return (
     <div className="flex flex-col w-full min-h-[calc(100vh-96px)] bg-[#F8FAFC] relative">
       {/* Decorative blobs */}
@@ -72,60 +81,82 @@ export default function ContactPage() {
           </div>
 
           {/* Contact form */}
-          <form
-            className="lg:col-span-3 bg-white rounded-[2.5rem] border border-gray-100 p-8 shadow-sm space-y-6"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {isSubmitted ? (
+            <div className="lg:col-span-3 bg-white rounded-[2.5rem] border border-gray-100 p-12 shadow-sm flex flex-col items-center justify-center text-center space-y-4">
+              <div className="w-20 h-20 bg-green-50 text-[#057850] rounded-full flex items-center justify-center">
+                <CheckCircle2 className="w-10 h-10" />
+              </div>
+              <h3 className="text-2xl font-black text-[#1E3A8A]">Mesajınız uğurla göndərildi!</h3>
+              <p className="text-gray-500 font-medium">
+                Təşəkkür edirik. Bizimlə əlaqə saxladığınız üçün minnətdarıq. <br />
+                Komandamız 24 saat ərzində sizinlə əlaqə saxlayacaq.
+              </p>
+              <button 
+                onClick={() => setIsSubmitted(false)}
+                className="mt-4 text-[#057850] font-bold text-sm hover:underline"
+              >
+                Yeni mesaj göndər
+              </button>
+            </div>
+          ) : (
+            <form
+              className="lg:col-span-3 bg-white rounded-[2.5rem] border border-gray-100 p-8 shadow-sm space-y-6"
+              onSubmit={handleSubmit}
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
+                    Ad Soyad
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Adınız..."
+                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
+                    E-poçt
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="email@example.az"
+                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all"
+                  />
+                </div>
+              </div>
               <div>
                 <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
-                  Ad Soyad
+                  Mövzu
                 </label>
                 <input
                   type="text"
-                  placeholder="Adınız..."
+                  placeholder="Mesajınızın mövzusu..."
                   className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all"
                 />
               </div>
               <div>
                 <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
-                  E-poçt
+                  Mesaj
                 </label>
-                <input
-                  type="email"
-                  placeholder="email@example.az"
-                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all"
+                <textarea
+                  rows={5}
+                  required
+                  placeholder="Mesajınızı buraya yazın..."
+                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all resize-none"
                 />
               </div>
-            </div>
-            <div>
-              <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
-                Mövzu
-              </label>
-              <input
-                type="text"
-                placeholder="Mesajınızın mövzusu..."
-                className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
-                Mesaj
-              </label>
-              <textarea
-                rows={5}
-                placeholder="Mesajınızı buraya yazın..."
-                className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all resize-none"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full flex items-center justify-center gap-3 bg-[#057850] hover:bg-[#046b47] text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl shadow-lg shadow-green-900/10 transition-all active:scale-[0.98]"
-            >
-              <Send className="w-4 h-4" />
-              Göndər
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-3 bg-[#057850] hover:bg-[#046b47] text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl shadow-lg shadow-green-900/10 transition-all active:scale-[0.98]"
+              >
+                <Send className="w-4 h-4" />
+                Göndər
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </div>
