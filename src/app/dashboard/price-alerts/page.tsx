@@ -15,7 +15,7 @@ import {
 import { useSession } from "next-auth/react";
 
 export default function PriceAlertsPage() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [alerts, setAlerts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -23,20 +23,27 @@ export default function PriceAlertsPage() {
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
+        setLoading(true);
         const res = await fetch("/api/price-alerts");
         if (res.ok) {
           const data = await res.json();
           setAlerts(data);
+        } else {
+          console.error("Non-OK response from API:", res.status);
         }
       } catch (error) {
-        console.error("Failed to fetch alerts");
+        console.error("Failed to fetch alerts:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    if (session) fetchAlerts();
-  }, [session]);
+    if (status === "authenticated") {
+      fetchAlerts();
+    } else if (status === "unauthenticated") {
+      setLoading(false);
+    }
+  }, [status]);
 
   const handleDelete = async (id: string) => {
     setDeletingId(id);

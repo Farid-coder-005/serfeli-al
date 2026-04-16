@@ -48,12 +48,16 @@ export async function GET() {
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user) {
+      console.log("[PriceAlerts GET] Unauthorized access attempt");
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as any).id;
+    console.log(`[PriceAlerts GET] Fetching alerts for userId: ${userId}`);
+
     const alerts = await prisma.priceAlert.findMany({
       where: {
-        userId: (session.user as any).id,
+        userId: userId,
       },
       include: {
         product: {
@@ -69,8 +73,10 @@ export async function GET() {
       orderBy: { createdAt: 'desc' }
     });
 
+    console.log(`[PriceAlerts GET] Found ${alerts.length} alerts`);
     return NextResponse.json(alerts);
   } catch (error: any) {
+    console.error("[PriceAlerts GET] CRITICAL ERROR:", error.message, error.stack);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
