@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Mail, ArrowLeft, Send, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function ForgotPasswordPage() {
@@ -47,18 +46,13 @@ export default function ForgotPasswordPage() {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#FF5500]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="w-full max-w-md relative z-10">
-        <div className="text-center mb-8">
+        <div className="text-center mb-10">
           <Link href="/" className="inline-block group">
-            <Image 
-              src="/logo.png" 
-              alt="Sərfəli.al Logo" 
-              width={180} 
-              height={45} 
-              priority
-              className="h-11 w-auto object-contain mx-auto transition-transform group-hover:scale-[1.02]"
-            />
+            <h1 className="text-4xl font-black text-[#0F172A] tracking-tighter mb-2">
+              Sərfəli<span className="text-[#FF5500]">.al</span>
+            </h1>
           </Link>
-          <p className="text-gray-500 font-medium mt-2">Şifrə bərpası</p>
+          <p className="text-gray-500 font-medium">Şifrə bərpası</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl p-10 sm:p-12 transition-all">
