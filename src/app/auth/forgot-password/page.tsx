@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Mail, ArrowLeft, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -47,11 +48,12 @@ export default function ForgotPasswordPage() {
 
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10">
-          <Link href="/" className="inline-block group">
-            <h1 className="text-4xl font-black text-[#0F172A] tracking-tighter mb-2">
-              Sərfəli<span className="text-[#FF5500]">.al</span>
-            </h1>
-          </Link>
+          <div className="w-full flex justify-center mb-2">
+            <Logo 
+              variant="dark" 
+              className="items-center" 
+            />
+          </div>
           <p className="text-gray-500 font-medium">Şifrə bərpası</p>
         </div>
 

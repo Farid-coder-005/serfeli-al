@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
     // 2. Save to DB
     await prisma.user.update({
-      where: { email },
+      where: { email: normalizedEmail },
       data: {
         resetToken,
         resetTokenExpiry,
