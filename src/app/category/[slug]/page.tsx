@@ -29,29 +29,53 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
 
-  // 1. Fetch category details from DB - Case Insensitive
-  const categoryData = await prisma.category.findFirst({
+  // 1. Fetch category details or subcategory details from DB - Case Insensitive
+  let categoryData = await prisma.category.findFirst({
     where: { slug: { equals: slug, mode: 'insensitive' } },
     include: { subCategories: true }
   });
+
+  let isSubCategory = false;
+  let subCategoryData = null;
+
+  if (!categoryData) {
+    // Try looking in SubCategory table
+    subCategoryData = await prisma.subCategory.findFirst({
+      where: { slug: { equals: slug, mode: 'insensitive' } },
+      include: { category: { include: { subCategories: true } } }
+    });
+
+    if (subCategoryData) {
+      isSubCategory = true;
+      categoryData = subCategoryData.category;
+    }
+  }
 
   if (!categoryData) {
     return notFound();
   }
 
   // 2. Fetch products belonging to THIS category or its subcategories
-  // For now, we assume product.categorySlug matches either the category slug or its subcategories' slugs
-  const subCategorySlugs = categoryData.subCategories.map(sub => sub.slug);
-  const products = await prisma.product.findMany({
-    where: { 
-      OR: [
-        { categorySlug: slug },
-        { categorySlug: { in: subCategorySlugs } }
-      ]
-    },
-    include: { offers: { include: { store: true } } },
-    take: 50
-  }) as ProductWithOffers[];
+  let products = [] as ProductWithOffers[];
+  if (isSubCategory) {
+    products = await prisma.product.findMany({
+      where: { categorySlug: { equals: slug, mode: 'insensitive' } },
+      include: { offers: { include: { store: true } } },
+      take: 50
+    }) as ProductWithOffers[];
+  } else {
+    const subCategorySlugs = categoryData.subCategories.map(sub => sub.slug);
+    products = await prisma.product.findMany({
+      where: { 
+        OR: [
+          { categorySlug: { equals: slug, mode: 'insensitive' } },
+          { categorySlug: { in: subCategorySlugs } }
+        ]
+      },
+      include: { offers: { include: { store: true } } },
+      take: 50
+    }) as ProductWithOffers[];
+  }
 
   // 3. Fetch user favorites if logged in
   const session = await getServerSession(authOptions);
@@ -67,26 +91,38 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   // 4. Extract dynamic facets
   const facets = extractFacets(products);
 
+  const displayName = isSubCategory 
+    ? subCategoryData?.name 
+    : categoryData.name;
+
   return (
     <main className="max-w-[1200px] mx-auto w-full px-4 py-8 bg-[#F9FAFB]">
       {/* Dynamic Breadcrumbs */}
       <div className="text-sm text-gray-500 mb-6 flex items-center gap-2">
         <Link href="/" className="hover:underline">Ana Səhifə</Link>
         <ChevronRight className="w-3 h-3" />
-        <span className="font-medium text-gray-900">{categoryData.name}</span>
+        {isSubCategory ? (
+          <>
+            <Link href={`/category/${categoryData.slug}`} className="hover:underline">{categoryData.name}</Link>
+            <ChevronRight className="w-3 h-3" />
+            <span className="font-medium text-gray-900">{displayName}</span>
+          </>
+        ) : (
+          <span className="font-medium text-gray-900">{displayName}</span>
+        )}
       </div>
 
       {/* Hero Header */}
       <div className="relative h-[250px] rounded-[2.5rem] overflow-hidden mb-12 shadow-2xl group">
         <Image 
-          src={categoryData.image || 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=2670'} 
-          alt={categoryData.name} 
+          src={ (isSubCategory ? subCategoryData?.image : categoryData.image) || 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=2670'} 
+          alt={displayName || ""} 
           fill 
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex flex-col justify-center px-12">
           <h1 className="text-5xl font-black text-white mb-2 tracking-tight uppercase">
-             {categoryData.name}
+             {displayName}
           </h1>
           <p className="text-white/80 max-w-md font-medium">
              {products.length} məhsul üzrə ən sərfəli təklifləri müqayisə edin.
@@ -94,8 +130,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </div>
 
-      {/* Dynamic Sub-categories Grid */}
-      {categoryData.subCategories.length > 0 && (
+      {/* Dynamic Sub-categories Grid - Only show if current page is TOP level */}
+      {!isSubCategory && categoryData.subCategories.length > 0 && (
         <div className="mb-16">
           <h2 className="text-2xl font-black text-[#1a1a1a] mb-8 px-1 uppercase tracking-tight flex items-center gap-3">
              <span className="w-2 h-8 bg-[#FF5500] rounded-full"></span>
@@ -127,7 +163,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <div>
           <h2 className="text-3xl font-black text-[#1a1a1a] tracking-tight uppercase">Məhsullar</h2>
           <p className="text-sm text-gray-500 mt-1 font-medium italic">
-            {categoryData.name} sahəsində ən yaxşı qiymətlər
+            {displayName} sahəsində ən yaxşı qiymətlər
           </p>
         </div>
       </div>
