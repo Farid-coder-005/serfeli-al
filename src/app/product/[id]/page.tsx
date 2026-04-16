@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
+import { useParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { createPortal } from 'react-dom';
 import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
@@ -78,6 +79,8 @@ const StoreLogo = ({ storeName }: { storeName: string }) => {
 };
 
 export default function ProductDetailsPage() {
+  const params = useParams();
+  const productId = params.id as string;
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [isPriceAlertModalOpen, setIsPriceAlertModalOpen] = useState(false);
   const { data: session } = useSession();
@@ -366,8 +369,8 @@ export default function ProductDetailsPage() {
           isOpen={isPriceAlertModalOpen}
           onClose={() => setIsPriceAlertModalOpen(false)}
           product={{
-            id: product.id,
-            name: "Motorola Moto G84 12GB Gecə Mavisi",
+            id: productId,
+            name: "Google Pixel 8",
             currentPrice: Number(richChartData["1 Ay"][richChartData["1 Ay"].length - 1].price),
             historicalMin: stats?.min ? Number(stats.min.price) : undefined
           }}

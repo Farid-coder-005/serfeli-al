@@ -74,7 +74,12 @@ export default function PriceAlertModal({
 
   const feasibility = getFeasibility();
 
-  const handleSave = async () => {
+    if (!product.id) {
+      setStatus("error");
+      setMessage("Məhsul ID-si tapılmadı. Zəhmət olmasa səhifəni yeniləyin.");
+      return;
+    }
+
     if (!email || !targetPrice) {
       setStatus("error");
       setMessage("Zəhmət olmasa bütün sahələri doldurun.");
@@ -95,7 +100,11 @@ export default function PriceAlertModal({
         }),
       });
 
-      if (!response.ok) throw new Error("Xəta baş verdi");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Xəta baş verdi");
+      }
 
       setStatus("success");
       setMessage("Qiymət bildirişi uğurla yadda saxlanıldı!");
