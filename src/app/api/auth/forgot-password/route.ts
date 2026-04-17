@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const resetUrl = `${process.env.NEXTAUTH_URL || 'https://serfeli-al.vercel.app'}/auth/reset-password/${resetToken}`;
 
     const { data, error } = await resend.emails.send({
-      from: "Serfeli.al <auth@send.serfeli.al>",
+      from: "Serfeli.al <auth@serfeli.al>",
       to: [normalizedEmail],
       subject: "Şifrənin sıfırlanması - Serfeli.al",
       html: `

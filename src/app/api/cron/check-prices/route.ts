@@ -60,7 +60,7 @@ export async function GET(request: Request) {
         // 5. Send notification via Resend
         try {
           const { data, error } = await resend.emails.send({
-            from: "Serfeli.al <auth@send.serfeli.al>",
+            from: "Serfeli.al <auth@serfeli.al>",
             to: [alert.email],
             subject: `Endirim! ${alert.productName} qiyməti düşdü!`,
             html: `
