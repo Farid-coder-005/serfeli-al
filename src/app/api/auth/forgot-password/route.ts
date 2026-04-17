@@ -71,8 +71,13 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("[ForgotPassword] Resend API Error:", JSON.stringify(error, null, 2));
-      return NextResponse.json({ error: "Email göndərilərkən xəta baş verdi" }, { status: 500 });
+      console.error("[ForgotPassword] 🛑 FINAL DIAGNOSTIC - RESEND ERROR:", JSON.stringify(error, null, 2));
+      return NextResponse.json({ 
+        error: "Email göndərilərkən xəta baş verdi", 
+        diagnostic: error,
+        message: error.message,
+        name: error.name
+      }, { status: 500 });
     }
 
     console.log(`[ForgotPassword] Success: Email sent to ${normalizedEmail}. MessageId: ${data?.id}`);
