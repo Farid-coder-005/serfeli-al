@@ -47,9 +47,6 @@ export default async function Page() {
   const populars = products.slice(0, 10);
   const deals = products.length > 10 ? products.slice(10, 20) : [...products].reverse();
   const bestsellers = products.length > 4 ? products.slice(0, 8) : products;
-  
-  const electronics = products.filter(p => p.categorySlug === "elektronika" || p.category === "Elektronika").slice(0, 8);
-  const supermarket = products.filter(p => p.categorySlug === "supermarket" || p.category === "Supermarket").slice(0, 8);
 
   return (
     <div className="flex flex-col w-full bg-white min-h-screen">
@@ -83,7 +80,7 @@ export default async function Page() {
         </div>
         <ProductCarousel products={populars} userFavoriteIds={userFavoriteIds} />
         <div className="flex justify-center mt-8">
-          <Link href="/search" className="border-2 border-[#005ea8] text-[#005ea8] px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#005ea8] hover:text-white transition-all duration-300">
+          <Link href="/search" className="bg-[#005ea8] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#005ea8]/20">
             Bütün məhsullara bax
           </Link>
         </div>
@@ -102,36 +99,6 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* Section: Elektronika */}
-      {electronics.length > 0 && (
-        <section className="max-w-[1200px] mx-auto w-full px-4 py-12">
-          <div className="flex justify-between items-baseline mb-6">
-            <h2 className="text-[22px] font-bold text-[#1a1a1a]">Elektronika</h2>
-          </div>
-          <ProductCarousel products={electronics} userFavoriteIds={userFavoriteIds} />
-          <div className="flex justify-center mt-8">
-            <Link href="/category/elektronika" className="border-2 border-[#005ea8] text-[#005ea8] px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#005ea8] hover:text-white transition-all duration-300">
-              Elektronika bölməsinə bax
-            </Link>
-          </div>
-        </section>
-      )}
-
-      {/* Section: Supermarket */}
-      {supermarket.length > 0 && (
-        <section className="max-w-[1200px] mx-auto w-full px-4 py-12">
-          <div className="flex justify-between items-baseline mb-6">
-            <h2 className="text-[22px] font-bold text-[#1a1a1a]">Supermarket</h2>
-          </div>
-          <ProductCarousel products={supermarket} userFavoriteIds={userFavoriteIds} />
-          <div className="flex justify-center mt-8">
-            <Link href="/category/supermarket" className="border-2 border-[#005ea8] text-[#005ea8] px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#005ea8] hover:text-white transition-all duration-300">
-              Supermarket bölməsinə bax
-            </Link>
-          </div>
-        </section>
-      )}
-
       {/* Section 4: Bestsellerləri kəşf edin */}
       <section className="max-w-[1200px] mx-auto w-full px-4 py-12 border-t border-gray-100">
         <div className="flex justify-between items-baseline mb-6">
@@ -139,8 +106,8 @@ export default async function Page() {
         </div>
         <ProductCarousel products={bestsellers} userFavoriteIds={userFavoriteIds} />
         <div className="flex justify-center mt-8">
-          <Link href="/search" className="border-2 border-[#005ea8] text-[#005ea8] px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#005ea8] hover:text-white transition-all duration-300">
-            Bütün bestsellerləri gör
+          <Link href="/search" className="bg-[#005ea8] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#005ea8]/20">
+            Bütün məhsullara bax
           </Link>
         </div>
       </section>
