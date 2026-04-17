@@ -3,7 +3,9 @@ import crypto from "crypto";
 import prisma from "@/lib/prisma";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY 
+  ? new Resend(process.env.RESEND_API_KEY) 
+  : null;
 
 export async function POST(request: Request) {
   try {
@@ -42,6 +44,11 @@ export async function POST(request: Request) {
 
     // 3. Send Email
     const resetUrl = `${process.env.NEXTAUTH_URL || 'https://serfeli-al.vercel.app'}/auth/reset-password/${resetToken}`;
+
+    if (!resend) {
+      console.error("[ForgotPassword] 🛑 Resend API Key is missing. Cannot send email.");
+      return NextResponse.json({ error: "Email sistemi tənzimlənməyib" }, { status: 500 });
+    }
 
     const { data, error } = await resend.emails.send({
       from: "Serfeli.al <auth@serfeli.al>",

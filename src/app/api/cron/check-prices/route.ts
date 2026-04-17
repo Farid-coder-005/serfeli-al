@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import prisma from "@/lib/prisma";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY 
+  ? new Resend(process.env.RESEND_API_KEY) 
+  : null;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -59,6 +61,11 @@ export async function GET(request: Request) {
 
         // 5. Send notification via Resend
         try {
+          if (!resend) {
+            console.error("[Cron] Alert skipped: Resend is not initialized.");
+            continue;
+          }
+
           const { data, error } = await resend.emails.send({
             from: "Serfeli.al <auth@serfeli.al>",
             to: [alert.email],
