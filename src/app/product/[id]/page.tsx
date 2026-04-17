@@ -194,7 +194,7 @@ export default function ProductDetailsPage() {
 
   return (
     <>
-      <main className="max-w-[1550px] mx-auto w-full px-4 sm:px-6 lg:px-10 py-6 text-[#222222] bg-white">
+      <main className="max-w-[1440px] mx-auto w-full px-4 sm:px-6 lg:px-6 py-6 text-[#222222] bg-white">
         {/* BREADCRUMB AREA */}
         <div className="text-sm text-gray-500 mb-6 font-medium">
           <Link href="/" className="hover:underline hover:text-[#005ea8]">Elektronika</Link> {'>'} 

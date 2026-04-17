@@ -53,7 +53,7 @@ export default async function Page() {
       
       {/* Section 1: Circular Categories */}
       <section className="py-8 border-b border-gray-100">
-        <div className="max-w-[1200px] mx-auto w-full px-4 font-sans">
+        <div className="max-w-[1440px] mx-auto w-full px-4 font-sans">
           {/* Increased vertical padding (py-4) and horizontal (px-2) to prevent clipping on click/scale */}
           <div className="flex items-center justify-between gap-6 overflow-x-auto no-scrollbar py-4 px-2">
             {shortcuts.map((item, idx) => (
@@ -74,7 +74,7 @@ export default async function Page() {
       </section>
 
       {/* Section 2: Populyar məhsullar */}
-      <section className="max-w-[1200px] mx-auto w-full px-4 py-10">
+      <section className="max-w-[1440px] mx-auto w-full px-4 py-10">
         <div className="flex justify-between items-baseline mb-6">
           <h2 className="text-[22px] font-bold text-[#1a1a1a]">Populyar məhsullar</h2>
         </div>
@@ -88,7 +88,7 @@ export default async function Page() {
 
       {/* Section 3: Sizin üçün təkliflər (Blue Band) */}
       <section className="w-full bg-[#E8F0F8] py-12">
-        <div className="max-w-[1200px] mx-auto w-full px-4">
+        <div className="max-w-[1440px] mx-auto w-full px-4">
           <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">Sizin üçün təkliflər</h2>
           <ProductCarousel products={deals} userFavoriteIds={userFavoriteIds} />
           <div className="flex justify-center mt-8">
@@ -100,7 +100,7 @@ export default async function Page() {
       </section>
 
       {/* Section 4: Bestsellerləri kəşf edin */}
-      <section className="max-w-[1200px] mx-auto w-full px-4 py-12 border-t border-gray-100">
+      <section className="max-w-[1440px] mx-auto w-full px-4 py-12 border-t border-gray-100">
         <div className="flex justify-between items-baseline mb-6">
           <h2 className="text-2xl font-bold text-[#222222]">Bestsellerləri kəşf edin</h2>
         </div>
@@ -113,7 +113,7 @@ export default async function Page() {
       </section>
 
       {/* Section 5: Əlaqəli kateqoriyalar */}
-      <section className="max-w-[1200px] mx-auto w-full px-4 py-12">
+      <section className="max-w-[1440px] mx-auto w-full px-4 py-12">
         <h2 className="text-[22px] font-bold text-[#1a1a1a] mb-6 font-primary">Əlaqəli kateqoriyalar</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {relatedCategories.map((cat, idx) => (

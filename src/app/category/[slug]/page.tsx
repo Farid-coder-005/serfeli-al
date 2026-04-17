@@ -124,7 +124,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <main className="max-w-[1200px] mx-auto w-full px-4 py-8 bg-[#F9FAFB]">
+    <main className="max-w-[1440px] mx-auto w-full px-4 py-8 bg-[#F9FAFB]">
       {/* Dynamic Breadcrumbs */}
       <div className="text-sm text-gray-500 mb-6 flex items-center gap-2">
         <Link href="/" className="hover:underline">Ana Səhifə</Link>

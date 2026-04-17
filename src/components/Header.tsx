@@ -53,7 +53,7 @@ export function Header() {
         
         {/* 1. Top Strip */}
         <div className="bg-[#0F172A] text-sm hidden md:flex items-center border-b border-white/5">
-          <div className="max-w-[1200px] mx-auto w-full px-4 py-2 flex items-center justify-between">
+          <div className="max-w-[1440px] mx-auto w-full px-4 py-2 flex items-center justify-between">
             <nav className="flex items-center gap-6">
               <Link 
                 href="/" 
@@ -86,7 +86,7 @@ export function Header() {
 
         {/* 2. Main Row */}
         <div className="bg-[#0F172A] py-3">
-          <div className="max-w-[1200px] mx-auto w-full px-4 flex items-center">
+          <div className="max-w-[1440px] mx-auto w-full px-4 flex items-center">
             {/* Mobile Hamburger */}
             <button onClick={() => setMobileOpen(true)} className="md:hidden text-white flex shrink-0 transition-colors hover:text-[#ff5500] mr-4">
               <Menu className="w-6 h-6" strokeWidth={2} />
@@ -127,7 +127,7 @@ export function Header() {
 
         {/* 3. Category Strip */}
         <nav className="bg-[#1E293B] py-3 hidden md:block w-full">
-          <div className="max-w-[1200px] mx-auto w-full px-4 flex justify-between items-start overflow-x-auto no-scrollbar">
+          <div className="max-w-[1440px] mx-auto w-full px-4 flex justify-between items-start overflow-x-auto no-scrollbar">
             {CATEGORIES.map(({ label, icon: Icon, href }, idx) => {
               if (idx === 0) {
                 return (
