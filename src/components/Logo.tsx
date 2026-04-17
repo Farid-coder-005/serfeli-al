@@ -9,7 +9,7 @@ interface LogoProps {
 }
 
 export function Logo({ variant = "light", className = "", onClick }: LogoProps) {
-  const textColor = variant === "light" ? "text-white" : "text-[#0F172A]";
+  const textColor = variant === "light" ? "text-white" : "text-[#002B55]";
 
   return (
     <Link 
@@ -26,7 +26,7 @@ export function Logo({ variant = "light", className = "", onClick }: LogoProps) 
           Sərfəli
         </span>
         <span 
-          className="text-[36px] font-[900] tracking-[-0.04em] text-[#FF5500]" 
+          className="text-[36px] font-[900] tracking-[-0.04em] text-[#FF6B00]" 
           style={{ fontFamily: "'Nunito', sans-serif" }}
         >
           .al
@@ -34,7 +34,7 @@ export function Logo({ variant = "light", className = "", onClick }: LogoProps) 
       </div>
       
       {/* The solid, thick Idealo-style underline */}
-      <div className="w-full h-[6px] bg-[#FF5500] mt-[5px]" />
+      <div className="w-full h-[6px] bg-[#FF6B00] mt-[5px]" />
     </Link>
   );
 }

@@ -63,7 +63,7 @@ export default function PriceAlertsPage() {
     return (
       <div className="min-h-screen bg-[#F9FAFB] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-[#FF5500] border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-[#FF6B00] border-t-transparent rounded-full animate-spin"></div>
           <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Yüklənir...</p>
         </div>
       </div>
@@ -76,7 +76,7 @@ export default function PriceAlertsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-start gap-4">
              <div className="flex items-center gap-4">
-                <div className="p-4 bg-[#FF5500] rounded-3xl shadow-xl shadow-orange-500/20">
+                <div className="p-4 bg-[#FF6B00] rounded-3xl shadow-xl shadow-orange-500/20">
                   <Bell className="w-8 h-8 text-white" />
                 </div>
                 <div>
@@ -98,7 +98,7 @@ export default function PriceAlertsPage() {
              <p className="text-slate-500 max-w-sm mx-auto mb-10 font-medium">
                Bəyəndiyiniz məhsulun qiyməti düşəndə xəbər tutmaq üçün məhsul səhifəsindən zəng ikonuna klikləyərək bildiriş qura bilərsiniz.
              </p>
-             <Link href="/" className="inline-flex items-center gap-3 px-10 py-5 bg-[#0F172A] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#FF5500] transition-all shadow-xl active:scale-95 group">
+             <Link href="/" className="inline-flex items-center gap-3 px-10 py-5 bg-[#0F172A] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#FF6B00] transition-all shadow-xl active:scale-95 group">
                 Məhsullara Bax <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
              </Link>
           </div>
@@ -138,7 +138,7 @@ export default function PriceAlertsPage() {
                         />
                       </div>
                       <div className="min-w-0">
-                        <h3 className="font-black text-slate-800 text-sm line-clamp-2 leading-tight hover:text-[#FF5500] transition-colors">
+                        <h3 className="font-black text-slate-800 text-sm line-clamp-2 leading-tight hover:text-[#FF6B00] transition-colors">
                           <Link href={`/product/${alert.productId}`}>{alert.productName}</Link>
                         </h3>
                         <div className="flex items-center gap-2 mt-2 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
@@ -155,7 +155,7 @@ export default function PriceAlertsPage() {
                       </div>
                       <div className={`p-4 rounded-2xl ${isTargetMet ? 'bg-green-50' : 'bg-slate-50'}`}>
                          <p className="text-[9px] font-black text-slate-400 uppercase mb-1">Cari</p>
-                         <p className={`text-xl font-black ${isTargetMet ? 'text-[#1da661]' : 'text-[#FF5500]'}`}>
+                         <p className={`text-xl font-black ${isTargetMet ? 'text-[#1da661]' : 'text-[#FF6B00]'}`}>
                             {currentPrice.toFixed(2)} ₼
                          </p>
                       </div>
@@ -172,7 +172,7 @@ export default function PriceAlertsPage() {
                   <div className="p-6 bg-slate-50/50 border-t border-slate-50">
                     <Link 
                       href={`/product/${alert.productId}`}
-                      className="w-full py-4 bg-white border border-slate-200 text-[#0F172A] rounded-2xl text-[11px] font-black uppercase tracking-widest hover:border-[#FF5500] hover:text-[#FF5500] transition-all flex items-center justify-center gap-2 group"
+                      className="w-full py-4 bg-white border border-slate-200 text-[#0F172A] rounded-2xl text-[11px] font-black uppercase tracking-widest hover:border-[#FF6B00] hover:text-[#FF6B00] transition-all flex items-center justify-center gap-2 group"
                     >
                       Məhsula Bax <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </Link>

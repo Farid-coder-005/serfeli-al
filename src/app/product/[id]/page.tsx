@@ -12,7 +12,7 @@ import { useRef } from 'react';
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#FF5500] text-white text-xs font-bold px-3 py-2 rounded shadow-xl border border-[#CC4400]">
+      <div className="bg-[#FF6B00] text-white text-xs font-bold px-3 py-2 rounded shadow-xl border border-[#CC4400]">
         <div className="text-base">{Number(payload[0].value).toFixed(2)} ₼</div>
         <div className="font-normal opacity-90">{payload[0].payload.date} {payload[0].payload.year}</div>
       </div>
@@ -176,7 +176,7 @@ export default function ProductDetailsPage() {
     const getDiff = (comparePrice: number) => {
       const diff = currentPrice - comparePrice;
       if (diff > 0) return { value: `↗ ${diff.toFixed(2)} ₼`, color: 'text-[#d32f2f]' };
-      if (diff < 0) return { value: `↘ ${Math.abs(diff).toFixed(2)} ₼`, color: 'text-[#FF5500]' };
+      if (diff < 0) return { value: `↘ ${Math.abs(diff).toFixed(2)} ₼`, color: 'text-[#FF6B00]' };
       return { value: `- 0.00 ₼`, color: 'text-gray-500' };
     };
 
@@ -274,7 +274,7 @@ export default function ProductDetailsPage() {
                           <div className="p-2 bg-white flex flex-col gap-0.5">
                             <div className="text-[11px] font-bold text-[#222222] truncate leading-tight">{v.name}</div>
                             <div className="text-[10px] text-[#767676] italic">stokda</div>
-                            <div className="text-[15px] font-bold text-[#ff5500] mt-1">{v.price} <span className="text-[10px]">₼</span></div>
+                            <div className="text-[15px] font-bold text-[#FF6B00] mt-1">{v.price} <span className="text-[10px]">₼</span></div>
                           </div>
                         </div>
                       ))}
@@ -316,11 +316,11 @@ export default function ProductDetailsPage() {
                     <AreaChart data={richChartData[timeFrame]} margin={{ top: 5, right: 0, left: 0, bottom: 0 }}>
                       <defs>
                         <linearGradient id="miniIdealoFill" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15}/>
-                          <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
+                          <stop offset="0%" stopColor="#FF6B00" stopOpacity={0.15}/>
+                          <stop offset="100%" stopColor="#FF6B00" stopOpacity={0}/>
                         </linearGradient>
                       </defs>
-                      <Area type="linear" dataKey="price" stroke="#FF5500" strokeWidth={1.5} fillOpacity={1} fill="url(#miniIdealoFill)" isAnimationActive={false} />
+                      <Area type="linear" dataKey="price" stroke="#FF6B00" strokeWidth={1.5} fillOpacity={1} fill="url(#miniIdealoFill)" isAnimationActive={false} />
                     </AreaChart>
                   </ResponsiveContainer>
                 </div>
@@ -455,7 +455,7 @@ export default function ProductDetailsPage() {
                          <span className="text-xl mb-1">₼</span>
                        </div>
                        {offer.isLowest && (
-                         <span className="mt-1 text-[10px] font-bold text-[#ff5500] border border-[#ff5500] px-2 py-0.5 rounded uppercase tracking-wider">
+                         <span className="mt-1 text-[10px] font-bold text-[#FF6B00] border border-[#FF6B00] px-2 py-0.5 rounded uppercase tracking-wider">
                            Ən ucuz yekun qiymət
                          </span>
                        )}
@@ -473,7 +473,7 @@ export default function ProductDetailsPage() {
                    <StoreLogo storeName={offer.store} />
                     <button 
                       onClick={() => handleRedirect(offer.url)}
-                      className="bg-[#FF5500] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest py-3 px-8 rounded transition-all shadow-lg shadow-orange-500/10 active:scale-[0.98]"
+                      className="bg-[#FF6B00] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest py-3 px-8 rounded transition-all shadow-lg shadow-orange-500/10 active:scale-[0.98]"
                     >
                       MAĞAZAYA KEÇ
                     </button>
@@ -500,11 +500,11 @@ export default function ProductDetailsPage() {
           <div className="flex flex-col md:flex-row gap-8 mb-10">
               <div className="w-full md:w-1/2 border-2 border-slate-100 bg-slate-50/30 p-6 rounded-md shadow-sm">
                 <div className="flex items-center gap-2 mb-4 text-[#0f172a] font-bold text-lg">
-                  <div className="bg-[#FF5500] text-white rounded-full w-5 h-5 flex items-center justify-center text-sm leading-none">+</div>
+                  <div className="bg-[#FF6B00] text-white rounded-full w-5 h-5 flex items-center justify-center text-sm leading-none">+</div>
                   Üstünlükləri
                 </div>
                 <ul className="space-y-4 text-sm text-gray-700">
-                  <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#FF5500] mt-1.5 shrink-0"></div> Batareya ilə uzunmüddətli enerji.</li>
+                  <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] mt-1.5 shrink-0"></div> Batareya ilə uzunmüddətli enerji.</li>
                 </ul>
              </div>
              <div className="w-full md:w-1/2 border-2 border-red-100 bg-red-50/30 p-6 rounded-md shadow-sm">
@@ -569,7 +569,7 @@ export default function ProductDetailsPage() {
         <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6 overflow-hidden" style={{ zIndex: 2147483647 }}>
           <div className="bg-white w-full max-w-4xl max-h-[95vh] overflow-y-auto rounded-sm shadow-2xl flex flex-col relative">
             {/* ABSOLUTE CLOSE BUTTON (Sticky to the top right of the modal) */}
-            <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-gray-400 hover:text-[#FF5500] text-4xl leading-none z-50 transition-colors">&times;</button>
+            <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-gray-400 hover:text-[#FF6B00] text-4xl leading-none z-50 transition-colors">&times;</button>
             
             <div className="flex flex-col p-8">
               <h2 className="text-2xl font-bold text-[#222222]">Qiymət dinamikası</h2>
@@ -594,8 +594,8 @@ export default function ProductDetailsPage() {
                   <AreaChart data={richChartData[timeFrame]} margin={{ top: 20, right: 20, left: 10, bottom: 0 }}>
                     <defs>
                       <linearGradient id="idealoFill" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#FF5500" stopOpacity={0.1}/>
-                        <stop offset="100%" stopColor="#FF5500" stopOpacity={0}/>
+                        <stop offset="0%" stopColor="#FF6B00" stopOpacity={0.1}/>
+                        <stop offset="100%" stopColor="#FF6B00" stopOpacity={0}/>
                       </linearGradient>
                     </defs>
                     
@@ -623,17 +623,17 @@ export default function ProductDetailsPage() {
                     
                     <RechartsTooltip 
                       content={<CustomTooltip />} 
-                      cursor={{ stroke: '#FF5500', strokeWidth: 1, strokeDasharray: '4 4' }} 
+                      cursor={{ stroke: '#FF6B00', strokeWidth: 1, strokeDasharray: '4 4' }} 
                     />
                     
                     <Area 
                       type="linear" 
                       dataKey="price" 
-                      stroke="#FF5500" 
+                      stroke="#FF6B00" 
                       strokeWidth={1.5} 
                       fillOpacity={1} 
                       fill="url(#idealoFill)" 
-                      activeDot={{ r: 5, fill: '#FF5500', stroke: '#ffffff', strokeWidth: 2 }} 
+                      activeDot={{ r: 5, fill: '#FF6B00', stroke: '#ffffff', strokeWidth: 2 }} 
                       animationDuration={500} 
                     />
                   </AreaChart>

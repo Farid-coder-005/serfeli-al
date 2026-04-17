@@ -59,10 +59,10 @@ export default async function Page() {
             {shortcuts.map((item, idx) => (
               <Link key={idx} href={item.href} className="flex flex-col items-center gap-3 group shrink-0 transition-all active:scale-95">
                 {/* Removed overflow-hidden to prevent border clipping during scale animations */}
-                <div className="w-[72px] h-[72px] rounded-full border-2 border-[#FF5500] flex items-center justify-center bg-white p-3 transition-transform group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#FF5500]/20">
+                <div className="w-[72px] h-[72px] rounded-full border-2 border-[#FF6B00] flex items-center justify-center bg-white p-3 transition-transform group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#FF6B00]/20">
                   <item.icon className="w-8 h-8 text-[#222222]" strokeWidth={1.5} />
                 </div>
-                <span className="text-[11px] font-black text-[#222222] text-center uppercase tracking-wider group-hover:text-[#FF5500] transition-colors">
+                <span className="text-[11px] font-black text-[#222222] text-center uppercase tracking-wider group-hover:text-[#FF6B00] transition-colors">
                   {item.label}
                 </span>
               </Link>

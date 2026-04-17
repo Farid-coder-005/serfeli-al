@@ -117,7 +117,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
        <div className="min-h-screen flex items-center justify-center bg-gray-50">
          <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-800 mb-2">Kateqoriya tapılmadı</h1>
-            <Link href="/" className="text-[#FF5500] font-bold hover:underline">Ana Səhifəyə Qayıt</Link>
+            <Link href="/" className="text-[#FF6B00] font-bold hover:underline">Ana Səhifəyə Qayıt</Link>
          </div>
        </div>
      );
@@ -162,13 +162,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {!isSubCategory && categoryData?.subCategories && categoryData.subCategories.length > 0 && (
         <div className="mb-16">
           <h2 className="text-2xl font-black text-[#1a1a1a] mb-8 px-1 uppercase tracking-tight flex items-center gap-3">
-             <span className="w-2 h-8 bg-[#FF5500] rounded-full"></span>
+             <span className="w-2 h-8 bg-[#FF6B00] rounded-full"></span>
              Alt Kateqoriyalar
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
             {categoryData.subCategories.map((sub) => (
               <Link href={`/category/${sub.slug}`} key={sub.id} className="group">
-                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-4 shadow-lg border-2 border-transparent group-hover:border-[#FF5500] transition-all duration-300">
+                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-4 shadow-lg border-2 border-transparent group-hover:border-[#FF6B00] transition-all duration-300">
                   <Image 
                     src={sub.image || 'https://placehold.co/400x300/png?text='+sub.name} 
                     alt={sub.name} 
@@ -177,7 +177,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
                 </div>
-                <h3 className="font-black text-center text-[#1a1a1a] group-hover:text-[#FF5500] transition-colors tracking-tight uppercase text-sm">
+                <h3 className="font-black text-center text-[#1a1a1a] group-hover:text-[#FF6B00] transition-colors tracking-tight uppercase text-sm">
                   {sub.name}
                 </h3>
               </Link>
@@ -210,7 +210,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 <Search className="w-12 h-12 text-gray-200 mx-auto mb-6" />
                 <h3 className="text-xl font-bold text-[#1a1a1a]">Heç bir məhsul tapılmadı</h3>
                 <p className="text-gray-400">Bu kategoriya üçün hələlik məhsul yoxdur.</p>
-                <Link href="/" className="mt-8 inline-block px-8 py-3 bg-[#1E3A8A] text-white font-bold rounded-full hover:bg-[#FF5500] transition-colors">
+                <Link href="/" className="mt-8 inline-block px-8 py-3 bg-[#1E3A8A] text-white font-bold rounded-full hover:bg-[#FF6B00] transition-colors">
                   Ana Səhifəyə Qayıt
                 </Link>
             </div>

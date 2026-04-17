@@ -93,13 +93,13 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
             {payload[0].payload.fullDate}
           </p>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-3xl font-black text-[#FF5500] tracking-tighter">
+            <span className="text-3xl font-black text-[#FF6B00] tracking-tighter">
               {payload[0].value}
             </span>
             <span className="text-[11px] font-black text-gray-400 uppercase">AZN</span>
           </div>
           {payload[0].value === minPrice && (
-            <div className="mt-2 flex items-center gap-1 text-[9px] font-black text-[#FF5500] uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full w-max">
+            <div className="mt-2 flex items-center gap-1 text-[9px] font-black text-[#FF6B00] uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full w-max">
               <TrendingDown className="w-2.5 h-2.5" strokeWidth={3} /> Ayın ən aşağısı
             </div>
           )}
@@ -140,7 +140,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
 
             <div className="flex flex-wrap gap-4">
               {isLowest && (
-                <div className="flex items-center gap-3 px-6 py-4 bg-[#FF5500] text-white rounded-[1.5rem] shadow-sm hover:shadow-md transition-all cursor-default">
+                <div className="flex items-center gap-3 px-6 py-4 bg-[#FF6B00] text-white rounded-[1.5rem] shadow-sm hover:shadow-md transition-all cursor-default">
                   <div className="w-6 h-6 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-md">
                     <TrendingDown className="w-4 h-4" strokeWidth={3} />
                   </div>
@@ -167,9 +167,9 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
               <AreaChart data={chartData} margin={{ top: 20, right: 10, left: 10, bottom: 20 }}>
                 <defs>
                    <linearGradient id="premiumGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#FF5500" stopOpacity={0.15} />
-                    <stop offset="50%" stopColor="#FF5500" stopOpacity={0.02} />
-                    <stop offset="100%" stopColor="#FF5500" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#FF6B00" stopOpacity={0.15} />
+                    <stop offset="50%" stopColor="#FF6B00" stopOpacity={0.02} />
+                    <stop offset="100%" stopColor="#FF6B00" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 
@@ -201,7 +201,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                 <Tooltip 
                   content={<CustomTooltip />} 
                   cursor={{ 
-                    stroke: '#FF5500', 
+                    stroke: '#FF6B00', 
                     strokeWidth: 2, 
                     strokeDasharray: '4 4', 
                     opacity: 0.3 
@@ -211,7 +211,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                 <Area
                   type="monotone"
                   dataKey="price"
-                  stroke="#FF5500"
+                  stroke="#FF6B00"
                   strokeWidth={6}
                   fillOpacity={1}
                   fill="url(#premiumGradient)"
@@ -220,7 +220,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                   activeDot={{ 
                     r: 10, 
                     fill: '#fff', 
-                    stroke: '#FF5500', 
+                    stroke: '#FF6B00', 
                     strokeWidth: 5,
                     className: "shadow-2xl"
                   }}
@@ -231,13 +231,13 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                   x={chartData.find(d => d.price === minPrice)?.date}
                   y={minPrice}
                   r={5}
-                  fill="#FF5500"
+                  fill="#FF6B00"
                   stroke="#fff"
                   strokeWidth={3}
                   label={{ 
                     position: 'bottom', 
                     value: 'Ən Aşağı', 
-                    fill: '#FF5500', 
+                    fill: '#FF6B00', 
                     fontSize: 10, 
                     letterSpacing: '0.1em',
                     fontWeight: 900,

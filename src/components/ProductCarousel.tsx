@@ -22,7 +22,7 @@ export function ProductCarousel({ products, userFavoriteIds }: ProductCarouselPr
       {/* Left Arrow Button */}
       <button 
         onClick={() => scroll('left')} 
-        className="absolute -left-2 sm:-left-5 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-10 h-10 hidden md:flex items-center justify-center text-[#FF5500] text-3xl hover:scale-105 transition-all opacity-0 group-hover:opacity-100"
+        className="absolute -left-2 sm:-left-5 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-10 h-10 hidden md:flex items-center justify-center text-[#FF6B00] text-3xl hover:scale-105 transition-all opacity-0 group-hover:opacity-100"
       >
         &#8249;
       </button>
@@ -44,7 +44,7 @@ export function ProductCarousel({ products, userFavoriteIds }: ProductCarouselPr
       {/* Right Arrow Button */}
       <button 
         onClick={() => scroll('right')} 
-        className="absolute -right-2 sm:-right-5 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-10 h-10 hidden md:flex items-center justify-center text-[#FF5500] text-3xl hover:scale-105 transition-all opacity-0 group-hover:opacity-100"
+        className="absolute -right-2 sm:-right-5 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-10 h-10 hidden md:flex items-center justify-center text-[#FF6B00] text-3xl hover:scale-105 transition-all opacity-0 group-hover:opacity-100"
       >
         &#8250;
       </button>

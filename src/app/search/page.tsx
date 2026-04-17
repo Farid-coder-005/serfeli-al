@@ -121,7 +121,7 @@ export default async function SearchPage({
             <p className="text-sm text-slate-300 mt-2 font-medium">
               {products.length > 0 ? (
                 <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-[#FF5500] rounded-full animate-pulse"></span>
+                  <span className="w-2 h-2 bg-[#FF6B00] rounded-full animate-pulse"></span>
                   {products.length} məhsul tapıldı
                 </span>
               ) : "Sizin üçün heç nə tapılmadı"}

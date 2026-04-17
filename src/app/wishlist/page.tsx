@@ -38,7 +38,7 @@ export default async function WishlistPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div>
             <h1 className="text-3xl font-black text-[#0F172A] tracking-tight flex items-center gap-3 uppercase">
-              <Heart className="w-8 h-8 text-[#FF5500] stroke-[#FF5500]" fill="currentColor" /> İstək Siyahısı
+              <Heart className="w-8 h-8 text-[#FF6B00] stroke-[#FF6B00]" fill="currentColor" /> İstək Siyahısı
             </h1>
             <p className="text-sm text-gray-500 mt-2 font-medium">Bəyəndiyiniz və yadda saxladığınız məhsullar</p>
           </div>
@@ -53,7 +53,7 @@ export default async function WishlistPage() {
             </div>
             <h3 className="text-2xl font-black text-[#0F172A] mb-4 uppercase tracking-tight">İstək siyahınız boşdur</h3>
             <p className="text-gray-400 max-w-sm mx-auto mb-10 font-medium italic">Siz hələ heç bir məhsulu bəyənməmisiniz. Məhsulları kəşf edərək onları istək siyahınıza əlavə edin.</p>
-            <Link href="/" className="px-10 py-4 bg-[#FF5500] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all hover:bg-[#E64D00] active:scale-[0.98] uppercase tracking-wider shadow-lg shadow-orange-500/20">
+            <Link href="/" className="px-10 py-4 bg-[#FF6B00] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all hover:bg-[#E64D00] active:scale-[0.98] uppercase tracking-wider shadow-lg shadow-orange-500/20">
               KƏŞF ETMƏYƏ BAŞLA <ArrowRight size={20} />
             </Link>
           </div>

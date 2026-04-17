@@ -64,14 +64,14 @@ export default function ResetPasswordPage() {
   return (
     <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-4 relative font-sans overflow-hidden">
       {/* Decorative Blobs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF5500]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#FF5500]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF6B00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#FF6B00]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10">
           <Link href="/" className="inline-block group">
             <h1 className="text-4xl font-black text-[#0F172A] tracking-tighter mb-2">
-              Sərfəli<span className="text-[#FF5500]">.al</span>
+              Sərfəli<span className="text-[#FF6B00]">.al</span>
             </h1>
           </Link>
           <p className="text-gray-500 font-medium">Yeni şifrə təyini</p>
@@ -108,7 +108,7 @@ export default function ResetPasswordPage() {
                   <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">Yeni Şifrə</label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF5500] transition-colors" />
+                      <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
                     </div>
                     <input 
                       type="password" 
@@ -116,7 +116,7 @@ export default function ResetPasswordPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF5500]/10 focus:border-[#FF5500] outline-none transition-all placeholder:text-gray-300"
+                      className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
                     />
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function ResetPasswordPage() {
                   <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">Şifrəni Təkrarla</label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF5500] transition-colors" />
+                      <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
                     </div>
                     <input 
                       type="password" 
@@ -133,7 +133,7 @@ export default function ResetPasswordPage() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF5500]/10 focus:border-[#FF5500] outline-none transition-all placeholder:text-gray-300"
+                      className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
                     />
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export default function ResetPasswordPage() {
               <button 
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-4 bg-[#FF5500] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all hover:bg-[#E64D00] active:scale-[0.98] disabled:opacity-70 uppercase tracking-widest shadow-lg shadow-[#FF5500]/20"
+                className="w-full py-4 bg-[#FF6B00] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all hover:bg-[#E64D00] active:scale-[0.98] disabled:opacity-70 uppercase tracking-widest shadow-lg shadow-[#FF6B00]/20"
               >
                 {isLoading ? (
                   <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>

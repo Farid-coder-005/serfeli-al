@@ -76,10 +76,10 @@ export default function DetailedProductCard({
           {/* Price Area */}
           <div className="mt-auto pt-4 flex flex-col">
             <div className="flex items-baseline gap-1">
-              <span className="text-[24px] font-extrabold text-[#FF5500] tracking-tight">
+              <span className="text-[24px] font-extrabold text-[#FF6B00] tracking-tight">
                 {newPrice.toLocaleString('az-AZ', { minimumFractionDigits: 2 })}
               </span>
-              <span className="text-[18px] font-bold text-[#FF5500]">₼</span>
+              <span className="text-[18px] font-bold text-[#FF6B00]">₼</span>
             </div>
             <span className="text-[12px] text-gray-500 mt-1">Mağaza: <span className="font-semibold text-gray-700">{storeName}</span></span>
           </div>

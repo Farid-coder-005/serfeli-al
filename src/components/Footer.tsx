@@ -19,27 +19,27 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-bold text-white tracking-widest uppercase mb-6">Platforma</h3>
             <ul className="space-y-4">
-              <li><Link href="#" className="text-sm hover:text-[#FF5500] transition-colors">Haqqımızda</Link></li>
-              <li><Link href="#" className="text-sm hover:text-[#FF5500] transition-colors">Mağazalar</Link></li>
-              <li><Link href="/dashboard" className="text-sm hover:text-[#FF5500] transition-colors">Kəşbək</Link></li>
+              <li><Link href="#" className="text-sm hover:text-[#FF6B00] transition-colors">Haqqımızda</Link></li>
+              <li><Link href="#" className="text-sm hover:text-[#FF6B00] transition-colors">Mağazalar</Link></li>
+              <li><Link href="/dashboard" className="text-sm hover:text-[#FF6B00] transition-colors">Kəşbək</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-sm font-bold text-white tracking-widest uppercase mb-6">Kömək</h3>
             <ul className="space-y-4">
-              <li><Link href="#" className="text-sm hover:text-[#FF5500] transition-colors">Tez-tez verilən suallar</Link></li>
-              <li><Link href="#" className="text-sm hover:text-[#FF5500] transition-colors">Əlaqə</Link></li>
-              <li><Link href="#" className="text-sm hover:text-[#FF5500] transition-colors">İstifadə qaydaları</Link></li>
+              <li><Link href="#" className="text-sm hover:text-[#FF6B00] transition-colors">Tez-tez verilən suallar</Link></li>
+              <li><Link href="#" className="text-sm hover:text-[#FF6B00] transition-colors">Əlaqə</Link></li>
+              <li><Link href="#" className="text-sm hover:text-[#FF6B00] transition-colors">İstifadə qaydaları</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-sm font-bold text-white tracking-widest uppercase mb-6">Bizi İzləyin</h3>
             <ul className="space-y-4">
-              <li><Link href="#" className="text-sm hover:text-[#FF5500] transition-colors">Instagram</Link></li>
-              <li><Link href="#" className="text-sm hover:text-[#FF5500] transition-colors">Facebook</Link></li>
-              <li><Link href="#" className="text-sm hover:text-[#FF5500] transition-colors">Telegram</Link></li>
+              <li><Link href="#" className="text-sm hover:text-[#FF6B00] transition-colors">Instagram</Link></li>
+              <li><Link href="#" className="text-sm hover:text-[#FF6B00] transition-colors">Facebook</Link></li>
+              <li><Link href="#" className="text-sm hover:text-[#FF6B00] transition-colors">Telegram</Link></li>
             </ul>
           </div>
         </div>

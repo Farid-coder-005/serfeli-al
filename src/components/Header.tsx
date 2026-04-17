@@ -49,10 +49,10 @@ export function Header() {
  
   return (
     <div className="z-[9999] relative">
-      <header role="banner" className="bg-[#0F172A] sticky top-0 z-[9999] text-white flex flex-col">
+      <header role="banner" className="bg-[#002B55] sticky top-0 z-[9999] text-white flex flex-col">
         
         {/* 1. Top Strip */}
-        <div className="bg-[#0F172A] text-sm hidden md:flex items-center border-b border-white/5">
+        <div className="bg-[#002B55] text-sm hidden md:flex items-center border-b border-white/5">
           <div className="max-w-[1440px] mx-auto w-full px-4 py-2 flex items-center justify-between">
             <nav className="flex items-center gap-6">
               <Link 
@@ -60,8 +60,8 @@ export function Header() {
                 onClick={() => setActiveTab('shopping')}
                 className={`font-bold pb-0.5 text-[13px] transition-all ${
                   activeTab === 'shopping' 
-                  ? 'border-b-2 border-[#ff5500] text-white' 
-                  : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+                  ? 'border-b-2 border-[#FF6B00] text-white' 
+                  : 'text-[#ABC1D6] hover:text-white border-b-2 border-transparent'
                 }`}
               >
                 ALIŞ-VERİŞ
@@ -70,25 +70,25 @@ export function Header() {
                 onClick={() => setActiveTab('flights')}
                 className={`font-bold pb-0.5 text-[13px] transition-all cursor-pointer ${
                   activeTab === 'flights' 
-                  ? 'border-b-2 border-[#ff5500] text-white' 
-                  : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+                  ? 'border-b-2 border-[#FF6B00] text-white' 
+                  : 'text-[#ABC1D6] hover:text-white border-b-2 border-transparent'
                 }`}
               >
                 UÇUŞLAR
               </button>
             </nav>
-            <div className="flex items-center gap-2 text-gray-400 hover:text-white cursor-pointer transition-colors group">
+            <div className="flex items-center gap-2 text-[#ABC1D6] hover:text-white cursor-pointer transition-colors group">
               <span className="text-[12px] font-medium transition-colors">Sərfəli.al-da davamlılıq</span>
-              <Leaf className="w-3.5 h-3.5 text-[#ff5500] group-hover:scale-110 transition-transform" />
+              <Leaf className="w-3.5 h-3.5 text-[#FF6B00] group-hover:scale-110 transition-transform" />
             </div>
           </div>
         </div>
 
         {/* 2. Main Row */}
-        <div className="bg-[#0F172A] py-3">
+        <div className="bg-[#002B55] py-3">
           <div className="max-w-[1440px] mx-auto w-full px-4 flex items-center">
             {/* Mobile Hamburger */}
-            <button onClick={() => setMobileOpen(true)} className="md:hidden text-white flex shrink-0 transition-colors hover:text-[#ff5500] mr-4">
+            <button onClick={() => setMobileOpen(true)} className="md:hidden text-white flex shrink-0 transition-colors hover:text-[#FF6B00] mr-4">
               <Menu className="w-6 h-6" strokeWidth={2} />
             </button>
             
@@ -104,17 +104,17 @@ export function Header() {
 
             {/* Right User Actions */}
             <div className="flex items-center gap-4 sm:gap-6 ml-auto shrink-0 pt-1">
-              <Link href="/wishlist" className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+              <Link href="/wishlist" className="flex flex-col items-center group text-white hover:text-[#FF6B00] transition-colors">
                 <Heart className="w-6 h-6 stroke-[1.5]" />
-                <span className="text-[10px] mt-1 font-medium hidden sm:block">Qeydlərim</span>
+                <span className="text-[#ABC1D6] mt-1 font-medium hidden sm:block">Qeydlərim</span>
               </Link>
-              <Link href="/dashboard/price-alerts" className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+              <Link href="/dashboard/price-alerts" className="flex flex-col items-center group text-white hover:text-[#FF6B00] transition-colors">
                 <Bell className="w-6 h-6 stroke-[1.5]" />
-                <span className="text-[10px] mt-1 font-medium hidden sm:block">Qiymət bildirişi</span>
+                <span className="text-[#ABC1D6] mt-1 font-medium hidden sm:block">Qiymət bildirişi</span>
               </Link>
-              <Link href={isLoggedIn ? "/dashboard" : "/login"} className="flex flex-col items-center group text-white hover:text-[#ff5500] transition-colors">
+              <Link href={isLoggedIn ? "/dashboard" : "/login"} className="flex flex-col items-center group text-white hover:text-[#FF6B00] transition-colors">
                 <User className="w-6 h-6 stroke-[1.5]" />
-                <span className="text-[10px] mt-1 font-medium hidden sm:block">Profil</span>
+                <span className="text-[#ABC1D6] mt-1 font-medium hidden sm:block">Profil</span>
               </Link>
             </div>
           </div>
@@ -126,26 +126,26 @@ export function Header() {
         </div>
 
         {/* 3. Category Strip */}
-        <nav className="bg-[#1E293B] py-3 hidden md:block w-full">
+        <nav className="bg-[#26496B] py-3 hidden md:block w-full">
           <div className="max-w-[1440px] mx-auto w-full px-4 flex justify-between items-start overflow-x-auto no-scrollbar">
             {CATEGORIES.map(({ label, icon: Icon, href }, idx) => {
               if (idx === 0) {
                 return (
                   <div key={label} className="shrink-0 mt-1">
-                    <Link href={href} className="flex flex-col items-center text-white hover:text-[#ff5500] transition-colors gap-1.5">
-                      <div className="w-[26px] h-[26px] bg-[#ff5500] rounded-[3px] flex items-center justify-center">
+                    <Link href={href} className="flex flex-col items-center text-white hover:text-[#FF6B00] transition-colors gap-1.5">
+                      <div className="w-[26px] h-[26px] bg-[#FF6B00] rounded-[3px] flex items-center justify-center">
                         <Percent className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-[11px] font-medium tracking-wide">{label}</span>
+                      <span className="text-[11px] font-medium tracking-wide text-[#ABC1D6]">{label}</span>
                     </Link>
                   </div>
                 );
               }
               return (
                 <div key={label} className="shrink-0 mt-1">
-                  <Link href={href} className="flex flex-col items-center text-white hover:text-[#ff5500] transition-colors gap-1.5">
+                  <Link href={href} className="flex flex-col items-center text-white hover:text-[#FF6B00] transition-colors gap-1.5">
                     <Icon className="w-[26px] h-[26px] stroke-[1.5]" />
-                    <span className="text-[11px] font-medium tracking-wide">{label}</span>
+                    <span className="text-[11px] font-medium tracking-wide text-[#ABC1D6]">{label}</span>
                   </Link>
                 </div>
               );
@@ -160,7 +160,7 @@ export function Header() {
         role="navigation"
         aria-hidden={!mobileOpen}
         className={[
-          "fixed left-0 right-0 z-[9998] bg-[#0F172A] text-white shadow-xl",
+          "fixed left-0 right-0 z-[9998] bg-[#002B55] text-white shadow-xl",
           "overflow-y-auto transition-all duration-300 ease-in-out",
           mobileOpen ? "top-[115px] max-h-[calc(100vh-115px)] opacity-100" : "top-[115px] max-h-0 opacity-0 pointer-events-none",
         ].join(" ")}
@@ -176,11 +176,11 @@ export function Header() {
             <Link
               key={label}
               href={href}
-              className="flex items-center gap-4 py-3 text-[15px] font-bold text-gray-200 hover:text-[#ff5500] transition-colors"
+              className="flex items-center gap-4 py-3 text-[15px] font-bold text-gray-200 hover:text-[#FF6B00] transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               {idx === 0 ? (
-                <div className="w-6 h-6 bg-[#ff5500] rounded-sm flex items-center justify-center">
+                <div className="w-6 h-6 bg-[#FF6B00] rounded-sm flex items-center justify-center">
                   <Percent className="w-4 h-4 text-white" strokeWidth={2.5} />
                 </div>
               ) : (
@@ -200,7 +200,7 @@ export function Header() {
              ) : (
                 <Link
                   href="/login"
-                  className="block w-full py-3 text-[15px] font-bold text-[#FF5500]"
+                  className="block w-full py-3 text-[15px] font-bold text-[#FF6B00]"
                   onClick={() => setMobileOpen(false)}
                 >
                   Giriş / Qeydiyyat

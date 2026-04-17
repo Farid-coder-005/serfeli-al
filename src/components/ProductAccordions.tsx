@@ -33,10 +33,10 @@ export default function ProductAccordions({
           onClick={() => toggleSection(id)}
           className="w-full py-4 flex items-center justify-between text-left group"
         >
-          <span className="text-[11px] font-bold text-gray-700 uppercase tracking-widest group-hover:text-[#FF5500] transition-colors">
+          <span className="text-[11px] font-bold text-gray-700 uppercase tracking-widest group-hover:text-[#FF6B00] transition-colors">
             {title}
           </span>
-          <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-[#FF5500] group-hover:bg-orange-50 transition-all">
+          <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-[#FF6B00] group-hover:bg-orange-50 transition-all">
             {isOpen ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
           </div>
         </button>
@@ -65,7 +65,7 @@ export default function ProductAccordions({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className={`w-3 h-3 ${star <= 4 ? "fill-[#FF5500] text-[#FF5500]" : "text-gray-300"}`} />
+                    <Star key={star} className={`w-3 h-3 ${star <= 4 ? "fill-[#FF6B00] text-[#FF6B00]" : "text-gray-300"}`} />
                   ))}
                 </div>
                 <span className="text-[9px] font-bold text-gray-400">12.04.2024</span>

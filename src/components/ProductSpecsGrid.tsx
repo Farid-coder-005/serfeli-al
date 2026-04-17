@@ -26,7 +26,7 @@ export default function ProductSpecsGrid({
       {specifications.map((spec) => (
         <div key={spec.label} className="flex flex-col">
           <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 bg-[#FF5500] rounded-full" />
+            <div className="w-1.5 h-1.5 bg-[#FF6B00] rounded-full" />
             {spec.label}
           </span>
           <span className="text-xs font-bold text-[#222222] leading-tight">

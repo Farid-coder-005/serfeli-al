@@ -93,7 +93,7 @@ export default function ContactPage() {
               </p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="mt-4 text-[#FF5500] font-bold text-sm hover:underline"
+                className="mt-4 text-[#FF6B00] font-bold text-sm hover:underline"
               >
                 Yeni mesaj göndər
               </button>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                     type="text"
                     required
                     placeholder="Adınız..."
-                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF5500]/10 focus:border-[#FF5500] focus:bg-white transition-all"
+                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] focus:bg-white transition-all"
                   />
                 </div>
                 <div>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                     type="email"
                     required
                     placeholder="email@example.az"
-                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF5500]/10 focus:border-[#FF5500] focus:bg-white transition-all"
+                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] focus:bg-white transition-all"
                   />
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                 <input
                   type="text"
                   placeholder="Mesajınızın mövzusu..."
-                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF5500]/10 focus:border-[#FF5500] focus:bg-white transition-all"
+                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] focus:bg-white transition-all"
                 />
               </div>
               <div>
@@ -145,12 +145,12 @@ export default function ContactPage() {
                   rows={5}
                   required
                   placeholder="Mesajınızı buraya yazın..."
-                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF5500]/10 focus:border-[#FF5500] focus:bg-white transition-all resize-none"
+                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] focus:bg-white transition-all resize-none"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-3 bg-[#FF5500] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]"
+                className="w-full flex items-center justify-center gap-3 bg-[#FF6B00] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]"
               >
                 <Send className="w-4 h-4" />
                 Göndər

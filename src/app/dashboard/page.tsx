@@ -30,7 +30,7 @@ export default function DashboardPage() {
           </div>
           <h2 className="text-2xl font-black text-[#0F172A] mb-4">Giriş edilməyib</h2>
           <p className="text-gray-500 mb-8">Dashboard-u görmək üçün zəhmət olmasa daxil olun.</p>
-          <Link href="/login" className="inline-flex items-center justify-center w-full py-4 px-6 bg-[#FF5500] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#E64D00] transition-all shadow-lg active:scale-95">
+          <Link href="/login" className="inline-flex items-center justify-center w-full py-4 px-6 bg-[#FF6B00] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#E64D00] transition-all shadow-lg active:scale-95">
             Giriş səhifəsinə keç
           </Link>
         </div>
@@ -58,7 +58,7 @@ export default function DashboardPage() {
                   <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
                     {user.name || "İstifadəçi"}
                   </h1>
-                  <span className="px-3 py-1 bg-[#FF5500] text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-orange-500/20 leading-none">PREMIUM</span>
+                  <span className="px-3 py-1 bg-[#FF6B00] text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-orange-500/20 leading-none">PREMIUM</span>
                 </div>
                 <p className="text-slate-300 font-medium flex items-center gap-2">
                   <UserCircle className="w-4 h-4 text-slate-300" /> {user.email || ""}
@@ -71,7 +71,7 @@ export default function DashboardPage() {
               </button>
               <button 
                 onClick={logout}
-                className="px-8 py-3.5 bg-[#FF5500] text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-[#E64D00] shadow-xl shadow-orange-500/20 transition-all flex items-center gap-2 active:scale-95"
+                className="px-8 py-3.5 bg-[#FF6B00] text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-[#E64D00] shadow-xl shadow-orange-500/20 transition-all flex items-center gap-2 active:scale-95"
               >
                 <LogOut className="w-4 h-4" /> Çıxış
               </button>
@@ -89,12 +89,12 @@ export default function DashboardPage() {
             {/* Balance Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div className="group bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-xl shadow-slate-900/5 hover:shadow-2xl hover:shadow-slate-900/10 transition-all relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF5500]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF6B00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
                 <div className="flex items-center justify-between mb-8">
-                  <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF5500] shadow-inner group-hover:rotate-12 transition-transform">
+                  <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF6B00] shadow-inner group-hover:rotate-12 transition-transform">
                     <Wallet className="w-6 h-6" />
                   </div>
-                  <span className="text-[10px] font-black text-[#FF5500] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">+12% Ay/Ay</span>
+                  <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">+12% Ay/Ay</span>
                 </div>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.25em] mb-2">Kəşbək Balansı</p>
                 <h3 className="text-5xl font-black text-[#0F172A] tracking-tighter">
@@ -103,12 +103,12 @@ export default function DashboardPage() {
               </div>
 
               <div className="group bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-xl shadow-slate-900/5 hover:shadow-2xl hover:shadow-slate-900/10 transition-all relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF5500]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF6B00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
                 <div className="flex items-center justify-between mb-8">
-                  <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF5500] shadow-inner group-hover:-rotate-12 transition-transform">
+                  <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF6B00] shadow-inner group-hover:-rotate-12 transition-transform">
                     <TrendingUp className="w-6 h-6" />
                   </div>
-                  <span className="text-[10px] font-black text-[#FF5500] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">Real qənaət</span>
+                  <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">Real qənaət</span>
                 </div>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.25em] mb-2">Ümumi Qənaət</p>
                 <h3 className="text-5xl font-black text-[#0F172A] tracking-tighter">
@@ -121,7 +121,7 @@ export default function DashboardPage() {
             <div className="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-slate-900/5 p-8 lg:p-12">
               <div className="flex items-center justify-between mb-12">
                 <h2 className="text-2xl font-black text-[#0F172A] tracking-tight flex items-center gap-3">
-                  <Clock className="w-6 h-6 text-[#FF5500]" /> Son Əməliyyatlar
+                  <Clock className="w-6 h-6 text-[#FF6B00]" /> Son Əməliyyatlar
                 </h2>
                 <button className="text-sm font-black text-[#0F172A] hover:text-[#1E293B] transition-colors uppercase tracking-widest">Hamısı</button>
               </div>
@@ -134,7 +134,7 @@ export default function DashboardPage() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-center justify-between p-6 bg-gray-50/50 rounded-[2rem] border border-gray-50 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all group cursor-pointer">
                     <div className="flex items-center gap-5">
-                      <div className="w-14 h-14 bg-white rounded-2xl border border-gray-100 flex items-center justify-center font-black text-[#FF5500] shadow-sm transform group-hover:scale-110 transition-transform">
+                      <div className="w-14 h-14 bg-white rounded-2xl border border-gray-100 flex items-center justify-center font-black text-[#FF6B00] shadow-sm transform group-hover:scale-110 transition-transform">
                         {item.store[0]}
                       </div>
                       <div className="flex flex-col">
@@ -145,7 +145,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="text-right flex flex-col items-end gap-2">
                       <span className="text-lg font-black text-[#0F172A]">{item.amount}</span>
-                      <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-lg ${item.status === 'Tamamlanıb' ? 'bg-orange-50 text-[#FF5500] border border-orange-100' : 'bg-slate-100 text-[#0F172A] border border-slate-200'}`}>
+                      <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-lg ${item.status === 'Tamamlanıb' ? 'bg-orange-50 text-[#FF6B00] border border-orange-100' : 'bg-slate-100 text-[#0F172A] border border-slate-200'}`}>
                         {item.status}
                       </span>
                     </div>
@@ -163,7 +163,7 @@ export default function DashboardPage() {
               <div className="relative w-48 h-48 mb-8 flex items-center justify-center">
                 <svg className="w-full h-full transform -rotate-90">
                   <circle cx="96" cy="96" r="88" strokeWidth="12" stroke="#F9FAFB" fill="transparent" className="rounded-full" />
-                  <circle cx="96" cy="96" r="88" strokeWidth="12" stroke="#FF5500" strokeDasharray="552.92" strokeDashoffset="138.23" fill="transparent" strokeLinecap="round" className="transition-all duration-1000 ease-out" />
+                  <circle cx="96" cy="96" r="88" strokeWidth="12" stroke="#FF6B00" strokeDasharray="552.92" strokeDashoffset="138.23" fill="transparent" strokeLinecap="round" className="transition-all duration-1000 ease-out" />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-5xl font-black text-[#0F172A] tracking-tighter">75%</span>
@@ -171,9 +171,9 @@ export default function DashboardPage() {
                 </div>
               </div>
               <p className="text-sm text-gray-500 font-medium mb-8 leading-relaxed px-4 text-center">
-                Növbəti seviyyə üçün <span className="text-[#FF5500] font-black">250 AZN</span> dəyərində alış lazımdır.
+                Növbəti seviyyə üçün <span className="text-[#FF6B00] font-black">250 AZN</span> dəyərində alış lazımdır.
               </p>
-              <button className="w-full py-5 bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black text-[#0F172A] hover:bg-white hover:border-[#FF5500]/20 hover:shadow-lg transition-all uppercase tracking-[0.2em]">
+              <button className="w-full py-5 bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black text-[#0F172A] hover:bg-white hover:border-[#FF6B00]/20 hover:shadow-lg transition-all uppercase tracking-[0.2em]">
                 Səviyyəni Yoxla
               </button>
             </div>
@@ -182,9 +182,9 @@ export default function DashboardPage() {
             <div className="bg-gradient-to-br from-[#1E293B] to-[#0F172A] rounded-[2.5rem] p-10 text-white shadow-2xl shadow-slate-900/20 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
               <h3 className="text-2xl font-black mb-6 tracking-tight text-left text-white">Dostlarını gətir, <br/>pulu bölüşün!</h3>
-              <p className="text-slate-200 text-sm font-medium mb-10 leading-relaxed text-left">Hər dəvət etdiyiniz dost üçün <span className="text-[#FF5500] font-black">5 AZN</span> kəşbək qazanın.</p>
+              <p className="text-slate-200 text-sm font-medium mb-10 leading-relaxed text-left">Hər dəvət etdiyiniz dost üçün <span className="text-[#FF6B00] font-black">5 AZN</span> kəşbək qazanın.</p>
               <button className="w-full py-4 bg-white text-[#0F172A] rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-slate-50 shadow-lg shadow-black/10 transition-all flex items-center justify-center gap-3">
-                 <CreditCard className="w-4 h-4 text-[#FF5500]" /> Linki Kopyala
+                 <CreditCard className="w-4 h-4 text-[#FF6B00]" /> Linki Kopyala
               </button>
             </div>
           </div>

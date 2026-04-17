@@ -102,7 +102,7 @@ export default function PriceRangeSlider({ min = 0, max = 10000 }: PriceRangeSli
         {/* Active range highlight */}
         <div
           ref={rangeRef}
-          className="absolute top-0 h-1.5 bg-[#FF5500] rounded-full shadow-[0_0_10px_rgba(255,85,0,0.1)]"
+          className="absolute top-0 h-1.5 bg-[#FF6B00] rounded-full shadow-[0_0_10px_rgba(255,85,0,0.1)]"
         />
 
         {/* Min Thumb */}
@@ -160,8 +160,8 @@ export default function PriceRangeSlider({ min = 0, max = 10000 }: PriceRangeSli
             }}
             className={`px-3 py-1.5 rounded-lg text-[11px] font-bold border transition-all active:scale-95 ${
               minVal === preset.min && maxVal === preset.max
-                ? "bg-[#FF5500] text-white border-[#FF5500] shadow-lg shadow-[#FF5500]/20"
-                : "bg-white text-slate-500 border-slate-100 hover:border-[#FF5500]/30 hover:text-[#FF5500]"
+                ? "bg-[#FF6B00] text-white border-[#FF6B00] shadow-lg shadow-[#FF6B00]/20"
+                : "bg-white text-slate-500 border-slate-100 hover:border-[#FF6B00]/30 hover:text-[#FF6B00]"
             }`}
           >
             {preset.label} ₼
@@ -177,7 +177,7 @@ export default function PriceRangeSlider({ min = 0, max = 10000 }: PriceRangeSli
           width: 20px;
           border-radius: 50%;
           background: white;
-          border: 4px solid #FF5500;
+          border: 4px solid #FF6B00;
           box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
           cursor: pointer;
           pointer-events: all;
@@ -191,7 +191,7 @@ export default function PriceRangeSlider({ min = 0, max = 10000 }: PriceRangeSli
           width: 20px;
           border-radius: 50%;
           background: white;
-          border: 4px solid #FF5500;
+          border: 4px solid #FF6B00;
           box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
           cursor: pointer;
         }

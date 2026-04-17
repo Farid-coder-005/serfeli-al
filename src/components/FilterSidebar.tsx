@@ -72,12 +72,12 @@ function SidebarContent({ facets = [] }: SidebarContentProps) {
           className="text-lg font-[900] text-slate-800 flex items-center gap-3 uppercase tracking-wider"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          <Filter className="w-5 h-5 text-[#FF5500]" />
+          <Filter className="w-5 h-5 text-[#FF6B00]" />
           Filterlər
         </h2>
         <button 
           onClick={clearFilters}
-          className="text-slate-400 hover:text-[#FF5500] transition-colors p-2 rounded-lg hover:bg-orange-50"
+          className="text-slate-400 hover:text-[#FF6B00] transition-colors p-2 rounded-lg hover:bg-orange-50"
           title="Sıfırla"
         >
           <RotateCcw className="w-4 h-4" />
@@ -103,18 +103,18 @@ function SidebarContent({ facets = [] }: SidebarContentProps) {
             className="w-full flex items-center justify-between py-4 group transition-all"
           >
             <div className="flex items-center gap-3">
-              <CheckCircle2 className="w-4 h-4 text-[#FF5500]" />
+              <CheckCircle2 className="w-4 h-4 text-[#FF6B00]" />
               <span 
-                className="text-[11px] font-[800] text-slate-800 uppercase tracking-[0.2em] group-hover:text-[#FF5500] transition-colors"
+                className="text-[11px] font-[800] text-slate-800 uppercase tracking-[0.2em] group-hover:text-[#FF6B00] transition-colors"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 {group.label}
               </span>
             </div>
             {openSections.includes(group.id) ? (
-              <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-[#FF5500]" />
+              <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-[#FF6B00]" />
             ) : (
-              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#FF5500]" />
+              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#FF6B00]" />
             )}
           </button>
           
@@ -133,14 +133,14 @@ function SidebarContent({ facets = [] }: SidebarContentProps) {
                         checked={isOptionChecked(group.id, option.value)}
                         onChange={() => handleToggle(group.id, option.value)}
                       />
-                      <div className="w-5 h-5 border-2 border-slate-200 rounded-lg bg-white peer-checked:bg-[#FF5500] peer-checked:border-[#FF5500] transition-all duration-200" />
+                      <div className="w-5 h-5 border-2 border-slate-200 rounded-lg bg-white peer-checked:bg-[#FF6B00] peer-checked:border-[#FF6B00] transition-all duration-200" />
                       <CheckCircle2 className="w-3.5 h-3.5 text-white absolute left-[3.25px] opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
                     </div>
                     <span className="text-sm font-bold text-slate-600 group-hover:text-slate-900 transition-colors">
                       {option.label}
                     </span>
                   </div>
-                  <span className="text-[10px] font-bold text-slate-400 group-hover:text-[#FF5500] transition-colors">
+                  <span className="text-[10px] font-bold text-slate-400 group-hover:text-[#FF6B00] transition-colors">
                     {option.count}
                   </span>
                 </label>

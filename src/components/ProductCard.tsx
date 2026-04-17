@@ -31,7 +31,7 @@ export function ProductCard({
       {/* 1. Top Level Badges */}
       <div className="absolute top-2 left-0 z-10 flex flex-col gap-1 items-start">
         {realDiscount && (
-          <div className="bg-[#FF5500] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-r-sm">
+          <div className="bg-[#FF6B00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-r-sm">
             -{discountPercent}%
           </div>
         )}
@@ -87,10 +87,10 @@ export function ProductCard({
           <div className="mt-auto pt-2 flex flex-col">
             <span className="text-[11px] text-gray-500 font-medium mb-[-2px]">from</span>
             <div className="flex items-baseline gap-1">
-              <span className="text-[20px] sm:text-[22px] font-bold text-[#FF5500] tracking-tight leading-tight">
+              <span className="text-[20px] sm:text-[22px] font-bold text-[#FF6B00] tracking-tight leading-tight">
                 {newPrice.toLocaleString('az-AZ', { minimumFractionDigits: 2 })}
               </span>
-              <span className="text-[16px] font-bold text-[#FF5500]">₼</span>
+              <span className="text-[16px] font-bold text-[#FF6B00]">₼</span>
             </div>
           </div>
         </div>

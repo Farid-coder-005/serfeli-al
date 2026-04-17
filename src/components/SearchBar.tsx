@@ -34,7 +34,7 @@ export default function SearchBar() {
         aria-label="Axtar"
         className="absolute right-0 top-0 bottom-0 px-3 flex items-center justify-center bg-transparent"
       >
-        <Search className="w-6 h-6 text-[#ff5500]" strokeWidth={2.5} />
+        <Search className="w-6 h-6 text-[#FF6B00]" strokeWidth={2.5} />
       </button>
     </form>
   );
