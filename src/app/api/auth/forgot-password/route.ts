@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "Serfeli.al <auth@serfeli.al>",
+      from: "Serfeli.al <auth@send.serfeli.al>",
       to: [normalizedEmail],
       subject: "Şifrənin sıfırlanması - Serfeli.al",
       html: `
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
     if (error) {
       console.error("[ForgotPassword] 🛑 FINAL DIAGNOSTIC - RESEND ERROR:", JSON.stringify(error, null, 2));
       return NextResponse.json({ 
-        error: "Email göndərilərkən xəta baş verdi", 
+        error: error.message || "Email göndərilərkən xəta baş verdi", 
         diagnostic: error,
         message: error.message,
         name: error.name
