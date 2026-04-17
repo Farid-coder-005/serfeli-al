@@ -8,7 +8,7 @@ export function SocialAuth() {
     <div className="space-y-4 w-full">
       <div className="grid grid-cols-2 gap-4">
         <button
-          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+          onClick={() => signIn("google", { callbackUrl: "/" })}
           className="flex items-center justify-center gap-3 px-4 py-3 bg-white border border-gray-100 rounded-2xl text-sm font-bold text-gray-700 hover:bg-gray-50 hover:shadow-lg hover:shadow-gray-100 transition-all active:scale-[0.98] group"
         >
           <svg className="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
@@ -33,7 +33,7 @@ export function SocialAuth() {
         </button>
 
         <button
-          onClick={() => signIn("apple", { callbackUrl: "/dashboard" })}
+          onClick={() => signIn("apple", { callbackUrl: "/" })}
           className="flex items-center justify-center gap-3 px-4 py-3 bg-[#1F1F1F] text-white rounded-2xl text-sm font-bold hover:bg-black hover:shadow-lg hover:shadow-black/10 transition-all active:scale-[0.98] group"
         >
           <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
