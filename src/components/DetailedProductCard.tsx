@@ -46,7 +46,7 @@ export default function DetailedProductCard({
         {/* Info Section */}
         <div className="flex flex-col flex-1">
           {/* Brand/Category */}
-          <span className="text-[12px] text-[#ABC1D6] font-medium mb-1 uppercase tracking-wider">{product.category}</span>
+          <span className="text-[12px] text-[#1E293B] font-medium mb-1 uppercase tracking-wider">{product.category}</span>
 
           {/* Title */}
           <h3 className="text-[16px] font-bold text-[#1a1a1a] line-clamp-2 leading-snug mb-2 group-hover:text-[#002B55] transition-colors">
@@ -60,7 +60,7 @@ export default function DetailedProductCard({
                 <Star key={i} className={`w-3.5 h-3.5 ${i < 4 ? 'fill-current' : 'fill-gray-200 text-gray-200'}`} />
               ))}
             </div>
-            <span className="text-[12px] text-[#ABC1D6] font-medium">{rating} ({reviewCount})</span>
+            <span className="text-[12px] text-[#1E293B] font-medium">{rating} ({reviewCount})</span>
           </div>
 
           {/* Description */}
@@ -70,7 +70,7 @@ export default function DetailedProductCard({
           
           {/* Offer Count */}
           <div className="mb-4">
-            <span className="text-[12px] font-bold text-[#ABC1D6]">{offerCount} təklif</span>
+            <span className="text-[12px] font-bold text-[#1E293B]">{offerCount} təklif</span>
           </div>
 
           {/* Price Area */}
@@ -81,7 +81,7 @@ export default function DetailedProductCard({
               </span>
               <span className="text-[18px] font-bold text-[#FF6B00]">₼</span>
             </div>
-            <span className="text-[12px] text-[#ABC1D6] mt-1">Mağaza: <span className="font-semibold text-gray-700">{storeName}</span></span>
+            <span className="text-[12px] text-[#1E293B] mt-1">Mağaza: <span className="font-semibold text-gray-700">{storeName}</span></span>
           </div>
         </div>
       </Link>

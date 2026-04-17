@@ -79,13 +79,13 @@ export default function RegisterPage() {
               Sərfəli<span className="text-[#FF6B00]">.al</span>
             </h1>
           </Link>
-          <p className="text-[#ABC1D6] font-medium">Bizə qoşulun, qazanın</p>
+          <p className="text-[#1E293B] font-medium">Bizə qoşulun, qazanın</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-[#FF6B00]/5 p-10 sm:p-12">
           <div className="mb-10">
             <h2 className="text-2xl font-black text-[#1F1F1F] tracking-tight mb-2">Qeydiyyat</h2>
-            <p className="text-sm text-[#ABC1D6] font-medium">Yeni hesab yaratmaq üçün məlumatları daxil edin</p>
+            <p className="text-sm text-[#1E293B] font-medium">Yeni hesab yaratmaq üçün məlumatları daxil edin</p>
           </div>
 
           <SocialAuth />
@@ -101,7 +101,7 @@ export default function RegisterPage() {
               <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">Ad və Soyad</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                  <User className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
+                  <User className="h-5 w-5 text-[#1E293B] group-focus-within:text-[#FF6B00] transition-colors" />
                 </div>
                 <input 
                   type="text" 
@@ -109,7 +109,7 @@ export default function RegisterPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Məs: Əli Əliyev"
-                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
+                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-[#1E293B]"
                 />
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function RegisterPage() {
               <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">E-poçt ünvanı</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
+                  <Mail className="h-5 w-5 text-[#1E293B] group-focus-within:text-[#FF6B00] transition-colors" />
                 </div>
                 <input 
                   type="email" 
@@ -126,7 +126,7 @@ export default function RegisterPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="nümunə@mail.com"
-                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
+                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-[#1E293B]"
                 />
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function RegisterPage() {
               </div>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
+                  <Lock className="h-5 w-5 text-[#1E293B] group-focus-within:text-[#FF6B00] transition-colors" />
                 </div>
                 <input 
                   type="password" 
@@ -153,7 +153,7 @@ export default function RegisterPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
+                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-[#1E293B]"
                 />
               </div>
               <PasswordStrengthMeter password={password} />
@@ -173,11 +173,11 @@ export default function RegisterPage() {
           </form>
         </div>
 
-        <p className="text-center mt-10 text-sm font-bold text-[#ABC1D6]">
+        <p className="text-center mt-10 text-sm font-bold text-[#1E293B]">
           Artıq hesabınız var? <Link href="/login" className="text-[#FF6B00] font-black hover:underline">Daxil olun</Link>
         </p>
 
-        <div className="mt-12 flex items-center justify-center gap-2 text-[10px] font-black text-gray-300 uppercase tracking-widest bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-100 mx-auto w-fit">
+        <div className="mt-12 flex items-center justify-center gap-2 text-[10px] font-black text-[#1E293B] uppercase tracking-widest bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-100 mx-auto w-fit">
           <ShieldCheck className="w-3.5 h-3.5 text-[#FF6B00]" /> 256-bit SSL Təhlükəsizlik
         </div>
       </div>

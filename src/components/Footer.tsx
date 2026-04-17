@@ -11,7 +11,7 @@ export function Footer() {
             <Logo 
               className="scale-[0.65] origin-left mb-[-10px]" 
             />
-            <p className="mt-4 text-sm text-[#ABC1D6] leading-relaxed">
+            <p className="mt-4 text-sm text-[#1E293B] leading-relaxed">
               Azərbaycanın ən ağıllı alış platforması. Bütün mağazalardakı qiymətləri müqayisə edin, real endirimləri tapın və hər alışdan kəşbək qazanın.
             </p>
           </div>
@@ -43,7 +43,7 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-16 border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-[#ABC1D6]">
+        <div className="mt-16 border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-[#1E293B]">
           <p>&copy; {new Date().getFullYear()} Sərfəli.al. Bütün hüquqlar qorunur.</p>
           <div className="mt-4 sm:mt-0 space-x-6">
             <span className="hover:text-white transition-colors cursor-default">Gizlilik Siyasəti</span>

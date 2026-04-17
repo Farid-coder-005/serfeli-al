@@ -52,7 +52,7 @@ export function FavoriteButton({ productId, initialFavorited, className }: Favor
       className={`${defaultClasses} z-20 flex items-center justify-center w-10 h-10 rounded-full shadow-lg transition-all active:scale-90 ${
         isFavorited
           ? "bg-red-50 text-[#EA580C] hover:bg-red-100" // Use our platform orange/brand for red
-          : "bg-white text-[#ABC1D6] hover:text-[#EA580C] hover:bg-gray-50"
+          : "bg-white text-[#1E293B] hover:text-[#EA580C] hover:bg-gray-50"
       }`}
       aria-label="İstək siyahısına əlavə et"
     >

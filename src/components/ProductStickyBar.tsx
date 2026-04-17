@@ -55,7 +55,7 @@ export default function ProductStickyBar({
 
         <div className="flex items-center gap-6 shrink-0">
           <div className="hidden sm:flex flex-col items-end">
-            <span className="text-[9px] font-black text-[#ABC1D6] uppercase tracking-widest leading-none mb-1">Cari Qiymət</span>
+            <span className="text-[9px] font-black text-[#1E293B] uppercase tracking-widest leading-none mb-1">Cari Qiymət</span>
             <span className="text-lg font-black text-[#FF6B00] tracking-tighter leading-none">{price} ₼</span>
           </div>
           <a 

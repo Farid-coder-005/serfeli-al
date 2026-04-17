@@ -53,13 +53,13 @@ function LoginForm() {
               className="items-center" 
             />
           </div>
-          <p className="text-[#ABC1D6] font-medium">Ağıllı alış-verişə xoş gəldiniz</p>
+          <p className="text-[#1E293B] font-medium">Ağıllı alış-verişə xoş gəldiniz</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-[#FF6B00]/5 p-10 sm:p-12">
           <div className="mb-10">
             <h2 className="text-2xl font-black text-[#1F1F1F] tracking-tight mb-2">Daxil Olun</h2>
-            <p className="text-sm text-[#ABC1D6] font-medium">Hesabınıza daxil olmaq üçün məlumatları doldurun</p>
+            <p className="text-sm text-[#1E293B] font-medium">Hesabınıza daxil olmaq üçün məlumatları doldurun</p>
           </div>
 
           <SocialAuth />
@@ -74,7 +74,7 @@ function LoginForm() {
               <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">E-poçt ünvanı</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
+                  <Mail className="h-5 w-5 text-[#1E293B] group-focus-within:text-[#FF6B00] transition-colors" />
                 </div>
                 <input 
                    type="email" 
@@ -82,7 +82,7 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="nümunə@mail.com"
-                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
+                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-[#1E293B]"
                 />
               </div>
             </div>
@@ -91,7 +91,7 @@ function LoginForm() {
               <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">Şifrə</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
+                  <Lock className="h-5 w-5 text-[#1E293B] group-focus-within:text-[#FF6B00] transition-colors" />
                 </div>
                 <input 
                   type="password" 
@@ -99,13 +99,13 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
+                  className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-[#1E293B]"
                 />
               </div>
               <div className="text-center pt-2">
                 <Link 
                   href="/auth/forgot-password" 
-                  className="text-[10px] font-black text-[#ABC1D6] hover:text-[#FF6B00] transition-colors uppercase tracking-widest"
+                  className="text-[10px] font-black text-[#1E293B] hover:text-[#FF6B00] transition-colors uppercase tracking-widest"
                 >
                   Şifrəni unutmusunuz?
                 </Link>
@@ -126,11 +126,11 @@ function LoginForm() {
           </form>
         </div>
 
-        <p className="text-center mt-10 text-sm font-bold text-[#ABC1D6]">
+        <p className="text-center mt-10 text-sm font-bold text-[#1E293B]">
           Hesabınız yoxdur? <Link href="/register" className="text-[#FF6B00] font-black hover:underline">Qeydiyyatdan keçin</Link>
         </p>
 
-        <div className="mt-12 flex items-center justify-center gap-2 text-[10px] font-black text-gray-300 uppercase tracking-widest bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-100 mx-auto w-fit">
+        <div className="mt-12 flex items-center justify-center gap-2 text-[10px] font-black text-[#1E293B] uppercase tracking-widest bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-100 mx-auto w-fit">
           <ShieldCheck className="w-3.5 h-3.5 text-[#FF6B00]" /> 256-bit SSL Təhlükəsizlik
         </div>
       </div>

@@ -27,7 +27,7 @@ export default function ContactPage() {
 
         {/* Back link */}
         <Link href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[#ABC1D6] hover:text-[#002B55] transition-colors mb-10 group">
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#1E293B] hover:text-[#002B55] transition-colors mb-10 group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Ana səhifəyə qayıt
         </Link>
@@ -40,7 +40,7 @@ export default function ContactPage() {
           <h1 className="text-4xl sm:text-5xl font-black text-[#1E3A8A] tracking-tight mb-4">
             Bizimlə Əlaqə
           </h1>
-          <p className="text-[#ABC1D6] text-lg max-w-xl mx-auto font-medium">
+          <p className="text-[#1E293B] text-lg max-w-xl mx-auto font-medium">
             Sualınız, təklifiniz və ya probleminiz var? Komandamız sizə kömək etməyə hazırdır.
           </p>
         </div>
@@ -72,9 +72,9 @@ export default function ContactPage() {
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-black text-[#ABC1D6] uppercase tracking-widest mb-1">{label}</p>
+                  <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-widest mb-1">{label}</p>
                   <p className="text-base font-bold text-[#1E3A8A]">{value}</p>
-                  <p className="text-xs text-[#ABC1D6] mt-0.5">{sub}</p>
+                  <p className="text-xs text-[#1E293B] mt-0.5">{sub}</p>
                 </div>
               </div>
             ))}
@@ -87,7 +87,7 @@ export default function ContactPage() {
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <h3 className="text-2xl font-black text-[#1E3A8A]">Mesajınız uğurla göndərildi!</h3>
-              <p className="text-[#ABC1D6] font-medium">
+              <p className="text-[#1E293B] font-medium">
                 Təşəkkür edirik. Bizimlə əlaqə saxladığınız üçün minnətdarıq. <br />
                 Komandamız 24 saat ərzində sizinlə əlaqə saxlayacaq.
               </p>
@@ -105,7 +105,7 @@ export default function ContactPage() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-[11px] font-black text-[#ABC1D6] uppercase tracking-widest mb-2">
+                  <label className="block text-[11px] font-black text-[#1E293B] uppercase tracking-widest mb-2">
                     Ad Soyad
                   </label>
                   <input
@@ -116,7 +116,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-black text-[#ABC1D6] uppercase tracking-widest mb-2">
+                  <label className="block text-[11px] font-black text-[#1E293B] uppercase tracking-widest mb-2">
                     E-poçt
                   </label>
                   <input
@@ -128,7 +128,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-[11px] font-black text-[#ABC1D6] uppercase tracking-widest mb-2">
+                <label className="block text-[11px] font-black text-[#1E293B] uppercase tracking-widest mb-2">
                   Mövzu
                 </label>
                 <input
@@ -138,7 +138,7 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-black text-[#ABC1D6] uppercase tracking-widest mb-2">
+                <label className="block text-[11px] font-black text-[#1E293B] uppercase tracking-widest mb-2">
                   Mesaj
                 </label>
                 <textarea

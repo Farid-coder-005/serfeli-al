@@ -65,7 +65,7 @@ export function ProductCard({
           {/* Tag & Category */}
           <div className="flex items-center gap-2 mb-1">
             <span className="text-[10px] font-bold text-[#002B55] bg-[#E8F0F8] px-1 rounded-sm">Bestseller</span>
-            <span className="text-[10px] text-[#ABC1D6] font-medium truncate">{product.category}</span>
+            <span className="text-[10px] text-[#1E293B] font-medium truncate">{product.category}</span>
           </div>
 
           {/* Title */}
@@ -80,12 +80,12 @@ export function ProductCard({
                 <Star key={i} className={`w-3 h-3 ${i < 4 ? 'fill-current' : 'fill-gray-200 text-gray-200'}`} />
               ))}
             </div>
-            <span className="text-[11px] text-[#ABC1D6] font-medium">{rating} ({reviewCount})</span>
+            <span className="text-[11px] text-[#1E293B] font-medium">{rating} ({reviewCount})</span>
           </div>
           
           {/* Price Area */}
           <div className="mt-auto pt-2 flex flex-col">
-            <span className="text-[11px] text-[#ABC1D6] font-medium mb-[-2px]">from</span>
+            <span className="text-[11px] text-[#1E293B] font-medium mb-[-2px]">from</span>
             <div className="flex items-baseline gap-1">
               <span className="text-[20px] sm:text-[22px] font-bold text-[#FF6B00] tracking-tight leading-tight">
                 {newPrice.toLocaleString('az-AZ', { minimumFractionDigits: 2 })}

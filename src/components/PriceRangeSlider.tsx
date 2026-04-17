@@ -76,7 +76,7 @@ export default function PriceRangeSlider({ min = 0, max = 10000 }: PriceRangeSli
       <div className="flex justify-between items-center mb-6">
         <div className="flex flex-col">
           <span 
-            className="text-[10px] text-[#ABC1D6] font-[900] uppercase tracking-widest mb-1 leading-none"
+            className="text-[10px] text-[#1E293B] font-[900] uppercase tracking-widest mb-1 leading-none"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             Min
@@ -85,7 +85,7 @@ export default function PriceRangeSlider({ min = 0, max = 10000 }: PriceRangeSli
         </div>
         <div className="flex flex-col items-end">
           <span 
-            className="text-[10px] text-[#ABC1D6] font-[900] uppercase tracking-widest mb-1 leading-none"
+            className="text-[10px] text-[#1E293B] font-[900] uppercase tracking-widest mb-1 leading-none"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             Max
@@ -161,7 +161,7 @@ export default function PriceRangeSlider({ min = 0, max = 10000 }: PriceRangeSli
             className={`px-3 py-1.5 rounded-lg text-[11px] font-bold border transition-all active:scale-95 ${
               minVal === preset.min && maxVal === preset.max
                 ? "bg-[#FF6B00] text-white border-[#FF6B00] shadow-lg shadow-[#FF6B00]/20"
-                : "bg-white text-[#ABC1D6] border-slate-100 hover:border-[#FF6B00]/30 hover:text-[#FF6B00]"
+                : "bg-white text-[#1E293B] border-slate-100 hover:border-[#FF6B00]/30 hover:text-[#FF6B00]"
             }`}
           >
             {preset.label} ₼

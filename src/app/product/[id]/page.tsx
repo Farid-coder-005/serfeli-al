@@ -177,7 +177,7 @@ export default function ProductDetailsPage() {
       const diff = currentPrice - comparePrice;
       if (diff > 0) return { value: `↗ ${diff.toFixed(2)} ₼`, color: 'text-[#d32f2f]' };
       if (diff < 0) return { value: `↘ ${Math.abs(diff).toFixed(2)} ₼`, color: 'text-[#FF6B00]' };
-      return { value: `- 0.00 ₼`, color: 'text-[#ABC1D6]' };
+      return { value: `- 0.00 ₼`, color: 'text-[#1E293B]' };
     };
 
     return {
@@ -196,7 +196,7 @@ export default function ProductDetailsPage() {
     <>
       <main className="max-w-[1440px] mx-auto w-full px-4 sm:px-6 lg:px-6 py-6 text-[#222222] bg-white">
         {/* BREADCRUMB AREA */}
-        <div className="text-sm text-[#ABC1D6] mb-6 font-medium">
+        <div className="text-sm text-[#1E293B] mb-6 font-medium">
           <Link href="/" className="hover:underline hover:text-[#002B55]">Elektronika</Link> {'>'} 
           <span className="mx-1">Smartfonlar</span> {'>'} 
           <span className="mx-1">Motorola</span> {'>'} 
@@ -239,14 +239,14 @@ export default function ProductDetailsPage() {
                     <button 
                       type="button"
                       onClick={(e) => { e.stopPropagation(); handleVariantScroll('left'); }}
-                      className="absolute left-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-[#ABC1D6] hover:text-[#002B55] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                      className="absolute left-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-[#1E293B] hover:text-[#002B55] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
                     >
                       <ChevronLeft size={24} strokeWidth={2.5} />
                     </button>
                     <button 
                       type="button"
                       onClick={(e) => { e.stopPropagation(); handleVariantScroll('right'); }}
-                      className="absolute right-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-[#ABC1D6] hover:text-[#002B55] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                      className="absolute right-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-[#1E293B] hover:text-[#002B55] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
                     >
                       <ChevronRight size={24} strokeWidth={2.5} />
                     </button>
@@ -328,21 +328,21 @@ export default function ProductDetailsPage() {
                 {stats && (
                   <div className="flex items-center justify-between border-y border-gray-100 py-4 mb-6">
                     <div className="flex flex-col items-center flex-1 text-center">
-                      <div className="text-[10px] text-[#ABC1D6] font-bold uppercase tracking-tighter">Ən aşağı</div>
+                      <div className="text-[10px] text-[#1E293B] font-bold uppercase tracking-tighter">Ən aşağı</div>
                       <div className="text-lg font-black text-[#222222]">{stats.min.price} ₼</div>
-                      <div className="text-[9px] text-[#ABC1D6]">{stats.min.daysAgo} gün əvvəl</div>
+                      <div className="text-[9px] text-[#1E293B]">{stats.min.daysAgo} gün əvvəl</div>
                     </div>
                     <div className="w-px h-10 bg-gray-100"></div>
                     <div className="flex flex-col items-center flex-1 text-center">
-                      <div className="text-[10px] text-[#ABC1D6] font-bold uppercase tracking-tighter">Orta</div>
+                      <div className="text-[10px] text-[#1E293B] font-bold uppercase tracking-tighter">Orta</div>
                       <div className="text-lg font-black text-[#222222]">{stats.avg.price} ₼</div>
-                      <div className="text-[9px] text-[#ABC1D6]">{stats.avg.daysAgo} g. ərzində</div>
+                      <div className="text-[9px] text-[#1E293B]">{stats.avg.daysAgo} g. ərzində</div>
                     </div>
                     <div className="w-px h-10 bg-gray-100"></div>
                     <div className="flex flex-col items-center flex-1 text-center">
-                      <div className="text-[10px] text-[#ABC1D6] font-bold uppercase tracking-tighter">Ən yüksək</div>
+                      <div className="text-[10px] text-[#1E293B] font-bold uppercase tracking-tighter">Ən yüksək</div>
                       <div className="text-lg font-black text-[#222222]">{stats.max.price} ₼</div>
-                      <div className="text-[9px] text-[#ABC1D6]">{stats.max.daysAgo} gün əvvəl</div>
+                      <div className="text-[9px] text-[#1E293B]">{stats.max.daysAgo} gün əvvəl</div>
                     </div>
                   </div>
                 )}
@@ -390,13 +390,13 @@ export default function ProductDetailsPage() {
               <div className="flex text-lg font-medium text-[#002B55]">
                 <button 
                   onClick={() => setPaymentMethod('kredit')}
-                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'kredit' ? 'border-[#002B55] text-[#002B55]' : 'border-transparent text-[#ABC1D6] hover:text-[#002B55]'}`}
+                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'kredit' ? 'border-[#002B55] text-[#002B55]' : 'border-transparent text-[#1E293B] hover:text-[#002B55]'}`}
                 >
                   Kredit qiymətləri
                 </button>
                 <button 
                   onClick={() => setPaymentMethod('nagd')}
-                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'nagd' ? 'border-[#002B55] text-[#002B55]' : 'border-transparent text-[#ABC1D6] hover:text-[#002B55]'}`}
+                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'nagd' ? 'border-[#002B55] text-[#002B55]' : 'border-transparent text-[#1E293B] hover:text-[#002B55]'}`}
                 >
                   Nağd alış qiymətləri
                 </button>
@@ -464,7 +464,7 @@ export default function ProductDetailsPage() {
                  </div>
                  
                  {/* Delivery Info */}
-                 <div className="w-1/4 text-center text-sm text-[#ABC1D6]">
+                 <div className="w-1/4 text-center text-sm text-[#1E293B]">
                    {offer.delivery}
                  </div>
                  
@@ -487,9 +487,9 @@ export default function ProductDetailsPage() {
         <div className="mb-16">
           <h2 className="text-2xl font-bold mb-6 border-b-2 border-[#222222] pb-2">Məhsul detalları</h2>
           <div className="grid grid-cols-1 border-t border-gray-200">
-             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#ABC1D6] text-sm font-medium">Satışa çıxarılma ili</div><div className="w-2/3 text-sm font-bold">2023</div></div>
-             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#ABC1D6] text-sm font-medium">Ekran ölçüsü</div><div className="w-2/3 text-sm font-bold">6.5 düym / 16.51 sm</div></div>
-             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#ABC1D6] text-sm font-medium">Ekran icazəsi</div><div className="w-2/3 text-sm font-bold">2400 x 1080 piksel</div></div>
+             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#1E293B] text-sm font-medium">Satışa çıxarılma ili</div><div className="w-2/3 text-sm font-bold">2023</div></div>
+             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#1E293B] text-sm font-medium">Ekran ölçüsü</div><div className="w-2/3 text-sm font-bold">6.5 düym / 16.51 sm</div></div>
+             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#1E293B] text-sm font-medium">Ekran icazəsi</div><div className="w-2/3 text-sm font-bold">2400 x 1080 piksel</div></div>
              <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30 font-black text-[#002B55]"><div className="w-1/3 text-sm">Ekran növü</div><div className="w-2/3 text-sm">POLED</div></div>
           </div>
         </div>
@@ -533,7 +533,7 @@ export default function ProductDetailsPage() {
               <div className="w-full md:w-1/4 flex flex-col items-center justify-center bg-gray-50 p-8 rounded-sm border border-gray-200">
                  <div className="text-6xl font-extrabold text-[#222222] mb-3">4.6</div>
                  <div className="flex text-[#FFCC00] text-2xl mb-3">★★★★★</div>
-                 <div className="text-sm text-[#ABC1D6] font-medium font-bold">128 rəy əsasında</div>
+                 <div className="text-sm text-[#1E293B] font-medium font-bold">128 rəy əsasında</div>
               </div>
               
               <div className="w-full md:w-3/4 flex flex-col gap-8">
@@ -543,22 +543,22 @@ export default function ProductDetailsPage() {
                           <div className="flex text-[#FFCC00] text-lg mb-1">★★★★★</div>
                           <div className="font-bold text-base text-[#222222]">Qiymətinə görə əla dəyər</div>
                        </div>
-                       <div className="text-xs text-[#ABC1D6]">12 Aprel 2026</div>
+                       <div className="text-xs text-[#1E293B]">12 Aprel 2026</div>
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed mb-3">Batareyanın ömrü inanılmazdır və POLED ekran çox canlıdır. Bu qiymətə həqiqətən şikayət etmək olmaz. Kamera gündüz işığında çox yaxşı çəkir.</p>
-                    <div className="text-xs text-[#ABC1D6] font-medium">Müəllif: <span className="font-bold text-gray-700">Kənan M.</span></div>
+                    <div className="text-xs text-[#1E293B] font-medium">Müəllif: <span className="font-bold text-gray-700">Kənan M.</span></div>
                  </div>
                  
                  <div className="border-b border-gray-100 pb-6">
                     <div className="flex justify-between items-start mb-3">
                        <div>
-                          <div className="flex text-[#FFCC00] text-lg mb-1">★★★★<span className="text-gray-300">★</span></div>
+                          <div className="flex text-[#FFCC00] text-lg mb-1">★★★★<span className="text-[#1E293B]">★</span></div>
                           <div className="font-bold text-base text-[#222222]">Yaxşı orta seqment</div>
                        </div>
-                       <div className="text-xs text-[#ABC1D6]">05 Aprel 2026</div>
+                       <div className="text-xs text-[#1E293B]">05 Aprel 2026</div>
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed mb-3">Ümumilikdə yaxşı telefondur. İnterfeys çox təmizdir. Sadəcə 4 ulduz verirəm, çünki prosessor ağır 3D oyunlarda bir az çətinlik çəkir.</p>
-                    <div className="text-xs text-[#ABC1D6] font-medium">Müəllif: <span className="font-bold text-gray-700">Rəşad Ə.</span></div>
+                    <div className="text-xs text-[#1E293B] font-medium">Müəllif: <span className="font-bold text-gray-700">Rəşad Ə.</span></div>
                  </div>
               </div>
            </div>
@@ -569,11 +569,11 @@ export default function ProductDetailsPage() {
         <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6 overflow-hidden" style={{ zIndex: 2147483647 }}>
           <div className="bg-white w-full max-w-4xl max-h-[95vh] overflow-y-auto rounded-sm shadow-2xl flex flex-col relative">
             {/* ABSOLUTE CLOSE BUTTON (Sticky to the top right of the modal) */}
-            <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-[#ABC1D6] hover:text-[#FF6B00] text-4xl leading-none z-50 transition-colors">&times;</button>
+            <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-[#1E293B] hover:text-[#FF6B00] text-4xl leading-none z-50 transition-colors">&times;</button>
             
             <div className="flex flex-col p-8">
               <h2 className="text-2xl font-bold text-[#222222]">Qiymət dinamikası</h2>
-              <p className="text-sm text-[#ABC1D6] mt-1">{product.name}</p>
+              <p className="text-sm text-[#1E293B] mt-1">{product.name}</p>
               
               {/* Timeframe Toggles */}
               <div className="flex justify-end gap-2 mt-4 mb-8">
@@ -649,7 +649,7 @@ export default function ProductDetailsPage() {
                 <div className="flex items-center justify-between py-4 border-b border-gray-100">
                   <div className="w-1/3">
                     <div className="text-[#222222] font-medium text-base">Ən aşağı qiymət</div>
-                    <div className="text-sm text-[#ABC1D6] mt-0.5">{stats.min.daysAgo} gün əvvəl</div>
+                    <div className="text-sm text-[#1E293B] mt-0.5">{stats.min.daysAgo} gün əvvəl</div>
                   </div>
                   <div className="w-1/3 text-center">
                     <span className="text-2xl font-normal text-[#222222]">{stats.min.price} ₼</span>
@@ -663,7 +663,7 @@ export default function ProductDetailsPage() {
                 <div className="flex items-center justify-between py-4 border-b border-gray-100">
                   <div className="w-1/3">
                     <div className="text-[#222222] font-medium text-base">Orta qiymət</div>
-                    <div className="text-sm text-[#ABC1D6] mt-0.5">{stats.avg.daysAgo} gün ərzində</div>
+                    <div className="text-sm text-[#1E293B] mt-0.5">{stats.avg.daysAgo} gün ərzində</div>
                   </div>
                   <div className="w-1/3 text-center">
                     <span className="text-2xl font-normal text-[#222222]">{stats.avg.price} ₼</span>
@@ -677,7 +677,7 @@ export default function ProductDetailsPage() {
                 <div className="flex items-center justify-between py-4 border-b border-gray-100 mb-6">
                   <div className="w-1/3">
                     <div className="text-[#222222] font-medium text-base">Ən yüksək qiymət</div>
-                    <div className="text-sm text-[#ABC1D6] mt-0.5">{stats.max.daysAgo} gün əvvəl</div>
+                    <div className="text-sm text-[#1E293B] mt-0.5">{stats.max.daysAgo} gün əvvəl</div>
                   </div>
                   <div className="w-1/3 text-center">
                     <span className="text-2xl font-normal text-[#222222]">{stats.max.price} ₼</span>

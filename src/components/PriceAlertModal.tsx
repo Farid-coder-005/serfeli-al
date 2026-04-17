@@ -41,7 +41,7 @@ export default function PriceAlertModal({
 
   // Gauge Logic
   const getFeasibility = () => {
-    if (targetVal >= currentPrice) return { label: "Artıq bu qiymətdədir!", color: "bg-gray-400", text: "text-[#ABC1D6]", percent: 100 };
+    if (targetVal >= currentPrice) return { label: "Artıq bu qiymətdədir!", color: "bg-gray-400", text: "text-[#1E293B]", percent: 100 };
     
     const dropPercent = ((currentPrice - targetVal) / currentPrice) * 100;
     
@@ -155,13 +155,13 @@ export default function PriceAlertModal({
                 <CheckCircle2 className="w-10 h-10 text-[#1da661]" />
               </div>
               <h3 className="text-xl font-black text-slate-800 mb-2">Uğurlu!</h3>
-              <p className="text-[#ABC1D6] font-medium">{message}</p>
+              <p className="text-[#1E293B] font-medium">{message}</p>
             </div>
           ) : (
             <>
               {/* Target Price Input */}
               <div className="mb-8">
-                <label className="block text-xs font-black text-[#ABC1D6] uppercase tracking-widest mb-3">
+                <label className="block text-xs font-black text-[#1E293B] uppercase tracking-widest mb-3">
                   İstədiyiniz Qiymət
                 </label>
                 <div className="relative">
@@ -172,14 +172,14 @@ export default function PriceAlertModal({
                     className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-3xl font-black text-slate-800 focus:border-[#002B55] focus:ring-4 focus:ring-blue-50 outline-none transition-all"
                     placeholder="0.00"
                   />
-                  <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xl font-bold text-[#ABC1D6]">₼</span>
+                  <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xl font-bold text-[#1E293B]">₼</span>
                 </div>
               </div>
 
               {/* Feasibility Gauge */}
               <div className="mb-8 p-5 bg-slate-50 rounded-2xl border border-slate-100">
                 <div className="flex justify-between items-center mb-3">
-                  <span className="text-xs font-bold text-[#ABC1D6]">Realizasiya ehtimalı:</span>
+                  <span className="text-xs font-bold text-[#1E293B]">Realizasiya ehtimalı:</span>
                   <span className={`text-xs font-black uppercase tracking-wider ${feasibility.text}`}>
                     {feasibility.label}
                   </span>
@@ -191,7 +191,7 @@ export default function PriceAlertModal({
                   />
                 </div>
                 {feasibility.info && (
-                  <div className="flex gap-2 items-start text-[11px] text-[#ABC1D6] leading-tight">
+                  <div className="flex gap-2 items-start text-[11px] text-[#1E293B] leading-tight">
                     <Info size={14} className="shrink-0 mt-0.5" />
                     {feasibility.info}
                   </div>
@@ -200,11 +200,11 @@ export default function PriceAlertModal({
 
               {/* Email Input */}
               <div className="mb-8">
-                <label className="block text-xs font-black text-[#ABC1D6] uppercase tracking-widest mb-3">
+                <label className="block text-xs font-black text-[#1E293B] uppercase tracking-widest mb-3">
                   Bildiriş üçün Email
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-[#ABC1D6] w-5 h-5" />
+                  <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-[#1E293B] w-5 h-5" />
                   <input
                     type="email"
                     value={email}

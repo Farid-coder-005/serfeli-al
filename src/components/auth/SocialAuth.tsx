@@ -49,7 +49,7 @@ export function SocialAuth() {
           <div className="w-full border-t border-gray-100"></div>
         </div>
         <div className="relative flex justify-center">
-          <span className="bg-white px-4 text-xs font-black text-gray-300 uppercase tracking-widest">və ya</span>
+          <span className="bg-white px-4 text-xs font-black text-[#1E293B] uppercase tracking-widest">və ya</span>
         </div>
       </div>
     </div>

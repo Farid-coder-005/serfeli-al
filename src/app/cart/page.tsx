@@ -23,7 +23,7 @@ export default function CartPage() {
 
         {/* Back link */}
         <Link href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[#ABC1D6] hover:text-[#002B55] transition-colors mb-10 group">
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#1E293B] hover:text-[#002B55] transition-colors mb-10 group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Ana səhifəyə qayıt
         </Link>
@@ -37,7 +37,7 @@ export default function CartPage() {
             <h1 className="text-3xl sm:text-4xl font-black text-[#1E3A8A] tracking-tight">
               Səbətiniz
             </h1>
-            <p className="text-sm text-[#ABC1D6] font-medium mt-0.5">
+            <p className="text-sm text-[#1E293B] font-medium mt-0.5">
               {items.length > 0 ? `${items.length} məhsul` : "Səbət boşdur"}
             </p>
           </div>
@@ -52,7 +52,7 @@ export default function CartPage() {
             <h2 className="text-2xl font-black text-[#1E3A8A] mb-3">
               Səbətiniz boşdur
             </h2>
-            <p className="text-[#ABC1D6] text-base max-w-sm mx-auto mb-10 font-medium leading-relaxed">
+            <p className="text-[#1E293B] text-base max-w-sm mx-auto mb-10 font-medium leading-relaxed">
               Hələ heç bir məhsul əlavə etməmisiniz. Axtarış edib ən ucuz qiymətli məhsulları tapın.
             </p>
 

@@ -64,10 +64,10 @@ export function PasswordStrengthMeter({ password }: PasswordStrengthMeterProps) 
               {item.met ? (
                 <Check className="w-2.5 h-2.5 text-green-600" />
               ) : (
-                <X className="w-2.5 h-2.5 text-gray-300" />
+                <X className="w-2.5 h-2.5 text-[#1E293B]" />
               )}
             </div>
-            <span className={`text-[10px] font-bold tracking-tight leading-none ${item.met ? "text-gray-900" : "text-[#ABC1D6]"}`}>
+            <span className={`text-[10px] font-bold tracking-tight leading-none ${item.met ? "text-gray-900" : "text-[#1E293B]"}`}>
               {item.label}
             </span>
           </div>

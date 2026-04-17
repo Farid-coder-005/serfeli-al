@@ -26,10 +26,10 @@ export default function DashboardPage() {
       <div className="min-h-screen bg-[#F9FAFB] flex items-center justify-center p-4">
         <div className="bg-white rounded-[3rem] border border-gray-100 p-12 text-center shadow-xl max-w-md w-full">
           <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-            <UserCircle className="w-10 h-10 text-gray-300" />
+            <UserCircle className="w-10 h-10 text-[#1E293B]" />
           </div>
           <h2 className="text-2xl font-black text-[#002B55] mb-4">Giriş edilməyib</h2>
-          <p className="text-[#ABC1D6] mb-8">Dashboard-u görmək üçün zəhmət olmasa daxil olun.</p>
+          <p className="text-[#1E293B] mb-8">Dashboard-u görmək üçün zəhmət olmasa daxil olun.</p>
           <Link href="/login" className="inline-flex items-center justify-center w-full py-4 px-6 bg-[#FF6B00] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#E64D00] transition-all shadow-lg active:scale-95">
             Giriş səhifəsinə keç
           </Link>
@@ -60,8 +60,8 @@ export default function DashboardPage() {
                   </h1>
                   <span className="px-3 py-1 bg-[#FF6B00] text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-orange-500/20 leading-none">PREMIUM</span>
                 </div>
-                <p className="text-slate-300 font-medium flex items-center gap-2">
-                  <UserCircle className="w-4 h-4 text-slate-300" /> {user.email || ""}
+                <p className="text-[#1E293B] font-medium flex items-center gap-2">
+                  <UserCircle className="w-4 h-4 text-[#1E293B]" /> {user.email || ""}
                 </p>
               </div>
             </div>
@@ -96,9 +96,9 @@ export default function DashboardPage() {
                   </div>
                   <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">+12% Ay/Ay</span>
                 </div>
-                <p className="text-[10px] font-black text-[#ABC1D6] uppercase tracking-[0.25em] mb-2">Kəşbək Balansı</p>
+                <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">Kəşbək Balansı</p>
                 <h3 className="text-5xl font-black text-[#002B55] tracking-tighter">
-                  {(user.balance || 45.20).toFixed(2)} <span className="text-2xl ml-1 text-gray-300 font-bold">₼</span>
+                  {(user.balance || 45.20).toFixed(2)} <span className="text-2xl ml-1 text-[#1E293B] font-bold">₼</span>
                 </h3>
               </div>
 
@@ -110,9 +110,9 @@ export default function DashboardPage() {
                   </div>
                   <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">Real qənaət</span>
                 </div>
-                <p className="text-[10px] font-black text-[#ABC1D6] uppercase tracking-[0.25em] mb-2">Ümumi Qənaət</p>
+                <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">Ümumi Qənaət</p>
                 <h3 className="text-5xl font-black text-[#002B55] tracking-tighter">
-                  452.40 <span className="text-2xl ml-1 text-gray-300 font-bold">₼</span>
+                  452.40 <span className="text-2xl ml-1 text-[#1E293B] font-bold">₼</span>
                 </h3>
               </div>
             </div>
@@ -139,8 +139,8 @@ export default function DashboardPage() {
                       </div>
                       <div className="flex flex-col">
                         <span className="text-sm font-black text-[#002B55] mb-0.5">{item.store}</span>
-                        <span className="text-xs font-bold text-[#ABC1D6]">{item.item}</span>
-                        <span className="text-[10px] text-gray-300 mt-1 font-medium">{item.date}</span>
+                        <span className="text-xs font-bold text-[#1E293B]">{item.item}</span>
+                        <span className="text-[10px] text-[#1E293B] mt-1 font-medium">{item.date}</span>
                       </div>
                     </div>
                     <div className="text-right flex flex-col items-end gap-2">
@@ -167,10 +167,10 @@ export default function DashboardPage() {
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-5xl font-black text-[#002B55] tracking-tighter">75%</span>
-                  <span className="text-[10px] text-[#ABC1D6] font-bold uppercase tracking-widest mt-1">Xallar</span>
+                  <span className="text-[10px] text-[#1E293B] font-bold uppercase tracking-widest mt-1">Xallar</span>
                 </div>
               </div>
-              <p className="text-sm text-[#ABC1D6] font-medium mb-8 leading-relaxed px-4 text-center">
+              <p className="text-sm text-[#1E293B] font-medium mb-8 leading-relaxed px-4 text-center">
                 Növbəti seviyyə üçün <span className="text-[#FF6B00] font-black">250 AZN</span> dəyərində alış lazımdır.
               </p>
               <button className="w-full py-5 bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black text-[#002B55] hover:bg-white hover:border-[#FF6B00]/20 hover:shadow-lg transition-all uppercase tracking-[0.2em]">

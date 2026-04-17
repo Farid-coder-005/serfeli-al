@@ -118,7 +118,7 @@ export default async function SearchPage({
             <h1 className="text-3xl font-black text-white tracking-tight">
               {query ? `Search results for: '${query}'` : (selectedCategory ? `${categoryNames[selectedCategory] || selectedCategory} kateqoriyası` : "Axtarış Nəticələri")}
             </h1>
-            <p className="text-sm text-slate-300 mt-2 font-medium">
+            <p className="text-sm text-[#1E293B] mt-2 font-medium">
               {products.length > 0 ? (
                 <span className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-[#FF6B00] rounded-full animate-pulse"></span>
@@ -151,10 +151,10 @@ export default async function SearchPage({
             {products.length === 0 ? (
                <div className="bg-white rounded-[3rem] border border-gray-100 p-20 text-center shadow-xl">
                   <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Search className="w-10 h-10 text-gray-300" />
+                    <Search className="w-10 h-10 text-[#1E293B]" />
                   </div>
                   <h3 className="text-xl font-bold text-[#1E3A8A] mb-2">No products found matching your search</h3>
-                  <p className="text-[#ABC1D6] max-w-sm mx-auto">Seçdiyiniz kriteriyalara uyğun məhsul yoxdur. Zəhmət olmasa digər filterləri sınaqdan keçirin.</p>
+                  <p className="text-[#1E293B] max-w-sm mx-auto">Seçdiyiniz kriteriyalara uyğun məhsul yoxdur. Zəhmət olmasa digər filterləri sınaqdan keçirin.</p>
                </div>
             ) : (
               <ProductGrid products={products} userFavoriteIds={userFavoriteIds} />

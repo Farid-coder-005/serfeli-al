@@ -74,13 +74,13 @@ export default function ResetPasswordPage() {
               Sərfəli<span className="text-[#FF6B00]">.al</span>
             </h1>
           </Link>
-          <p className="text-[#ABC1D6] font-medium">Yeni şifrə təyini</p>
+          <p className="text-[#1E293B] font-medium">Yeni şifrə təyini</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl p-10 sm:p-12 transition-all">
           <div className="mb-8">
             <h2 className="text-2xl font-black text-[#1F1F1F] tracking-tight mb-2">Şifrəni Sıfırla</h2>
-            <p className="text-sm text-[#ABC1D6] font-medium leading-relaxed">
+            <p className="text-sm text-[#1E293B] font-medium leading-relaxed">
               Hesabınız üçün yeni bir təhlükəsiz şifrə təyin edin.
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function ResetPasswordPage() {
               <p className="text-green-600 font-bold bg-green-50 p-4 rounded-xl border border-green-100">
                 {message}
               </p>
-              <p className="text-sm text-[#ABC1D6]">Giriş səhifəsinə yönləndirilirsiniz...</p>
+              <p className="text-sm text-[#1E293B]">Giriş səhifəsinə yönləndirilirsiniz...</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -108,7 +108,7 @@ export default function ResetPasswordPage() {
                   <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">Yeni Şifrə</label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
+                      <Lock className="h-5 w-5 text-[#1E293B] group-focus-within:text-[#FF6B00] transition-colors" />
                     </div>
                     <input 
                       type="password" 
@@ -116,7 +116,7 @@ export default function ResetPasswordPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
+                      className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-[#1E293B]"
                     />
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function ResetPasswordPage() {
                   <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">Şifrəni Təkrarla</label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF6B00] transition-colors" />
+                      <Lock className="h-5 w-5 text-[#1E293B] group-focus-within:text-[#FF6B00] transition-colors" />
                     </div>
                     <input 
                       type="password" 
@@ -133,7 +133,7 @@ export default function ResetPasswordPage() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-gray-300"
+                      className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF6B00]/10 focus:border-[#FF6B00] outline-none transition-all placeholder:text-[#1E293B]"
                     />
                   </div>
                 </div>
