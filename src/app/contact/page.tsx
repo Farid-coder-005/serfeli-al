@@ -18,23 +18,23 @@ export default function ContactPage() {
       {/* Decorative blobs */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(5,120,80,0.06) 0%, transparent 70%)", filter: "blur(60px)" }} />
+          style={{ background: "radial-gradient(circle, rgba(15,23,42,0.06) 0%, transparent 70%)", filter: "blur(60px)" }} />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(30,58,138,0.05) 0%, transparent 70%)", filter: "blur(70px)" }} />
+          style={{ background: "radial-gradient(circle, rgba(255,85,0,0.03) 0%, transparent 70%)", filter: "blur(70px)" }} />
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full relative z-10">
 
         {/* Back link */}
         <Link href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-[#057850] transition-colors mb-10 group">
+          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-[#0f172a] transition-colors mb-10 group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Ana səhifəyə qayıt
         </Link>
 
         {/* Heading */}
         <div className="mb-14 text-center">
-          <span className="inline-block text-[11px] font-black text-[#057850] tracking-[0.25em] uppercase mb-4">
+          <span className="inline-block text-[11px] font-black text-[#0f172a] tracking-[0.25em] uppercase mb-4">
             Dəstək Mərkəzi
           </span>
           <h1 className="text-4xl sm:text-5xl font-black text-[#1E3A8A] tracking-tight mb-4">
@@ -83,7 +83,7 @@ export default function ContactPage() {
           {/* Contact form */}
           {isSubmitted ? (
             <div className="lg:col-span-3 bg-white rounded-[2.5rem] border border-gray-100 p-12 shadow-sm flex flex-col items-center justify-center text-center space-y-4">
-              <div className="w-20 h-20 bg-green-50 text-[#057850] rounded-full flex items-center justify-center">
+              <div className="w-20 h-20 bg-slate-50 text-[#0f172a] rounded-full flex items-center justify-center">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <h3 className="text-2xl font-black text-[#1E3A8A]">Mesajınız uğurla göndərildi!</h3>
@@ -93,7 +93,7 @@ export default function ContactPage() {
               </p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="mt-4 text-[#057850] font-bold text-sm hover:underline"
+                className="mt-4 text-[#FF5500] font-bold text-sm hover:underline"
               >
                 Yeni mesaj göndər
               </button>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                     type="text"
                     required
                     placeholder="Adınız..."
-                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all"
+                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF5500]/10 focus:border-[#FF5500] focus:bg-white transition-all"
                   />
                 </div>
                 <div>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                     type="email"
                     required
                     placeholder="email@example.az"
-                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all"
+                    className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF5500]/10 focus:border-[#FF5500] focus:bg-white transition-all"
                   />
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                 <input
                   type="text"
                   placeholder="Mesajınızın mövzusu..."
-                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all"
+                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF5500]/10 focus:border-[#FF5500] focus:bg-white transition-all"
                 />
               </div>
               <div>
@@ -145,12 +145,12 @@ export default function ContactPage() {
                   rows={5}
                   required
                   placeholder="Mesajınızı buraya yazın..."
-                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#057850]/20 focus:border-[#057850] focus:bg-white transition-all resize-none"
+                  className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF5500]/10 focus:border-[#FF5500] focus:bg-white transition-all resize-none"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-3 bg-[#057850] hover:bg-[#046b47] text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl shadow-lg shadow-green-900/10 transition-all active:scale-[0.98]"
+                className="w-full flex items-center justify-center gap-3 bg-[#FF5500] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]"
               >
                 <Send className="w-4 h-4" />
                 Göndər

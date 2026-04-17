@@ -176,7 +176,7 @@ export default function ProductDetailsPage() {
     const getDiff = (comparePrice: number) => {
       const diff = currentPrice - comparePrice;
       if (diff > 0) return { value: `↗ ${diff.toFixed(2)} ₼`, color: 'text-[#d32f2f]' };
-      if (diff < 0) return { value: `↘ ${Math.abs(diff).toFixed(2)} ₼`, color: 'text-[#1da661]' };
+      if (diff < 0) return { value: `↘ ${Math.abs(diff).toFixed(2)} ₼`, color: 'text-[#FF5500]' };
       return { value: `- 0.00 ₼`, color: 'text-gray-500' };
     };
 
@@ -471,12 +471,12 @@ export default function ProductDetailsPage() {
                  {/* Store Logo & Button (NO RATINGS/STARS) */}
                  <div className="w-1/4 flex items-center justify-end gap-6">
                    <StoreLogo storeName={offer.store} />
-                   <button 
-                     onClick={() => handleRedirect(offer.url)}
-                     className="bg-[#1da661] hover:bg-[#15874f] text-white font-bold py-2 px-6 rounded transition-colors shadow-sm"
-                   >
-                     MAĞAZAYA KEÇ
-                   </button>
+                    <button 
+                      onClick={() => handleRedirect(offer.url)}
+                      className="bg-[#FF5500] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest py-3 px-8 rounded transition-all shadow-lg shadow-orange-500/10 active:scale-[0.98]"
+                    >
+                      MAĞAZAYA KEÇ
+                    </button>
                  </div>
                </div>
              ))}
@@ -498,14 +498,13 @@ export default function ProductDetailsPage() {
         <div className="mb-20">
           <h2 className="text-2xl font-bold mb-6">Üstünlükləri və çatışmazlıqları</h2>
           <div className="flex flex-col md:flex-row gap-8 mb-10">
-             <div className="w-full md:w-1/2 border-2 border-green-100 bg-green-50/30 p-6 rounded-md shadow-sm">
-                <div className="flex items-center gap-2 mb-4 text-green-800 font-bold text-lg">
-                  <div className="bg-green-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-sm leading-none">+</div>
+              <div className="w-full md:w-1/2 border-2 border-slate-100 bg-slate-50/30 p-6 rounded-md shadow-sm">
+                <div className="flex items-center gap-2 mb-4 text-[#0f172a] font-bold text-lg">
+                  <div className="bg-[#FF5500] text-white rounded-full w-5 h-5 flex items-center justify-center text-sm leading-none">+</div>
                   Üstünlükləri
                 </div>
                 <ul className="space-y-4 text-sm text-gray-700">
-                  <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-600 mt-1.5 shrink-0"></div> Qiymətinə görə qəşəng və premium dizayn.</li>
-                  <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-600 mt-1.5 shrink-0"></div> 5,000 mAh batareya ilə uzunmüddətli enerji.</li>
+                  <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#FF5500] mt-1.5 shrink-0"></div> Batareya ilə uzunmüddətli enerji.</li>
                 </ul>
              </div>
              <div className="w-full md:w-1/2 border-2 border-red-100 bg-red-50/30 p-6 rounded-md shadow-sm">

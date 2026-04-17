@@ -23,15 +23,15 @@ export default function CartPage() {
 
         {/* Back link */}
         <Link href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-[#057850] transition-colors mb-10 group">
+          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-[#0f172a] transition-colors mb-10 group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Ana səhifəyə qayıt
         </Link>
 
         {/* Heading */}
         <div className="flex items-center gap-4 mb-12">
-          <div className="w-12 h-12 rounded-2xl bg-[#057850]/10 flex items-center justify-center">
-            <ShoppingCart className="w-6 h-6 text-[#057850]" />
+          <div className="w-12 h-12 rounded-2xl bg-[#0f172a]/10 flex items-center justify-center">
+            <ShoppingCart className="w-6 h-6 text-[#0f172a]" />
           </div>
           <div>
             <h1 className="text-3xl sm:text-4xl font-black text-[#1E3A8A] tracking-tight">
@@ -57,9 +57,9 @@ export default function CartPage() {
             </p>
 
             {/* Promo banner */}
-            <div className="inline-flex items-center gap-3 bg-[#057850]/5 border border-[#057850]/10 rounded-2xl px-6 py-3 mb-10">
-              <Tag className="w-4 h-4 text-[#057850]" />
-              <span className="text-sm font-bold text-[#057850]">
+            <div className="inline-flex items-center gap-3 bg-[#0f172a]/5 border border-[#0f172a]/10 rounded-2xl px-6 py-3 mb-10">
+              <Tag className="w-4 h-4 text-[#0f172a]" />
+              <span className="text-sm font-bold text-[#0f172a]">
                 Hər alışda kəşbək qazanın — platformamız ən ucuz qiyməti tapır!
               </span>
             </div>
@@ -67,7 +67,7 @@ export default function CartPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/search"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#057850] hover:bg-[#046b47] text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-lg shadow-green-900/10 transition-all active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5500] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]"
               >
                 <Search className="w-4 h-4" />
                 Alış-verişə başla

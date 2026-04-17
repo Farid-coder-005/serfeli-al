@@ -35,7 +35,7 @@ export function ProductCard({
             -{discountPercent}%
           </div>
         )}
-        <div className="bg-[#008a00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-r-sm">
+        <div className="bg-[#0f172a] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-r-sm shadow-sm">
           A
         </div>
       </div>

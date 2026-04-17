@@ -148,7 +148,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           fill 
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex flex-col justify-center px-12">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 to-transparent flex flex-col justify-center px-12">
           <h1 className="text-5xl font-black text-white mb-2 tracking-tight uppercase">
              {displayName}
           </h1>

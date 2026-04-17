@@ -112,16 +112,16 @@ export default async function SearchPage({
       <div className="pointer-events-none fixed inset-0 z-0 bg-dot-pattern opacity-10" />
 
       {/* Header for search results */}
-      <section className="bg-[#057850] py-6 sm:py-10 relative border-b border-[#046241]">
+      <section className="bg-gradient-to-r from-[#1e293b] to-[#0f172a] py-6 sm:py-10 relative border-b border-[#ffffff]/5">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div>
             <h1 className="text-3xl font-black text-white tracking-tight">
               {query ? `Search results for: '${query}'` : (selectedCategory ? `${categoryNames[selectedCategory] || selectedCategory} kateqoriyası` : "Axtarış Nəticələri")}
             </h1>
-            <p className="text-sm text-green-100 mt-2 font-medium">
+            <p className="text-sm text-slate-300 mt-2 font-medium">
               {products.length > 0 ? (
                 <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                  <span className="w-2 h-2 bg-[#FF5500] rounded-full animate-pulse"></span>
                   {products.length} məhsul tapıldı
                 </span>
               ) : "Sizin üçün heç nə tapılmadı"}
@@ -132,7 +132,7 @@ export default async function SearchPage({
               <ArrowUpDown className="w-4 h-4" /> Sırala
               <ChevronDown className="w-4 h-4 ml-1 text-green-200" />
             </button>
-            <button className="lg:hidden flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#057850] rounded-2xl text-sm font-bold hover:bg-gray-50 transition-all">
+            <button className="lg:hidden flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#0f172a] rounded-2xl text-sm font-bold hover:bg-gray-50 transition-all border border-gray-100 shadow-sm">
               <Filter className="w-4 h-4" /> Filterlər
             </button>
           </div>
