@@ -3,6 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import GoogleProvider from "next-auth/providers/google";
+import AppleProvider from "next-auth/providers/apple";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as any,
@@ -43,7 +45,15 @@ export const authOptions: NextAuthOptions = {
           name: user.name,
         };
       }
-    })
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
+    AppleProvider({
+      clientId: process.env.APPLE_ID || "",
+      clientSecret: process.env.APPLE_SECRET || "",
+    }),
   ],
   session: {
     strategy: "jwt"

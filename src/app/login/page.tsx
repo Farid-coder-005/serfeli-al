@@ -61,6 +61,8 @@ function LoginForm() {
             <p className="text-sm text-gray-400 font-medium">Hesabınıza daxil olmaq üçün məlumatları doldurun</p>
           </div>
 
+          <SocialAuth />
+
           <form onSubmit={handleLogin} className="space-y-6">
             {errorMsg && (
               <div className="bg-red-50 text-red-600 p-3 rounded-xl text-sm font-semibold border border-red-100 text-center">

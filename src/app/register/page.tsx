@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { User, Mail, Lock, ArrowRight, ShieldCheck } from "lucide-react";
+import { User, Mail, Lock, ArrowRight, ShieldCheck, RefreshCw } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { SocialAuth } from "@/components/SocialAuth";
+import { PasswordStrengthMeter } from "@/components/PasswordStrengthMeter";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -43,6 +45,28 @@ export default function RegisterPage() {
     }
   };
 
+  const generatePassword = () => {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+    let newPass = "";
+    // Guaranteed requirements
+    newPass += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
+    newPass += "0123456789"[Math.floor(Math.random() * 10)];
+    newPass += "!@#$%^&*()_+"[Math.floor(Math.random() * 12)];
+    
+    for (let i = 0; i < 9; i++) {
+      newPass += chars[Math.floor(Math.random() * chars.length)];
+    }
+    // Shuffle
+    newPass = newPass.split('').sort(() => 0.5 - Math.random()).join('');
+    setPassword(newPass);
+  };
+
+  const isPasswordStrong = 
+    password.length >= 8 && 
+    /[A-Z]/.test(password) && 
+    /[0-9]/.test(password) && 
+    /[@$!%*?&]/.test(password);
+
   return (
     <div className="min-h-[calc(100vh-80px)] bg-[#F9FAFB] flex flex-col items-center justify-center p-4 relative font-sans overflow-hidden w-full">
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#FF5500]/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
@@ -63,6 +87,8 @@ export default function RegisterPage() {
             <h2 className="text-2xl font-black text-[#1F1F1F] tracking-tight mb-2">Qeydiyyat</h2>
             <p className="text-sm text-gray-400 font-medium">Yeni hesab yaratmaq üçün məlumatları daxil edin</p>
           </div>
+
+          <SocialAuth />
 
           <form onSubmit={handleRegister} className="space-y-6">
             {errorMsg && (
@@ -106,7 +132,16 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest ml-1">Şifrə</label>
+              <div className="flex items-center justify-between ml-1">
+                <label className="text-[10px] font-black text-[#1F1F1F] uppercase tracking-widest">Şifrə</label>
+                <button 
+                  type="button"
+                  onClick={generatePassword}
+                  className="text-[10px] font-black text-[#FF5500] hover:underline uppercase tracking-widest flex items-center gap-1"
+                >
+                  <RefreshCw className="w-3 h-3" /> Təklif et
+                </button>
+              </div>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                   <Lock className="h-5 w-5 text-gray-300 group-focus-within:text-[#FF5500] transition-colors" />
@@ -114,19 +149,20 @@ export default function RegisterPage() {
                 <input 
                   type="password" 
                   required
-                  minLength={6}
+                  autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-medium focus:ring-4 focus:ring-[#FF5500]/10 focus:border-[#FF5500] outline-none transition-all placeholder:text-gray-300"
                 />
               </div>
+              <PasswordStrengthMeter password={password} />
             </div>
 
             <button 
               type="submit"
-              disabled={isLoading}
-              className="w-full py-4 bg-[#FF5500] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all hover:bg-[#E64D00] active:scale-[0.98] disabled:opacity-70 disabled:cursor-wait uppercase tracking-widest"
+              disabled={isLoading || !isPasswordStrong}
+              className="w-full py-4 bg-[#FF5500] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all hover:bg-[#E64D00] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed uppercase tracking-widest"
             >
               {isLoading ? (
                 <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
