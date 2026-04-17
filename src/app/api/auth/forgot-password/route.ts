@@ -46,8 +46,12 @@ export async function POST(request: Request) {
     const resetUrl = `${process.env.NEXTAUTH_URL || 'https://serfeli-al.vercel.app'}/auth/reset-password/${resetToken}`;
 
     if (!resend) {
-      console.error("[ForgotPassword] 🛑 Resend API Key is missing. Cannot send email.");
-      return NextResponse.json({ error: "Email sistemi tənzimlənməyib" }, { status: 500 });
+      const keyPrefix = process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.slice(0, 4) : "MISSING";
+      console.error(`[ForgotPassword] 🛑 Resend not initialized. Key Prefix: ${keyPrefix}`);
+      return NextResponse.json({ 
+        error: "Email sistemi tənzimlənməyib",
+        debug: { keyPrefix, envPresent: !!process.env.RESEND_API_KEY }
+      }, { status: 500 });
     }
 
     const { data, error } = await resend.emails.send({
