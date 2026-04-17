@@ -64,7 +64,7 @@ export default function PriceAlertsPage() {
       <div className="min-h-screen bg-[#F9FAFB] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-[#FF6B00] border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Yüklənir...</p>
+          <p className="text-[#ABC1D6] font-bold uppercase tracking-widest text-xs">Yüklənir...</p>
         </div>
       </div>
     );
@@ -72,7 +72,7 @@ export default function PriceAlertsPage() {
 
   return (
     <div className="min-h-screen bg-[#F9FAFB] pb-20">
-      <section className="bg-gradient-to-br from-[#1E293B] to-[#0F172A] py-16 relative border-b border-slate-800">
+      <section className="bg-gradient-to-br from-[#26496B] to-[#002B55] py-16 relative border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-start gap-4">
              <div className="flex items-center gap-4">
@@ -81,7 +81,7 @@ export default function PriceAlertsPage() {
                 </div>
                 <div>
                    <h1 className="text-3xl font-black text-white tracking-tight">Mənim Qiymət Bildirişlərim</h1>
-                   <p className="text-slate-400 font-medium">İzlədiyiniz məhsulların qiymət dəyişikliklərini idarə edin.</p>
+                   <p className="text-[#ABC1D6] font-medium">İzlədiyiniz məhsulların qiymət dəyişikliklərini idarə edin.</p>
                 </div>
              </div>
           </div>
@@ -94,11 +94,11 @@ export default function PriceAlertsPage() {
              <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-8">
                <PackageSearch className="w-10 h-10 text-slate-300" />
              </div>
-             <h2 className="text-2xl font-black text-[#0F172A] mb-4">Hələ ki, heç bir bildirişiniz yoxdur</h2>
-             <p className="text-slate-500 max-w-sm mx-auto mb-10 font-medium">
+             <h2 className="text-2xl font-black text-[#002B55] mb-4">Hələ ki, heç bir bildirişiniz yoxdur</h2>
+             <p className="text-[#ABC1D6] max-w-sm mx-auto mb-10 font-medium">
                Bəyəndiyiniz məhsulun qiyməti düşəndə xəbər tutmaq üçün məhsul səhifəsindən zəng ikonuna klikləyərək bildiriş qura bilərsiniz.
              </p>
-             <Link href="/" className="inline-flex items-center gap-3 px-10 py-5 bg-[#0F172A] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#FF6B00] transition-all shadow-xl active:scale-95 group">
+             <Link href="/" className="inline-flex items-center gap-3 px-10 py-5 bg-[#002B55] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#FF6B00] transition-all shadow-xl active:scale-95 group">
                 Məhsullara Bax <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
              </Link>
           </div>
@@ -141,7 +141,7 @@ export default function PriceAlertsPage() {
                         <h3 className="font-black text-slate-800 text-sm line-clamp-2 leading-tight hover:text-[#FF6B00] transition-colors">
                           <Link href={`/product/${alert.productId}`}>{alert.productName}</Link>
                         </h3>
-                        <div className="flex items-center gap-2 mt-2 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+                        <div className="flex items-center gap-2 mt-2 text-[#ABC1D6] text-[10px] font-bold uppercase tracking-widest">
                           <Calendar size={12} />
                           {new Date(alert.createdAt).toLocaleDateString()}
                         </div>
@@ -150,11 +150,11 @@ export default function PriceAlertsPage() {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-4 bg-slate-50 rounded-2xl">
-                         <p className="text-[9px] font-black text-slate-400 uppercase mb-1">Hədəf</p>
-                         <p className="text-xl font-black text-[#0F172A]">{alert.targetPrice.toFixed(2)} ₼</p>
+                         <p className="text-[9px] font-black text-[#ABC1D6] uppercase mb-1">Hədəf</p>
+                         <p className="text-xl font-black text-[#002B55]">{alert.targetPrice.toFixed(2)} ₼</p>
                       </div>
                       <div className={`p-4 rounded-2xl ${isTargetMet ? 'bg-green-50' : 'bg-slate-50'}`}>
-                         <p className="text-[9px] font-black text-slate-400 uppercase mb-1">Cari</p>
+                         <p className="text-[9px] font-black text-[#ABC1D6] uppercase mb-1">Cari</p>
                          <p className={`text-xl font-black ${isTargetMet ? 'text-[#1da661]' : 'text-[#FF6B00]'}`}>
                             {currentPrice.toFixed(2)} ₼
                          </p>
@@ -172,7 +172,7 @@ export default function PriceAlertsPage() {
                   <div className="p-6 bg-slate-50/50 border-t border-slate-50">
                     <Link 
                       href={`/product/${alert.productId}`}
-                      className="w-full py-4 bg-white border border-slate-200 text-[#0F172A] rounded-2xl text-[11px] font-black uppercase tracking-widest hover:border-[#FF6B00] hover:text-[#FF6B00] transition-all flex items-center justify-center gap-2 group"
+                      className="w-full py-4 bg-white border border-slate-200 text-[#002B55] rounded-2xl text-[11px] font-black uppercase tracking-widest hover:border-[#FF6B00] hover:text-[#FF6B00] transition-all flex items-center justify-center gap-2 group"
                     >
                       Məhsula Bax <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </Link>

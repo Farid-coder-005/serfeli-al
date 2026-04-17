@@ -55,14 +55,14 @@ export default function ProductStickyBar({
 
         <div className="flex items-center gap-6 shrink-0">
           <div className="hidden sm:flex flex-col items-end">
-            <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Cari Qiymət</span>
+            <span className="text-[9px] font-black text-[#ABC1D6] uppercase tracking-widest leading-none mb-1">Cari Qiymət</span>
             <span className="text-lg font-black text-[#FF6B00] tracking-tighter leading-none">{price} ₼</span>
           </div>
           <a 
             href={ctaUrl.startsWith('http') ? ctaUrl : `https://${ctaUrl}`} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-2.5 bg-[#FF6B00] hover:bg-[#E04A00] text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"
+            className="flex items-center gap-2 px-6 py-2.5 bg-[#FF6B00] hover:bg-[#FF6B00] text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"
           >
             Mağazaya Keç
             <ExternalLink className="w-3 h-3 opacity-80" />

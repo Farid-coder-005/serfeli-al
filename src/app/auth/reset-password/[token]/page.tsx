@@ -70,17 +70,17 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10">
           <Link href="/" className="inline-block group">
-            <h1 className="text-4xl font-black text-[#0F172A] tracking-tighter mb-2">
+            <h1 className="text-4xl font-black text-[#002B55] tracking-tighter mb-2">
               Sərfəli<span className="text-[#FF6B00]">.al</span>
             </h1>
           </Link>
-          <p className="text-gray-500 font-medium">Yeni şifrə təyini</p>
+          <p className="text-[#ABC1D6] font-medium">Yeni şifrə təyini</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl p-10 sm:p-12 transition-all">
           <div className="mb-8">
             <h2 className="text-2xl font-black text-[#1F1F1F] tracking-tight mb-2">Şifrəni Sıfırla</h2>
-            <p className="text-sm text-gray-400 font-medium leading-relaxed">
+            <p className="text-sm text-[#ABC1D6] font-medium leading-relaxed">
               Hesabınız üçün yeni bir təhlükəsiz şifrə təyin edin.
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function ResetPasswordPage() {
               <p className="text-green-600 font-bold bg-green-50 p-4 rounded-xl border border-green-100">
                 {message}
               </p>
-              <p className="text-sm text-gray-400">Giriş səhifəsinə yönləndirilirsiniz...</p>
+              <p className="text-sm text-[#ABC1D6]">Giriş səhifəsinə yönləndirilirsiniz...</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">

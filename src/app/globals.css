@@ -3,10 +3,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-idealo-orange: #FF5500;
-  --color-idealo-orange-dark: #E04A00;
-  --color-idealo-dark: #111820;
-  --color-idealo-dark-light: #222222;
+  --color-idealo-orange: #FF6B00;
+  --color-idealo-orange-dark: #FF6B00;
+  --color-idealo-dark: #002B55;
+  --color-idealo-dark-light: #26496B;
   --color-idealo-gray: #f4f4f4;
 }
 
@@ -50,7 +50,7 @@
 .price-text {
   font-size: 16px;
   font-weight: 700;
-  color: #e8700a;
+  color: #FF6B00;
 }
 
 .muted-text {

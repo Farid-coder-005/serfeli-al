@@ -27,20 +27,20 @@ export default function ContactPage() {
 
         {/* Back link */}
         <Link href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-[#0f172a] transition-colors mb-10 group">
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#ABC1D6] hover:text-[#002B55] transition-colors mb-10 group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Ana səhifəyə qayıt
         </Link>
 
         {/* Heading */}
         <div className="mb-14 text-center">
-          <span className="inline-block text-[11px] font-black text-[#0f172a] tracking-[0.25em] uppercase mb-4">
+          <span className="inline-block text-[11px] font-black text-[#002B55] tracking-[0.25em] uppercase mb-4">
             Dəstək Mərkəzi
           </span>
           <h1 className="text-4xl sm:text-5xl font-black text-[#1E3A8A] tracking-tight mb-4">
             Bizimlə Əlaqə
           </h1>
-          <p className="text-gray-500 text-lg max-w-xl mx-auto font-medium">
+          <p className="text-[#ABC1D6] text-lg max-w-xl mx-auto font-medium">
             Sualınız, təklifiniz və ya probleminiz var? Komandamız sizə kömək etməyə hazırdır.
           </p>
         </div>
@@ -72,9 +72,9 @@ export default function ContactPage() {
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{label}</p>
+                  <p className="text-[10px] font-black text-[#ABC1D6] uppercase tracking-widest mb-1">{label}</p>
                   <p className="text-base font-bold text-[#1E3A8A]">{value}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">{sub}</p>
+                  <p className="text-xs text-[#ABC1D6] mt-0.5">{sub}</p>
                 </div>
               </div>
             ))}
@@ -83,11 +83,11 @@ export default function ContactPage() {
           {/* Contact form */}
           {isSubmitted ? (
             <div className="lg:col-span-3 bg-white rounded-[2.5rem] border border-gray-100 p-12 shadow-sm flex flex-col items-center justify-center text-center space-y-4">
-              <div className="w-20 h-20 bg-slate-50 text-[#0f172a] rounded-full flex items-center justify-center">
+              <div className="w-20 h-20 bg-slate-50 text-[#002B55] rounded-full flex items-center justify-center">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <h3 className="text-2xl font-black text-[#1E3A8A]">Mesajınız uğurla göndərildi!</h3>
-              <p className="text-gray-500 font-medium">
+              <p className="text-[#ABC1D6] font-medium">
                 Təşəkkür edirik. Bizimlə əlaqə saxladığınız üçün minnətdarıq. <br />
                 Komandamız 24 saat ərzində sizinlə əlaqə saxlayacaq.
               </p>
@@ -105,7 +105,7 @@ export default function ContactPage() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
+                  <label className="block text-[11px] font-black text-[#ABC1D6] uppercase tracking-widest mb-2">
                     Ad Soyad
                   </label>
                   <input
@@ -116,7 +116,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
+                  <label className="block text-[11px] font-black text-[#ABC1D6] uppercase tracking-widest mb-2">
                     E-poçt
                   </label>
                   <input
@@ -128,7 +128,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
+                <label className="block text-[11px] font-black text-[#ABC1D6] uppercase tracking-widest mb-2">
                   Mövzu
                 </label>
                 <input
@@ -138,7 +138,7 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-2">
+                <label className="block text-[11px] font-black text-[#ABC1D6] uppercase tracking-widest mb-2">
                   Mesaj
                 </label>
                 <textarea
@@ -150,7 +150,7 @@ export default function ContactPage() {
               </div>
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-3 bg-[#FF6B00] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]"
+                className="w-full flex items-center justify-center gap-3 bg-[#FF6B00] hover:bg-[#FF6B00] text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]"
               >
                 <Send className="w-4 h-4" />
                 Göndər

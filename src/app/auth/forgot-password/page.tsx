@@ -54,13 +54,13 @@ export default function ForgotPasswordPage() {
               className="items-center" 
             />
           </div>
-          <p className="text-gray-500 font-medium">Şifrə bərpası</p>
+          <p className="text-[#ABC1D6] font-medium">Şifrə bərpası</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl p-10 sm:p-12 transition-all">
           <div className="mb-8">
             <h2 className="text-2xl font-black text-[#1F1F1F] tracking-tight mb-2">Şifrəni Sıfırla</h2>
-            <p className="text-sm text-gray-400 font-medium leading-relaxed">
+            <p className="text-sm text-[#ABC1D6] font-medium leading-relaxed">
               Email ünvanınızı daxil edin, biz sizə şifrə sıfırlama linki göndərəcəyik.
             </p>
           </div>
@@ -119,7 +119,7 @@ export default function ForgotPasswordPage() {
 
               <Link 
                 href="/login" 
-                className="block text-center text-xs font-black text-gray-400 hover:text-[#FF6B00] transition-colors uppercase tracking-widest"
+                className="block text-center text-xs font-black text-[#ABC1D6] hover:text-[#FF6B00] transition-colors uppercase tracking-widest"
               >
                 Geri qayıt
               </Link>

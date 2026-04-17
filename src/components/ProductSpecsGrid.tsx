@@ -25,7 +25,7 @@ export default function ProductSpecsGrid({
     <div className="grid grid-cols-2 gap-4 mt-8 bg-[#F4F4F4] rounded-2xl border border-gray-200 p-6">
       {specifications.map((spec) => (
         <div key={spec.label} className="flex flex-col">
-          <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
+          <span className="text-[9px] font-bold text-[#ABC1D6] uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
             <div className="w-1.5 h-1.5 bg-[#FF6B00] rounded-full" />
             {spec.label}
           </span>

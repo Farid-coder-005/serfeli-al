@@ -23,21 +23,21 @@ export default function CartPage() {
 
         {/* Back link */}
         <Link href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-[#0f172a] transition-colors mb-10 group">
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#ABC1D6] hover:text-[#002B55] transition-colors mb-10 group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Ana səhifəyə qayıt
         </Link>
 
         {/* Heading */}
         <div className="flex items-center gap-4 mb-12">
-          <div className="w-12 h-12 rounded-2xl bg-[#0f172a]/10 flex items-center justify-center">
-            <ShoppingCart className="w-6 h-6 text-[#0f172a]" />
+          <div className="w-12 h-12 rounded-2xl bg-[#002B55]/10 flex items-center justify-center">
+            <ShoppingCart className="w-6 h-6 text-[#002B55]" />
           </div>
           <div>
             <h1 className="text-3xl sm:text-4xl font-black text-[#1E3A8A] tracking-tight">
               Səbətiniz
             </h1>
-            <p className="text-sm text-gray-400 font-medium mt-0.5">
+            <p className="text-sm text-[#ABC1D6] font-medium mt-0.5">
               {items.length > 0 ? `${items.length} məhsul` : "Səbət boşdur"}
             </p>
           </div>
@@ -52,14 +52,14 @@ export default function CartPage() {
             <h2 className="text-2xl font-black text-[#1E3A8A] mb-3">
               Səbətiniz boşdur
             </h2>
-            <p className="text-gray-400 text-base max-w-sm mx-auto mb-10 font-medium leading-relaxed">
+            <p className="text-[#ABC1D6] text-base max-w-sm mx-auto mb-10 font-medium leading-relaxed">
               Hələ heç bir məhsul əlavə etməmisiniz. Axtarış edib ən ucuz qiymətli məhsulları tapın.
             </p>
 
             {/* Promo banner */}
-            <div className="inline-flex items-center gap-3 bg-[#0f172a]/5 border border-[#0f172a]/10 rounded-2xl px-6 py-3 mb-10">
-              <Tag className="w-4 h-4 text-[#0f172a]" />
-              <span className="text-sm font-bold text-[#0f172a]">
+            <div className="inline-flex items-center gap-3 bg-[#002B55]/5 border border-[#002B55]/10 rounded-2xl px-6 py-3 mb-10">
+              <Tag className="w-4 h-4 text-[#002B55]" />
+              <span className="text-sm font-bold text-[#002B55]">
                 Hər alışda kəşbək qazanın — platformamız ən ucuz qiyməti tapır!
               </span>
             </div>
@@ -67,7 +67,7 @@ export default function CartPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/search"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF6B00] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF6B00] hover:bg-[#FF6B00] text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]"
               >
                 <Search className="w-4 h-4" />
                 Alış-verişə başla

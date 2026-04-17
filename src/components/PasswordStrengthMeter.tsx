@@ -67,7 +67,7 @@ export function PasswordStrengthMeter({ password }: PasswordStrengthMeterProps) 
                 <X className="w-2.5 h-2.5 text-gray-300" />
               )}
             </div>
-            <span className={`text-[10px] font-bold tracking-tight leading-none ${item.met ? "text-gray-900" : "text-gray-400"}`}>
+            <span className={`text-[10px] font-bold tracking-tight leading-none ${item.met ? "text-gray-900" : "text-[#ABC1D6]"}`}>
               {item.label}
             </span>
           </div>

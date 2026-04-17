@@ -53,13 +53,13 @@ function LoginForm() {
               className="items-center" 
             />
           </div>
-          <p className="text-gray-500 font-medium">Ağıllı alış-verişə xoş gəldiniz</p>
+          <p className="text-[#ABC1D6] font-medium">Ağıllı alış-verişə xoş gəldiniz</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-[#FF6B00]/5 p-10 sm:p-12">
           <div className="mb-10">
             <h2 className="text-2xl font-black text-[#1F1F1F] tracking-tight mb-2">Daxil Olun</h2>
-            <p className="text-sm text-gray-400 font-medium">Hesabınıza daxil olmaq üçün məlumatları doldurun</p>
+            <p className="text-sm text-[#ABC1D6] font-medium">Hesabınıza daxil olmaq üçün məlumatları doldurun</p>
           </div>
 
           <SocialAuth />
@@ -105,7 +105,7 @@ function LoginForm() {
               <div className="text-center pt-2">
                 <Link 
                   href="/auth/forgot-password" 
-                  className="text-[10px] font-black text-gray-400 hover:text-[#FF6B00] transition-colors uppercase tracking-widest"
+                  className="text-[10px] font-black text-[#ABC1D6] hover:text-[#FF6B00] transition-colors uppercase tracking-widest"
                 >
                   Şifrəni unutmusunuz?
                 </Link>
@@ -126,7 +126,7 @@ function LoginForm() {
           </form>
         </div>
 
-        <p className="text-center mt-10 text-sm font-bold text-gray-400">
+        <p className="text-center mt-10 text-sm font-bold text-[#ABC1D6]">
           Hesabınız yoxdur? <Link href="/register" className="text-[#FF6B00] font-black hover:underline">Qeydiyyatdan keçin</Link>
         </p>
 

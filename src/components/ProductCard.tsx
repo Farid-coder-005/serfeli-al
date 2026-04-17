@@ -35,12 +35,12 @@ export function ProductCard({
             -{discountPercent}%
           </div>
         )}
-        <div className="bg-[#0f172a] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-r-sm shadow-sm">
+        <div className="bg-[#002B55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-r-sm shadow-sm">
           A
         </div>
       </div>
 
-      <div className="absolute top-2 right-2 z-10 text-[#005ea8]">
+      <div className="absolute top-2 right-2 z-10 text-[#002B55]">
          <FavoriteButton productId={product.id} initialFavorited={userFavoriteIds.includes(product.id)} />
       </div>
 
@@ -64,12 +64,12 @@ export function ProductCard({
         <div className="flex flex-col flex-1">
           {/* Tag & Category */}
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-bold text-[#005ea8] bg-[#E8F0F8] px-1 rounded-sm">Bestseller</span>
-            <span className="text-[10px] text-gray-400 font-medium truncate">{product.category}</span>
+            <span className="text-[10px] font-bold text-[#002B55] bg-[#E8F0F8] px-1 rounded-sm">Bestseller</span>
+            <span className="text-[10px] text-[#ABC1D6] font-medium truncate">{product.category}</span>
           </div>
 
           {/* Title */}
-          <h3 className="text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.4] mb-1 group-hover:text-[#005ea8] transition-colors">
+          <h3 className="text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.4] mb-1 group-hover:text-[#002B55] transition-colors">
             {product.title}
           </h3>
 
@@ -80,12 +80,12 @@ export function ProductCard({
                 <Star key={i} className={`w-3 h-3 ${i < 4 ? 'fill-current' : 'fill-gray-200 text-gray-200'}`} />
               ))}
             </div>
-            <span className="text-[11px] text-gray-400 font-medium">{rating} ({reviewCount})</span>
+            <span className="text-[11px] text-[#ABC1D6] font-medium">{rating} ({reviewCount})</span>
           </div>
           
           {/* Price Area */}
           <div className="mt-auto pt-2 flex flex-col">
-            <span className="text-[11px] text-gray-500 font-medium mb-[-2px]">from</span>
+            <span className="text-[11px] text-[#ABC1D6] font-medium mb-[-2px]">from</span>
             <div className="flex items-baseline gap-1">
               <span className="text-[20px] sm:text-[22px] font-bold text-[#FF6B00] tracking-tight leading-tight">
                 {newPrice.toLocaleString('az-AZ', { minimumFractionDigits: 2 })}

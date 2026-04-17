@@ -75,17 +75,17 @@ export default function RegisterPage() {
       <div className="w-full max-w-md relative z-10 my-10">
         <div className="text-center mb-10">
           <Link href="/" className="inline-block group">
-            <h1 className="text-4xl font-black text-[#0F172A] tracking-tighter mb-2 group-hover:scale-105 transition-transform">
+            <h1 className="text-4xl font-black text-[#002B55] tracking-tighter mb-2 group-hover:scale-105 transition-transform">
               Sərfəli<span className="text-[#FF6B00]">.al</span>
             </h1>
           </Link>
-          <p className="text-gray-500 font-medium">Bizə qoşulun, qazanın</p>
+          <p className="text-[#ABC1D6] font-medium">Bizə qoşulun, qazanın</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-[#FF6B00]/5 p-10 sm:p-12">
           <div className="mb-10">
             <h2 className="text-2xl font-black text-[#1F1F1F] tracking-tight mb-2">Qeydiyyat</h2>
-            <p className="text-sm text-gray-400 font-medium">Yeni hesab yaratmaq üçün məlumatları daxil edin</p>
+            <p className="text-sm text-[#ABC1D6] font-medium">Yeni hesab yaratmaq üçün məlumatları daxil edin</p>
           </div>
 
           <SocialAuth />
@@ -173,7 +173,7 @@ export default function RegisterPage() {
           </form>
         </div>
 
-        <p className="text-center mt-10 text-sm font-bold text-gray-400">
+        <p className="text-center mt-10 text-sm font-bold text-[#ABC1D6]">
           Artıq hesabınız var? <Link href="/login" className="text-[#FF6B00] font-black hover:underline">Daxil olun</Link>
         </p>
 

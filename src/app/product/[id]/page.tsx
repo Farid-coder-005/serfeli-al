@@ -12,7 +12,7 @@ import { useRef } from 'react';
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#FF6B00] text-white text-xs font-bold px-3 py-2 rounded shadow-xl border border-[#CC4400]">
+      <div className="bg-[#FF6B00] text-white text-xs font-bold px-3 py-2 rounded shadow-xl border border-[#FF6B00]">
         <div className="text-base">{Number(payload[0].value).toFixed(2)} ₼</div>
         <div className="font-normal opacity-90">{payload[0].payload.date} {payload[0].payload.year}</div>
       </div>
@@ -177,7 +177,7 @@ export default function ProductDetailsPage() {
       const diff = currentPrice - comparePrice;
       if (diff > 0) return { value: `↗ ${diff.toFixed(2)} ₼`, color: 'text-[#d32f2f]' };
       if (diff < 0) return { value: `↘ ${Math.abs(diff).toFixed(2)} ₼`, color: 'text-[#FF6B00]' };
-      return { value: `- 0.00 ₼`, color: 'text-gray-500' };
+      return { value: `- 0.00 ₼`, color: 'text-[#ABC1D6]' };
     };
 
     return {
@@ -196,8 +196,8 @@ export default function ProductDetailsPage() {
     <>
       <main className="max-w-[1440px] mx-auto w-full px-4 sm:px-6 lg:px-6 py-6 text-[#222222] bg-white">
         {/* BREADCRUMB AREA */}
-        <div className="text-sm text-gray-500 mb-6 font-medium">
-          <Link href="/" className="hover:underline hover:text-[#005ea8]">Elektronika</Link> {'>'} 
+        <div className="text-sm text-[#ABC1D6] mb-6 font-medium">
+          <Link href="/" className="hover:underline hover:text-[#002B55]">Elektronika</Link> {'>'} 
           <span className="mx-1">Smartfonlar</span> {'>'} 
           <span className="mx-1">Motorola</span> {'>'} 
           <span className="text-gray-900">{product.name}</span>
@@ -239,14 +239,14 @@ export default function ProductDetailsPage() {
                     <button 
                       type="button"
                       onClick={(e) => { e.stopPropagation(); handleVariantScroll('left'); }}
-                      className="absolute left-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                      className="absolute left-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-[#ABC1D6] hover:text-[#002B55] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
                     >
                       <ChevronLeft size={24} strokeWidth={2.5} />
                     </button>
                     <button 
                       type="button"
                       onClick={(e) => { e.stopPropagation(); handleVariantScroll('right'); }}
-                      className="absolute right-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-gray-500 hover:text-[#005ea8] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                      className="absolute right-[-15px] top-[45%] -translate-y-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-full p-2.5 text-[#ABC1D6] hover:text-[#002B55] hover:scale-110 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
                     >
                       <ChevronRight size={24} strokeWidth={2.5} />
                     </button>
@@ -265,7 +265,7 @@ export default function ProductDetailsPage() {
                             })));
                           }}
                           className={`flex-shrink-0 w-[115px] border rounded-md overflow-hidden cursor-pointer transition-all snap-start ${
-                            v.active ? 'border-2 border-[#005ea8] ring-1 ring-[#005ea8]' : 'border-gray-200 hover:border-gray-300'
+                            v.active ? 'border-2 border-[#002B55] ring-1 ring-[#002B55]' : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
                           <div className="bg-[#f6f6f6] h-[100px] flex items-center justify-center p-2">
@@ -303,7 +303,7 @@ export default function ProductDetailsPage() {
                         setTimeFrame(tf as "1 Ay" | "3 Ay" | "6 Ay" | "1 İl");
                       }}
                       className={`px-3 py-1.5 text-sm font-bold rounded transition-all ${
-                        timeFrame === tf ? 'bg-[#005ea8] text-white shadow-md' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
+                        timeFrame === tf ? 'bg-[#002B55] text-white shadow-md' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
                       }`}
                     >
                       {tf}
@@ -328,21 +328,21 @@ export default function ProductDetailsPage() {
                 {stats && (
                   <div className="flex items-center justify-between border-y border-gray-100 py-4 mb-6">
                     <div className="flex flex-col items-center flex-1 text-center">
-                      <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən aşağı</div>
+                      <div className="text-[10px] text-[#ABC1D6] font-bold uppercase tracking-tighter">Ən aşağı</div>
                       <div className="text-lg font-black text-[#222222]">{stats.min.price} ₼</div>
-                      <div className="text-[9px] text-gray-400">{stats.min.daysAgo} gün əvvəl</div>
+                      <div className="text-[9px] text-[#ABC1D6]">{stats.min.daysAgo} gün əvvəl</div>
                     </div>
                     <div className="w-px h-10 bg-gray-100"></div>
                     <div className="flex flex-col items-center flex-1 text-center">
-                      <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Orta</div>
+                      <div className="text-[10px] text-[#ABC1D6] font-bold uppercase tracking-tighter">Orta</div>
                       <div className="text-lg font-black text-[#222222]">{stats.avg.price} ₼</div>
-                      <div className="text-[9px] text-gray-400">{stats.avg.daysAgo} g. ərzində</div>
+                      <div className="text-[9px] text-[#ABC1D6]">{stats.avg.daysAgo} g. ərzində</div>
                     </div>
                     <div className="w-px h-10 bg-gray-100"></div>
                     <div className="flex flex-col items-center flex-1 text-center">
-                      <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Ən yüksək</div>
+                      <div className="text-[10px] text-[#ABC1D6] font-bold uppercase tracking-tighter">Ən yüksək</div>
                       <div className="text-lg font-black text-[#222222]">{stats.max.price} ₼</div>
-                      <div className="text-[9px] text-gray-400">{stats.max.daysAgo} gün əvvəl</div>
+                      <div className="text-[9px] text-[#ABC1D6]">{stats.max.daysAgo} gün əvvəl</div>
                     </div>
                   </div>
                 )}
@@ -357,7 +357,7 @@ export default function ProductDetailsPage() {
                       }
                       setIsPriceAlertModalOpen(true);
                     }}
-                    className="w-full flex items-center justify-center gap-2 border-2 border-[#005ea8] text-[#005ea8] bg-white px-5 py-4 rounded-xl text-sm font-black uppercase tracking-widest hover:bg-blue-50 transition-all active:scale-[0.98]"
+                    className="w-full flex items-center justify-center gap-2 border-2 border-[#002B55] text-[#002B55] bg-white px-5 py-4 rounded-xl text-sm font-black uppercase tracking-widest hover:bg-blue-50 transition-all active:scale-[0.98]"
                   >
                     <Bell className="w-5 h-5" />
                     Qiymət bildirişi
@@ -387,16 +387,16 @@ export default function ProductDetailsPage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between px-6 pt-4">
               <h2 className="text-xl font-bold text-[#222222] pb-4">Qiymət müqayisəsi</h2>
               
-              <div className="flex text-lg font-medium text-[#005ea8]">
+              <div className="flex text-lg font-medium text-[#002B55]">
                 <button 
                   onClick={() => setPaymentMethod('kredit')}
-                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'kredit' ? 'border-[#005ea8] text-[#005ea8]' : 'border-transparent text-gray-500 hover:text-[#005ea8]'}`}
+                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'kredit' ? 'border-[#002B55] text-[#002B55]' : 'border-transparent text-[#ABC1D6] hover:text-[#002B55]'}`}
                 >
                   Kredit qiymətləri
                 </button>
                 <button 
                   onClick={() => setPaymentMethod('nagd')}
-                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'nagd' ? 'border-[#005ea8] text-[#005ea8]' : 'border-transparent text-gray-500 hover:text-[#005ea8]'}`}
+                  className={`px-8 py-3 border-b-2 transition-colors ${paymentMethod === 'nagd' ? 'border-[#002B55] text-[#002B55]' : 'border-transparent text-[#ABC1D6] hover:text-[#002B55]'}`}
                 >
                   Nağd alış qiymətləri
                 </button>
@@ -423,7 +423,7 @@ export default function ProductDetailsPage() {
                <div key={offer.id} className={`flex items-center justify-between p-6 ${index !== comparisonOffers.length - 1 ? 'border-b border-gray-100' : ''}`}>
                  {/* Product Name */}
                  <div className="w-1/4">
-                   <div className="text-[#005ea8] font-bold hover:underline cursor-pointer">
+                   <div className="text-[#002B55] font-bold hover:underline cursor-pointer">
                      {product.name}
                    </div>
                  </div>
@@ -464,7 +464,7 @@ export default function ProductDetailsPage() {
                  </div>
                  
                  {/* Delivery Info */}
-                 <div className="w-1/4 text-center text-sm text-gray-500">
+                 <div className="w-1/4 text-center text-sm text-[#ABC1D6]">
                    {offer.delivery}
                  </div>
                  
@@ -473,7 +473,7 @@ export default function ProductDetailsPage() {
                    <StoreLogo storeName={offer.store} />
                     <button 
                       onClick={() => handleRedirect(offer.url)}
-                      className="bg-[#FF6B00] hover:bg-[#CC4400] text-white font-black text-sm uppercase tracking-widest py-3 px-8 rounded transition-all shadow-lg shadow-orange-500/10 active:scale-[0.98]"
+                      className="bg-[#FF6B00] hover:bg-[#FF6B00] text-white font-black text-sm uppercase tracking-widest py-3 px-8 rounded transition-all shadow-lg shadow-orange-500/10 active:scale-[0.98]"
                     >
                       MAĞAZAYA KEÇ
                     </button>
@@ -487,10 +487,10 @@ export default function ProductDetailsPage() {
         <div className="mb-16">
           <h2 className="text-2xl font-bold mb-6 border-b-2 border-[#222222] pb-2">Məhsul detalları</h2>
           <div className="grid grid-cols-1 border-t border-gray-200">
-             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-gray-500 text-sm font-medium">Satışa çıxarılma ili</div><div className="w-2/3 text-sm font-bold">2023</div></div>
-             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-gray-500 text-sm font-medium">Ekran ölçüsü</div><div className="w-2/3 text-sm font-bold">6.5 düym / 16.51 sm</div></div>
-             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-gray-500 text-sm font-medium">Ekran icazəsi</div><div className="w-2/3 text-sm font-bold">2400 x 1080 piksel</div></div>
-             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30 font-black text-[#005ea8]"><div className="w-1/3 text-sm">Ekran növü</div><div className="w-2/3 text-sm">POLED</div></div>
+             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#ABC1D6] text-sm font-medium">Satışa çıxarılma ili</div><div className="w-2/3 text-sm font-bold">2023</div></div>
+             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#ABC1D6] text-sm font-medium">Ekran ölçüsü</div><div className="w-2/3 text-sm font-bold">6.5 düym / 16.51 sm</div></div>
+             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30"><div className="w-1/3 text-[#ABC1D6] text-sm font-medium">Ekran icazəsi</div><div className="w-2/3 text-sm font-bold">2400 x 1080 piksel</div></div>
+             <div className="flex border-b border-gray-200 py-3.5 px-4 even:bg-gray-50 odd:bg-white transition-colors hover:bg-blue-50/30 font-black text-[#002B55]"><div className="w-1/3 text-sm">Ekran növü</div><div className="w-2/3 text-sm">POLED</div></div>
           </div>
         </div>
 
@@ -499,7 +499,7 @@ export default function ProductDetailsPage() {
           <h2 className="text-2xl font-bold mb-6">Üstünlükləri və çatışmazlıqları</h2>
           <div className="flex flex-col md:flex-row gap-8 mb-10">
               <div className="w-full md:w-1/2 border-2 border-slate-100 bg-slate-50/30 p-6 rounded-md shadow-sm">
-                <div className="flex items-center gap-2 mb-4 text-[#0f172a] font-bold text-lg">
+                <div className="flex items-center gap-2 mb-4 text-[#002B55] font-bold text-lg">
                   <div className="bg-[#FF6B00] text-white rounded-full w-5 h-5 flex items-center justify-center text-sm leading-none">+</div>
                   Üstünlükləri
                 </div>
@@ -519,7 +519,7 @@ export default function ProductDetailsPage() {
           </div>
           <div className="flex flex-wrap gap-2 pt-6 border-t border-gray-100 mb-16">
              {["Bluetooth 5.3", "120 Hz", "5,000 mAh", "Android 14", "50 MP Kamera", "256 GB", "OLED"].map(tag => (
-               <span key={tag} className="bg-gray-100 text-gray-600 px-4 py-1.5 text-xs font-bold rounded-full cursor-pointer hover:bg-[#005ea8] hover:text-white transition-all">
+               <span key={tag} className="bg-gray-100 text-gray-600 px-4 py-1.5 text-xs font-bold rounded-full cursor-pointer hover:bg-[#002B55] hover:text-white transition-all">
                  {tag}
                </span>
              ))}
@@ -533,7 +533,7 @@ export default function ProductDetailsPage() {
               <div className="w-full md:w-1/4 flex flex-col items-center justify-center bg-gray-50 p-8 rounded-sm border border-gray-200">
                  <div className="text-6xl font-extrabold text-[#222222] mb-3">4.6</div>
                  <div className="flex text-[#FFCC00] text-2xl mb-3">★★★★★</div>
-                 <div className="text-sm text-gray-500 font-medium font-bold">128 rəy əsasında</div>
+                 <div className="text-sm text-[#ABC1D6] font-medium font-bold">128 rəy əsasında</div>
               </div>
               
               <div className="w-full md:w-3/4 flex flex-col gap-8">
@@ -543,10 +543,10 @@ export default function ProductDetailsPage() {
                           <div className="flex text-[#FFCC00] text-lg mb-1">★★★★★</div>
                           <div className="font-bold text-base text-[#222222]">Qiymətinə görə əla dəyər</div>
                        </div>
-                       <div className="text-xs text-gray-400">12 Aprel 2026</div>
+                       <div className="text-xs text-[#ABC1D6]">12 Aprel 2026</div>
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed mb-3">Batareyanın ömrü inanılmazdır və POLED ekran çox canlıdır. Bu qiymətə həqiqətən şikayət etmək olmaz. Kamera gündüz işığında çox yaxşı çəkir.</p>
-                    <div className="text-xs text-gray-500 font-medium">Müəllif: <span className="font-bold text-gray-700">Kənan M.</span></div>
+                    <div className="text-xs text-[#ABC1D6] font-medium">Müəllif: <span className="font-bold text-gray-700">Kənan M.</span></div>
                  </div>
                  
                  <div className="border-b border-gray-100 pb-6">
@@ -555,10 +555,10 @@ export default function ProductDetailsPage() {
                           <div className="flex text-[#FFCC00] text-lg mb-1">★★★★<span className="text-gray-300">★</span></div>
                           <div className="font-bold text-base text-[#222222]">Yaxşı orta seqment</div>
                        </div>
-                       <div className="text-xs text-gray-400">05 Aprel 2026</div>
+                       <div className="text-xs text-[#ABC1D6]">05 Aprel 2026</div>
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed mb-3">Ümumilikdə yaxşı telefondur. İnterfeys çox təmizdir. Sadəcə 4 ulduz verirəm, çünki prosessor ağır 3D oyunlarda bir az çətinlik çəkir.</p>
-                    <div className="text-xs text-gray-500 font-medium">Müəllif: <span className="font-bold text-gray-700">Rəşad Ə.</span></div>
+                    <div className="text-xs text-[#ABC1D6] font-medium">Müəllif: <span className="font-bold text-gray-700">Rəşad Ə.</span></div>
                  </div>
               </div>
            </div>
@@ -569,11 +569,11 @@ export default function ProductDetailsPage() {
         <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6 overflow-hidden" style={{ zIndex: 2147483647 }}>
           <div className="bg-white w-full max-w-4xl max-h-[95vh] overflow-y-auto rounded-sm shadow-2xl flex flex-col relative">
             {/* ABSOLUTE CLOSE BUTTON (Sticky to the top right of the modal) */}
-            <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-gray-400 hover:text-[#FF6B00] text-4xl leading-none z-50 transition-colors">&times;</button>
+            <button onClick={() => setIsChartModalOpen(false)} className="absolute top-4 right-6 text-[#ABC1D6] hover:text-[#FF6B00] text-4xl leading-none z-50 transition-colors">&times;</button>
             
             <div className="flex flex-col p-8">
               <h2 className="text-2xl font-bold text-[#222222]">Qiymət dinamikası</h2>
-              <p className="text-sm text-gray-500 mt-1">{product.name}</p>
+              <p className="text-sm text-[#ABC1D6] mt-1">{product.name}</p>
               
               {/* Timeframe Toggles */}
               <div className="flex justify-end gap-2 mt-4 mb-8">
@@ -581,7 +581,7 @@ export default function ProductDetailsPage() {
                     <button 
                       key={tf} 
                       onClick={() => setTimeFrame(tf as "1 Ay" | "3 Ay" | "6 Ay" | "1 İl")} 
-                      className={`px-4 py-1.5 text-sm font-bold rounded transition-all ${timeFrame === tf ? 'bg-[#005ea8] text-white shadow-md' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
+                      className={`px-4 py-1.5 text-sm font-bold rounded transition-all ${timeFrame === tf ? 'bg-[#002B55] text-white shadow-md' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                     >
                       {tf}
                     </button>
@@ -649,7 +649,7 @@ export default function ProductDetailsPage() {
                 <div className="flex items-center justify-between py-4 border-b border-gray-100">
                   <div className="w-1/3">
                     <div className="text-[#222222] font-medium text-base">Ən aşağı qiymət</div>
-                    <div className="text-sm text-gray-500 mt-0.5">{stats.min.daysAgo} gün əvvəl</div>
+                    <div className="text-sm text-[#ABC1D6] mt-0.5">{stats.min.daysAgo} gün əvvəl</div>
                   </div>
                   <div className="w-1/3 text-center">
                     <span className="text-2xl font-normal text-[#222222]">{stats.min.price} ₼</span>
@@ -663,7 +663,7 @@ export default function ProductDetailsPage() {
                 <div className="flex items-center justify-between py-4 border-b border-gray-100">
                   <div className="w-1/3">
                     <div className="text-[#222222] font-medium text-base">Orta qiymət</div>
-                    <div className="text-sm text-gray-500 mt-0.5">{stats.avg.daysAgo} gün ərzində</div>
+                    <div className="text-sm text-[#ABC1D6] mt-0.5">{stats.avg.daysAgo} gün ərzində</div>
                   </div>
                   <div className="w-1/3 text-center">
                     <span className="text-2xl font-normal text-[#222222]">{stats.avg.price} ₼</span>
@@ -677,7 +677,7 @@ export default function ProductDetailsPage() {
                 <div className="flex items-center justify-between py-4 border-b border-gray-100 mb-6">
                   <div className="w-1/3">
                     <div className="text-[#222222] font-medium text-base">Ən yüksək qiymət</div>
-                    <div className="text-sm text-gray-500 mt-0.5">{stats.max.daysAgo} gün əvvəl</div>
+                    <div className="text-sm text-[#ABC1D6] mt-0.5">{stats.max.daysAgo} gün əvvəl</div>
                   </div>
                   <div className="w-1/3 text-center">
                     <span className="text-2xl font-normal text-[#222222]">{stats.max.price} ₼</span>
@@ -689,7 +689,7 @@ export default function ProductDetailsPage() {
 
                 {/* Price Alerts Button */}
                 <div className="flex justify-center">
-                  <button className="flex items-center gap-2 border border-[#005ea8] text-[#005ea8] bg-white px-6 py-2 rounded text-sm font-bold hover:bg-blue-50 transition-colors">
+                  <button className="flex items-center gap-2 border border-[#002B55] text-[#002B55] bg-white px-6 py-2 rounded text-sm font-bold hover:bg-blue-50 transition-colors">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                        <circle cx="12" cy="12" r="9" strokeWidth="2"></circle>
                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 7v5l3 3"></path>

@@ -126,7 +126,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   return (
     <main className="max-w-[1440px] mx-auto w-full px-4 py-8 bg-[#F9FAFB]">
       {/* Dynamic Breadcrumbs */}
-      <div className="text-sm text-gray-500 mb-6 flex items-center gap-2">
+      <div className="text-sm text-[#ABC1D6] mb-6 flex items-center gap-2">
         <Link href="/" className="hover:underline">Ana Səhifə</Link>
         <ChevronRight className="w-3 h-3" />
         {isSubCategory ? (
@@ -148,7 +148,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           fill 
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 to-transparent flex flex-col justify-center px-12">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#002B55]/90 to-transparent flex flex-col justify-center px-12">
           <h1 className="text-5xl font-black text-white mb-2 tracking-tight uppercase">
              {displayName}
           </h1>
@@ -190,7 +190,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <div className="flex items-center justify-between mb-8 border-b border-gray-200 pb-6 px-1">
         <div>
           <h2 className="text-3xl font-black text-[#1a1a1a] tracking-tight uppercase">Məhsullar</h2>
-          <p className="text-sm text-gray-500 mt-1 font-medium italic">
+          <p className="text-sm text-[#ABC1D6] mt-1 font-medium italic">
             {displayName} sahəsində ən yaxşı qiymətlər
           </p>
         </div>
@@ -209,7 +209,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <div className="bg-white rounded-[3rem] border border-gray-100 p-20 text-center shadow-xl">
                 <Search className="w-12 h-12 text-gray-200 mx-auto mb-6" />
                 <h3 className="text-xl font-bold text-[#1a1a1a]">Heç bir məhsul tapılmadı</h3>
-                <p className="text-gray-400">Bu kategoriya üçün hələlik məhsul yoxdur.</p>
+                <p className="text-[#ABC1D6]">Bu kategoriya üçün hələlik məhsul yoxdur.</p>
                 <Link href="/" className="mt-8 inline-block px-8 py-3 bg-[#1E3A8A] text-white font-bold rounded-full hover:bg-[#FF6B00] transition-colors">
                   Ana Səhifəyə Qayıt
                 </Link>

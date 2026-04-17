@@ -36,7 +36,7 @@ export default function ProductAccordions({
           <span className="text-[11px] font-bold text-gray-700 uppercase tracking-widest group-hover:text-[#FF6B00] transition-colors">
             {title}
           </span>
-          <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-[#FF6B00] group-hover:bg-orange-50 transition-all">
+          <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center text-[#ABC1D6] group-hover:text-[#FF6B00] group-hover:bg-orange-50 transition-all">
             {isOpen ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
           </div>
         </button>
@@ -52,7 +52,7 @@ export default function ProductAccordions({
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm px-8 py-2">
       <AccordionItem id="description" title="Məhsul Təsviri">
-        <p className="text-slate-500 font-normal text-sm leading-relaxed max-w-4xl">
+        <p className="text-[#ABC1D6] font-normal text-sm leading-relaxed max-w-4xl">
           {description ||
             "Zərif dizayn, yüksək performans və ən son texnologiyaların mükəmməl birləşməsi. Bu məhsul gündəlik ehtiyaclarınızı aşan xüsusiyyətlərlə təchiz edilmişdir. Hər bir detal istifadəçi rahatlığı üçün xüsusi olaraq düşünülmüşdür."}
         </p>
@@ -68,10 +68,10 @@ export default function ProductAccordions({
                     <Star key={star} className={`w-3 h-3 ${star <= 4 ? "fill-[#FF6B00] text-[#FF6B00]" : "text-gray-300"}`} />
                   ))}
                 </div>
-                <span className="text-[9px] font-bold text-gray-400">12.04.2024</span>
+                <span className="text-[9px] font-bold text-[#ABC1D6]">12.04.2024</span>
               </div>
               <p className="text-xs font-bold text-[#222222]">Mükəmməl məhsul!</p>
-              <p className="text-[11px] text-gray-500 font-normal leading-relaxed">
+              <p className="text-[11px] text-[#ABC1D6] font-normal leading-relaxed">
                 Qiymət və keyfiyyət nisbəti inanılmazdır. Mağazadan çatdırılma da çox sürətli idi. Tövsiyə edirəm.
               </p>
             </div>

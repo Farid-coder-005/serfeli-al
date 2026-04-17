@@ -77,7 +77,7 @@ function SidebarContent({ facets = [] }: SidebarContentProps) {
         </h2>
         <button 
           onClick={clearFilters}
-          className="text-slate-400 hover:text-[#FF6B00] transition-colors p-2 rounded-lg hover:bg-orange-50"
+          className="text-[#ABC1D6] hover:text-[#FF6B00] transition-colors p-2 rounded-lg hover:bg-orange-50"
           title="Sıfırla"
         >
           <RotateCcw className="w-4 h-4" />
@@ -87,7 +87,7 @@ function SidebarContent({ facets = [] }: SidebarContentProps) {
       {/* Price Range (Permanent Group) */}
       <div className="py-4">
         <h3 
-          className="text-[10px] font-[900] text-slate-400 mb-6 uppercase tracking-[0.2em]"
+          className="text-[10px] font-[900] text-[#ABC1D6] mb-6 uppercase tracking-[0.2em]"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           Qiymət Aralığı (₼)
@@ -112,9 +112,9 @@ function SidebarContent({ facets = [] }: SidebarContentProps) {
               </span>
             </div>
             {openSections.includes(group.id) ? (
-              <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-[#FF6B00]" />
+              <ChevronDown className="w-4 h-4 text-[#ABC1D6] group-hover:text-[#FF6B00]" />
             ) : (
-              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#FF6B00]" />
+              <ChevronRight className="w-4 h-4 text-[#ABC1D6] group-hover:text-[#FF6B00]" />
             )}
           </button>
           
@@ -140,7 +140,7 @@ function SidebarContent({ facets = [] }: SidebarContentProps) {
                       {option.label}
                     </span>
                   </div>
-                  <span className="text-[10px] font-bold text-slate-400 group-hover:text-[#FF6B00] transition-colors">
+                  <span className="text-[10px] font-bold text-[#ABC1D6] group-hover:text-[#FF6B00] transition-colors">
                     {option.count}
                   </span>
                 </label>

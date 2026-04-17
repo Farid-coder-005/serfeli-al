@@ -80,7 +80,7 @@ export default async function Page() {
         </div>
         <ProductCarousel products={populars} userFavoriteIds={userFavoriteIds} />
         <div className="flex justify-center mt-8">
-          <Link href="/search" className="bg-[#005ea8] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#005ea8]/20">
+          <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
             Bütün məhsullara bax
           </Link>
         </div>
@@ -92,7 +92,7 @@ export default async function Page() {
           <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">Sizin üçün təkliflər</h2>
           <ProductCarousel products={deals} userFavoriteIds={userFavoriteIds} />
           <div className="flex justify-center mt-8">
-            <Link href="/search" className="bg-[#005ea8] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#005ea8]/20">
+            <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
               Bütün təkliflərə bax
             </Link>
           </div>
@@ -106,7 +106,7 @@ export default async function Page() {
         </div>
         <ProductCarousel products={bestsellers} userFavoriteIds={userFavoriteIds} />
         <div className="flex justify-center mt-8">
-          <Link href="/search" className="bg-[#005ea8] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#005ea8]/20">
+          <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
             Bütün məhsullara bax
           </Link>
         </div>
@@ -123,8 +123,8 @@ export default async function Page() {
               className="bg-gray-100 rounded-md p-4 flex items-center justify-between h-[100px] group overflow-hidden relative"
             >
               <div className="flex flex-col z-10">
-                <span className="text-[15px] font-bold text-[#1a1a1a] group-hover:text-[#005ea8] transition-colors">{cat.label}</span>
-                <div className="mt-1 flex items-center text-[11px] text-[#005ea8] font-bold">
+                <span className="text-[15px] font-bold text-[#1a1a1a] group-hover:text-[#002B55] transition-colors">{cat.label}</span>
+                <div className="mt-1 flex items-center text-[11px] text-[#002B55] font-bold">
                   Keçid <ChevronRight className="w-3 h-3 ml-0.5" />
                 </div>
               </div>

@@ -76,7 +76,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
         <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
           <Info className="w-8 h-8 text-gray-200" />
         </div>
-        <p className="text-gray-400 font-bold uppercase tracking-widest text-[11px]">Məlumat mövcud deyil</p>
+        <p className="text-[#ABC1D6] font-bold uppercase tracking-widest text-[11px]">Məlumat mövcud deyil</p>
       </div>
     );
   }
@@ -89,14 +89,14 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
     if (active && payload && payload.length) {
       return (
         <div className="bg-white/90 backdrop-blur-xl p-5 border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2rem] ring-1 ring-black/[0.03]">
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3 border-b border-gray-100/50 pb-2">
+          <p className="text-[10px] font-black text-[#ABC1D6] uppercase tracking-[0.2em] mb-3 border-b border-gray-100/50 pb-2">
             {payload[0].payload.fullDate}
           </p>
           <div className="flex items-baseline gap-1.5">
             <span className="text-3xl font-black text-[#FF6B00] tracking-tighter">
               {payload[0].value}
             </span>
-            <span className="text-[11px] font-black text-gray-400 uppercase">AZN</span>
+            <span className="text-[11px] font-black text-[#ABC1D6] uppercase">AZN</span>
           </div>
           {payload[0].value === minPrice && (
             <div className="mt-2 flex items-center gap-1 text-[9px] font-black text-[#FF6B00] uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full w-max">
@@ -126,7 +126,7 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
                 <span className="text-[10px] font-black text-orange-600/60 uppercase tracking-[0.4em]">Smart Qiymət Təhlili</span>
               </div>
               <div className="flex items-baseline gap-4">
-                <h3 className="text-4xl sm:text-6xl font-black text-[#1e293b] tracking-tighter leading-none">
+                <h3 className="text-4xl sm:text-6xl font-black text-[#26496B] tracking-tighter leading-none">
                   {currentPrice}
                   <span className="text-lg sm:text-xl text-gray-300 ml-2 uppercase font-black tracking-widest">AZN</span>
                 </h3>
@@ -253,10 +253,10 @@ export const PriceHistoryChart: React.FC<PriceHistoryChartProps> = ({ data }) =>
       <div className="flex items-center justify-between px-12 opacity-30 group-hover:opacity-100 transition-opacity duration-700">
         <div className="flex items-center gap-4">
           <div className="w-1.5 h-1.5 rounded-full bg-orange-600" />
-          <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.5em]">Təhlükəsiz Məlumat bazası</span>
+          <span className="text-[10px] font-black text-[#ABC1D6] uppercase tracking-[0.5em]">Təhlükəsiz Məlumat bazası</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.5em]">Real-Time Verifikasiya</span>
+          <span className="text-[10px] font-black text-[#ABC1D6] uppercase tracking-[0.5em]">Real-Time Verifikasiya</span>
           <div className="w-1.5 h-1.5 rounded-full bg-orange-600" />
         </div>
       </div>
