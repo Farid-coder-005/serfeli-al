@@ -72,18 +72,18 @@ export async function GET(request: Request) {
             subject: `Endirim! ${alert.productName} qiyməti düşdü!`,
             html: `
               <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-                <h1 style="color: #005ea8;">Şad xəbər!</h1>
+                <h1 style="color: #002B55;">Şad xəbər!</h1>
                 <p style="font-size: 16px; color: #333;">
                   İzlədiyiniz <strong>${alert.productName}</strong> məhsulunun qiyməti sizin hədəf 
                   qiymətinizə (<strong>${alert.targetPrice.toFixed(2)} ₼</strong>) çatdı!
                 </p>
                 <div style="background: #f9f9f9; padding: 20px; text-align: center; border-radius: 10px; margin: 20px 0;">
                   <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Hazırkı ən aşağı qiymət:</p>
-                  <p style="font-size: 32px; font-weight: bold; color: #FF5500; margin: 0;">${lowestPrice.toFixed(2)} ₼</p>
+                  <p style="font-size: 32px; font-weight: bold; color: #FF6B00; margin: 0;">${lowestPrice.toFixed(2)} ₼</p>
                 </div>
                 <p style="text-align: center;">
                   <a href="https://serfeli-al.vercel.app/product/${alert.productId}" 
-                     style="background: #005ea8; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+                     style="background: #002B55; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
                     İndi Al / Müqayisə Et
                   </a>
                 </p>

@@ -60,13 +60,13 @@ export async function POST(request: Request) {
       subject: "Şifrənin sıfırlanması - Serfeli.al",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-          <h1 style="color: #FF5500; text-align: center;">Şifrə Sıfırlama</h1>
+          <h1 style="color: #FF6B00; text-align: center;">Şifrə Sıfırlama</h1>
           <p style="font-size: 16px; color: #333;">
             Sizin hesabınız üçün şifrə sıfırlama tələbi daxil olub. Əgər bunu siz etməmisinizsə, bu e-poçta məhəl qoymayın.
           </p>
           <div style="text-align: center; margin: 30px 0;">
             <a href="${resetUrl}" 
-               style="background: #FF5500; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 16px;">
+               style="background: #FF6B00; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 16px;">
               Şifrəni Sıfırla
             </a>
           </div>
