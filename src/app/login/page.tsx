@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Mail, Lock, ArrowRight, ShieldCheck } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { SocialAuth } from "@/components/auth/SocialAuth";
 
 function LoginForm() {
   const router = useRouter();

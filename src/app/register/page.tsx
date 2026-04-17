@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { User, Mail, Lock, ArrowRight, ShieldCheck, RefreshCw } from "lucide-react";
 import { signIn } from "next-auth/react";
-import { SocialAuth } from "@/components/SocialAuth";
+import { SocialAuth } from "@/components/auth/SocialAuth";
 import { PasswordStrengthMeter } from "@/components/PasswordStrengthMeter";
 
 export default function RegisterPage() {
