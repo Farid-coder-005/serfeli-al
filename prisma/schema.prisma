@@ -98,6 +98,7 @@ model Product {
   imageUrl     String?
   category     String?
   categorySlug String?
+  oldPrice     Float?
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
   offers       ProductOffer[]

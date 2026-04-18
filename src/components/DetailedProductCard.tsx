@@ -17,7 +17,9 @@ export default function DetailedProductCard({
     : null;
     
   const newPrice = cheapestOffer ? cheapestOffer.currentPrice : 0;
+  const oldPrice = product.oldPrice || 0;
   const storeName = cheapestOffer?.store?.name || "Bilinmir";
+  const discountPercent = oldPrice > newPrice ? Math.round(((oldPrice - newPrice) / oldPrice) * 100) : 0;
   
   // Mocking details for visual accuracy
   const rating = 4.7;
@@ -27,6 +29,15 @@ export default function DetailedProductCard({
 
   return (
     <div className="bg-white border-r border-b border-gray-200 p-4 hover:shadow-xl transition-all group relative flex flex-col h-full min-h-[450px]">
+      {/* Badges */}
+      <div className="absolute top-2 left-0 z-10 flex flex-col gap-1 items-start">
+        {oldPrice > newPrice && (
+          <div className="bg-[#FF6B00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-r-sm shadow-sm">
+            -{discountPercent}%
+          </div>
+        )}
+      </div>
+
       {/* Favorite Button */}
       <div className="absolute top-4 right-4 z-10 text-[#002B55]">
          <FavoriteButton productId={product.id} initialFavorited={userFavoriteIds.includes(product.id)} />

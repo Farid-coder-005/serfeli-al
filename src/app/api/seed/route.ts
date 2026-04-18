@@ -33,6 +33,7 @@ export async function GET() {
         category: 'elektronika',
         description: 'The latest iPhone 15 Pro with A17 Pro chip and titanium design.',
         imageUrl: '/iphone15pro.png',
+        oldPrice: 2899.00,
         offers: [
           { storeName: 'Kontakt', price: 2499.99 },
           { storeName: 'İrşad', price: 2549.99 },
@@ -55,6 +56,7 @@ export async function GET() {
         category: 'elektronika',
         description: 'Galaxy AI is here. Experience the new era of mobile AI.',
         imageUrl: '/iphone15pro.png',
+        oldPrice: 3200.00,
         offers: [
           { storeName: 'Baku Electronics', price: 2899.00 },
           { storeName: 'İrşad', price: 2799.00 },
@@ -192,6 +194,7 @@ export async function GET() {
       const product = await prisma.product.create({
         data: {
           ...productDetails,
+          oldPrice: productDetails.oldPrice || null,
           offers: {
             create: offers.map((offer) => ({
               storeId: storeMap.get(offer.storeName)!,

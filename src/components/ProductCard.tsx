@@ -17,9 +17,9 @@ export function ProductCard({
     : null;
     
   const newPrice = cheapestOffer ? cheapestOffer.currentPrice : 0;
-  const oldPrice = newPrice > 0 ? Math.floor(newPrice * 1.15) : 0;
+  const oldPrice = product.oldPrice || 0;
   const storeName = cheapestOffer?.store?.name || "Bilinmir";
-  const realDiscount = true;
+  const realDiscount = oldPrice > newPrice;
   const discountPercent = oldPrice > 0 ? Math.round(((oldPrice - newPrice) / oldPrice) * 100) : 0;
   
   // Mocking rating for visual accuracy
@@ -35,9 +35,6 @@ export function ProductCard({
             -{discountPercent}%
           </div>
         )}
-        <div className="bg-[#002B55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-r-sm shadow-sm">
-          A
-        </div>
       </div>
 
       <div className="absolute top-2 right-2 z-10 text-[#002B55]">
