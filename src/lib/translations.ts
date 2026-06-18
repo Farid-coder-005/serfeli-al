@@ -38,6 +38,7 @@ export const translations = {
     categoryPets: "Heyvanlar",
     categoryFlights: "Reyslər",
     categoryEducation: "Təhsil",
+    categoryInsurance: "Sığorta",
 
     categoryPhones: "Telefonlar",
     categoryLaptops: "Laptoplar",
@@ -89,6 +90,7 @@ export const translations = {
     categoryPets: "Pets",
     categoryFlights: "Flights",
     categoryEducation: "Education",
+    categoryInsurance: "Insurance",
 
     categoryPhones: "Phones",
     categoryLaptops: "Laptops",
@@ -140,6 +142,7 @@ export const translations = {
     categoryPets: "Животные",
     categoryFlights: "Авиабилеты",
     categoryEducation: "Образование",
+    categoryInsurance: "Страхование",
 
     categoryPhones: "Телефоны",
     categoryLaptops: "Ноутбуки",

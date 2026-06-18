@@ -10,7 +10,7 @@ import {
   Smartphone, Dumbbell, Baby, Home,
   Apple, Gamepad2, HeartPulse, Car, Shirt,
   PawPrint, Plane, Tag, UserCircle, LayoutDashboard,
-  Leaf, Clock, Percent, Globe, GraduationCap
+  Leaf, Clock, Percent, Globe, GraduationCap, Shield
 } from "lucide-react";
 import SearchBar from "./SearchBar";
 import { Logo } from "./Logo";
@@ -38,6 +38,7 @@ const CATEGORIES = [
   { label: "Heyvanlar", icon: PawPrint, href: "/category/heyvanlar" },
   { label: "Reyslər", icon: Plane, href: "#" },
   { label: "Təhsil", icon: GraduationCap, href: "/category/tehsil" },
+  { label: "Sığorta", icon: Shield, href: "/category/sigorta" },
 ];
 
 export function Header() {
@@ -206,7 +207,8 @@ export function Header() {
                 "Moda": "categoryFashion",
                 "Heyvanlar": "categoryPets",
                 "Reyslər": "categoryFlights",
-                "Təhsil": "categoryEducation"
+                "Təhsil": "categoryEducation",
+                "Sığorta": "categoryInsurance"
               };
               const displayLabel = translationKeyMap[label] ? t(translationKeyMap[label]) : label;
               if (idx === 0) {
@@ -266,7 +268,8 @@ export function Header() {
               "Moda": "categoryFashion",
               "Heyvanlar": "categoryPets",
               "Reyslər": "categoryFlights",
-              "Təhsil": "categoryEducation"
+              "Təhsil": "categoryEducation",
+              "Sığorta": "categoryInsurance"
             };
             const displayLabel = translationKeyMap[label] ? t(translationKeyMap[label]) : label;
             return (
