@@ -20,6 +20,9 @@ export const translations = {
     discoverBestsellers: "Bestsellerləri kəşf edin",
     relatedCategories: "Əlaqəli kateqoriyalar",
     transition: "Keçid",
+    promoTitle: "Qiymət Həmişə Sərfəli!",
+    promoSubtitle: "serfeli.al-da ən yaxşı qiymətləri tapın.",
+    promoButton: "İndi kəşf et",
 
     // Categories
     categoryOffers: "Təkliflər",
@@ -67,6 +70,9 @@ export const translations = {
     discoverBestsellers: "Discover bestsellers",
     relatedCategories: "Related categories",
     transition: "Go",
+    promoTitle: "The price is always LOW!",
+    promoSubtitle: "Find the best prices on serfeli.al.",
+    promoButton: "Discover now",
 
     // Categories
     categoryOffers: "Offers",
@@ -114,6 +120,9 @@ export const translations = {
     discoverBestsellers: "Откройте для себя бестселлеры",
     relatedCategories: "Похожие категории",
     transition: "Перейти",
+    promoTitle: "Цена всегда ВЫГОДНАЯ!",
+    promoSubtitle: "Найдите лучшие цены на serfeli.al.",
+    promoButton: "Узнать больше",
 
     // Categories
     categoryOffers: "Предложения",
