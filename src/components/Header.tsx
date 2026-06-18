@@ -8,7 +8,7 @@ import { useSession, signOut } from "next-auth/react";
 import {
   Heart, Coins, User, Menu, X, Bell,
   Smartphone, Dumbbell, Baby, Home,
-  Apple, Gamepad2, HeartPulse, Car, Shirt,
+  Store, Gamepad2, HeartPulse, Car, Shirt,
   PawPrint, Plane, Tag, UserCircle, LayoutDashboard,
   Leaf, Clock, Percent, Globe, GraduationCap, Shield
 } from "lucide-react";
@@ -30,7 +30,7 @@ const CATEGORIES = [
   { label: "İdman", icon: Dumbbell, href: "/category/idman" },
   { label: "Uşaq", icon: Baby, href: "/category/usaq" },
   { label: "Ev və Bağça", icon: Home, href: "/category/ev-ve-bagca" },
-  { label: "Qida", icon: Apple, href: "/category/qida" },
+  { label: "Marketlər", icon: Store, href: "/category/qida" },
   { label: "Oyunlar", icon: Gamepad2, href: "/category/oyunlar" },
   { label: "Sağlamlıq", icon: HeartPulse, href: "/category/saglamliq" },
   { label: "Avtomobil", icon: Car, href: "/category/avtomobil" },
@@ -200,7 +200,7 @@ export function Header() {
                 "İdman": "categorySports",
                 "Uşaq": "categoryKids",
                 "Ev və Bağça": "categoryHomeGarden",
-                "Qida": "categoryFood",
+                "Marketlər": "categoryFood",
                 "Oyunlar": "categoryGames",
                 "Sağlamlıq": "categoryHealth",
                 "Avtomobil": "categoryAutomobil",
