@@ -37,6 +37,7 @@ export const translations = {
     categoryFashion: "Moda",
     categoryPets: "Heyvanlar",
     categoryFlights: "Reyslər",
+    categoryEducation: "Təhsil",
 
     categoryPhones: "Telefonlar",
     categoryLaptops: "Laptoplar",
@@ -87,6 +88,7 @@ export const translations = {
     categoryFashion: "Fashion",
     categoryPets: "Pets",
     categoryFlights: "Flights",
+    categoryEducation: "Education",
 
     categoryPhones: "Phones",
     categoryLaptops: "Laptops",
@@ -137,6 +139,7 @@ export const translations = {
     categoryFashion: "Мода",
     categoryPets: "Животные",
     categoryFlights: "Авиабилеты",
+    categoryEducation: "Образование",
 
     categoryPhones: "Телефоны",
     categoryLaptops: "Ноутбуки",
