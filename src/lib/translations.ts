@@ -10,7 +10,7 @@ export const translations = {
     categories: "Kateqoriyalar",
     signOut: "Çıxış",
     loginRegister: "Giriş / Qeydiyyat",
-    searchPlaceholder: "Məhsul, marka və ya kateqoriya axtarın...",
+    searchPlaceholder: "Azərbaycanın ən ağıllı alış platforması",
 
     // Homepage
     popularProducts: "Populyar məhsullar",
@@ -57,7 +57,7 @@ export const translations = {
     categories: "Categories",
     signOut: "Sign Out",
     loginRegister: "Login / Register",
-    searchPlaceholder: "Search for products, brands or categories...",
+    searchPlaceholder: "Azerbaijan's smartest shopping platform",
 
     // Homepage
     popularProducts: "Popular products",
@@ -104,7 +104,7 @@ export const translations = {
     categories: "Категории",
     signOut: "Выйти",
     loginRegister: "Вход / Регистрация",
-    searchPlaceholder: "Ищите товары, бренды или категории...",
+    searchPlaceholder: "Самая умная платформа для покупок в Азербайджане",
 
     // Homepage
     popularProducts: "Популярные товары",
