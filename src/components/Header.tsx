@@ -14,6 +14,9 @@ import {
 } from "lucide-react";
 import SearchBar from "./SearchBar";
 import { Logo } from "./Logo";
+import { useLanguage } from "@/context/LanguageContext";
+import { Language, TranslationKey } from "@/lib/translations";
+
 
 /* ─── Top Bar links ───────────────────────────────────────── */
 const TOP_LINKS = [
@@ -43,16 +46,8 @@ export function Header() {
   const user = session?.user;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("shopping");
-  const [lang, setLang] = useState("AZ");
+  const { language, setLanguage, t } = useLanguage();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  // Load selected language on mount
-  useEffect(() => {
-    const saved = localStorage.getItem("selectedLanguage");
-    if (saved && ["AZ", "EN", "RU"].includes(saved)) {
-      setLang(saved);
-    }
-  }, []);
  
   // Close mobile drawer on route change
   useEffect(() => { setMobileOpen(false); }, [pathname]);
@@ -74,7 +69,7 @@ export function Header() {
                   : 'text-white/70 hover:text-white border-b-2 border-transparent'
                 }`}
               >
-                ALIŞ-VERİŞ
+                {t("shopping")}
               </Link>
               <button 
                 onClick={() => setActiveTab('flights')}
@@ -84,11 +79,11 @@ export function Header() {
                   : 'text-white/70 hover:text-white border-b-2 border-transparent'
                 }`}
               >
-                UÇUŞLAR
+                {t("flights")}
               </button>
             </nav>
             <div className="flex items-center gap-2 text-white hover:text-white cursor-pointer transition-colors group">
-                <span className="text-white/70 font-medium">Sərfəli.al-da davamlılıq</span>
+                <span className="text-white/70 font-medium">{t("sustainability")}</span>
               <Leaf className="w-3.5 h-3.5 text-[#FF6B00] group-hover:scale-110 transition-transform" />
             </div>
           </div>
@@ -116,11 +111,11 @@ export function Header() {
             <div className="flex items-center gap-4 sm:gap-6 ml-auto shrink-0 pt-1">
               <Link href="/wishlist" className="flex flex-col items-center group text-white hover:text-[#FF6B00] transition-colors">
                 <Heart className="w-6 h-6 stroke-[1.5]" />
-                <span className="text-white/70 mt-1 font-medium hidden sm:block">Qeydlərim</span>
+                <span className="text-white/70 mt-1 font-medium hidden sm:block">{t("myNotes")}</span>
               </Link>
               <Link href="/dashboard/price-alerts" className="flex flex-col items-center group text-white hover:text-[#FF6B00] transition-colors">
                 <Bell className="w-6 h-6 stroke-[1.5]" />
-                <span className="text-white/70 mt-1 font-medium hidden sm:block">Qiymət bildirişi</span>
+                <span className="text-white/70 mt-1 font-medium hidden sm:block">{t("priceAlert")}</span>
               </Link>
               
               {/* Language Switcher */}
@@ -134,7 +129,7 @@ export function Header() {
                 >
                   <Globe className="w-6 h-6 stroke-[1.5]" />
                   <span className="text-white/70 mt-1 font-medium hidden sm:block uppercase tracking-wider text-[14px]">
-                    {lang}
+                    {language.toUpperCase()}
                   </span>
                 </button>
 
@@ -153,14 +148,13 @@ export function Header() {
                         { code: "EN", label: "English", flag: "🇬🇧" },
                         { code: "RU", label: "Russian", flag: "🇷🇺" },
                       ].map((item) => {
-                        const isActive = lang === item.code;
+                        const isActive = language.toUpperCase() === item.code;
                         return (
                           <button
                             key={item.code}
                             onClick={() => {
-                              setLang(item.code);
+                              setLanguage(item.code.toLowerCase() as Language);
                               setDropdownOpen(false);
-                              localStorage.setItem("selectedLanguage", item.code);
                             }}
                             className={`w-full flex items-center gap-3 px-4 py-2 text-left text-sm font-semibold transition-all duration-150 cursor-pointer ${
                               isActive 
@@ -183,7 +177,7 @@ export function Header() {
 
               <Link href={isLoggedIn ? "/dashboard" : "/login"} className="flex flex-col items-center group text-white hover:text-[#FF6B00] transition-colors">
                 <User className="w-6 h-6 stroke-[1.5]" />
-                <span className="text-white/70 mt-1 font-medium hidden sm:block">Profil</span>
+                <span className="text-white/70 mt-1 font-medium hidden sm:block">{t("profile")}</span>
               </Link>
             </div>
           </div>
@@ -198,6 +192,21 @@ export function Header() {
         <nav className="bg-[#26496B] py-3 hidden md:block w-full">
           <div className="max-w-[1440px] mx-auto w-full px-4 flex justify-between items-start overflow-x-auto no-scrollbar">
             {CATEGORIES.map(({ label, icon: Icon, href }, idx) => {
+              const translationKeyMap: Record<string, TranslationKey> = {
+                "Təkliflər": "categoryOffers",
+                "Elektronika": "categoryElectronics",
+                "İdman": "categorySports",
+                "Uşaq": "categoryKids",
+                "Ev və Bağça": "categoryHomeGarden",
+                "Qida": "categoryFood",
+                "Oyunlar": "categoryGames",
+                "Sağlamlıq": "categoryHealth",
+                "Avtomobil": "categoryAutomobil",
+                "Moda": "categoryFashion",
+                "Heyvanlar": "categoryPets",
+                "Reyslər": "categoryFlights"
+              };
+              const displayLabel = translationKeyMap[label] ? t(translationKeyMap[label]) : label;
               if (idx === 0) {
                 return (
                   <div key={label} className="shrink-0 mt-1">
@@ -205,7 +214,7 @@ export function Header() {
                       <div className="w-[26px] h-[26px] bg-[#FF6B00] rounded-[3px] flex items-center justify-center">
                         <Percent className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-[11px] font-medium tracking-wide text-white">{label}</span>
+                      <span className="text-[11px] font-medium tracking-wide text-white">{displayLabel}</span>
                     </Link>
                   </div>
                 );
@@ -214,7 +223,7 @@ export function Header() {
                 <div key={label} className="shrink-0 mt-1">
                   <Link href={href} className="flex flex-col items-center text-white hover:text-[#FF6B00] transition-colors gap-1.5">
                     <Icon className="w-[26px] h-[26px] stroke-[1.5]" />
-                    <span className="text-[11px] font-medium tracking-wide text-white">{label}</span>
+                    <span className="text-[11px] font-medium tracking-wide text-white">{displayLabel}</span>
                   </Link>
                 </div>
               );
@@ -236,35 +245,52 @@ export function Header() {
       >
         <div className="px-6 py-6 space-y-2">
           <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
-            <span className="font-bold text-lg">Kategoriyalar</span>
+            <span className="font-bold text-lg">{t("categories")}</span>
             <button onClick={() => setMobileOpen(false)} className="p-2 text-[#1E293B] hover:text-white transition-colors">
                <X className="w-6 h-6" />
             </button>
           </div>
-          {CATEGORIES.map(({ label, icon: Icon, href }, idx) => (
-            <Link
-              key={label}
-              href={href}
-              className="flex items-center gap-4 py-3 text-[15px] font-bold text-gray-200 hover:text-[#FF6B00] transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              {idx === 0 ? (
-                <div className="w-6 h-6 bg-[#FF6B00] rounded-sm flex items-center justify-center">
-                  <Percent className="w-4 h-4 text-white" strokeWidth={2.5} />
-                </div>
-              ) : (
-                <Icon className="w-6 h-6" />
-              )}
-              {label}
-            </Link>
-          ))}
+          {CATEGORIES.map(({ label, icon: Icon, href }, idx) => {
+            const translationKeyMap: Record<string, TranslationKey> = {
+              "Təkliflər": "categoryOffers",
+              "Elektronika": "categoryElectronics",
+              "İdman": "categorySports",
+              "Uşaq": "categoryKids",
+              "Ev və Bağça": "categoryHomeGarden",
+              "Qida": "categoryFood",
+              "Oyunlar": "categoryGames",
+              "Sağlamlıq": "categoryHealth",
+              "Avtomobil": "categoryAutomobil",
+              "Moda": "categoryFashion",
+              "Heyvanlar": "categoryPets",
+              "Reyslər": "categoryFlights"
+            };
+            const displayLabel = translationKeyMap[label] ? t(translationKeyMap[label]) : label;
+            return (
+              <Link
+                key={label}
+                href={href}
+                className="flex items-center gap-4 py-3 text-[15px] font-bold text-gray-200 hover:text-[#FF6B00] transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                {idx === 0 ? (
+                  <div className="w-6 h-6 bg-[#FF6B00] rounded-sm flex items-center justify-center">
+                    <Percent className="w-4 h-4 text-white" strokeWidth={2.5} />
+                  </div>
+                ) : (
+                  <Icon className="w-6 h-6" />
+                )}
+                {displayLabel}
+              </Link>
+            );
+          })}
           <div className="pt-6 mt-6 border-t border-white/10">
              {isLoggedIn ? (
                <button
                   onClick={() => { signOut(); setMobileOpen(false); }}
                   className="w-full text-left py-3 text-[15px] font-bold text-red-500"
                >
-                 Çıxış
+                 {t("signOut")}
                </button>
              ) : (
                 <Link
@@ -272,7 +298,7 @@ export function Header() {
                   className="block w-full py-3 text-[15px] font-bold text-[#FF6B00]"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Giriş / Qeydiyyat
+                  {t("loginRegister")}
                 </Link>
              )}
           </div>

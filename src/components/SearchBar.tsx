@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const router = useRouter();
+  const { t } = useLanguage();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ export default function SearchBar() {
       <input
         id="main-search-input"
         type="text"
-        placeholder="Nə axtarırsınız?"
+        placeholder={t("searchPlaceholder")}
         className="w-full bg-white py-3.5 pl-4 pr-12 text-[16px] text-[#222222] placeholder-gray-600 outline-none rounded-sm"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
