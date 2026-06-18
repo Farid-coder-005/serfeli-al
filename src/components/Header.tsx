@@ -10,7 +10,7 @@ import {
   Smartphone, Dumbbell, Baby, Home,
   Apple, Gamepad2, HeartPulse, Car, Shirt,
   PawPrint, Plane, Tag, UserCircle, LayoutDashboard,
-  Leaf, Clock, Percent
+  Leaf, Clock, Percent, Globe
 } from "lucide-react";
 import SearchBar from "./SearchBar";
 import { Logo } from "./Logo";
@@ -43,6 +43,16 @@ export function Header() {
   const user = session?.user;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("shopping");
+  const [lang, setLang] = useState("AZ");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // Load selected language on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("selectedLanguage");
+    if (saved && ["AZ", "EN", "RU"].includes(saved)) {
+      setLang(saved);
+    }
+  }, []);
  
   // Close mobile drawer on route change
   useEffect(() => { setMobileOpen(false); }, [pathname]);
@@ -112,6 +122,65 @@ export function Header() {
                 <Bell className="w-6 h-6 stroke-[1.5]" />
                 <span className="text-white/70 mt-1 font-medium hidden sm:block">Qiymət bildirişi</span>
               </Link>
+              
+              {/* Language Switcher */}
+              <div className="relative flex flex-col items-center premium-lang-switcher">
+                <button
+                  id="language-switcher-btn"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex flex-col items-center group text-white hover:text-[#FF6B00] transition-colors focus:outline-none cursor-pointer"
+                  aria-haspopup="true"
+                  aria-expanded={dropdownOpen}
+                >
+                  <Globe className="w-6 h-6 stroke-[1.5]" />
+                  <span className="text-white/70 mt-1 font-medium hidden sm:block uppercase tracking-wider text-[14px]">
+                    {lang}
+                  </span>
+                </button>
+
+                {dropdownOpen && (
+                  <>
+                    <div 
+                      className="fixed inset-0 z-40 cursor-default" 
+                      onClick={() => setDropdownOpen(false)}
+                    />
+                    <div className="absolute top-full right-1/2 translate-x-1/2 sm:right-0 sm:translate-x-0 w-44 bg-white rounded-xl shadow-xl border border-gray-100 py-2.5 z-50 premium-dropdown-animate">
+                      <div className="px-4 py-1.5 text-[10px] font-black text-gray-400 tracking-wider uppercase border-b border-gray-100/50 pb-2 mb-1">
+                        Dil seçin / Select Language
+                      </div>
+                      {[
+                        { code: "AZ", label: "Azerbaijani", flag: "🇦🇿" },
+                        { code: "EN", label: "English", flag: "🇬🇧" },
+                        { code: "RU", label: "Russian", flag: "🇷🇺" },
+                      ].map((item) => {
+                        const isActive = lang === item.code;
+                        return (
+                          <button
+                            key={item.code}
+                            onClick={() => {
+                              setLang(item.code);
+                              setDropdownOpen(false);
+                              localStorage.setItem("selectedLanguage", item.code);
+                            }}
+                            className={`w-full flex items-center gap-3 px-4 py-2 text-left text-sm font-semibold transition-all duration-150 cursor-pointer ${
+                              isActive 
+                                ? "bg-[#FF6B00]/10 text-[#FF6B00]" 
+                                : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                            }`}
+                          >
+                            <span className="text-base leading-none">{item.flag}</span>
+                            <span className="flex-1">{item.label}</span>
+                            {isActive && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00]" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </>
+                )}
+              </div>
+
               <Link href={isLoggedIn ? "/dashboard" : "/login"} className="flex flex-col items-center group text-white hover:text-[#FF6B00] transition-colors">
                 <User className="w-6 h-6 stroke-[1.5]" />
                 <span className="text-white/70 mt-1 font-medium hidden sm:block">Profil</span>
