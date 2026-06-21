@@ -32,7 +32,7 @@ export function ProductCarousel({ products, userFavoriteIds, beforeItems, afterI
       {/* Scrollable Track */}
       <div 
         ref={scrollRef} 
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" 
+        className="flex items-stretch gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" 
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
          {beforeItems}

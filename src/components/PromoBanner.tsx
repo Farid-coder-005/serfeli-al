@@ -13,7 +13,7 @@ export function PromoBanner({ variant = "right" }: PromoBannerProps) {
   const { t } = useLanguage();
 
   return (
-    <div className="promo-banner-card group relative overflow-hidden rounded-2xl w-full h-[420px] lg:h-full lg:min-h-[420px] cursor-pointer shadow-xl hover:shadow-2xl transition-shadow duration-500">
+    <div className="promo-banner-card group relative overflow-hidden rounded-2xl w-full h-full min-h-[380px] cursor-pointer shadow-xl hover:shadow-2xl transition-shadow duration-500">
       {/* Background Image */}
       <Image
         src="/promo-banner-bg.png"

@@ -9,6 +9,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { ProductCarousel } from "@/components/ProductCarousel";
+import { ProductCard } from "@/components/ProductCard";
 import { PromoBanner } from "@/components/PromoBanner";
 import { useLanguage } from "@/context/LanguageContext";
 import { TranslationKey } from "@/lib/translations";
@@ -90,15 +91,16 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
       <section className="w-full bg-[#E8F0F8] py-12">
         <div className="max-w-[1440px] mx-auto w-full px-4">
           <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">{t("offersForYou")}</h2>
-          <ProductCarousel
-            products={deals}
-            userFavoriteIds={userFavoriteIds}
-            beforeItems={
-              <div className="flex-none w-[260px] md:w-[280px] snap-start hidden md:block">
-                <PromoBanner variant="left" />
+          <div className="flex items-stretch gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex-none w-[260px] md:w-[280px] snap-start">
+              <PromoBanner variant="left" />
+            </div>
+            {deals.map((p) => (
+              <div key={p.id} className="flex-none w-[260px] md:w-[280px] snap-start">
+                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
               </div>
-            }
-          />
+            ))}
+          </div>
           <div className="flex justify-center mt-8">
             <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
               {t("viewAllOffers")}
@@ -112,15 +114,16 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
         <div className="flex justify-between items-baseline mb-6">
           <h2 className="text-2xl font-bold text-[#222222]">{t("discoverBestsellers")}</h2>
         </div>
-        <ProductCarousel
-          products={bestsellers}
-          userFavoriteIds={userFavoriteIds}
-          afterItems={
-            <div className="flex-none w-[260px] md:w-[280px] snap-start hidden md:block">
-              <PromoBanner variant="right" />
+        <div className="flex items-stretch gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          {bestsellers.map((p) => (
+            <div key={p.id} className="flex-none w-[260px] md:w-[280px] snap-start">
+              <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
             </div>
-          }
-        />
+          ))}
+          <div className="flex-none w-[260px] md:w-[280px] snap-start">
+            <PromoBanner variant="right" />
+          </div>
+        </div>
         <div className="flex justify-center mt-8">
           <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
             {t("viewAllProducts")}
