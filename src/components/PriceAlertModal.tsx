@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { X, Bell, Mail, Info, TrendingDown, AlertCircle, CheckCircle2 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface PriceAlertModalProps {
   isOpen: boolean;
@@ -21,6 +22,7 @@ export default function PriceAlertModal({
   product,
   userEmail = "",
 }: PriceAlertModalProps) {
+  const { t } = useLanguage();
   const [targetPrice, setTargetPrice] = useState<string>(
     (product.currentPrice * 0.9).toFixed(2)
   );
@@ -41,33 +43,33 @@ export default function PriceAlertModal({
 
   // Gauge Logic
   const getFeasibility = () => {
-    if (targetVal >= currentPrice) return { label: "Artıq bu qiymətdədir!", color: "bg-gray-400", text: "text-[#1E293B]", percent: 100 };
+    if (targetVal >= currentPrice) return { label: t("alreadyAtPrice"), color: "bg-gray-400", text: "text-[#1E293B]", percent: 100 };
     
     const dropPercent = ((currentPrice - targetVal) / currentPrice) * 100;
     
     if (targetVal >= historicalMin) {
       return { 
-        label: "Realist", 
+        label: t("feasibilityProbable"), 
         color: "bg-[#1da661]", 
         text: "text-[#1da661]", 
         percent: Math.max(70, 100 - dropPercent),
-        info: "Bu qiymət əvvəllər görülüb. Şansınız yüksəkdir." 
+        info: t("feasibleInfo")
       };
     } else if (targetVal >= historicalMin * 0.85) {
       return { 
-        label: "Çətin", 
+        label: t("feasibilityDifficult"), 
         color: "bg-orange-500", 
         text: "text-orange-500", 
         percent: 40,
-        info: "Bu olduqca böyük bir endirimdir. Gözləməli ola bilərsiniz." 
+        info: t("difficultInfo")
       };
     } else {
       return { 
-        label: "Qeyri-realist", 
+        label: t("feasibilityUnlikely"), 
         color: "bg-red-500", 
         text: "text-red-500", 
         percent: 15,
-        info: "Bu qiymət ehtimalı çox aşağıdır. Daha real rəqəm daxil edin." 
+        info: t("unlikelyInfo")
       };
     }
   };
@@ -77,13 +79,13 @@ export default function PriceAlertModal({
   const handleSave = async () => {
     if (!product.id) {
       setStatus("error");
-      setMessage("Məhsul ID-si tapılmadı. Zəhmət olmasa səhifəni yeniləyin.");
+      setMessage(t("productIdNotFound"));
       return;
     }
 
     if (!email || !targetPrice) {
       setStatus("error");
-      setMessage("Zəhmət olmasa bütün sahələri doldurun.");
+      setMessage(t("fillAllFields"));
       return;
     }
 
@@ -108,14 +110,14 @@ export default function PriceAlertModal({
       }
 
       setStatus("success");
-      setMessage("Qiymət bildirişi uğurla yadda saxlanıldı!");
+      setMessage(t("alertSaved"));
       setTimeout(() => {
         onClose();
         setStatus("idle");
       }, 2000);
     } catch (err) {
       setStatus("error");
-      setMessage("Bildiriş saxlanılarkən xəta baş verdi.");
+      setMessage(t("alertError"));
     }
   };
 
@@ -136,13 +138,13 @@ export default function PriceAlertModal({
               <Bell className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="text-xl font-black tracking-tight leading-tight">Qiymət Bildirişi</h2>
-              <p className="text-white/70 text-xs font-medium uppercase tracking-widest mt-0.5">Alerts & Tracks</p>
+              <h2 className="text-xl font-black tracking-tight leading-tight">{t("priceAlertTitle")}</h2>
+              <p className="text-white/70 text-xs font-medium uppercase tracking-widest mt-0.5">{t("alertsTracks")}</p>
             </div>
           </div>
           
           <div className="mt-6 flex items-end justify-between border-t border-white/10 pt-6">
-            <div className="text-sm font-medium opacity-80">Cari Qiymət:</div>
+            <div className="text-sm font-medium opacity-80">{t("currentPriceLabel")}</div>
             <div className="text-2xl font-black">{currentPrice.toFixed(2)} ₼</div>
           </div>
         </div>
@@ -154,7 +156,7 @@ export default function PriceAlertModal({
               <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
                 <CheckCircle2 className="w-10 h-10 text-[#1da661]" />
               </div>
-              <h3 className="text-xl font-black text-slate-800 mb-2">Uğurlu!</h3>
+              <h3 className="text-xl font-black text-slate-800 mb-2">{t("successTitle")}</h3>
               <p className="text-[#1E293B] font-medium">{message}</p>
             </div>
           ) : (
@@ -162,7 +164,7 @@ export default function PriceAlertModal({
               {/* Target Price Input */}
               <div className="mb-8">
                 <label className="block text-xs font-black text-[#1E293B] uppercase tracking-widest mb-3">
-                  İstədiyiniz Qiymət
+                  {t("desiredPrice")}
                 </label>
                 <div className="relative">
                   <input
@@ -179,7 +181,7 @@ export default function PriceAlertModal({
               {/* Feasibility Gauge */}
               <div className="mb-8 p-5 bg-slate-50 rounded-2xl border border-slate-100">
                 <div className="flex justify-between items-center mb-3">
-                  <span className="text-xs font-bold text-[#1E293B]">Realizasiya ehtimalı:</span>
+                  <span className="text-xs font-bold text-[#1E293B]">{t("feasibilityCheck")}</span>
                   <span className={`text-xs font-black uppercase tracking-wider ${feasibility.text}`}>
                     {feasibility.label}
                   </span>
@@ -201,7 +203,7 @@ export default function PriceAlertModal({
               {/* Email Input */}
               <div className="mb-8">
                 <label className="block text-xs font-black text-[#1E293B] uppercase tracking-widest mb-3">
-                  Bildiriş üçün Email
+                  {t("emailForAlert")}
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-[#1E293B] w-5 h-5" />
@@ -210,7 +212,7 @@ export default function PriceAlertModal({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl pl-14 pr-6 py-4 text-sm font-bold text-slate-800 focus:border-[#002B55] outline-none transition-all"
-                    placeholder="Sizin email ünvanınız"
+                    placeholder={t("emailPlaceholder")}
                   />
                 </div>
               </div>
@@ -230,7 +232,7 @@ export default function PriceAlertModal({
                   status === "loading" ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
-                {status === "loading" ? "Saxlanılır..." : "Qiymət bildirişini saxla"}
+                {status === "loading" ? t("saving") : t("saveAlert")}
               </button>
             </>
           )}

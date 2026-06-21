@@ -13,9 +13,11 @@ import {
   PackageSearch
 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function PriceAlertsPage() {
   const { data: session, status } = useSession();
+  const { t } = useLanguage();
   const [alerts, setAlerts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -53,7 +55,7 @@ export default function PriceAlertsPage() {
         setAlerts(alerts.filter(a => a.id !== id));
       }
     } catch (error) {
-      alert("Silmək mümkün olmadı.");
+      alert(t("deleteFailed"));
     } finally {
       setDeletingId(null);
     }
@@ -64,7 +66,7 @@ export default function PriceAlertsPage() {
       <div className="min-h-screen bg-[#F9FAFB] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-[#FF6B00] border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-[#1E293B] font-bold uppercase tracking-widest text-xs">Yüklənir...</p>
+          <p className="text-[#1E293B] font-bold uppercase tracking-widest text-xs">{t("loading")}</p>
         </div>
       </div>
     );
@@ -80,8 +82,8 @@ export default function PriceAlertsPage() {
                   <Bell className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                   <h1 className="text-3xl font-black text-white tracking-tight">Mənim Qiymət Bildirişlərim</h1>
-                   <p className="text-[#1E293B] font-medium">İzlədiyiniz məhsulların qiymət dəyişikliklərini idarə edin.</p>
+                   <h1 className="text-3xl font-black text-white tracking-tight">{t("myPriceAlerts")}</h1>
+                   <p className="text-[#1E293B] font-medium">{t("manageAlertsDesc")}</p>
                 </div>
              </div>
           </div>
@@ -94,12 +96,12 @@ export default function PriceAlertsPage() {
              <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-8">
                <PackageSearch className="w-10 h-10 text-[#1E293B]" />
              </div>
-             <h2 className="text-2xl font-black text-[#002B55] mb-4">Hələ ki, heç bir bildirişiniz yoxdur</h2>
+             <h2 className="text-2xl font-black text-[#002B55] mb-4">{t("noAlertsTitle")}</h2>
              <p className="text-[#1E293B] max-w-sm mx-auto mb-10 font-medium">
-               Bəyəndiyiniz məhsulun qiyməti düşəndə xəbər tutmaq üçün məhsul səhifəsindən zəng ikonuna klikləyərək bildiriş qura bilərsiniz.
+               {t("noAlertsDesc")}
              </p>
              <Link href="/" className="inline-flex items-center gap-3 px-10 py-5 bg-[#002B55] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#FF6B00] transition-all shadow-xl active:scale-95 group">
-                Məhsullara Bax <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {t("browseProducts")} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
              </Link>
           </div>
         ) : (
@@ -117,7 +119,7 @@ export default function PriceAlertsPage() {
                         ? 'bg-blue-50 text-blue-600' 
                         : 'bg-green-50 text-[#1da661]'
                     }`}>
-                      {alert.isActive ? 'Aktiv İzləmə' : 'Tamamlanıb'}
+                      {alert.isActive ? t("activeTracking") : t("completed")}
                     </span>
                     <button 
                       onClick={() => handleDelete(alert.id)}
@@ -150,11 +152,11 @@ export default function PriceAlertsPage() {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-4 bg-slate-50 rounded-2xl">
-                         <p className="text-[9px] font-black text-[#1E293B] uppercase mb-1">Hədəf</p>
+                         <p className="text-[9px] font-black text-[#1E293B] uppercase mb-1">{t("target")}</p>
                          <p className="text-xl font-black text-[#002B55]">{alert.targetPrice.toFixed(2)} ₼</p>
                       </div>
                       <div className={`p-4 rounded-2xl ${isTargetMet ? 'bg-green-50' : 'bg-slate-50'}`}>
-                         <p className="text-[9px] font-black text-[#1E293B] uppercase mb-1">Cari</p>
+                         <p className="text-[9px] font-black text-[#1E293B] uppercase mb-1">{t("current")}</p>
                          <p className={`text-xl font-black ${isTargetMet ? 'text-[#1da661]' : 'text-[#FF6B00]'}`}>
                             {currentPrice.toFixed(2)} ₼
                          </p>
@@ -164,7 +166,7 @@ export default function PriceAlertsPage() {
                     {isTargetMet && (
                       <div className="mt-6 p-4 bg-green-50 border border-green-100 rounded-2xl flex items-center gap-3 text-[#1da661] text-[11px] font-bold">
                         <TrendingDown size={14} />
-                        Hədəf qiymətə çatıldı!
+                        {t("targetReached")}
                       </div>
                     )}
                   </div>
@@ -174,7 +176,7 @@ export default function PriceAlertsPage() {
                       href={`/product/${alert.productId}`}
                       className="w-full py-4 bg-white border border-slate-200 text-[#002B55] rounded-2xl text-[11px] font-black uppercase tracking-widest hover:border-[#FF6B00] hover:text-[#FF6B00] transition-all flex items-center justify-center gap-2 group"
                     >
-                      Məhsula Bax <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      {t("viewProduct")} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>

@@ -18,11 +18,13 @@ import {
   Tag,
 } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
   const user = session?.user as any;
   const logout = () => signOut();
+  const { t } = useLanguage();
 
   // If not logged in, this page should ideally redirect, but for mock purposes we show a fallback
   if (!user) {
@@ -32,10 +34,10 @@ export default function DashboardPage() {
           <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
             <UserCircle className="w-10 h-10 text-[#1E293B]" />
           </div>
-          <h2 className="text-2xl font-black text-[#002B55] mb-4">Giriş edilməyib</h2>
-          <p className="text-[#1E293B] mb-8">Dashboard-u görmək üçün zəhmət olmasa daxil olun.</p>
+          <h2 className="text-2xl font-black text-[#002B55] mb-4">{t("notLoggedIn")}</h2>
+          <p className="text-[#1E293B] mb-8">{t("loginToView")}</p>
           <Link href="/login" className="inline-flex items-center justify-center w-full py-4 px-6 bg-[#FF6B00] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#E64D00] transition-all shadow-lg active:scale-95">
-            Giriş səhifəsinə keç
+            {t("goToLogin")}
           </Link>
         </div>
       </div>
@@ -71,13 +73,13 @@ export default function DashboardPage() {
             </div>
             <div className="flex gap-4">
               <button className="px-8 py-3.5 border border-slate-700 bg-slate-800/50 hover:bg-slate-700 text-white font-black text-xs uppercase tracking-widest rounded-2xl transition-all flex items-center gap-2">
-                 <Settings className="w-4 h-4" /> Kökləmələr
+                 <Settings className="w-4 h-4" /> {t("settings")}
               </button>
               <button 
                 onClick={logout}
                 className="px-8 py-3.5 bg-[#FF6B00] text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-[#E64D00] shadow-xl shadow-orange-500/20 transition-all flex items-center gap-2 active:scale-95"
               >
-                <LogOut className="w-4 h-4" /> Çıxış
+                <LogOut className="w-4 h-4" /> {t("signOut")}
               </button>
             </div>
           </div>
@@ -98,14 +100,14 @@ export default function DashboardPage() {
                   <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF6B00] shadow-inner group-hover:rotate-12 transition-transform">
                     <Wallet className="w-6 h-6" />
                   </div>
-                  <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">+12% Ay/Ay</span>
+                  <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">{t("monthlyGain")}</span>
                 </div>
-                <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">Kəşbək Balansı</p>
+                <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">{t("cashbackBalance")}</p>
                 <h3 className="text-5xl font-black text-[#002B55] tracking-tighter mb-6">
                   {(user.balance || 45.20).toFixed(2)} <span className="text-2xl ml-1 text-[#1E293B] font-bold">₼</span>
                 </h3>
                 <Link href="/coupon-store" className="block w-full py-4 bg-[#FF6B00] text-white rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#E64D00] transition-all text-center shadow-lg shadow-orange-500/20 active:scale-95">
-                  Kupon Mağazası
+                  {t("couponStore")}
                 </Link>
               </div>
 
@@ -115,9 +117,9 @@ export default function DashboardPage() {
                   <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF6B00] shadow-inner group-hover:-rotate-12 transition-transform">
                     <TrendingUp className="w-6 h-6" />
                   </div>
-                  <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">Real qənaət</span>
+                  <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">{t("realSavings")}</span>
                 </div>
-                <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">Ümumi Qənaət</p>
+                <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">{t("totalSavings")}</p>
                 <h3 className="text-5xl font-black text-[#002B55] tracking-tighter">
                   452.40 <span className="text-2xl ml-1 text-[#1E293B] font-bold">₼</span>
                 </h3>
@@ -128,9 +130,9 @@ export default function DashboardPage() {
             <div className="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-slate-900/5 p-8 lg:p-12">
               <div className="flex items-center justify-between mb-12">
                 <h2 className="text-2xl font-black text-[#002B55] tracking-tight flex items-center gap-3">
-                  <Clock className="w-6 h-6 text-[#FF6B00]" /> Son Əməliyyatlar
+                  <Clock className="w-6 h-6 text-[#FF6B00]" /> {t("recentActivity")}
                 </h2>
-                <button className="text-sm font-black text-[#002B55] hover:text-[#26496B] transition-colors uppercase tracking-widest">Hamısı</button>
+                <button className="text-sm font-black text-[#002B55] hover:text-[#26496B] transition-colors uppercase tracking-widest">{t("viewAll")}</button>
               </div>
 
               <div className="space-y-6">
@@ -153,7 +155,7 @@ export default function DashboardPage() {
                     <div className="text-right flex flex-col items-end gap-2">
                       <span className="text-lg font-black text-[#002B55]">{item.amount}</span>
                       <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-lg ${item.status === 'Tamamlanıb' ? 'bg-orange-50 text-[#FF6B00] border border-orange-100' : 'bg-slate-100 text-[#002B55] border border-slate-200'}`}>
-                        {item.status}
+                        {item.status === 'Tamamlanıb' ? t("completed") : t("pending")}
                       </span>
                     </div>
                   </div>
@@ -166,7 +168,7 @@ export default function DashboardPage() {
           <div className="flex flex-col gap-8 text-center">
             {/* Active Coupons */}
             <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-slate-900/5 p-10 flex flex-col">
-              <h3 className="text-xl font-black text-[#002B55] mb-8 uppercase tracking-widest text-left" style={{ fontFamily: "'Montserrat', sans-serif" }}>Aktiv Kuponlarım</h3>
+              <h3 className="text-xl font-black text-[#002B55] mb-8 uppercase tracking-widest text-left" style={{ fontFamily: "'Montserrat', sans-serif" }}>{t("activeCoupons")}</h3>
               <div className="flex flex-col gap-4">
                 {[
                   { store: "Kontakt Home", value: "50 AZN", code: "KNTKT50", expires: "15 İyul, 2026", logo: "K" },
@@ -185,7 +187,7 @@ export default function DashboardPage() {
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-3 h-3 text-[#1E293B]/50" />
-                        <span className="text-[10px] text-[#1E293B] font-medium" style={{ fontFamily: "'Nunito', sans-serif" }}>Bitiş: {coupon.expires}</span>
+                        <span className="text-[10px] text-[#1E293B] font-medium" style={{ fontFamily: "'Nunito', sans-serif" }}>{t("expires")}: {coupon.expires}</span>
                       </div>
                     </div>
                     <button
@@ -193,7 +195,7 @@ export default function DashboardPage() {
                       className="shrink-0 px-4 py-2.5 bg-gray-100 hover:bg-[#FF6B00] hover:text-white text-[#002B55] rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 active:scale-95"
                       style={{ fontFamily: "'Montserrat', sans-serif" }}
                     >
-                      <Copy className="w-3.5 h-3.5" /> Kopyala
+                      <Copy className="w-3.5 h-3.5" /> {t("copyCode")}
                     </button>
                   </div>
                 ))}
@@ -203,11 +205,11 @@ export default function DashboardPage() {
             {/* Refer a Friend card */}
             <div className="bg-gradient-to-br from-[#26496B] to-[#002B55] rounded-[2.5rem] p-10 text-white shadow-2xl shadow-slate-900/20 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-              <h3 className="text-2xl font-black mb-4 tracking-tight text-left text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>Dostunu dəvət et, <br/>20 AZN qazanın!</h3>
-              <p className="text-slate-200 text-sm font-medium mb-4 leading-relaxed text-left" style={{ fontFamily: "'Nunito', sans-serif" }}>Hər dəvət etdiyiniz dost üçün <span className="text-[#FF6B00] font-black">20 AZN</span> kəşbək qazanın.</p>
-              <p className="text-[10px] text-slate-300 font-medium mb-8 leading-relaxed text-left border-t border-white/10 pt-4" style={{ fontFamily: "'Nunito', sans-serif" }}>Şərt: Dəvət olunan dost 90 gün ərzində minimum 20 AZN dəyərində alış-veriş etməlidir. Təsdiqdən sonra hər iki tərəfə 20 AZN kəşbək balansı təyin olunacaq.</p>
+              <h3 className="text-2xl font-black mb-4 tracking-tight text-left text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>{t("inviteFriendTitle")}</h3>
+              <p className="text-slate-200 text-sm font-medium mb-4 leading-relaxed text-left" style={{ fontFamily: "'Nunito', sans-serif" }}>{t("inviteFriendDesc")}</p>
+              <p className="text-[10px] text-slate-300 font-medium mb-8 leading-relaxed text-left border-t border-white/10 pt-4" style={{ fontFamily: "'Nunito', sans-serif" }}>{t("referralTerms")}</p>
               <button className="w-full py-4 bg-white text-[#002B55] rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-slate-50 shadow-lg shadow-black/10 transition-all flex items-center justify-center gap-3" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                 <CreditCard className="w-4 h-4 text-[#FF6B00]" /> Linki Kopyala
+                 <CreditCard className="w-4 h-4 text-[#FF6B00]" /> {t("copyLink")}
               </button>
             </div>
           </div>
@@ -216,5 +218,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-
