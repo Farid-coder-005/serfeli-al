@@ -12,6 +12,10 @@ import {
   CreditCard,
   CheckCircle2,
   ExternalLink,
+  Copy,
+  Store,
+  Calendar,
+  Tag,
 } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 
@@ -97,9 +101,12 @@ export default function DashboardPage() {
                   <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">+12% Ay/Ay</span>
                 </div>
                 <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">Kəşbək Balansı</p>
-                <h3 className="text-5xl font-black text-[#002B55] tracking-tighter">
+                <h3 className="text-5xl font-black text-[#002B55] tracking-tighter mb-6">
                   {(user.balance || 45.20).toFixed(2)} <span className="text-2xl ml-1 text-[#1E293B] font-bold">₼</span>
                 </h3>
+                <Link href="/coupon-store" className="block w-full py-4 bg-[#FF6B00] text-white rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#E64D00] transition-all text-center shadow-lg shadow-orange-500/20 active:scale-95">
+                  Kupon Mağazası
+                </Link>
               </div>
 
               <div className="group bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-xl shadow-slate-900/5 hover:shadow-2xl hover:shadow-slate-900/10 transition-all relative overflow-hidden">
@@ -157,33 +164,49 @@ export default function DashboardPage() {
 
           {/* Sidebar Info */}
           <div className="flex flex-col gap-8 text-center">
-            {/* Profile Progress */}
-            <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-slate-900/5 p-10 flex flex-col items-center">
-              <h3 className="text-xl font-black text-[#002B55] mb-8 uppercase tracking-widest">Profil Səviyyəsi</h3>
-              <div className="relative w-48 h-48 mb-8 flex items-center justify-center">
-                <svg className="w-full h-full transform -rotate-90">
-                  <circle cx="96" cy="96" r="88" strokeWidth="12" stroke="#F9FAFB" fill="transparent" className="rounded-full" />
-                  <circle cx="96" cy="96" r="88" strokeWidth="12" stroke="#FF6B00" strokeDasharray="552.92" strokeDashoffset="138.23" fill="transparent" strokeLinecap="round" className="transition-all duration-1000 ease-out" />
-                </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-5xl font-black text-[#002B55] tracking-tighter">75%</span>
-                  <span className="text-[10px] text-[#1E293B] font-bold uppercase tracking-widest mt-1">Xallar</span>
-                </div>
+            {/* Active Coupons */}
+            <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-slate-900/5 p-10 flex flex-col">
+              <h3 className="text-xl font-black text-[#002B55] mb-8 uppercase tracking-widest text-left" style={{ fontFamily: "'Montserrat', sans-serif" }}>Aktiv Kuponlarım</h3>
+              <div className="flex flex-col gap-4">
+                {[
+                  { store: "Kontakt Home", value: "50 AZN", code: "KNTKT50", expires: "15 İyul, 2026", logo: "K" },
+                  { store: "Baku Electronics", value: "30 AZN", code: "BAKU30", expires: "01 Avg, 2026", logo: "B" },
+                  { store: "İrşad", value: "20 AZN", code: "IRSHD20", expires: "20 İyun, 2026", logo: "İ" },
+                ].map((coupon, i) => (
+                  <div key={i} className="flex items-center gap-4 p-5 bg-gray-50/50 rounded-[1.5rem] border border-gray-50 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all group">
+                    <div className="w-12 h-12 bg-white rounded-xl border border-gray-100 flex items-center justify-center font-black text-[#FF6B00] shadow-sm shrink-0 group-hover:scale-110 transition-transform" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                      {coupon.logo}
+                    </div>
+                    <div className="flex-1 min-w-0 text-left">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Tag className="w-3 h-3 text-[#FF6B00]" />
+                        <span className="text-sm font-black text-[#002B55]" style={{ fontFamily: "'Montserrat', sans-serif" }}>{coupon.value}</span>
+                        <span className="text-xs font-bold text-[#1E293B]">— {coupon.store}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-3 h-3 text-[#1E293B]/50" />
+                        <span className="text-[10px] text-[#1E293B] font-medium" style={{ fontFamily: "'Nunito', sans-serif" }}>Bitiş: {coupon.expires}</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => navigator.clipboard.writeText(coupon.code)}
+                      className="shrink-0 px-4 py-2.5 bg-gray-100 hover:bg-[#FF6B00] hover:text-white text-[#002B55] rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 active:scale-95"
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      <Copy className="w-3.5 h-3.5" /> Kopyala
+                    </button>
+                  </div>
+                ))}
               </div>
-              <p className="text-sm text-[#1E293B] font-medium mb-8 leading-relaxed px-4 text-center">
-                Növbəti seviyyə üçün <span className="text-[#FF6B00] font-black">250 AZN</span> dəyərində alış lazımdır.
-              </p>
-              <button className="w-full py-5 bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black text-[#002B55] hover:bg-white hover:border-[#FF6B00]/20 hover:shadow-lg transition-all uppercase tracking-[0.2em]">
-                Səviyyəni Yoxla
-              </button>
             </div>
 
             {/* Refer a Friend card */}
             <div className="bg-gradient-to-br from-[#26496B] to-[#002B55] rounded-[2.5rem] p-10 text-white shadow-2xl shadow-slate-900/20 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-              <h3 className="text-2xl font-black mb-6 tracking-tight text-left text-white">Dostlarını gətir, <br/>pulu bölüşün!</h3>
-              <p className="text-slate-200 text-sm font-medium mb-10 leading-relaxed text-left">Hər dəvət etdiyiniz dost üçün <span className="text-[#FF6B00] font-black">5 AZN</span> kəşbək qazanın.</p>
-              <button className="w-full py-4 bg-white text-[#002B55] rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-slate-50 shadow-lg shadow-black/10 transition-all flex items-center justify-center gap-3">
+              <h3 className="text-2xl font-black mb-4 tracking-tight text-left text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>Dostunu dəvət et, <br/>20 AZN qazanın!</h3>
+              <p className="text-slate-200 text-sm font-medium mb-4 leading-relaxed text-left" style={{ fontFamily: "'Nunito', sans-serif" }}>Hər dəvət etdiyiniz dost üçün <span className="text-[#FF6B00] font-black">20 AZN</span> kəşbək qazanın.</p>
+              <p className="text-[10px] text-slate-300 font-medium mb-8 leading-relaxed text-left border-t border-white/10 pt-4" style={{ fontFamily: "'Nunito', sans-serif" }}>Şərt: Dəvət olunan dost 90 gün ərzində minimum 20 AZN dəyərində alış-veriş etməlidir. Təsdiqdən sonra hər iki tərəfə 20 AZN kəşbək balansı təyin olunacaq.</p>
+              <button className="w-full py-4 bg-white text-[#002B55] rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-slate-50 shadow-lg shadow-black/10 transition-all flex items-center justify-center gap-3" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                  <CreditCard className="w-4 h-4 text-[#FF6B00]" /> Linki Kopyala
               </button>
             </div>

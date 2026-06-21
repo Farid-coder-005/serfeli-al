@@ -50,6 +50,12 @@ export const translations = {
     categorySmartphones: "Smartfonlar",
     categoryTablets: "Planşetlər",
     categoryConsoles: "Oyun Konsolları",
+
+    // Dashboard
+    couponStore: "Kupon Mağazası",
+    activeCoupons: "Aktiv Kuponlarım",
+    copyCode: "Kopyala",
+    expires: "Bitiş",
   },
   en: {
     // Header
@@ -102,6 +108,12 @@ export const translations = {
     categorySmartphones: "Smartphones",
     categoryTablets: "Tablets",
     categoryConsoles: "Game Consoles",
+
+    // Dashboard
+    couponStore: "Coupon Store",
+    activeCoupons: "My Active Coupons",
+    copyCode: "Copy",
+    expires: "Expires",
   },
   ru: {
     // Header
@@ -154,6 +166,12 @@ export const translations = {
     categorySmartphones: "Смартфоны",
     categoryTablets: "Планшеты",
     categoryConsoles: "Игровые консоли",
+
+    // Dashboard
+    couponStore: "Магазин купонов",
+    activeCoupons: "Мои активные купоны",
+    copyCode: "Копировать",
+    expires: "Срок действия",
   }
 };
 
