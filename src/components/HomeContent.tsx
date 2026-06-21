@@ -91,8 +91,8 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
       <section className="w-full bg-[#E8F0F8] py-12">
         <div className="max-w-[1440px] mx-auto w-full px-4">
           <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">{t("offersForYou")}</h2>
-          <div className="flex items-stretch gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <div className="flex-none w-[260px] md:w-[280px] snap-start">
+          <div className="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex-none w-[340px] shrink-0 snap-start">
               <PromoBanner variant="left" />
             </div>
             {deals.map((p) => (
@@ -114,13 +114,13 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
         <div className="flex justify-between items-baseline mb-6">
           <h2 className="text-2xl font-bold text-[#222222]">{t("discoverBestsellers")}</h2>
         </div>
-        <div className="flex items-stretch gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 pr-4 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {bestsellers.map((p) => (
             <div key={p.id} className="flex-none w-[260px] md:w-[280px] snap-start">
               <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
             </div>
           ))}
-          <div className="flex-none w-[260px] md:w-[280px] snap-start">
+          <div className="flex-none w-[340px] shrink-0 snap-start">
             <PromoBanner variant="right" />
           </div>
         </div>
