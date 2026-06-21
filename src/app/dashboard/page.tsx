@@ -60,14 +60,11 @@ export default function DashboardPage() {
                 <span className="relative z-10 group-hover:scale-110 transition-transform duration-500">{user.name?.[0] || "U"}</span>
               </div>
               <div className="flex flex-col text-left">
-                <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                    {user.name || "İstifadəçi"}
-                  </h1>
-                  <span className="px-3 py-1 bg-[#FF6B00] text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-orange-500/20 leading-none">PREMIUM</span>
-                </div>
-                <p className="text-[#1E293B] font-medium flex items-center gap-2">
-                  <UserCircle className="w-4 h-4 text-[#1E293B]" /> {user.email || ""}
+                <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-2">
+                  {user.name || "İstifadəçi"}
+                </h1>
+                <p className="text-white/70 text-sm font-medium flex items-center gap-2" style={{ fontFamily: "'Nunito', sans-serif" }}>
+                  <UserCircle className="w-4 h-4 text-white/50" /> {user.email || ""}
                 </p>
               </div>
             </div>
