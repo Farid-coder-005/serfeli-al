@@ -1,14 +1,16 @@
 "use client";
 
-import { useRef } from 'react';
+import { useRef, ReactNode } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 
 interface ProductCarouselProps {
   products: any[];
   userFavoriteIds: string[];
+  beforeItems?: ReactNode;
+  afterItems?: ReactNode;
 }
 
-export function ProductCarousel({ products, userFavoriteIds }: ProductCarouselProps) {
+export function ProductCarousel({ products, userFavoriteIds, beforeItems, afterItems }: ProductCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -33,12 +35,13 @@ export function ProductCarousel({ products, userFavoriteIds }: ProductCarouselPr
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" 
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
+         {beforeItems}
          {products.map((p) => (
             <div key={p.id} className="flex-none w-[260px] md:w-[280px] snap-start">
-               {/* Note: I'm not adding isBestseller to ProductCard since it wasn't requested in its interface earlier, but it maps the products correctly */}
                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
             </div>
          ))}
+         {afterItems}
       </div>
 
       {/* Right Arrow Button */}

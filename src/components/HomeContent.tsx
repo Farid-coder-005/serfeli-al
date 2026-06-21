@@ -86,20 +86,19 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
         </div>
       </section>
 
-      {/* Section 3: Sizin üçün təkliflər (Blue Band) */}
+      {/* Section 3: Sizin üçün təkliflər — Banner as FIRST item in scroll row */}
       <section className="w-full bg-[#E8F0F8] py-12">
         <div className="max-w-[1440px] mx-auto w-full px-4">
           <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">{t("offersForYou")}</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 items-start">
-            {/* Left Column: Promo Banner */}
-            <div className="hidden lg:block">
-              <PromoBanner variant="left" />
-            </div>
-            {/* Right Column: Product Carousel */}
-            <div className="min-w-0">
-              <ProductCarousel products={deals} userFavoriteIds={userFavoriteIds} />
-            </div>
-          </div>
+          <ProductCarousel
+            products={deals}
+            userFavoriteIds={userFavoriteIds}
+            beforeItems={
+              <div className="flex-none w-[260px] md:w-[280px] snap-start hidden md:block">
+                <PromoBanner variant="left" />
+              </div>
+            }
+          />
           <div className="flex justify-center mt-8">
             <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
               {t("viewAllOffers")}
@@ -108,21 +107,20 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
         </div>
       </section>
 
-      {/* Section 4: Bestsellerləri kəşf edin */}
+      {/* Section 4: Bestsellerləri kəşf edin — Banner as LAST item in scroll row */}
       <section className="max-w-[1440px] mx-auto w-full px-4 py-12 border-t border-gray-100">
         <div className="flex justify-between items-baseline mb-6">
           <h2 className="text-2xl font-bold text-[#222222]">{t("discoverBestsellers")}</h2>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 items-start">
-          {/* Left Column: Product Carousel */}
-          <div className="min-w-0">
-            <ProductCarousel products={bestsellers} userFavoriteIds={userFavoriteIds} />
-          </div>
-          {/* Right Column: Promo Banner */}
-          <div className="hidden lg:block">
-            <PromoBanner variant="right" />
-          </div>
-        </div>
+        <ProductCarousel
+          products={bestsellers}
+          userFavoriteIds={userFavoriteIds}
+          afterItems={
+            <div className="flex-none w-[260px] md:w-[280px] snap-start hidden md:block">
+              <PromoBanner variant="right" />
+            </div>
+          }
+        />
         <div className="flex justify-center mt-8">
           <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
             {t("viewAllProducts")}
