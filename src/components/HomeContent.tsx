@@ -117,7 +117,9 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
             <ProductCarousel products={bestsellers} userFavoriteIds={userFavoriteIds} />
           </div>
           {/* Right Column: Premium Promo Banner */}
-          <PromoBanner variant="right" />
+          <div className="w-[340px] hidden md:block">
+            <PromoBanner variant="right" />
+          </div>
         </div>
         <div className="flex justify-center mt-8">
           <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
