@@ -56,6 +56,8 @@ export const translations = {
     activeCoupons: "Aktiv Kuponlarım",
     copyCode: "Kopyala",
     expires: "Bitiş",
+    pendingCashback: "Gözləmdə olan kəşbək",
+    pendingBadge: "Təsdiqlənmə gözləyir",
 
     // Footer
     footerDesc: "Azərbaycanın ən ağıllı alış platforması. Bütün mağazalardakı qiymətləri müqayisə edin, real endirimləri tapın və hər alışdan kəşbək qazanın.",
@@ -184,6 +186,8 @@ export const translations = {
     activeCoupons: "My Active Coupons",
     copyCode: "Copy",
     expires: "Expires",
+    pendingCashback: "Pending Cashback",
+    pendingBadge: "Awaiting Confirmation",
 
     // Footer
     footerDesc: "Azerbaijan's smartest shopping platform. Compare prices across all stores, find real discounts, and earn cashback on every purchase.",
@@ -312,6 +316,8 @@ export const translations = {
     activeCoupons: "Мои активные купоны",
     copyCode: "Копировать",
     expires: "Срок действия",
+    pendingCashback: "Ожидающий кэшбэк",
+    pendingBadge: "Ожидает подтверждения",
 
     // Footer
     footerDesc: "Самая умная платформа для покупок в Азербайджане. Сравнивайте цены во всех магазинах, находите настоящие скидки и получайте кэшбэк за каждую покупку.",

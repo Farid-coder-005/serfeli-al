@@ -112,13 +112,13 @@ export default function DashboardPage() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF6B00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
                 <div className="flex items-center justify-between mb-8">
                   <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF6B00] shadow-inner group-hover:-rotate-12 transition-transform">
-                    <TrendingUp className="w-6 h-6" />
+                    <Clock className="w-6 h-6" />
                   </div>
-                  <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">{t("realSavings")}</span>
+                  <span className="text-[10px] font-black text-[#FF6B00] bg-orange-50 px-3 py-1.5 rounded-full tracking-widest">{t("pendingBadge")}</span>
                 </div>
-                <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">{t("totalSavings")}</p>
+                <p className="text-[10px] font-black text-[#1E293B] uppercase tracking-[0.25em] mb-2">{t("pendingCashback")}</p>
                 <h3 className="text-5xl font-black text-[#002B55] tracking-tighter">
-                  452.40 <span className="text-2xl ml-1 text-[#1E293B] font-bold">₼</span>
+                  12.10 <span className="text-2xl ml-1 text-[#1E293B] font-bold">₼</span>
                 </h3>
               </div>
             </div>
