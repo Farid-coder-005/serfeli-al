@@ -9,7 +9,6 @@ import {
   ChevronRight
 } from "lucide-react";
 import { ProductCarousel } from "@/components/ProductCarousel";
-import { ProductCard } from "@/components/ProductCard";
 import { PromoBanner } from "@/components/PromoBanner";
 import { useLanguage } from "@/context/LanguageContext";
 import { TranslationKey } from "@/lib/translations";
@@ -87,19 +86,17 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
         </div>
       </section>
 
-      {/* Section 3: Sizin üçün təkliflər — Banner as FIRST item in scroll row */}
+      {/* Section 3: Sizin üçün təkliflər — Banner on LEFT, mirroring Section 2 */}
       <section className="w-full bg-[#E8F0F8] py-12">
         <div className="max-w-[1440px] mx-auto w-full px-4">
           <h2 className="text-[24px] font-bold text-[#1a1a1a] mb-8 text-center uppercase tracking-tight">{t("offersForYou")}</h2>
-          <div className="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <div className="flex-none w-[340px] shrink-0 snap-start">
-              <PromoBanner variant="left" />
+          <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 items-start">
+            {/* Left Column: Promo Banner */}
+            <PromoBanner variant="left" />
+            {/* Right Column: Product Carousel */}
+            <div className="min-w-0">
+              <ProductCarousel products={deals} userFavoriteIds={userFavoriteIds} />
             </div>
-            {deals.map((p) => (
-              <div key={p.id} className="flex-none w-[260px] md:w-[280px] snap-start">
-                <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
-              </div>
-            ))}
           </div>
           <div className="flex justify-center mt-8">
             <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
@@ -109,20 +106,18 @@ export function HomeContent({ products, userFavoriteIds }: HomeContentProps) {
         </div>
       </section>
 
-      {/* Section 4: Bestsellerləri kəşf edin — Banner as LAST item in scroll row */}
+      {/* Section 4: Bestsellerləri kəşf edin — Banner as LAST item, mirroring Section 2 */}
       <section className="max-w-[1440px] mx-auto w-full px-4 py-12 border-t border-gray-100">
         <div className="flex justify-between items-baseline mb-6">
           <h2 className="text-2xl font-bold text-[#222222]">{t("discoverBestsellers")}</h2>
         </div>
-        <div className="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 pr-4 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          {bestsellers.map((p) => (
-            <div key={p.id} className="flex-none w-[260px] md:w-[280px] snap-start">
-              <ProductCard product={p} userFavoriteIds={userFavoriteIds} />
-            </div>
-          ))}
-          <div className="flex-none w-[340px] shrink-0 snap-start">
-            <PromoBanner variant="right" />
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 items-start">
+          {/* Left Column: Product Carousel */}
+          <div className="min-w-0">
+            <ProductCarousel products={bestsellers} userFavoriteIds={userFavoriteIds} />
           </div>
+          {/* Right Column: Premium Promo Banner */}
+          <PromoBanner variant="right" />
         </div>
         <div className="flex justify-center mt-8">
           <Link href="/search" className="bg-[#002B55] text-white px-10 py-3 rounded-full font-bold text-[15px] hover:bg-[#004b86] transition-all duration-300 shadow-lg shadow-[#002B55]/20">
